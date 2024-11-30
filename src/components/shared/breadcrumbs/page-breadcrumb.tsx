@@ -6,6 +6,7 @@ import {
 	BreadcrumbPage,
 	BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import React from "react";
 
 interface PageBreadcrumbProps {
 	items?: {
@@ -23,15 +24,16 @@ export function PageBreadcrumb({
 		<Breadcrumb>
 			<BreadcrumbList>
 				{items.map((item, index) => (
-					<>
-						<BreadcrumbItem key={`item-${index}`} className="hidden md:block">
-							<BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
+					<React.Fragment key={`breadcrumb-${index}`}>
+						<BreadcrumbItem className="hidden md:block">
+							<BreadcrumbLink href={item.href || "#"}>
+								{item.label}
+							</BreadcrumbLink>
 						</BreadcrumbItem>
-						<BreadcrumbSeparator
-							key={`separator-${index}`}
-							className="hidden md:block"
-						/>
-					</>
+						{index < items.length && (
+							<BreadcrumbSeparator className="hidden md:block" />
+						)}
+					</React.Fragment>
 				))}
 				<BreadcrumbItem>
 					<BreadcrumbPage>{currentPage}</BreadcrumbPage>
