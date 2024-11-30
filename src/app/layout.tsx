@@ -4,6 +4,7 @@ import { getLocale, getMessages } from "next-intl/server";
 import { Poppins } from "next/font/google";
 import "@/app/globals.css";
 import { ThemeProvider } from "@/components/shared/themes/theme-provider";
+import { ProgressBar } from "@/components/ui/progress-bar";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -34,6 +35,7 @@ export default async function RootLayout({
 		<html lang={locale} suppressHydrationWarning>
 			<body className={`${poppins.variable} font-sans antialiased`}>
 				<NextIntlClientProvider messages={messages}>
+					<ProgressBar />
 					<ThemeProvider
 						attribute="class"
 						defaultTheme="system"
