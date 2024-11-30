@@ -12,9 +12,33 @@
 		"forbidden": {
 			"title": "403 Dilarang",
 			"subtitle": "Anda tidak memiliki izin untuk mengakses halaman ini"
+		},
+		"login": {
+			"title": "Masuk",
+			"description": "Masukkan email Anda di bawah ini untuk masuk ke akun Anda"
+		},
+		"forgot-password": {
+			"title": "Lupa Kata Sandi",
+			"description": "Masukkan email Anda di bawah ini untuk memulihkan akun Anda"
+		}
+	},
+	"input": {
+		"email": {
+			"label": "Email",
+			"placeholder": "Masukkan email Anda"
+		},
+		"password": {
+			"label": "Kata Sandi",
+			"placeholder": "Masukkan kata sandi Anda"
 		}
 	},
 	"button": {
-		"back": "Kembali ke {page}"
+		"back": "Kembali ke {page}",
+		"login": "Masuk Aplikasi",
+		"return": "Lanjutkan ke Halaman Login",
+		"google": "Masuk menggunakan Google",
+		"forgot-password": "Lupa Kata Sandi?",
+		"recovery": "Kirim Tautan Reset Kata Sandi",
+		"or": "Atau Lanjutkan Dengan"
 	}
 }

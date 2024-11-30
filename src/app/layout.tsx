@@ -40,7 +40,7 @@ export default async function RootLayout({
 						enableSystem
 						disableTransitionOnChange
 					>
-						{children}
+						<div className="bg-background">{children}</div>
 					</ThemeProvider>
 				</NextIntlClientProvider>
 			</body>

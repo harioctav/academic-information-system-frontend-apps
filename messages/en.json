@@ -12,9 +12,33 @@
 		"forbidden": {
 			"title": "403 Forbidden",
 			"subtitle": "You don't have permission to access this page"
+		},
+		"login": {
+			"title": "Login",
+			"description": "Enter your email below to login to your account"
+		},
+		"forgot-password": {
+			"title": "Forgot Password",
+			"description": "Enter your email below to recovery your account"
+		}
+	},
+	"input": {
+		"email": {
+			"label": "Email",
+			"placeholder": "Enter your email"
+		},
+		"password": {
+			"label": "Password",
+			"placeholder": "Enter your password"
 		}
 	},
 	"button": {
-		"back": "Back to {page}"
+		"back": "Back to {page}",
+		"login": "Login",
+		"return": "Return to Login Page",
+		"google": "Login with Google",
+		"forgot-password": "Forgot Password?",
+		"recovery": "Send Link Reset Password",
+		"or": "Or Continue With"
 	}
 }

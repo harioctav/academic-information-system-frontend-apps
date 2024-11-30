@@ -3,10 +3,12 @@ import { LoginForm } from "@/components/pages/login-form";
 
 export default function LoginPage() {
 	return (
-		<GuestLayout>
-			<div className="flex h-screen w-full items-center justify-center px-4">
-				<LoginForm />
-			</div>
-		</GuestLayout>
+		<div className="min-h-screen bg-background">
+			<GuestLayout>
+				<div className="flex h-screen w-full items-center justify-center px-4">
+					<LoginForm />
+				</div>
+			</GuestLayout>
+		</div>
 	);
 }
