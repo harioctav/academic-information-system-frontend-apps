@@ -13,11 +13,6 @@ import {
 	Settings2,
 	SquareTerminal,
 } from "lucide-react";
-
-import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
-import { NavSecondary } from "@/components/nav-secondary";
-import { NavUser } from "@/components/nav-user";
 import {
 	Sidebar,
 	SidebarContent,
@@ -28,6 +23,10 @@ import {
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { useTranslations } from "next-intl";
+import { NavigationUser } from "@/components/layouts/navigations/navigation-user";
+import { NavigationSecondary } from "@/components/layouts/navigations/navigation-secondary";
+import { NavigationProject } from "@/components/layouts/navigations/navigation-project";
+import { NavigationMain } from "@/components/layouts/navigations/navigation-main";
 
 const data = {
 	user: {
@@ -179,12 +178,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				</SidebarMenu>
 			</SidebarHeader>
 			<SidebarContent>
-				<NavMain items={data.navMain} />
-				<NavProjects projects={data.projects} />
-				<NavSecondary items={data.navSecondary} className="mt-auto" />
+				<NavigationMain items={data.navMain} />
+				<NavigationProject projects={data.projects} />
+				<NavigationSecondary items={data.navSecondary} className="mt-auto" />
 			</SidebarContent>
 			<SidebarFooter>
-				<NavUser user={data.user} />
+				<NavigationUser user={data.user} />
 			</SidebarFooter>
 		</Sidebar>
 	);

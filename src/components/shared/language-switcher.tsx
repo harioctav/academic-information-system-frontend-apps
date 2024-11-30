@@ -17,8 +17,8 @@ export function LanguageSwitcher() {
 	const router = useRouter();
 
 	const languages = [
-		{ label: "Indonesia", locale: "id" },
 		{ label: "English", locale: "en" },
+		{ label: "Indonesia", locale: "id" },
 	];
 
 	useEffect(() => {
