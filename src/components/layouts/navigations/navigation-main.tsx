@@ -18,6 +18,7 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 export function NavigationMain({
 	items,
@@ -45,10 +46,10 @@ export function NavigationMain({
 							<Collapsible key={item.title} asChild defaultOpen={item.isActive}>
 								<SidebarMenuItem>
 									<SidebarMenuButton asChild tooltip={t(item.title)}>
-										<a href={item.url}>
+										<Link href={item.url}>
 											<item.icon />
 											<span>{t(item.title)}</span>
-										</a>
+										</Link>
 									</SidebarMenuButton>
 									{item.items?.length ? (
 										<>
@@ -63,9 +64,9 @@ export function NavigationMain({
 													{item.items?.map((subItem) => (
 														<SidebarMenuSubItem key={subItem.title}>
 															<SidebarMenuSubButton asChild>
-																<a href={subItem.url}>
+																<Link href={subItem.url}>
 																	<span>{t(subItem.title)}</span>
-																</a>
+																</Link>
 															</SidebarMenuSubButton>
 														</SidebarMenuSubItem>
 													))}

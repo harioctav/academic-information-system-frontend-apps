@@ -17,7 +17,7 @@ export const MainNavigation = {
 	"navigation.groups.academic": [
 		{
 			title: "navigation.menu.academics.title",
-			url: "javascript:void(0)",
+			url: "#",
 			icon: BookOpen,
 			items: [
 				{
@@ -36,7 +36,7 @@ export const MainNavigation = {
 		},
 		{
 			title: "navigation.menu.evaluations.title",
-			url: "javascript:void(0)",
+			url: "#",
 			icon: GraduationCap,
 			items: [
 				{
@@ -53,7 +53,7 @@ export const MainNavigation = {
 	"navigation.groups.setting": [
 		{
 			title: "navigation.menu.settings.title",
-			url: "javascript:void(0)",
+			url: "#",
 			icon: Cog,
 			items: [
 				{
@@ -70,24 +70,24 @@ export const MainNavigation = {
 	"navigation.groups.region": [
 		{
 			title: "navigation.menu.regions.title",
-			url: "javascript:void(0)",
+			url: "#",
 			icon: MapPin,
 			items: [
 				{
 					title: "navigation.menu.regions.provinces.label",
-					url: "#",
+					url: "/locations/provinces",
 				},
 				{
 					title: "navigation.menu.regions.regencies.label",
-					url: "#",
+					url: "/locations/regencies",
 				},
 				{
 					title: "navigation.menu.regions.districts.label",
-					url: "#",
+					url: "/locations/districts",
 				},
 				{
 					title: "navigation.menu.regions.villages.label",
-					url: "#",
+					url: "/locations/villages",
 				},
 			],
 		},
