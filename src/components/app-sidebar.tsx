@@ -27,6 +27,7 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { useTranslations } from "next-intl";
 
 const data = {
 	user: {
@@ -153,6 +154,7 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+	const t = useTranslations();
 	return (
 		<Sidebar variant="inset" {...props}>
 			<SidebarHeader>
@@ -165,9 +167,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 								</div>
 								<div className="grid flex-1 text-left text-sm leading-tight">
 									<span className="truncate font-semibold">
-										Universitas Terbukan
+										{t("brand.title")}
 									</span>
-									<span className="truncate text-xs">Cabang Sukabumi</span>
+									<span className="truncate text-xs">
+										{t("brand.subtitle")}
+									</span>
 								</div>
 							</a>
 						</SidebarMenuButton>

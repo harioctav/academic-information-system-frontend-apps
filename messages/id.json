@@ -1,5 +1,20 @@
 {
+	"brand": {
+		"title": "Universitas Terbuka",
+		"subtitle": "Cabang Sukabumi"
+	},
 	"pages": {
-		"home": "Beranda"
+		"home": "Beranda",
+		"not-found": {
+			"title": "404 Tidak Ditemukan",
+			"subtitle": "Halaman yang Anda cari tidak ada"
+		},
+		"forbidden": {
+			"title": "403 Dilarang",
+			"subtitle": "Anda tidak memiliki izin untuk mengakses halaman ini"
+		}
+	},
+	"button": {
+		"back": "Kembali ke {page}"
 	}
 }
