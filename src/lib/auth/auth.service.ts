@@ -15,11 +15,15 @@ export const authService = {
 			}
 		);
 
-		const data = await response.json();
-
 		if (!response.ok) {
+			if (response.status === 429) {
+				throw new Error("Too many attempts. Please try again later.");
+			}
+			const data = await response.json();
 			throw data;
 		}
+
+		const data = await response.json();
 
 		document.cookie = `token=${data.user.token.access_token}; path=/`;
 		document.cookie = `refresh_token=${data.user.token.refresh_token}; path=/`;
