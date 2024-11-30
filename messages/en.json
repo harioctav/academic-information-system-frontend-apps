@@ -22,6 +22,31 @@
 			"description": "Enter your email below to recovery your account"
 		}
 	},
+	"navigation": {
+		"groups": {
+			"platform": "Platform",
+			"management": "Management"
+		},
+		"menu": {
+			"playground": {
+				"title": "Playground",
+				"history": "History",
+				"starred": "Starred",
+				"settings": "Settings"
+			},
+			"models": {
+				"title": "Models",
+				"genesis": "Genesis",
+				"explorer": "Explorer",
+				"quantum": "Quantum"
+			},
+			"docs": {
+				"title": "Documentation",
+				"intro": "Introduction",
+				"started": "Get Started"
+			}
+		}
+	},
 	"input": {
 		"email": {
 			"label": "Email",

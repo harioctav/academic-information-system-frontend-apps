@@ -22,6 +22,31 @@
 			"description": "Masukkan email Anda di bawah ini untuk memulihkan akun Anda"
 		}
 	},
+	"navigation": {
+		"groups": {
+			"platform": "Platform",
+			"management": "Manajemen"
+		},
+		"menu": {
+			"playground": {
+				"title": "Playground",
+				"history": "Riwayat",
+				"starred": "Favorit",
+				"settings": "Pengaturan"
+			},
+			"models": {
+				"title": "Model",
+				"genesis": "Genesis",
+				"explorer": "Penjelajah",
+				"quantum": "Kuantum"
+			},
+			"docs": {
+				"title": "Dokumentasi",
+				"intro": "Pendahuluan",
+				"started": "Memulai"
+			}
+		}
+	},
 	"input": {
 		"email": {
 			"label": "Email",
