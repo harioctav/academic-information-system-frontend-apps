@@ -1,4 +1,5 @@
 import { User } from "@/types/settings/user";
+import { ValidationErrors } from "@/types/api";
 
 export interface AuthResponse {
 	message: string;
@@ -10,6 +11,11 @@ export interface AuthResponse {
 			refresh_token: string;
 		};
 	};
+}
+
+export interface ApiError {
+	message?: string;
+	errors?: ValidationErrors;
 }
 
 export interface AuthRequest {

@@ -1,3 +1,5 @@
+"use client";
+
 import { AppSidebar } from "@/components/layouts/sidebar/app-sidebar";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -9,9 +11,59 @@ import { PageBreadcrumb } from "@/components/shared/breadcrumbs/page-breadcrumb"
 import { useTranslations } from "next-intl";
 import { ModeToggle } from "@/components/shared/mode-toggle";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
+import { useAuth } from "@/lib/auth/auth-provider";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { routes, validModulePaths } from "@/config/routes/index";
+import { checkPermission } from "@/config/permissions";
+import { LoadingPage } from "@/components/ui/loading-page";
+import NotFoundPage from "@/app/not-found";
+import { ForbiddenPage } from "@/app/errors/forbidden";
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
 	const t = useTranslations();
+	const pathname = usePathname();
+	const router = useRouter();
+	const { user, isLoading } = useAuth();
+	const [hasForbidden, setHasForbidden] = useState(false);
+	const [isValidRoute, setIsValidRoute] = useState(true);
+
+	useEffect(() => {
+		const allValidRoutes = [...routes.public, ...validModulePaths, "/"];
+		const routeExists = allValidRoutes.some(
+			(route) => pathname === route || pathname.startsWith(route + "/")
+		);
+		setIsValidRoute(routeExists);
+
+		if (!isLoading && !user) {
+			router.replace("/auth/login");
+			return;
+		}
+
+		const isValidModulePath = validModulePaths.some((path) =>
+			pathname.startsWith(path)
+		);
+
+		if (user && isValidModulePath) {
+			const userPermissions = user.roles.flatMap((role) => role.permissions);
+			setHasForbidden(!checkPermission(pathname, userPermissions));
+		} else {
+			setHasForbidden(false);
+		}
+	}, [isLoading, user, pathname, router]);
+
+	if (!isValidRoute) {
+		return <NotFoundPage />;
+	}
+
+	if (isLoading || !user) {
+		return <LoadingPage />;
+	}
+
+	if (hasForbidden) {
+		return <ForbiddenPage />;
+	}
+
 	return (
 		<SidebarProvider>
 			<AppSidebar />

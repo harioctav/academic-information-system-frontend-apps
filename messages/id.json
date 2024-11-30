@@ -5,6 +5,10 @@
 	},
 	"pages": {
 		"home": "Beranda",
+		"accounts": {
+			"profile": "Informasi Data Diri",
+			"change-password": "Ubah Kata Sandi"
+		},
 		"not-found": {
 			"title": "404 Tidak Ditemukan",
 			"subtitle": "Halaman yang Anda cari tidak ada"
@@ -140,6 +144,12 @@
 		"google": "Masuk menggunakan Google",
 		"forgot-password": "Lupa Kata Sandi?",
 		"recovery": "Kirim Tautan Reset Kata Sandi",
-		"or": "Atau Lanjutkan Dengan"
+		"or": "Atau Lanjutkan Dengan",
+		"cancel": "Batal",
+		"logout": {
+			"label": "Keluar",
+			"title": "Konfirmasi Keluar",
+			"description": "Apakah Anda yakin ingin keluar dari akun Anda?"
+		}
 	}
 }

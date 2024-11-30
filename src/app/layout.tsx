@@ -5,11 +5,17 @@ import { Poppins } from "next/font/google";
 import "@/app/globals.css";
 import { ThemeProvider } from "@/components/shared/themes/theme-provider";
 import { ProgressBar } from "@/components/ui/progress-bar";
+import { Toaster } from "sonner";
+import { AuthProvider } from "@/lib/auth/auth-provider";
 
 const poppins = Poppins({
 	subsets: ["latin"],
 	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+	display: "swap",
+	preload: false,
 	variable: "--font-poppins",
+	adjustFontFallback: false,
+	fallback: ["system-ui", "arial"],
 });
 
 export const metadata: Metadata = {
@@ -35,15 +41,18 @@ export default async function RootLayout({
 		<html lang={locale} suppressHydrationWarning>
 			<body className={`${poppins.variable} font-sans antialiased`}>
 				<NextIntlClientProvider messages={messages}>
-					<ProgressBar />
-					<ThemeProvider
-						attribute="class"
-						defaultTheme="system"
-						enableSystem
-						disableTransitionOnChange
-					>
-						<div className="bg-background">{children}</div>
-					</ThemeProvider>
+					<AuthProvider>
+						<ThemeProvider
+							attribute="class"
+							defaultTheme="system"
+							enableSystem
+							disableTransitionOnChange
+						>
+							<ProgressBar />
+							{children}
+							<Toaster />
+						</ThemeProvider>
+					</AuthProvider>
 				</NextIntlClientProvider>
 			</body>
 		</html>

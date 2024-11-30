@@ -4,7 +4,11 @@ import type { NextConfig } from "next";
 const withNextIntl = createNextIntlPlugin();
 
 const config: NextConfig = {
-	// Your config options here
+	productionBrowserSourceMaps: false,
+	webpack: (config) => {
+		config.devtool = false;
+		return config;
+	},
 };
 
 export default withNextIntl(config);

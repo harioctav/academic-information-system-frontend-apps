@@ -36,6 +36,10 @@ export interface Params {
 	};
 }
 
+export interface ValidationErrors {
+	[key: string]: string[];
+}
+
 export interface TimeFormat {
 	human: string;
 	machine: string;

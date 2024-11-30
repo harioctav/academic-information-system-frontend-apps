@@ -5,6 +5,10 @@
 	},
 	"pages": {
 		"home": "Dashboard",
+		"accounts": {
+			"profile": "Profile",
+			"change-password": "Change Password"
+		},
 		"not-found": {
 			"title": "404 Not Found",
 			"subtitle": "The page you're looking for doesn't exist"
@@ -123,6 +127,12 @@
 		"google": "Login with Google",
 		"forgot-password": "Forgot Password?",
 		"recovery": "Send Link Reset Password",
-		"or": "Or Continue With"
+		"or": "Or Continue With",
+		"cancel": "Cancel",
+		"logout": {
+			"label": "Logout",
+			"title": "Confirm Logout",
+			"description": "Are you sure you want to logout from your account?"
+		}
 	}
 }
