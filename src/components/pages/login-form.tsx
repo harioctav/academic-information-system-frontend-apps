@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useTranslations } from "next-intl";
+import { PasswordInput } from "@/components/ui/password-input";
 
 export function LoginForm() {
 	const t = useTranslations();
@@ -42,12 +43,7 @@ export function LoginForm() {
 								{t("button.forgot-password")}
 							</Link>
 						</div>
-						<Input
-							id="password"
-							type="password"
-							placeholder={t("input.password.placeholder")}
-							required
-						/>
+						<PasswordInput id="password" />
 					</div>
 					<Button type="submit" className="w-full">
 						{t("button.login")}
