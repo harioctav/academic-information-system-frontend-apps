@@ -25,25 +25,84 @@
 	"navigation": {
 		"groups": {
 			"platform": "Platform",
-			"management": "Management"
+			"management": "Management",
+			"academic": "Academic",
+			"region": "Region Management",
+			"setting": "User Management"
 		},
 		"menu": {
-			"playground": {
-				"title": "Playground",
-				"history": "History",
-				"starred": "Starred",
-				"settings": "Settings"
+			"academics": {
+				"title": "Academics",
+				"majors": {
+					"label": "Majors",
+					"create": "Create Major",
+					"edit": "Edit Major"
+				},
+				"students": {
+					"label": "Students",
+					"create": "Create Student",
+					"edit": "Edit Student"
+				},
+				"subjects": {
+					"label": "Subjects",
+					"create": "Create Subject",
+					"edit": "Edit Subject"
+				}
 			},
-			"models": {
-				"title": "Models",
-				"genesis": "Genesis",
-				"explorer": "Explorer",
-				"quantum": "Quantum"
+			"evaluations": {
+				"title": "Evaluations",
+				"grades": {
+					"label": "Grades",
+					"create": "Create Grade",
+					"edit": "Edit Grade"
+				},
+				"recommendations": {
+					"label": "Recommendations",
+					"create": "Create Recommendation",
+					"edit": "Edit Recommendation"
+				}
 			},
-			"docs": {
-				"title": "Documentation",
-				"intro": "Introduction",
-				"started": "Get Started"
+			"settings": {
+				"title": "Settings",
+				"users": {
+					"label": "Users",
+					"create": "Create User",
+					"edit": "Edit User"
+				},
+				"roles": {
+					"label": "Role & Permissions",
+					"create": "Create Role & Permission",
+					"edit": "Edit Role & Permission"
+				},
+				"profiles": {
+					"label": "Profiles"
+				},
+				"change-password": {
+					"label": "Change Password"
+				}
+			},
+			"regions": {
+				"title": "Regions",
+				"provinces": {
+					"label": "Provinces",
+					"create": "Create Province",
+					"edit": "Edit Province"
+				},
+				"regencies": {
+					"label": "Regencies",
+					"create": "Create Regency",
+					"edit": "Edit Regency"
+				},
+				"districts": {
+					"label": "Districts",
+					"create": "Create District",
+					"edit": "Edit District"
+				},
+				"villages": {
+					"label": "Villages",
+					"create": "Create Village",
+					"edit": "Edit Village"
+				}
 			}
 		}
 	},

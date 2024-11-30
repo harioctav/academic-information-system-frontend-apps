@@ -11,14 +11,13 @@ import {
 } from "@/components/ui/sidebar";
 import { NavigationUser } from "@/components/layouts/navigations/navigation-user";
 import { NavigationSecondary } from "@/components/layouts/navigations/navigation-secondary";
-import { NavigationProject } from "@/components/layouts/navigations/navigation-project";
 import { NavigationMain } from "@/components/layouts/navigations/navigation-main";
 import { Command } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	const t = useTranslations();
-	const { MainNavigation, SecondaryNavigation, Projects, User } = navigation;
+	const { MainNavigation, SecondaryNavigation, User } = navigation;
 
 	return (
 		<Sidebar variant="inset" {...props}>
@@ -41,7 +40,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 			</SidebarHeader>
 			<SidebarContent>
 				<NavigationMain items={MainNavigation} />
-				<NavigationProject projects={Projects} />
 				<NavigationSecondary items={SecondaryNavigation} className="mt-auto" />
 			</SidebarContent>
 			<SidebarFooter>

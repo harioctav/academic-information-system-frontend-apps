@@ -1,37 +1,94 @@
-import { SquareTerminal, Bot, BookOpen } from "lucide-react";
+import {
+	BookOpen,
+	LayoutDashboard,
+	GraduationCap,
+	MapPin,
+	Cog,
+} from "lucide-react";
 
 export const MainNavigation = {
-	"navigation.groups.platform": [
+	"pages.home": [
 		{
-			title: "navigation.menu.playground.title",
-			url: "#",
-			icon: SquareTerminal,
-			isActive: true,
+			title: "pages.home",
+			icon: LayoutDashboard,
+			url: "/",
+		},
+	],
+	"navigation.groups.academic": [
+		{
+			title: "navigation.menu.academics.title",
+			url: "javascript:void(0)",
+			icon: BookOpen,
 			items: [
-				{ title: "navigation.menu.playground.history", url: "#" },
-				{ title: "navigation.menu.playground.starred", url: "#" },
-				{ title: "navigation.menu.playground.settings", url: "#" },
+				{
+					title: "navigation.menu.academics.majors.label",
+					url: "#",
+				},
+				{
+					title: "navigation.menu.academics.subjects.label",
+					url: "#",
+				},
+				{
+					title: "navigation.menu.academics.students.label",
+					url: "#",
+				},
 			],
 		},
 		{
-			title: "navigation.menu.models.title",
-			url: "#",
-			icon: Bot,
+			title: "navigation.menu.evaluations.title",
+			url: "javascript:void(0)",
+			icon: GraduationCap,
 			items: [
-				{ title: "navigation.menu.models.genesis", url: "#" },
-				{ title: "navigation.menu.models.explorer", url: "#" },
-				{ title: "navigation.menu.models.quantum", url: "#" },
+				{
+					title: "navigation.menu.evaluations.grades.label",
+					url: "#",
+				},
+				{
+					title: "navigation.menu.evaluations.recommendations.label",
+					url: "#",
+				},
 			],
 		},
 	],
-	"navigation.groups.management": [
+	"navigation.groups.setting": [
 		{
-			title: "navigation.menu.docs.title",
-			url: "#",
-			icon: BookOpen,
+			title: "navigation.menu.settings.title",
+			url: "javascript:void(0)",
+			icon: Cog,
 			items: [
-				{ title: "navigation.menu.docs.intro", url: "#" },
-				{ title: "navigation.menu.docs.started", url: "#" },
+				{
+					title: "navigation.menu.settings.users.label",
+					url: "#",
+				},
+				{
+					title: "navigation.menu.settings.roles.label",
+					url: "#",
+				},
+			],
+		},
+	],
+	"navigation.groups.region": [
+		{
+			title: "navigation.menu.regions.title",
+			url: "javascript:void(0)",
+			icon: MapPin,
+			items: [
+				{
+					title: "navigation.menu.regions.provinces.label",
+					url: "#",
+				},
+				{
+					title: "navigation.menu.regions.regencies.label",
+					url: "#",
+				},
+				{
+					title: "navigation.menu.regions.districts.label",
+					url: "#",
+				},
+				{
+					title: "navigation.menu.regions.villages.label",
+					url: "#",
+				},
 			],
 		},
 	],

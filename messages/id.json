@@ -25,9 +25,85 @@
 	"navigation": {
 		"groups": {
 			"platform": "Platform",
-			"management": "Manajemen"
+			"management": "Manajemen",
+			"academic": "Akademik",
+			"region": "Managemen Wilayah",
+			"setting": "Managemen Pengguna"
 		},
 		"menu": {
+			"academics": {
+				"title": "Akademik",
+				"majors": {
+					"label": "Program Studi",
+					"create": "Tambah Program Studi",
+					"edit": "Ubah Program Studi"
+				},
+				"students": {
+					"label": "Mahasiswa",
+					"create": "Tambah Mahasiswa",
+					"edit": "Ubah Mahasiswa"
+				},
+				"subjects": {
+					"label": "Matakuliah",
+					"create": "Tambah Matakuliah",
+					"edit": "Ubah Matakuliah"
+				}
+			},
+			"evaluations": {
+				"title": "Evaluasi",
+				"grades": {
+					"label": "Nilai",
+					"create": "Buat Nilai",
+					"edit": "Edit Nilai"
+				},
+				"recommendations": {
+					"label": "Rekomendasi",
+					"create": "Buat Rekomendasi",
+					"edit": "Edit Rekomendasi"
+				}
+			},
+			"settings": {
+				"title": "Pengaturan",
+				"users": {
+					"label": "Pengguna",
+					"create": "Buat Pengguna",
+					"edit": "Edit Pengguna"
+				},
+				"roles": {
+					"label": "Peran & Izin",
+					"create": "Buat Peran & Izin",
+					"edit": "Edit Peran & Izin"
+				},
+				"profiles": {
+					"label": "Profil"
+				},
+				"change-password": {
+					"label": "Ubah Kata Sandi"
+				}
+			},
+			"regions": {
+				"title": "Wilayah",
+				"provinces": {
+					"label": "Provinsi",
+					"create": "Buat Provinsi",
+					"edit": "Edit Provinsi"
+				},
+				"regencies": {
+					"label": "Kota atau Kabupaten",
+					"create": "Buat Kota atau Kabupaten",
+					"edit": "Edit Kota atau Kabupaten"
+				},
+				"districts": {
+					"label": "Kecamatan",
+					"create": "Buat Kecamatan",
+					"edit": "Edit Kecamatan"
+				},
+				"villages": {
+					"label": "Desa atau Kelurahan",
+					"create": "Buat Desa atau Kelurahan",
+					"edit": "Edit Desa atau Kelurahan"
+				}
+			},
 			"playground": {
 				"title": "Playground",
 				"history": "Riwayat",
