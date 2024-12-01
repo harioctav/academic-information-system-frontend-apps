@@ -50,6 +50,10 @@ export default function ProvincePage() {
 					<PageHeader
 						title={t("navigation.menu.locations.provinces.label")}
 						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
+						action={{
+							type: "create",
+							url: "/locations/provinces/create",
+						}}
 					></PageHeader>
 					<CardContent>
 						<div className="relative p-1 mt-0">

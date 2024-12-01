@@ -50,7 +50,7 @@ export default async function RootLayout({
 						>
 							<ProgressBar />
 							{children}
-							<Toaster />
+							<Toaster position="top-right" richColors />
 						</ThemeProvider>
 					</AuthProvider>
 				</NextIntlClientProvider>

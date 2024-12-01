@@ -156,6 +156,7 @@
 	},
 	"button": {
 		"back": "Kembali ke {page}",
+		"back-to-list": "Kembali ke Halaman Daftar",
 		"login": "Masuk Aplikasi",
 		"return": "Lanjutkan ke Halaman Login",
 		"google": "Masuk menggunakan Google",
@@ -170,6 +171,7 @@
 		},
 		"delete": "Hapus",
 		"edit": "Ubah",
+		"create": "Tambah",
 		"option": "Opsi",
 		"delete-selected": "Hapus yang Dipilih",
 		"forbidden": "Tidak dapat mengubah catatan ini."

@@ -1,6 +1,7 @@
 import { Params } from "@/types/api";
 import {
 	ProvinceCollectionResponse,
+	ProvinceRequest,
 	ProvinceResponse,
 } from "@/types/locations/province";
 
@@ -43,6 +44,29 @@ export const provinceService = {
 		return response.json() as Promise<ProvinceCollectionResponse>;
 	},
 
+	// Store a newly created resource in storage.
+	storeProvince: async (request: ProvinceRequest) => {
+		// Setup request & URL
+		const response = await fetch(`${BASE_API_URL}/locations/provinces`, {
+			method: "POST",
+			headers,
+			credentials: "include",
+			body: JSON.stringify(request),
+		});
+
+		const result = await response.json();
+
+		if (response.status === 403) {
+			throw new Error("You don't have permission to access this resource");
+		}
+
+		if (!response.ok) {
+			throw result;
+		}
+
+		return result;
+	},
+
 	// Display the specified resource.
 	showProvince: async (uuid: string) => {
 		const response = await fetch(
@@ -62,6 +86,31 @@ export const provinceService = {
 		}
 
 		return response.json() as Promise<ProvinceResponse>;
+	},
+
+	// Update the specified resource in storage.
+	updateProvince: async (uuid: string, request: ProvinceRequest) => {
+		const response = await fetch(
+			`${BASE_API_URL}/locations/provinces/${uuid}`,
+			{
+				method: "PUT",
+				headers,
+				credentials: "include",
+				body: JSON.stringify(request),
+			}
+		);
+
+		if (response.status === 403) {
+			throw new Error("You don't have permission to access this resource");
+		}
+
+		const result = await response.json();
+
+		if (!response.ok) {
+			throw result;
+		}
+
+		return result;
 	},
 
 	// Remove the specified resource from storage.

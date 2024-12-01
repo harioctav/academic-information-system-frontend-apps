@@ -156,6 +156,7 @@
 	},
 	"button": {
 		"back": "Back to {page}",
+		"back-to-list": "Back to List Page",
 		"login": "Login",
 		"return": "Return to Login Page",
 		"google": "Login with Google",
@@ -170,6 +171,7 @@
 		},
 		"delete": "Delete",
 		"delete-selected": "Delete Selected",
+		"create": "Create",
 		"edit": "Edit",
 		"option": "Options",
 		"forbidden": "Cannot modify this record."
