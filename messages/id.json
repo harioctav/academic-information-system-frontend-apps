@@ -40,17 +40,20 @@
 				"majors": {
 					"label": "Program Studi",
 					"create": "Tambah Program Studi",
-					"edit": "Ubah Program Studi"
+					"edit": "Ubah Program Studi",
+					"delete": "Hapus Program Studi"
 				},
 				"students": {
 					"label": "Mahasiswa",
 					"create": "Tambah Mahasiswa",
-					"edit": "Ubah Mahasiswa"
+					"edit": "Ubah Mahasiswa",
+					"delete": "Hapus Mahasiswa"
 				},
 				"subjects": {
 					"label": "Matakuliah",
 					"create": "Tambah Matakuliah",
-					"edit": "Ubah Matakuliah"
+					"edit": "Ubah Matakuliah",
+					"delete": "Hapus Matakuliah"
 				}
 			},
 			"evaluations": {
@@ -58,12 +61,14 @@
 				"grades": {
 					"label": "Nilai",
 					"create": "Buat Nilai",
-					"edit": "Edit Nilai"
+					"edit": "Edit Nilai",
+					"delete": "Hapus Nilai"
 				},
 				"recommendations": {
 					"label": "Rekomendasi",
 					"create": "Buat Rekomendasi",
-					"edit": "Edit Rekomendasi"
+					"edit": "Edit Rekomendasi",
+					"delete": "Hapus Rekomendasi"
 				}
 			},
 			"settings": {
@@ -71,12 +76,14 @@
 				"users": {
 					"label": "Pengguna",
 					"create": "Buat Pengguna",
-					"edit": "Edit Pengguna"
+					"edit": "Edit Pengguna",
+					"delete": "Hapus Pengguna"
 				},
 				"roles": {
 					"label": "Peran & Izin",
 					"create": "Buat Peran & Izin",
-					"edit": "Edit Peran & Izin"
+					"edit": "Edit Peran & Izin",
+					"delete": "Hapus Peran & Izin"
 				},
 				"profiles": {
 					"label": "Profil"
@@ -90,22 +97,26 @@
 				"provinces": {
 					"label": "Provinsi",
 					"create": "Buat Provinsi",
-					"edit": "Edit Provinsi"
+					"edit": "Edit Provinsi",
+					"delete": "Hapus Provinsi"
 				},
 				"regencies": {
 					"label": "Kota atau Kabupaten",
 					"create": "Buat Kota atau Kabupaten",
-					"edit": "Edit Kota atau Kabupaten"
+					"edit": "Edit Kota atau Kabupaten",
+					"delete": "Hapus Kota atau Kabupaten"
 				},
 				"districts": {
 					"label": "Kecamatan",
 					"create": "Buat Kecamatan",
-					"edit": "Edit Kecamatan"
+					"edit": "Edit Kecamatan",
+					"delete": "Hapus Kecamatan"
 				},
 				"villages": {
 					"label": "Desa atau Kelurahan",
 					"create": "Buat Desa atau Kelurahan",
-					"edit": "Edit Desa atau Kelurahan"
+					"edit": "Edit Desa atau Kelurahan",
+					"delete": "Hapus Desa atau Kelurahan"
 				}
 			}
 		}
@@ -118,6 +129,29 @@
 		"password": {
 			"label": "Kata Sandi",
 			"placeholder": "Masukkan kata sandi Anda"
+		},
+		"search": {
+			"label": "Pencarian",
+			"placeholder": "Masukkan Kata Kunci"
+		},
+		"code": {
+			"label": "Kode",
+			"placeholder": "Masukkan Kode"
+		},
+		"name": {
+			"label": "Nama",
+			"placeholder": "Masukkan Nama"
+		},
+		"created_at": {
+			"label": "Dibuat Pada",
+			"placeholder": "Masukkan Tanggal Dibuat"
+		},
+		"updated_at": {
+			"label": "Diperbarui Pada",
+			"placeholder": "Masukkan Tanggal Diperbarui"
+		},
+		"actions": {
+			"label": "Aksi"
 		}
 	},
 	"button": {
@@ -133,6 +167,24 @@
 			"label": "Keluar",
 			"title": "Konfirmasi Keluar",
 			"description": "Apakah Anda yakin ingin keluar dari akun Anda?"
+		},
+		"delete": "Hapus",
+		"edit": "Ubah",
+		"option": "Opsi",
+		"delete-selected": "Hapus yang Dipilih",
+		"forbidden": "Tidak dapat mengubah catatan ini."
+	},
+	"dialog": {
+		"delete": {
+			"title": "Hapus {page}",
+			"description": "Apakah Anda yakin ingin menghapus {page} ini? Tindakan ini tidak dapat dibatalkan."
+		},
+		"delete-selected": {
+			"title": "Hapus Item yang Dipilih",
+			"description": "Apakah Anda yakin ingin menghapus {selected} item yang dipilih? Tindakan ini tidak dapat dibatalkan."
 		}
+	},
+	"table": {
+		"columns": "Kolom"
 	}
 }
