@@ -22,15 +22,15 @@ export const MainNavigation = {
 			items: [
 				{
 					title: "navigation.menu.academics.majors.label",
-					url: "#",
+					url: "/academics/majors",
 				},
 				{
 					title: "navigation.menu.academics.subjects.label",
-					url: "#",
+					url: "/academics/subjects",
 				},
 				{
 					title: "navigation.menu.academics.students.label",
-					url: "#",
+					url: "/academics/students",
 				},
 			],
 		},
@@ -41,11 +41,11 @@ export const MainNavigation = {
 			items: [
 				{
 					title: "navigation.menu.evaluations.grades.label",
-					url: "#",
+					url: "/evaluations/grades",
 				},
 				{
 					title: "navigation.menu.evaluations.recommendations.label",
-					url: "#",
+					url: "/evaluations/recommendations",
 				},
 			],
 		},
@@ -58,35 +58,35 @@ export const MainNavigation = {
 			items: [
 				{
 					title: "navigation.menu.settings.users.label",
-					url: "#",
+					url: "/settings/users",
 				},
 				{
 					title: "navigation.menu.settings.roles.label",
-					url: "#",
+					url: "/settings/roles",
 				},
 			],
 		},
 	],
 	"navigation.groups.region": [
 		{
-			title: "navigation.menu.regions.title",
+			title: "navigation.menu.locations.title",
 			url: "#",
 			icon: MapPin,
 			items: [
 				{
-					title: "navigation.menu.regions.provinces.label",
+					title: "navigation.menu.locations.provinces.label",
 					url: "/locations/provinces",
 				},
 				{
-					title: "navigation.menu.regions.regencies.label",
+					title: "navigation.menu.locations.regencies.label",
 					url: "/locations/regencies",
 				},
 				{
-					title: "navigation.menu.regions.districts.label",
+					title: "navigation.menu.locations.districts.label",
 					url: "/locations/districts",
 				},
 				{
-					title: "navigation.menu.regions.villages.label",
+					title: "navigation.menu.locations.villages.label",
 					url: "/locations/villages",
 				},
 			],

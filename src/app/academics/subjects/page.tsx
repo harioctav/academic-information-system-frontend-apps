@@ -11,7 +11,7 @@ export default function HomePage() {
 			<div className="container mx-auto overflow-x-hidden">
 				<Card>
 					<PageHeader
-						title={t("navigation.menu.locations.regencies.label")}
+						title={t("navigation.menu.academics.subjects.label")}
 						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
 					></PageHeader>
 					<CardContent>

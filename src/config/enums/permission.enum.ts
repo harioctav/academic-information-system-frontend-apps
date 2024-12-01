@@ -64,4 +64,17 @@ export enum Permission {
 	UserPassword = "users.password",
 	UserEdit = "users.update",
 	UserDelete = "users.destroy",
+
+	// Evaluations Module
+	GradeIndex = "grades.index",
+	GradeCreate = "grades.store",
+	GradeShow = "grades.show",
+	GradeEdit = "grades.update",
+	GradeDelete = "grades.destroy",
+
+	RecommendationIndex = "recommendations.index",
+	RecommendationCreate = "recommendations.store",
+	RecommendationShow = "recommendations.show",
+	RecommendationEdit = "recommendations.update",
+	RecommendationDelete = "recommendations.destroy",
 }

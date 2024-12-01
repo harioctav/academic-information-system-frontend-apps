@@ -85,7 +85,7 @@
 					"label": "Change Password"
 				}
 			},
-			"regions": {
+			"locations": {
 				"title": "Regions",
 				"provinces": {
 					"label": "Provinces",

@@ -85,7 +85,7 @@
 					"label": "Ubah Kata Sandi"
 				}
 			},
-			"regions": {
+			"locations": {
 				"title": "Wilayah",
 				"provinces": {
 					"label": "Provinsi",
@@ -107,23 +107,6 @@
 					"create": "Buat Desa atau Kelurahan",
 					"edit": "Edit Desa atau Kelurahan"
 				}
-			},
-			"playground": {
-				"title": "Playground",
-				"history": "Riwayat",
-				"starred": "Favorit",
-				"settings": "Pengaturan"
-			},
-			"models": {
-				"title": "Model",
-				"genesis": "Genesis",
-				"explorer": "Penjelajah",
-				"quantum": "Kuantum"
-			},
-			"docs": {
-				"title": "Dokumentasi",
-				"intro": "Pendahuluan",
-				"started": "Memulai"
 			}
 		}
 	},

@@ -13,11 +13,7 @@ export const routes = {
 			"/academics/subjects",
 			"/academics/students",
 		],
-		evaluations: [
-			"/evaluations/majors",
-			"/evaluations/subjects",
-			"/evaluations/students",
-		],
+		evaluations: ["/evaluations/grades", "/evaluations/recommendations"],
 		accounts: ["/accounts/profile", "/accounts/passwords"],
 	},
 } as const;

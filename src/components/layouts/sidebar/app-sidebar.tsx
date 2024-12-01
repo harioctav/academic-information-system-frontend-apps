@@ -17,7 +17,7 @@ import { useTranslations } from "next-intl";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	const t = useTranslations();
-	const { MainNavigation, SecondaryNavigation, User } = navigation;
+	const { MainNavigation, SecondaryNavigation } = navigation;
 
 	return (
 		<Sidebar variant="inset" {...props}>
@@ -43,7 +43,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				<NavigationSecondary items={SecondaryNavigation} className="mt-auto" />
 			</SidebarContent>
 			<SidebarFooter>
-				<NavigationUser user={User} />
+				<NavigationUser />
 			</SidebarFooter>
 		</Sidebar>
 	);

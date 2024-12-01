@@ -8,7 +8,6 @@ import {
 	SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { PageBreadcrumb } from "@/components/shared/breadcrumbs/page-breadcrumb";
-import { useTranslations } from "next-intl";
 import { ModeToggle } from "@/components/shared/mode-toggle";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
 import { useAuth } from "@/lib/auth/auth-provider";
@@ -21,7 +20,6 @@ import NotFoundPage from "@/app/not-found";
 import { ForbiddenPage } from "@/app/errors/forbidden";
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
-	const t = useTranslations();
 	const pathname = usePathname();
 	const router = useRouter();
 	const { user, isLoading } = useAuth();
@@ -76,10 +74,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
 						<Separator orientation="vertical" className="h-4" />
 						<LanguageSwitcher />
 						<Separator orientation="vertical" className="mr-2 h-4" />
-						<PageBreadcrumb
-							items={[{ label: "Building Your Application", href: "#" }]}
-							currentPage={t("pages.home")}
-						/>
+						<PageBreadcrumb />
 					</div>
 				</header>
 				<div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
