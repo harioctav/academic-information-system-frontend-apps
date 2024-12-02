@@ -17,10 +17,5 @@ export interface RoleRequest {
 	permissions?: string[];
 }
 
-export interface ValidationErrors {
-	name?: string[];
-	permissions?: string[];
-}
-
 export type RoleResponse = ApiResponse<Role>;
 export type RoleCollectionResponse = ApiResponse<Role[]>;

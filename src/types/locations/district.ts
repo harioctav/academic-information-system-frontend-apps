@@ -13,7 +13,7 @@ export interface District {
 }
 
 export interface DistrictRequest {
-	code: string;
+	code: number;
 	name: string;
 	regencies: number;
 }
