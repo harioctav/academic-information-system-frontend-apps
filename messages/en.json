@@ -150,6 +150,10 @@
 			"label": "Province",
 			"placeholder": "Enter Or Select Province"
 		},
+		"regency_province_name": {
+			"label": "Province",
+			"placeholder": "Enter Or Select Province"
+		},
 		"regency_name": {
 			"label": "Regency",
 			"placeholder": "Enter Or Select Regency"

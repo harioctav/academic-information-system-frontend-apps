@@ -150,6 +150,10 @@
 			"label": "Provinsi",
 			"placeholder": "Masukkan atau Pilih Provinsi"
 		},
+		"regency_province_name": {
+			"label": "Provinsi",
+			"placeholder": "Masukkan atau Pilih Provinsi"
+		},
 		"regency_name": {
 			"label": "Kota atau Kabupaten",
 			"placeholder": "Masukkan atau Pilih Kota atau Kabupaten"
