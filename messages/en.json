@@ -142,21 +142,25 @@
 			"label": "Name",
 			"placeholder": "Enter Name"
 		},
+		"type": {
+			"label": "Type",
+			"placeholder": "Enter Or Select Type"
+		},
 		"province_name": {
 			"label": "Province",
-			"placeholder": "Enter Province"
+			"placeholder": "Enter Or Select Province"
 		},
 		"regency_name": {
 			"label": "Regency",
-			"placeholder": "Enter Regency"
+			"placeholder": "Enter Or Select Regency"
 		},
 		"district_name": {
 			"label": "District",
-			"placeholder": "Enter District"
+			"placeholder": "Enter Or Select District"
 		},
 		"village_name": {
 			"label": "Village",
-			"placeholder": "Enter Village"
+			"placeholder": "Enter Or Select Village"
 		},
 		"full_code": {
 			"label": "Full Code",

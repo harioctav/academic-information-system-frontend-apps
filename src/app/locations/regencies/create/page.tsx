@@ -1,4 +1,5 @@
 import { MainLayout } from "@/components/layouts/main-layout";
+import RegencyFormInput from "@/components/pages/locations/regencies/form-input";
 import { PageHeader } from "@/components/pages/page-header";
 import { Card, CardContent } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
@@ -18,7 +19,9 @@ const CreateProvincePage = () => {
 							url: "/locations/regencies",
 						}}
 					/>
-					<CardContent>{/* <ProvinceFormInput /> */}</CardContent>
+					<CardContent>
+						<RegencyFormInput />
+					</CardContent>
 				</Card>
 			</div>
 		</MainLayout>

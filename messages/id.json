@@ -142,21 +142,25 @@
 			"label": "Nama",
 			"placeholder": "Masukkan Nama"
 		},
+		"type": {
+			"label": "Tipe",
+			"placeholder": "Masukkan atau Pilih Tipe"
+		},
 		"province_name": {
 			"label": "Provinsi",
-			"placeholder": "Masukkan Provinsi"
+			"placeholder": "Masukkan atau Pilih Provinsi"
 		},
 		"regency_name": {
 			"label": "Kota atau Kabupaten",
-			"placeholder": "Masukkan Kota atau Kabupaten"
+			"placeholder": "Masukkan atau Pilih Kota atau Kabupaten"
 		},
 		"district_name": {
 			"label": "Kecamatan",
-			"placeholder": "Masukkan Kecamatan"
+			"placeholder": "Masukkan atau Pilih Kecamatan"
 		},
 		"village_name": {
 			"label": "Desa atau Kelurahan",
-			"placeholder": "Masukkan Desa atau Kelurahan"
+			"placeholder": "Masukkan atau Pilih Desa atau Kelurahan"
 		},
 		"created_at": {
 			"label": "Dibuat Pada",

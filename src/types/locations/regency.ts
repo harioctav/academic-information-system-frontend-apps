@@ -14,7 +14,7 @@ export interface Regency {
 }
 
 export interface RegencyRequest {
-	code: string;
+	code: number;
 	name: string;
 	type: string;
 	provinces: number;
