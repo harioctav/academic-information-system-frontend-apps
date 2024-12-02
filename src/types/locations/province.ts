@@ -14,10 +14,5 @@ export interface ProvinceRequest {
 	name: string;
 }
 
-export interface ValidationErrors {
-	code?: string[];
-	name?: string[];
-}
-
 export type ProvinceResponse = ApiResponse<Province>;
 export type ProvinceCollectionResponse = ApiResponse<Province[]>;

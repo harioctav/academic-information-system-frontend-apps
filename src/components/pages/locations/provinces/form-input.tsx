@@ -4,18 +4,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { provinceService } from "@/lib/services/locations/province.service";
-import { ValidationErrors } from "@/types/api";
+import { ApiError, ValidationErrors } from "@/types/api";
 import { ProvinceRequest } from "@/types/locations/province";
 import { FormProps } from "@/types/from-prop";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useCallback } from "react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
-
-interface ApiError {
-	message: string;
-	errors?: ValidationErrors;
-}
 
 const ProvinceFormInput = ({ uuid, isEdit }: FormProps) => {
 	const router = useRouter();

@@ -142,6 +142,10 @@
 			"label": "Name",
 			"placeholder": "Enter Name"
 		},
+		"province_name": {
+			"label": "Province",
+			"placeholder": "Enter Province"
+		},
 		"created_at": {
 			"label": "Created At",
 			"placeholder": "Enter Created At"

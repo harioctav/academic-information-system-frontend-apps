@@ -142,6 +142,10 @@
 			"label": "Nama",
 			"placeholder": "Masukkan Nama"
 		},
+		"province_name": {
+			"label": "Provinsi",
+			"placeholder": "Masukkan Provinsi"
+		},
 		"created_at": {
 			"label": "Dibuat Pada",
 			"placeholder": "Masukkan Tanggal Dibuat"

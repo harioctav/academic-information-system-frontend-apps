@@ -40,6 +40,11 @@ export interface ValidationErrors {
 	[key: string]: string[];
 }
 
+export interface ApiError {
+	message?: string;
+	errors?: ValidationErrors;
+}
+
 export interface TimeFormat {
 	human: string;
 	machine: string;

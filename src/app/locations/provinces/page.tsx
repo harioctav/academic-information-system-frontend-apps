@@ -54,7 +54,7 @@ export default function ProvincePage() {
 							type: "create",
 							url: "/locations/provinces/create",
 						}}
-					></PageHeader>
+					/>
 					<CardContent>
 						<div className="relative p-1 mt-0">
 							<DataTable<Province>
