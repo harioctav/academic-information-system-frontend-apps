@@ -146,6 +146,18 @@
 			"label": "Province",
 			"placeholder": "Enter Province"
 		},
+		"regency_name": {
+			"label": "Regency",
+			"placeholder": "Enter Regency"
+		},
+		"district_name": {
+			"label": "District",
+			"placeholder": "Enter District"
+		},
+		"village_name": {
+			"label": "Village",
+			"placeholder": "Enter Village"
+		},
 		"full_code": {
 			"label": "Full Code",
 			"placeholder": "Enter Full Code"
@@ -160,6 +172,10 @@
 		},
 		"actions": {
 			"label": "Actions"
+		},
+		"filter": {
+			"page": "Filter by {page}",
+			"type": "Filter by Type"
 		}
 	},
 	"button": {

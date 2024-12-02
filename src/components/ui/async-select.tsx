@@ -2,27 +2,32 @@
 
 import { AsyncPaginate, LoadOptions } from "react-select-async-paginate";
 import { ActionMeta, SingleValue, GroupBase } from "react-select";
+import { ApiResponse } from "@/types/api";
 
-interface Option {
-	value: string | number;
-	label: string;
-	data: any;
+interface BaseEntity {
+	id: string | number;
 }
 
-interface AsyncSelectProps {
+export interface SelectOption<T> {
+	value: string | number;
+	label: string;
+	data: T;
+}
+
+interface AsyncSelectProps<T extends BaseEntity> {
 	placeholder?: string;
 	apiUrl: string;
-	value?: Option | null;
+	value?: SelectOption<T> | null;
 	onChange?: (
-		newValue: SingleValue<Option>,
-		actionMeta: ActionMeta<Option>
+		newValue: SingleValue<SelectOption<T>>,
+		actionMeta: ActionMeta<SelectOption<T>>
 	) => void;
 	onClear?: () => void;
-	textFormatter: (item: any) => string;
+	textFormatter: (item: T) => string;
 	isClearable?: boolean;
 }
 
-export function AsyncSelectInput({
+export function AsyncSelectInput<T extends BaseEntity>({
 	placeholder,
 	apiUrl,
 	value,
@@ -30,10 +35,10 @@ export function AsyncSelectInput({
 	onClear,
 	textFormatter,
 	isClearable = true,
-}: AsyncSelectProps) {
+}: AsyncSelectProps<T>) {
 	const loadOptions: LoadOptions<
-		Option,
-		GroupBase<Option>,
+		SelectOption<T>,
+		GroupBase<SelectOption<T>>,
 		{ page: number }
 	> = async (search, _, additional) => {
 		const token = document.cookie.split("token=")[1]?.split(";")[0];
@@ -51,16 +56,20 @@ export function AsyncSelectInput({
 			}
 		);
 
-		const data = await response.json();
-		const options = data.data.map((item: any) => ({
+		const data = (await response.json()) as ApiResponse<T[]>;
+		const options = data.data.map((item) => ({
 			value: item.id,
 			label: textFormatter(item),
 			data: item,
 		}));
 
+		// Add default values for meta properties
+		const currentPageNumber = data.meta?.current_page ?? 1;
+		const lastPageNumber = data.meta?.last_page ?? 1;
+
 		return {
 			options,
-			hasMore: data.meta.current_page < data.meta.last_page,
+			hasMore: currentPageNumber < lastPageNumber,
 			additional: {
 				page: currentPage + 1,
 			},
@@ -68,8 +77,8 @@ export function AsyncSelectInput({
 	};
 
 	const handleChange = (
-		newValue: SingleValue<Option>,
-		actionMeta: ActionMeta<Option>
+		newValue: SingleValue<SelectOption<T>>,
+		actionMeta: ActionMeta<SelectOption<T>>
 	) => {
 		if (actionMeta.action === "clear" && onClear) {
 			onClear();

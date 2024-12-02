@@ -146,6 +146,18 @@
 			"label": "Provinsi",
 			"placeholder": "Masukkan Provinsi"
 		},
+		"regency_name": {
+			"label": "Kota atau Kabupaten",
+			"placeholder": "Masukkan Kota atau Kabupaten"
+		},
+		"district_name": {
+			"label": "Kecamatan",
+			"placeholder": "Masukkan Kecamatan"
+		},
+		"village_name": {
+			"label": "Desa atau Kelurahan",
+			"placeholder": "Masukkan Desa atau Kelurahan"
+		},
 		"created_at": {
 			"label": "Dibuat Pada",
 			"placeholder": "Masukkan Tanggal Dibuat"
@@ -156,10 +168,14 @@
 		},
 		"full_code": {
 			"label": "Kode Lengkap",
-			"placeholder": "Enter Kode Lengkap"
+			"placeholder": "Masukkan Kode Lengkap"
 		},
 		"actions": {
 			"label": "Aksi"
+		},
+		"filter": {
+			"page": "Filter berdasarkan {page}",
+			"type": "Filter berdasarkan Tipe"
 		}
 	},
 	"button": {
