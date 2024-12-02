@@ -25,8 +25,13 @@ export const authService = {
 
 		const data = await response.json();
 
-		document.cookie = `token=${data.user.token.access_token}; path=/`;
-		document.cookie = `refresh_token=${data.user.token.refresh_token}; path=/`;
+		const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+		document.cookie = `token=${
+			data.user.token.access_token
+		}; expires=${expires.toUTCString()}; path=/`;
+		document.cookie = `refresh_token=${
+			data.user.token.refresh_token
+		}; expires=${expires.toUTCString()}; path=/`;
 		return data;
 	},
 
@@ -79,7 +84,14 @@ export const authService = {
 		const data = await response.json();
 		if (!response.ok) throw data;
 
-		document.cookie = `token=${data.token.access_token}; path=/`;
+		const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
+		document.cookie = `token=${
+			data.token.access_token
+		}; expires=${expires.toUTCString()}; path=/`;
+		document.cookie = `refresh_token=${
+			data.token.refresh_token
+		}; expires=${expires.toUTCString()}; path=/`;
+
 		return data;
 	},
 

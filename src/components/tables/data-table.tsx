@@ -7,6 +7,7 @@ import {
 	VisibilityState,
 	getCoreRowModel,
 	useReactTable,
+	OnChangeFn,
 } from "@tanstack/react-table";
 import { TableToolbar } from "@/components/tables/partials/table-toolbar";
 import { TablePagination } from "@/components/tables/partials/table-pagination";
@@ -25,7 +26,7 @@ interface DataTableProps<TData> {
 	sorting: SortingState;
 	searchQuery: string;
 	onPaginationChange: (pageIndex: number, pageSize: number) => void;
-	onSortingChange: (sorting: SortingState) => void;
+	onSortingChange: OnChangeFn<SortingState>;
 	onSearchChange: (query: string) => void;
 	onBulkDelete?: (selectedRows: string[]) => void;
 	showSelection?: boolean;
@@ -58,6 +59,25 @@ export function DataTable<TData>({
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
 	const [inputValue, setInputValue] = React.useState(searchQuery);
 
+	const handleSearch = React.useCallback(
+		(event: React.ChangeEvent<HTMLInputElement>) => {
+			const value = event.target.value;
+			setInputValue(value);
+			const timeoutId = setTimeout(() => {
+				onSearchChange(value);
+			}, 500);
+			return () => clearTimeout(timeoutId);
+		},
+		[onSearchChange]
+	);
+
+	const handlePaginationChange = React.useCallback(
+		(pageIndex: number, pageSize: number) => {
+			onPaginationChange(pageIndex, pageSize);
+		},
+		[onPaginationChange]
+	);
+
 	const table = useReactTable({
 		data,
 		columns,
@@ -74,18 +94,14 @@ export function DataTable<TData>({
 		enableRowSelection: showSelection
 			? (row) => !isSpecialRow?.(row.original)
 			: false,
-		onSortingChange: (updater) => {
-			const newSorting =
-				typeof updater === "function" ? updater(sorting) : updater;
-			onSortingChange(newSorting);
-		},
+		onSortingChange,
 		onPaginationChange: (updates) => {
 			if (typeof updates === "function") {
 				const { pageIndex, pageSize } = updates({
 					pageIndex: pagination.pageIndex,
 					pageSize: pagination.pageSize,
 				});
-				onPaginationChange(pageIndex, pageSize);
+				handlePaginationChange(pageIndex, pageSize);
 			}
 		},
 		onColumnVisibilityChange: setColumnVisibility,
@@ -95,29 +111,21 @@ export function DataTable<TData>({
 		getCoreRowModel: getCoreRowModel(),
 	});
 
-	const handleSearch = React.useCallback(
-		(event: React.ChangeEvent<HTMLInputElement>) => {
-			const value = event.target.value;
-			setInputValue(value);
-			const timeoutId = setTimeout(() => {
-				onSearchChange(value);
-			}, 500);
-			return () => clearTimeout(timeoutId);
-		},
-		[onSearchChange]
+	const selectedRows = React.useMemo(
+		() =>
+			table
+				.getSelectedRowModel()
+				.rows.map((row) => (row.original as { uuid: string }).uuid),
+		[table]
 	);
 
-	const selectedRows = table
-		.getSelectedRowModel()
-		.rows.map((row) => (row.original as { uuid: string }).uuid);
-
-	const handleBulkDelete = () => {
+	const handleBulkDelete = React.useCallback(() => {
 		if (onBulkDelete && selectedRows.length > 0) {
 			onBulkDelete(selectedRows);
 			setRowSelection({});
 			setIsDeleteDialogOpen(false);
 		}
-	};
+	}, [onBulkDelete, selectedRows]);
 
 	return (
 		<div className="w-full overflow-hidden p-1">
@@ -127,7 +135,7 @@ export function DataTable<TData>({
 				showSelection={showSelection}
 				selectedRows={selectedRows}
 				inputValue={inputValue}
-				onPaginationChange={onPaginationChange}
+				onPaginationChange={handlePaginationChange}
 				setIsDeleteDialogOpen={setIsDeleteDialogOpen}
 				handleSearch={handleSearch}
 				onSearchChange={onSearchChange}
@@ -145,7 +153,7 @@ export function DataTable<TData>({
 			<TablePagination
 				table={table}
 				pagination={pagination}
-				onPaginationChange={onPaginationChange}
+				onPaginationChange={handlePaginationChange}
 				pageCount={pageCount}
 			/>
 

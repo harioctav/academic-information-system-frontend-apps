@@ -76,6 +76,10 @@ export const useRegencyColumns = () => {
 				},
 			},
 			{
+				accessorKey: "full_code",
+				header: t("input.full_code.label"),
+			},
+			{
 				accessorKey: "created_at",
 				header: ({ column }) => {
 					return (

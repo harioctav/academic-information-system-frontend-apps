@@ -1,14 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { SortingState } from "@tanstack/react-table";
-
-interface FetchParams {
-	page: number;
-	perPage: number;
-	sortBy: string;
-	sortDirection: "asc" | "desc";
-	search: string;
-	[key: string]: unknown;
-}
+import { Params } from "@/types/api";
 
 interface FetchResponse<TData> {
 	data: TData[];
@@ -18,11 +10,12 @@ interface FetchResponse<TData> {
 }
 
 export function useDataTable<TData>(
-	fetchFunction: (params: FetchParams) => Promise<FetchResponse<TData>>,
+	fetchFunction: (params: Params) => Promise<FetchResponse<TData>>,
 	extraParams?: Record<string, unknown>
 ) {
 	const [data, setData] = useState<TData[]>([]);
 	const [pageCount, setPageCount] = useState(0);
+	const [loading, setLoading] = useState(false);
 	const [pagination, setPagination] = useState({
 		pageIndex: 0,
 		pageSize: 5,
@@ -31,30 +24,45 @@ export function useDataTable<TData>(
 	const [searchQuery, setSearchQuery] = useState("");
 
 	const fetchData = useCallback(async () => {
-		const sortBy = sorting.length > 0 ? sorting[0].id : "created_at";
-		const sortDirection = (
-			sorting.length > 0 ? (sorting[0].desc ? "desc" : "asc") : "desc"
-		) as "asc" | "desc";
+		setLoading(true);
+		try {
+			const sortBy = sorting.length > 0 ? sorting[0].id : "created_at";
+			const sortDirection = (
+				sorting.length > 0 ? (sorting[0].desc ? "desc" : "asc") : "desc"
+			) as "asc" | "desc";
 
-		const params: FetchParams = {
-			page: pagination.pageIndex + 1,
-			perPage: pagination.pageSize,
-			sortBy,
-			sortDirection,
-			search: searchQuery,
-			...extraParams,
-		};
+			const params: Params = {
+				page: pagination.pageIndex + 1,
+				perPage: pagination.pageSize,
+				sortBy,
+				sortDirection,
+				search: searchQuery,
+				...extraParams,
+			};
 
-		const response = await fetchFunction(params);
-		setData(response.data);
-		setPageCount(response.meta?.last_page || 0);
-	}, [fetchFunction, pagination, sorting, searchQuery, extraParams]);
-
-	const serializedExtraParams = JSON.stringify(extraParams);
+			const response = await fetchFunction(params);
+			setData(response.data);
+			setPageCount(response.meta?.last_page || 0);
+		} catch (error) {
+			console.error("Failed to fetch data:", error);
+		} finally {
+			setLoading(false);
+		}
+	}, [
+		pagination.pageIndex,
+		pagination.pageSize,
+		sorting,
+		searchQuery,
+		extraParams,
+		fetchFunction,
+	]);
 
 	useEffect(() => {
-		fetchData();
-	}, [fetchData, serializedExtraParams]);
+		const timer = setTimeout(() => {
+			fetchData();
+		}, 300);
+		return () => clearTimeout(timer);
+	}, [fetchData]);
 
 	return {
 		data,
@@ -62,6 +70,7 @@ export function useDataTable<TData>(
 		pagination,
 		sorting,
 		searchQuery,
+		loading,
 		setPagination,
 		setSorting,
 		setSearchQuery,

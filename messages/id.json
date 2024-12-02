@@ -154,6 +154,10 @@
 			"label": "Diperbarui Pada",
 			"placeholder": "Masukkan Tanggal Diperbarui"
 		},
+		"full_code": {
+			"label": "Kode Lengkap",
+			"placeholder": "Enter Kode Lengkap"
+		},
 		"actions": {
 			"label": "Aksi"
 		}

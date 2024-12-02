@@ -1,7 +1,7 @@
 "use client";
 
 import { User } from "@/types/settings/user";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import { authService } from "@/lib/auth/auth.service";
 
@@ -23,17 +23,26 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const REFRESH_INTERVAL = 45 * 60 * 1000; // 45 minutes
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
 	const [mounted, setMounted] = useState(false);
 	const [user, setUser] = useState<User | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const router = useRouter();
+	const pathname = usePathname();
+	const isAuthPage = pathname?.startsWith("/auth/");
 
 	useEffect(() => {
 		const initAuth = async () => {
 			setMounted(true);
-			const token = document.cookie.includes("token");
 
+			if (isAuthPage) {
+				setIsLoading(false);
+				return;
+			}
+
+			const token = document.cookie.includes("token");
 			if (token) {
 				try {
 					const data = await authService.checkSession();
@@ -47,23 +56,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 		initAuth();
 
-		// Add to existing useEffect
-		const refreshTokenInterval = setInterval(async () => {
-			const refresh_token = document.cookie
-				.split("refresh_token=")[1]
-				?.split(";")[0];
-			if (refresh_token) {
-				try {
-					const data = await authService.refreshToken(refresh_token);
-					setUser(data.user);
-				} catch {
-					logout();
+		if (!isAuthPage) {
+			const refreshTokenInterval = setInterval(async () => {
+				const refresh_token = document.cookie
+					.split("refresh_token=")[1]
+					?.split(";")[0];
+				if (refresh_token) {
+					try {
+						const data = await authService.refreshToken(refresh_token);
+						setUser(data.user);
+					} catch {
+						logout();
+					}
 				}
-			}
-		}, 14 * 60 * 1000); // Refresh every 14 minutes
+			}, REFRESH_INTERVAL);
 
-		return () => clearInterval(refreshTokenInterval);
-	}, []);
+			return () => clearInterval(refreshTokenInterval);
+		}
+	}, [isAuthPage]);
 
 	const login = (response: AuthResponse) => {
 		setUser(response.user);
@@ -75,6 +85,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 			await authService.logout();
 			document.cookie =
 				"token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			document.cookie =
+				"refresh_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 			setUser(null);
 			window.location.href = "/auth/login";
 		} catch (error) {

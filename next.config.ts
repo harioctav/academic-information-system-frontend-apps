@@ -7,6 +7,8 @@ const config: NextConfig = {
 	productionBrowserSourceMaps: false,
 	webpack: (config) => {
 		config.devtool = false;
+		config.optimization.minimize = true;
+		config.optimization.minimizer = [];
 		return config;
 	},
 };

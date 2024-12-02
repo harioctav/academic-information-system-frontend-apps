@@ -1,11 +1,10 @@
 import { Params } from "@/types/api";
-import {
-	RegencyCollectionResponse,
-	RegencyRequest,
-	RegencyResponse,
-} from "@/types/locations/regency";
+import { RegencyRequest } from "@/types/locations/regency";
 
 const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL;
+const CACHE_DURATION = 60000; // 1 minute
+const cache = new Map();
+
 const getToken = () => document.cookie.split("token=")[1]?.split(";")[0];
 
 const headers = {
@@ -14,19 +13,38 @@ const headers = {
 	Authorization: `Bearer ${getToken()}`,
 };
 
-export const regencyService = {
-	// Display a listing of the resource.
-	getRegencies: async (params: Params) => {
-		const queryString = new URLSearchParams({
-			page: params.page.toString(),
-			per_page: params.perPage.toString(),
-			sort_by: params.sortBy,
-			sort_direction: params.sortDirection,
-			...(params.search && { search: params.search }),
-		}).toString();
+const buildQueryParams = (params: Params) => {
+	const queryParams = new URLSearchParams({
+		page: params.page.toString(),
+		per_page: params.perPage.toString(),
+		sort_by: params.sortBy,
+		sort_direction: params.sortDirection,
+		...(params.search && { search: params.search }),
+	});
 
+	if (params.filters) {
+		Object.entries(params.filters).forEach(([key, value]) => {
+			if (value !== undefined && value !== null) {
+				queryParams.append(key, value.toString());
+			}
+		});
+	}
+
+	return queryParams.toString();
+};
+
+export const regencyService = {
+	getRegencies: async (params: Params) => {
+		const cacheKey = JSON.stringify(params);
+		const cachedData = cache.get(cacheKey);
+
+		if (cachedData) {
+			return cachedData;
+		}
+
+		const query = buildQueryParams(params);
 		const response = await fetch(
-			`${BASE_API_URL}/locations/regencies?${queryString}`,
+			`${BASE_API_URL}/locations/regencies?${query}`,
 			{
 				headers,
 				credentials: "include",
@@ -41,10 +59,13 @@ export const regencyService = {
 			throw new Error("Failed to fetch regencies");
 		}
 
-		return response.json() as Promise<RegencyCollectionResponse>;
+		const data = await response.json();
+		cache.set(cacheKey, data);
+		setTimeout(() => cache.delete(cacheKey), CACHE_DURATION);
+
+		return data;
 	},
 
-	// Store a newly created resource in storage.
 	storeRegency: async (request: RegencyRequest) => {
 		const response = await fetch(`${BASE_API_URL}/locations/regencies`, {
 			method: "POST",
@@ -55,10 +76,6 @@ export const regencyService = {
 
 		const result = await response.json();
 
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
 		if (!response.ok) {
 			throw result;
 		}
@@ -66,8 +83,14 @@ export const regencyService = {
 		return result;
 	},
 
-	// Display the specified resource.
 	showRegency: async (uuid: string) => {
+		const cacheKey = `regency-${uuid}`;
+		const cachedData = cache.get(cacheKey);
+
+		if (cachedData) {
+			return cachedData;
+		}
+
 		const response = await fetch(
 			`${BASE_API_URL}/locations/regencies/${uuid}`,
 			{
@@ -76,18 +99,17 @@ export const regencyService = {
 			}
 		);
 
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
 		if (!response.ok) {
-			throw new Error("Failed to fetch province");
+			throw new Error("Failed to fetch regency");
 		}
 
-		return response.json() as Promise<RegencyResponse>;
+		const data = await response.json();
+		cache.set(cacheKey, data);
+		setTimeout(() => cache.delete(cacheKey), CACHE_DURATION);
+
+		return data;
 	},
 
-	// Update the specified resource in storage.
 	updateRegency: async (uuid: string, request: RegencyRequest) => {
 		const response = await fetch(
 			`${BASE_API_URL}/locations/regencies/${uuid}`,
@@ -99,20 +121,21 @@ export const regencyService = {
 			}
 		);
 
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
 		const result = await response.json();
 
 		if (!response.ok) {
 			throw result;
 		}
 
+		// Clear related caches
+		cache.delete(`regency-${uuid}`);
+		Array.from(cache.keys())
+			.filter((key) => key.startsWith('{"page":'))
+			.forEach((key) => cache.delete(key));
+
 		return result;
 	},
 
-	// Remove the specified resource from storage.
 	deleteRegency: async (uuid: string) => {
 		const response = await fetch(
 			`${BASE_API_URL}/locations/regencies/${uuid}`,
@@ -125,18 +148,19 @@ export const regencyService = {
 
 		const result = await response.json();
 
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
 		if (!response.ok) {
 			throw result;
 		}
 
+		// Clear related caches
+		cache.delete(`regency-${uuid}`);
+		Array.from(cache.keys())
+			.filter((key) => key.startsWith('{"page":'))
+			.forEach((key) => cache.delete(key));
+
 		return result;
 	},
 
-	// Remove multiple resources from storage.
 	bulkDeleteRegencies: async (ids: string[]) => {
 		const response = await fetch(
 			`${BASE_API_URL}/locations/regencies/bulk-delete`,
@@ -150,13 +174,14 @@ export const regencyService = {
 
 		const result = await response.json();
 
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
 		if (!response.ok) {
 			throw result;
 		}
+
+		// Clear all list-related caches
+		Array.from(cache.keys())
+			.filter((key) => key.startsWith('{"page":'))
+			.forEach((key) => cache.delete(key));
 
 		return result;
 	},

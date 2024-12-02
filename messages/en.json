@@ -146,6 +146,10 @@
 			"label": "Province",
 			"placeholder": "Enter Province"
 		},
+		"full_code": {
+			"label": "Full Code",
+			"placeholder": "Enter Full Code"
+		},
 		"created_at": {
 			"label": "Created At",
 			"placeholder": "Enter Created At"
