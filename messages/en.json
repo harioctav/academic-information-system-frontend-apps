@@ -170,6 +170,10 @@
 			"label": "Full Code",
 			"placeholder": "Enter Full Code"
 		},
+		"pos_code": {
+			"label": "Pos Code",
+			"placeholder": "Enter Pos Code"
+		},
 		"created_at": {
 			"label": "Created At",
 			"placeholder": "Enter Created At"

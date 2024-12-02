@@ -166,6 +166,10 @@
 			"label": "Desa atau Kelurahan",
 			"placeholder": "Masukkan atau Pilih Desa atau Kelurahan"
 		},
+		"pos_code": {
+			"label": "Kode Pos",
+			"placeholder": "Masukkan Kode Pos"
+		},
 		"created_at": {
 			"label": "Dibuat Pada",
 			"placeholder": "Masukkan Tanggal Dibuat"
