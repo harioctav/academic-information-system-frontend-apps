@@ -59,6 +59,10 @@ export function DataTable<TData>({
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
 	const [inputValue, setInputValue] = React.useState(searchQuery);
 
+	React.useEffect(() => {
+		setRowSelection({});
+	}, [data]);
+
 	const handleSearch = React.useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			const value = event.target.value;
@@ -113,10 +117,12 @@ export function DataTable<TData>({
 
 	const selectedRows = React.useMemo(
 		() =>
-			table
-				.getSelectedRowModel()
-				.rows.map((row) => (row.original as { uuid: string }).uuid),
-		[table]
+			Object.keys(rowSelection).length > 0
+				? table
+						.getSelectedRowModel()
+						.rows.map((row) => (row.original as { uuid: string }).uuid)
+				: [],
+		[table, rowSelection]
 	);
 
 	const handleBulkDelete = React.useCallback(() => {
