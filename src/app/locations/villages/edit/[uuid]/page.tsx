@@ -1,30 +1,26 @@
 "use client";
 
 import { MainLayout } from "@/components/layouts/main-layout";
-import DistrictFormInput from "@/components/pages/locations/districts/form-input";
+import VillageFormInput from "@/components/pages/locations/villages/form-input";
 import { PageHeader } from "@/components/pages/page-header";
 import { Card, CardContent } from "@/components/ui/card";
-import { districtService } from "@/lib/services/locations/district.service";
+import { villageService } from "@/lib/services/locations/village.service";
 import { useTranslations } from "next-intl";
 import React, { use, useEffect, useState } from "react";
 
-const EditDistrictPage = ({
-	params,
-}: {
-	params: Promise<{ uuid: string }>;
-}) => {
+const EditVillagePage = ({ params }: { params: Promise<{ uuid: string }> }) => {
 	const t = useTranslations();
 
 	const resolvedParams = use(params);
-	const [districtName, setDistrictName] = useState("");
+	const [villageName, setVillageName] = useState("");
 
 	useEffect(() => {
-		const fetchDistrict = async () => {
-			const response = await districtService.showDistrict(resolvedParams.uuid);
-			setDistrictName(response.data.name);
+		const fetchVillage = async () => {
+			const response = await villageService.showVillage(resolvedParams.uuid);
+			setVillageName(response.data.name);
 		};
 
-		fetchDistrict();
+		fetchVillage();
 	}, [resolvedParams.uuid]);
 
 	return (
@@ -32,16 +28,16 @@ const EditDistrictPage = ({
 			<div className="w-full">
 				<Card>
 					<PageHeader
-						title={t("navigation.menu.locations.districts.edit")}
+						title={t("navigation.menu.locations.villages.edit")}
 						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
 						action={{
 							type: "back",
-							url: "/locations/districts",
-							resourceName: districtName,
+							url: "/locations/villages",
+							resourceName: villageName,
 						}}
 					/>
 					<CardContent>
-						<DistrictFormInput uuid={resolvedParams.uuid} isEdit />
+						<VillageFormInput uuid={resolvedParams.uuid} isEdit />
 					</CardContent>
 				</Card>
 			</div>
@@ -49,4 +45,4 @@ const EditDistrictPage = ({
 	);
 };
 
-export default EditDistrictPage;
+export default EditVillagePage;

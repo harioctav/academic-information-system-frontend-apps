@@ -87,6 +87,10 @@ export const useVillageColumns = () => {
 				header: t("input.full_code.label"),
 			},
 			{
+				accessorKey: "pos_code",
+				header: t("input.pos_code.label"),
+			},
+			{
 				accessorKey: "created_at",
 				header: ({ column }) => {
 					return (
