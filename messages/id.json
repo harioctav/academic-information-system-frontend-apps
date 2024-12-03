@@ -154,6 +154,14 @@
 			"label": "Provinsi",
 			"placeholder": "Masukkan atau Pilih Provinsi"
 		},
+		"district_regency_province_name": {
+			"label": "Provinsi",
+			"placeholder": "Masukkan atau Pilih Provinsi"
+		},
+		"district_regency_name": {
+			"label": "Kabupaten atau Kota",
+			"placeholder": "Masukkan atau Pilih Kabupaten"
+		},
 		"regency_name": {
 			"label": "Kabupaten",
 			"placeholder": "Masukkan atau Pilih Kota atau Kabupaten"

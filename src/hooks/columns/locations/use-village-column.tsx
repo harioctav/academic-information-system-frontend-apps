@@ -1,19 +1,17 @@
-"use client";
-
 import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 import { ActionColumn } from "@/components/tables/partials/action-column";
 import { Button } from "@/components/ui/button";
 import { Permission } from "@/config/enums/permission.enum";
 import { usePermissions } from "@/hooks/permissions/use-permission";
-import { districtService } from "@/lib/services/locations/district.service";
-import { District } from "@/types/locations/district";
+import { villageService } from "@/lib/services/locations/village.service";
+import { Village } from "@/types/locations/village";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Settings2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { toast } from "sonner";
 
-export const useDistrictColumns = () => {
+export const useVillageColumns = () => {
 	const t = useTranslations();
 	const { hasPermission } = usePermissions();
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -21,7 +19,7 @@ export const useDistrictColumns = () => {
 
 	const handleDelete = async (uuid: string, onSuccess: () => void) => {
 		try {
-			const response = await districtService.deleteDistrict(uuid);
+			const response = await villageService.deleteVillage(uuid);
 			toast.success(response.message);
 			onSuccess();
 		} catch (error) {
@@ -33,18 +31,22 @@ export const useDistrictColumns = () => {
 	};
 
 	const createColumns = (refreshData: () => void) => {
-		const columns: ColumnDef<District>[] = [
+		const columns: ColumnDef<Village>[] = [
 			{
-				accessorKey: "regency.province.name",
+				accessorKey: "district.regency.province.name",
 				header: t("input.province_name.label"),
 			},
 			{
-				accessorKey: "regency.name",
+				accessorKey: "district.regency.name",
 				header: t("input.regency_name.label"),
 				cell: ({ row }) => {
-					const regency = row.original.regency;
-					return `${regency.type} ${regency.name}`;
+					const district = row.original.district;
+					return `${district.regency.type} ${district.regency.name}`;
 				},
+			},
+			{
+				accessorKey: "district.name",
+				header: t("input.district_name.label"),
 			},
 			{
 				accessorKey: "name",
@@ -133,9 +135,9 @@ export const useDistrictColumns = () => {
 					return (
 						<>
 							<ActionColumn
-								editUrl={`/locations/districts/edit/${row.original.uuid}`}
-								editPermission={hasPermission(Permission.DistrictEdit)}
-								deletePermission={hasPermission(Permission.DistrictDelete)}
+								editUrl={`/locations/villages/edit/${row.original.uuid}`}
+								editPermission={hasPermission(Permission.VillageEdit)}
+								deletePermission={hasPermission(Permission.VillageDelete)}
 								onDelete={() => {
 									setSelectedUuid(row.original.uuid);
 									setIsDeleteDialogOpen(true);
@@ -151,9 +153,9 @@ export const useDistrictColumns = () => {
 									setSelectedUuid(null);
 								}}
 								onConfirm={() => handleDelete(row.original.uuid, refreshData)}
-								title={t("navigation.menu.locations.districts.delete")}
+								title={t("navigation.menu.locations.villages.delete")}
 								description={t("dialog.delete.description", {
-									page: t("navigation.menu.locations.districts.label"),
+									page: t("navigation.menu.locations.villages.label"),
 								})}
 								confirmText={t("button.delete")}
 								cancelText={t("button.cancel")}

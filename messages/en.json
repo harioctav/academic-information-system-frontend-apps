@@ -154,6 +154,14 @@
 			"label": "Province",
 			"placeholder": "Enter Or Select Province"
 		},
+		"district_regency_province_name": {
+			"label": "Province",
+			"placeholder": "Enter Or Select Province"
+		},
+		"district_regency_name": {
+			"label": "Regency",
+			"placeholder": "Enter Or Select Regency"
+		},
 		"regency_name": {
 			"label": "Regency",
 			"placeholder": "Enter Or Select Regency"
