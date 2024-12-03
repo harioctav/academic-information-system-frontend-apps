@@ -32,6 +32,7 @@ export default function HomePage() {
 		pagination,
 		sorting,
 		searchQuery,
+		isLoading,
 		setPagination,
 		setSorting,
 		setSearchQuery,
@@ -110,6 +111,7 @@ export default function HomePage() {
 										? handleBulkDelete
 										: undefined
 								}
+								isLoading={isLoading}
 							/>
 						</div>
 					</CardContent>
