@@ -247,5 +247,31 @@
 	"message": {
 		"cannot_modify_super_admin": "Cannot Modify Super Admin",
 		"cannot_delete_has_relations": "Cannot Modify Role With Existing Users"
+	},
+	"permission": {
+		"index": "View list of",
+		"store": "Create new",
+		"show": "View details of",
+		"update": "Update",
+		"destroy": "Delete",
+		"users": {
+			"import": "Import User data from Excel",
+			"password": "Change User account password",
+			"profile": "View your own information"
+		}
+	},
+	"module": {
+		"users": "User",
+		"roles": "Role",
+		"permissions": "Permission",
+		"majors": "Major",
+		"students": "Student",
+		"subjects": "Subject",
+		"provinces": "Province",
+		"regencies": "Regency",
+		"districts": "District",
+		"villages": "Village",
+		"grades": "Grade",
+		"recommendations": "Recommendation"
 	}
 }

@@ -247,5 +247,31 @@
 	"message": {
 		"cannot_modify_super_admin": "Tidak Dapat Mengubah Super Admin",
 		"cannot_delete_has_relations": "Tidak Dapat Mengubah Role Yang memiliki Pengguna"
+	},
+	"permission": {
+		"index": "Lihat daftar",
+		"store": "Buat baru",
+		"show": "Lihat detail",
+		"update": "Perbarui",
+		"destroy": "Hapus",
+		"users": {
+			"import": "Impor data Pengguna dari Excel",
+			"password": "Ubah kata sandi akun Pengguna",
+			"profile": "Lihat informasi Anda sendiri"
+		}
+	},
+	"module": {
+		"users": "Pengguna",
+		"roles": "Peran",
+		"permissions": "Izin",
+		"majors": "Jurusan",
+		"students": "Siswa",
+		"subjects": "Mata Pelajaran",
+		"provinces": "Provinsi",
+		"regencies": "Kabupaten",
+		"districts": "Kecamatan",
+		"villages": "Desa",
+		"grades": "Nilai",
+		"recommendations": "Rekomendasi"
 	}
 }
