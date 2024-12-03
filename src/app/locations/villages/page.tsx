@@ -36,6 +36,7 @@ export default function HomePage() {
 		setSorting,
 		setSearchQuery,
 		fetchData,
+		isLoading,
 	} = useDataTable<Village>(villageService.getVillages, {
 		filters: {
 			district_id: selectedDistrict?.value,
@@ -110,6 +111,7 @@ export default function HomePage() {
 										? handleBulkDelete
 										: undefined
 								}
+								isLoading={isLoading}
 							/>
 						</div>
 					</CardContent>

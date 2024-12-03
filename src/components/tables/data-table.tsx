@@ -31,6 +31,7 @@ interface DataTableProps<TData> {
 	onBulkDelete?: (selectedRows: string[]) => void;
 	showSelection?: boolean;
 	isSpecialRow?: (row: TData) => boolean;
+	isLoading?: boolean;
 }
 
 export function DataTable<TData>({
@@ -46,6 +47,7 @@ export function DataTable<TData>({
 	onBulkDelete,
 	showSelection,
 	isSpecialRow,
+	isLoading = false,
 }: DataTableProps<TData>) {
 	const t = useTranslations();
 	const [rowSelection, setRowSelection] = React.useState({});
@@ -154,6 +156,7 @@ export function DataTable<TData>({
 				isSpecialRow={isSpecialRow}
 				pagination={pagination}
 				columns={columns}
+				isLoading={isLoading}
 			/>
 
 			<TablePagination

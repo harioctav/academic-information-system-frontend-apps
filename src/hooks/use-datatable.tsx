@@ -70,7 +70,7 @@ export function useDataTable<TData>(
 		pagination,
 		sorting,
 		searchQuery,
-		loading,
+		isLoading: loading,
 		setPagination,
 		setSorting,
 		setSearchQuery,

@@ -218,7 +218,8 @@
 		"create": "Tambah",
 		"option": "Opsi",
 		"delete-selected": "Hapus yang Dipilih",
-		"forbidden": "Tidak dapat mengubah catatan ini."
+		"forbidden": "Tidak dapat mengubah catatan ini.",
+		"loading": "Memuat..."
 	},
 	"dialog": {
 		"delete": {

@@ -218,7 +218,8 @@
 		"create": "Create",
 		"edit": "Edit",
 		"option": "Options",
-		"forbidden": "Cannot modify this record."
+		"forbidden": "Cannot modify this record.",
+		"loading": "Loading..."
 	},
 	"dialog": {
 		"delete": {

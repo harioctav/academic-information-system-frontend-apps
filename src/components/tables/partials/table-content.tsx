@@ -19,6 +19,7 @@ interface TableContentProps<TData> {
 		pageSize: number;
 	};
 	columns: ColumnDef<TData>[];
+	isLoading?: boolean;
 }
 
 export function TableContent<TData>({
@@ -27,6 +28,7 @@ export function TableContent<TData>({
 	isSpecialRow,
 	pagination,
 	columns,
+	isLoading = false,
 }: TableContentProps<TData>) {
 	const t = useTranslations();
 	return (
@@ -68,7 +70,19 @@ export function TableContent<TData>({
 							</TableRow>
 						</TableHeader>
 						<TableBody>
-							{table.getRowModel().rows.length === 0 ? (
+							{isLoading ? (
+								<TableRow>
+									<TableCell
+										colSpan={columns.length + (showSelection ? 2 : 1)}
+										className="h-20 text-center"
+									>
+										<div className="flex justify-center items-center">
+											<div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent mr-2" />
+											<span className="ml-2">{t("button.loading")}</span>
+										</div>
+									</TableCell>
+								</TableRow>
+							) : table.getRowModel().rows.length === 0 ? (
 								<TableRow>
 									<TableCell
 										colSpan={columns.length + (showSelection ? 2 : 1)}
