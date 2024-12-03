@@ -227,7 +227,8 @@
 		"option": "Opsi",
 		"delete-selected": "Hapus yang Dipilih",
 		"forbidden": "Tidak dapat mengubah catatan ini.",
-		"loading": "Memuat..."
+		"loading": "Memuat...",
+		"manage_permissions": "Atur Hak Akses"
 	},
 	"dialog": {
 		"delete": {
@@ -242,5 +243,9 @@
 	"table": {
 		"columns": "Kolom",
 		"empty": "Data Tidak Tersedia atau Kosong"
+	},
+	"message": {
+		"cannot_modify_super_admin": "Tidak Dapat Mengubah Super Admin",
+		"cannot_delete_has_relations": "Tidak Dapat Mengubah Role Yang memiliki Pengguna"
 	}
 }

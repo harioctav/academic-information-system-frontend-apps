@@ -227,7 +227,8 @@
 		"edit": "Edit",
 		"option": "Options",
 		"forbidden": "Cannot modify this record.",
-		"loading": "Loading..."
+		"loading": "Loading...",
+		"manage_permissions": "Atur Hak Akses"
 	},
 	"dialog": {
 		"delete": {
@@ -242,5 +243,9 @@
 	"table": {
 		"columns": "Columns",
 		"empty": "No Data Available"
+	},
+	"message": {
+		"cannot_modify_super_admin": "Cannot Modify Super Admin",
+		"cannot_delete_has_relations": "Cannot Modify Role With Existing Users"
 	}
 }

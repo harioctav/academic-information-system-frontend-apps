@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { Card, CardContent } from "@/components/ui/card";
 import { Permission } from "@/config/enums/permission.enum";
+import { UserRole } from "@/config/enums/role.enum";
 import { useRoleColumns } from "@/hooks/columns/settings/use-role-column";
 import { usePermissions } from "@/hooks/permissions/use-permission";
 import { useDataTable } from "@/hooks/use-datatable";
@@ -56,6 +57,9 @@ export default function RolePage() {
 					<CardContent>
 						<div className="relative p-1 mt-0">
 							<DataTable<Role>
+								isSpecialRow={(row) =>
+									row.name === UserRole.SuperAdmin || row.users_total > 0
+								}
 								columns={columns}
 								data={data}
 								pageCount={pageCount}

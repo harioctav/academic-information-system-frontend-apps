@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
@@ -15,8 +14,12 @@ interface ActionColumnProps {
 	editPermission: boolean;
 	deletePermission: boolean;
 	onDelete: () => void;
-	isSpecialRow?: boolean;
-	specialMessage?: string;
+	conditions?: {
+		key: string;
+		value: boolean;
+		hideEdit?: boolean;
+		hideDelete?: boolean;
+	}[];
 }
 
 export function ActionColumn({
@@ -24,26 +27,21 @@ export function ActionColumn({
 	editPermission,
 	deletePermission,
 	onDelete,
-	isSpecialRow,
-	specialMessage = "Cannot modify this record.",
+	conditions = [],
 }: ActionColumnProps) {
 	const t = useTranslations();
 
-	if (isSpecialRow) {
-		return (
-			<div className="flex justify-center">
-				<Badge variant="red" className="text-[12px]">
-					{specialMessage}
-				</Badge>
-			</div>
-		);
-	}
+	const shouldHideEdit = conditions.some(
+		(condition) => condition.value && condition.hideEdit
+	);
+	const shouldHideDelete = conditions.some(
+		(condition) => condition.value && condition.hideDelete
+	);
 
-	const hasActions = !isSpecialRow && (editPermission || deletePermission);
-
-	if (!hasActions) {
-		return null;
-	}
+	const hasActions =
+		(editPermission && !shouldHideEdit) ||
+		(deletePermission && !shouldHideDelete);
+	if (!hasActions) return null;
 
 	return (
 		<div className="flex justify-center">
@@ -55,7 +53,7 @@ export function ActionColumn({
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end">
-					{!isSpecialRow && editPermission && (
+					{editPermission && !shouldHideEdit && (
 						<DropdownMenuItem asChild>
 							<Link
 								href={editUrl}
@@ -66,7 +64,8 @@ export function ActionColumn({
 							</Link>
 						</DropdownMenuItem>
 					)}
-					{!isSpecialRow && deletePermission && (
+
+					{deletePermission && !shouldHideDelete && (
 						<DropdownMenuItem
 							onClick={onDelete}
 							className="flex items-center text-red-600"

@@ -128,6 +128,28 @@ export const useRoleColumns = () => {
 									setSelectedUuid(row.original.uuid);
 									setIsDeleteDialogOpen(true);
 								}}
+								conditions={[
+									// Hide both edit and delete for super_admin
+									{
+										key: "super_admin",
+										value: row.original.name === "super_admin",
+										hideEdit: true,
+										hideDelete: true,
+									},
+									// Hide delete button if users exist
+									{
+										key: "has_users",
+										value: row.original.users_total > 0,
+										hideDelete: true,
+									},
+									// Add more conditions as needed
+									// {
+									//   key: 'is_active',
+									//   value: !row.original.is_active,
+									//   hideEdit: true,
+									//   hideDelete: true
+									// }
+								]}
 							/>
 
 							<ConfirmationDialog

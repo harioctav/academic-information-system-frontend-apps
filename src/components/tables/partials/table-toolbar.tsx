@@ -64,12 +64,11 @@ export function TableToolbar<TData>({
 					</SelectContent>
 				</Select>
 
-				{showSelection && (
+				{showSelection && selectedRows.length > 0 && (
 					<Button
 						variant="destructive"
 						size="sm"
 						onClick={() => setIsDeleteDialogOpen(true)}
-						disabled={selectedRows.length === 0}
 						className="w-full sm:w-auto"
 					>
 						<Trash2 className="h-4 w-4 mr-2" />
