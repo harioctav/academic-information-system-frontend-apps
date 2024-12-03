@@ -44,6 +44,7 @@ export default function RegencyPage() {
 		setSorting,
 		setSearchQuery,
 		fetchData,
+		isLoading,
 	} = useDataTable<Regency>(regencyService.getRegencies, {
 		filters: {
 			type: typeFilter !== "all" ? typeFilter : undefined,
@@ -127,6 +128,7 @@ export default function RegencyPage() {
 										? handleBulkDelete
 										: undefined
 								}
+								isLoading={isLoading}
 							/>
 						</div>
 					</CardContent>

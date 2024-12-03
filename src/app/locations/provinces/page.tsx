@@ -29,6 +29,7 @@ export default function ProvincePage() {
 		setSorting,
 		setSearchQuery,
 		fetchData,
+		isLoading,
 	} = useDataTable<Province>(provinceService.getProvinces);
 
 	const columns = createColumns(fetchData) as ColumnDef<Province>[];
@@ -78,6 +79,7 @@ export default function ProvincePage() {
 										? handleBulkDelete
 										: undefined
 								}
+								isLoading={isLoading}
 							/>
 						</div>
 					</CardContent>
