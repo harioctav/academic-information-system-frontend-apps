@@ -77,7 +77,7 @@ export function TableContent<TData>({
 										className="text-center"
 									>
 										<div className="flex justify-center items-center">
-											<div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent mr-2" />
+											<div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent mr-2" />
 											<span className="ml-2">{t("button.loading")}</span>
 										</div>
 									</TableCell>
