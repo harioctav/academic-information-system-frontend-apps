@@ -8,6 +8,7 @@ import {
 	TableRow,
 } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useTranslations } from "next-intl";
 
 interface TableContentProps<TData> {
 	table: Table<TData>;
@@ -27,6 +28,7 @@ export function TableContent<TData>({
 	pagination,
 	columns,
 }: TableContentProps<TData>) {
+	const t = useTranslations();
 	return (
 		<div className="rounded-md border">
 			<div className="overflow-x-auto">
@@ -72,7 +74,7 @@ export function TableContent<TData>({
 										colSpan={columns.length + (showSelection ? 2 : 1)}
 										className="text-center"
 									>
-										No data available
+										{t("table.empty")}
 									</TableCell>
 								</TableRow>
 							) : (

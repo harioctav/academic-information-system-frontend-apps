@@ -231,6 +231,7 @@
 		}
 	},
 	"table": {
-		"columns": "Columns"
+		"columns": "Columns",
+		"empty": "No Data Available"
 	}
 }

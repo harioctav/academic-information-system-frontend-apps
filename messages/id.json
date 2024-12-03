@@ -231,6 +231,7 @@
 		}
 	},
 	"table": {
-		"columns": "Kolom"
+		"columns": "Kolom",
+		"empty": "Data Tidak Tersedia atau Kosong"
 	}
 }
