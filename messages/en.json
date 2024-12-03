@@ -190,6 +190,14 @@
 			"label": "Updated At",
 			"placeholder": "Enter Updated At"
 		},
+		"permissions_total": {
+			"label": "Permissions Total",
+			"placeholder": "Enter Permissions Total"
+		},
+		"users_total": {
+			"label": "Users Total",
+			"placeholder": "Enter Users Total"
+		},
 		"actions": {
 			"label": "Actions"
 		},

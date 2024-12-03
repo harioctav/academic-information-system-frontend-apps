@@ -186,6 +186,14 @@
 			"label": "Diperbarui Pada",
 			"placeholder": "Masukkan Tanggal Diperbarui"
 		},
+		"permissions_total": {
+			"label": "Jumlah Hak Akses",
+			"placeholder": "Enter Jumlah Hak Akses"
+		},
+		"users_total": {
+			"label": "Jumlah Pengguna",
+			"placeholder": "Enter Jumlah Pengguna"
+		},
 		"full_code": {
 			"label": "Kode Lengkap",
 			"placeholder": "Masukkan Kode Lengkap"

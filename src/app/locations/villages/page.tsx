@@ -17,7 +17,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { toast } from "sonner";
 
-export default function HomePage() {
+export default function VillagePage() {
 	const t = useTranslations();
 	const { hasPermission } = usePermissions();
 	const createColumns = useVillageColumns();
