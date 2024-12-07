@@ -32,7 +32,10 @@ export const useProvinceColumns = () => {
 		}
 	};
 
-	const createColumns = (refreshData: () => void) => {
+	const createColumns = (
+		refreshData: () => void,
+		onEdit?: (uuid: string) => void
+	) => {
 		const columns: ColumnDef<Province>[] = [
 			{
 				accessorKey: "code",
@@ -118,7 +121,7 @@ export const useProvinceColumns = () => {
 					return (
 						<>
 							<ActionColumn
-								editUrl={`/locations/provinces/edit/${province.uuid}`}
+								onEdit={() => onEdit?.(province.uuid)}
 								editPermission={hasPermission(Permission.ProvinceEdit)}
 								deletePermission={hasPermission(Permission.ProvinceDelete)}
 								onDelete={() => {

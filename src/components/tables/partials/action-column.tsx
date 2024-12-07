@@ -10,7 +10,8 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 interface ActionColumnProps {
-	editUrl: string;
+	editUrl?: string;
+	onEdit?: () => void;
 	editPermission: boolean;
 	deletePermission: boolean;
 	onDelete: () => void;
@@ -24,6 +25,7 @@ interface ActionColumnProps {
 
 export function ActionColumn({
 	editUrl,
+	onEdit,
 	editPermission,
 	deletePermission,
 	onDelete,
@@ -41,6 +43,7 @@ export function ActionColumn({
 	const hasActions =
 		(editPermission && !shouldHideEdit) ||
 		(deletePermission && !shouldHideDelete);
+
 	if (!hasActions) return null;
 
 	return (
@@ -54,14 +57,24 @@ export function ActionColumn({
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end">
 					{editPermission && !shouldHideEdit && (
-						<DropdownMenuItem asChild>
-							<Link
-								href={editUrl}
-								className="flex items-center text-orange-500"
-							>
-								<Pencil className="h-4 w-4 mr-2" />
-								{t("button.edit")}
-							</Link>
+						<DropdownMenuItem>
+							{editUrl ? (
+								<Link
+									href={editUrl}
+									className="flex items-center text-orange-500 w-full"
+								>
+									<Pencil className="h-4 w-4 mr-2" />
+									{t("button.edit")}
+								</Link>
+							) : (
+								<button
+									onClick={onEdit}
+									className="flex items-center text-orange-500 w-full"
+								>
+									<Pencil className="h-4 w-4 mr-2" />
+									{t("button.edit")}
+								</button>
+							)}
 						</DropdownMenuItem>
 					)}
 

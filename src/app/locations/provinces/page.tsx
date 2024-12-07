@@ -1,6 +1,7 @@
 "use client";
 
 import { MainLayout } from "@/components/layouts/main-layout";
+import { ProvinceDialog } from "@/components/pages/locations/provinces/province-dialog";
 import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,12 +13,16 @@ import { provinceService } from "@/lib/services/locations/province.service";
 import { Province } from "@/types/locations/province";
 import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import { toast } from "sonner";
 
 export default function ProvincePage() {
 	const t = useTranslations();
 	const { hasPermission } = usePermissions();
-	const createColumns = useProvinceColumns();
+
+	// Dialog Setup
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
 
 	const {
 		data,
@@ -32,7 +37,15 @@ export default function ProvincePage() {
 		isLoading,
 	} = useDataTable<Province>(provinceService.getProvinces);
 
-	const columns = createColumns(fetchData) as ColumnDef<Province>[];
+	const handleCreate = () => {
+		setSelectedUuid(undefined);
+		setIsDialogOpen(true);
+	};
+
+	const handleEdit = (uuid: string) => {
+		setSelectedUuid(uuid);
+		setIsDialogOpen(true);
+	};
 
 	const handleBulkDelete = async (selectedIds: string[]) => {
 		try {
@@ -44,6 +57,9 @@ export default function ProvincePage() {
 		}
 	};
 
+	const createColumns = useProvinceColumns();
+	const columns = createColumns(fetchData, handleEdit) as ColumnDef<Province>[];
+
 	return (
 		<MainLayout>
 			<div className="w-full">
@@ -53,7 +69,7 @@ export default function ProvincePage() {
 						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
 						action={{
 							type: "create",
-							url: "/locations/provinces/create",
+							onClick: handleCreate,
 						}}
 					/>
 					<CardContent>
@@ -85,6 +101,16 @@ export default function ProvincePage() {
 					</CardContent>
 				</Card>
 			</div>
+
+			<ProvinceDialog
+				isOpen={isDialogOpen}
+				onClose={() => {
+					setIsDialogOpen(false);
+					setSelectedUuid(undefined);
+				}}
+				uuid={selectedUuid}
+				onSuccess={fetchData}
+			/>
 		</MainLayout>
 	);
 }

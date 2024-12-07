@@ -6,13 +6,18 @@ import { SubmitButton } from "@/components/ui/submit-button";
 import { provinceService } from "@/lib/services/locations/province.service";
 import { ApiError, ValidationErrors } from "@/types/api";
 import { ProvinceRequest } from "@/types/locations/province";
-import { FormProps } from "@/types/from-prop";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useCallback } from "react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 
-const ProvinceFormInput = ({ uuid, isEdit }: FormProps) => {
+interface FormProps {
+	uuid?: string;
+	isEdit?: boolean;
+	onSuccess?: () => void;
+}
+
+const ProvinceFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
 	const t = useTranslations();
 	const [code, setCode] = React.useState("");
@@ -62,7 +67,10 @@ const ProvinceFormInput = ({ uuid, isEdit }: FormProps) => {
 				toast.success(response.message);
 			}
 
-			router.push("/locations/provinces");
+			if (onSuccess) {
+				onSuccess();
+			}
+
 			router.refresh();
 		} catch (error) {
 			const apiError = error as ApiError;
@@ -78,7 +86,7 @@ const ProvinceFormInput = ({ uuid, isEdit }: FormProps) => {
 	};
 
 	return (
-		<div className="w-full max-w-md mx-auto py-6">
+		<div className="w-full max-w-md mx-auto py-3">
 			<form onSubmit={handleSubmit}>
 				<div className="grid gap-6">
 					<div className="space-y-2">
