@@ -3,6 +3,7 @@
 import { AsyncPaginate, LoadOptions } from "react-select-async-paginate";
 import { ActionMeta, SingleValue, GroupBase } from "react-select";
 import { ApiResponse } from "@/types/api";
+import { ReactNode } from "react";
 
 interface BaseEntity {
 	id: string | number;
@@ -10,7 +11,7 @@ interface BaseEntity {
 
 export interface SelectOption<T> {
 	value: string | number;
-	label: string;
+	label: ReactNode;
 	data: T;
 }
 
@@ -23,7 +24,7 @@ interface AsyncSelectProps<T extends BaseEntity> {
 		actionMeta: ActionMeta<SelectOption<T>>
 	) => void;
 	onClear?: () => void;
-	textFormatter: (item: T) => string;
+	textFormatter: (item: T) => ReactNode;
 	isClearable?: boolean;
 }
 
@@ -44,19 +45,20 @@ export function AsyncSelectInput<T extends BaseEntity>({
 		const token = document.cookie.split("token=")[1]?.split(";")[0];
 		const currentPage = additional?.page || 1;
 
-		const response = await fetch(
-			`${apiUrl}?search=${search}&page=${currentPage}&per_page=30`,
-			{
-				headers: {
-					"Content-Type": "application/json",
-					Accept: "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-				credentials: "include",
-			}
-		);
+		const searchParam = search ? `search=${search}` : "";
+		const url = `${apiUrl}?${searchParam}&page=${currentPage}&per_page=30`;
+
+		const response = await fetch(url, {
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			credentials: "include",
+		});
 
 		const data = (await response.json()) as ApiResponse<T[]>;
+
 		const options = data.data.map((item) => ({
 			value: item.id,
 			label: textFormatter(item),
@@ -151,8 +153,7 @@ export function AsyncSelectInput<T extends BaseEntity>({
 				option: (base, state) => ({
 					...base,
 					fontSize: "14px",
-					padding: "6px 8px",
-					borderRadius: "calc(var(--radius) - 4px)",
+					padding: "8px",
 					backgroundColor: state.isFocused
 						? "hsl(var(--accent))"
 						: "transparent",

@@ -4,6 +4,7 @@ import { MainLayout } from "@/components/layouts/main-layout";
 import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
+import { CustomFormatter } from "@/components/ui/async-select-formatter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Permission } from "@/config/enums/permission.enum";
 import { useVillageColumns } from "@/hooks/columns/locations/use-village-column";
@@ -84,7 +85,12 @@ export default function VillagePage() {
 										setSelectedDistrict(null);
 										setPagination({ ...pagination, pageIndex: 0 });
 									}}
-									textFormatter={(item) => item.name}
+									textFormatter={(item) => (
+										<CustomFormatter
+											mainText={item.name}
+											subText={`${item.regency.type} ${item.regency.name}`}
+										/>
+									)}
 									isClearable
 								/>
 							</div>
