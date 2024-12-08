@@ -74,6 +74,7 @@ export default function RegencyPage() {
 						action={{
 							type: "create",
 							url: "/locations/regencies/create",
+							permission: Permission.RegencyCreate,
 						}}
 					/>
 					<CardContent>
@@ -129,6 +130,10 @@ export default function RegencyPage() {
 										: undefined
 								}
 								isLoading={isLoading}
+								actionPermissions={{
+									edit: Permission.RegencyEdit,
+									delete: Permission.RegencyDelete,
+								}}
 							/>
 						</div>
 					</CardContent>

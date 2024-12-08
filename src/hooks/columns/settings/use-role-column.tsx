@@ -5,8 +5,7 @@ import { ActionColumn } from "@/components/tables/partials/action-column";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Permission } from "@/config/enums/permission.enum";
-import { getRoleLabel } from "@/config/enums/role.enum";
-import { usePermissions } from "@/hooks/permissions/use-permission";
+import { getRoleLabel, UserRole } from "@/config/enums/role.enum";
 import { roleService } from "@/lib/services/settings/role.service";
 import { Role } from "@/types/settings/role";
 import { ColumnDef } from "@tanstack/react-table";
@@ -17,7 +16,6 @@ import { toast } from "sonner";
 
 export const useRoleColumns = () => {
 	const t = useTranslations();
-	const { hasPermission } = usePermissions();
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | null>(null);
 
@@ -56,7 +54,7 @@ export const useRoleColumns = () => {
 			},
 			{
 				accessorKey: "permissions_total",
-				header: "Permissions",
+				header: t("input.permissions_total.label"),
 				cell: ({ row }) => (
 					<div className="flex justify-center">
 						<Badge variant="green">{row.original.permissions_total}</Badge>
@@ -65,7 +63,7 @@ export const useRoleColumns = () => {
 			},
 			{
 				accessorKey: "users_total",
-				header: "Users",
+				header: t("input.users_total.label"),
 				cell: ({ row }) => (
 					<div className="flex justify-center">
 						<Badge variant="blue">{row.original.users_total}</Badge>
@@ -122,8 +120,8 @@ export const useRoleColumns = () => {
 						<>
 							<ActionColumn
 								editUrl={`/settings/roles/edit/${row.original.uuid}`}
-								editPermission={hasPermission(Permission.RoleEdit)}
-								deletePermission={hasPermission(Permission.RoleDelete)}
+								editPermission={Permission.RoleEdit}
+								deletePermission={Permission.RoleDelete}
 								onDelete={() => {
 									setSelectedUuid(row.original.uuid);
 									setIsDeleteDialogOpen(true);
@@ -132,7 +130,7 @@ export const useRoleColumns = () => {
 									// Hide both edit and delete for super_admin
 									{
 										key: "super_admin",
-										value: row.original.name === "super_admin",
+										value: row.original.name === UserRole.SuperAdmin,
 										hideEdit: true,
 										hideDelete: true,
 									},

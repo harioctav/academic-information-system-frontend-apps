@@ -70,6 +70,7 @@ export default function ProvincePage() {
 						action={{
 							type: "create",
 							onClick: handleCreate,
+							permission: Permission.ProvinceCreate,
 						}}
 					/>
 					<CardContent>
@@ -96,6 +97,10 @@ export default function ProvincePage() {
 										: undefined
 								}
 								isLoading={isLoading}
+								actionPermissions={{
+									edit: Permission.ProvinceEdit,
+									delete: Permission.ProvinceDelete,
+								}}
 							/>
 						</div>
 					</CardContent>

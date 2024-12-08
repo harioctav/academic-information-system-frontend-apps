@@ -66,6 +66,7 @@ export default function VillagePage() {
 						action={{
 							type: "create",
 							url: "/locations/villages/create",
+							permission: Permission.VillageCreate,
 						}}
 					/>
 					<CardContent>
@@ -118,6 +119,10 @@ export default function VillagePage() {
 										: undefined
 								}
 								isLoading={isLoading}
+								actionPermissions={{
+									edit: Permission.VillageEdit,
+									delete: Permission.VillageDelete,
+								}}
 							/>
 						</div>
 					</CardContent>

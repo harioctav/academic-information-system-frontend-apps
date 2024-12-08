@@ -5,6 +5,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { usePermissions } from "@/hooks/permissions/use-permission";
 import { MoreVertical, Pencil, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -12,8 +13,8 @@ import Link from "next/link";
 interface ActionColumnProps {
 	editUrl?: string;
 	onEdit?: () => void;
-	editPermission: boolean;
-	deletePermission: boolean;
+	editPermission: string;
+	deletePermission: string;
 	onDelete: () => void;
 	conditions?: {
 		key: string;
@@ -32,6 +33,7 @@ export function ActionColumn({
 	conditions = [],
 }: ActionColumnProps) {
 	const t = useTranslations();
+	const { hasPermission } = usePermissions();
 
 	const shouldHideEdit = conditions.some(
 		(condition) => condition.value && condition.hideEdit
@@ -40,11 +42,10 @@ export function ActionColumn({
 		(condition) => condition.value && condition.hideDelete
 	);
 
-	const hasActions =
-		(editPermission && !shouldHideEdit) ||
-		(deletePermission && !shouldHideDelete);
+	const hasEditAccess = hasPermission(editPermission) && !shouldHideEdit;
+	const hasDeleteAccess = hasPermission(deletePermission) && !shouldHideDelete;
 
-	if (!hasActions) return null;
+	if (!hasEditAccess && !hasDeleteAccess) return null;
 
 	return (
 		<div className="flex justify-center">
@@ -56,7 +57,7 @@ export function ActionColumn({
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end">
-					{editPermission && !shouldHideEdit && (
+					{hasEditAccess && (
 						<DropdownMenuItem>
 							{editUrl ? (
 								<Link
@@ -78,7 +79,7 @@ export function ActionColumn({
 						</DropdownMenuItem>
 					)}
 
-					{deletePermission && !shouldHideDelete && (
+					{hasDeleteAccess && (
 						<DropdownMenuItem
 							onClick={onDelete}
 							className="flex items-center text-red-600"

@@ -4,7 +4,6 @@ import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 import { ActionColumn } from "@/components/tables/partials/action-column";
 import { Button } from "@/components/ui/button";
 import { Permission } from "@/config/enums/permission.enum";
-import { usePermissions } from "@/hooks/permissions/use-permission";
 import { regencyService } from "@/lib/services/locations/regency.service";
 import { Regency } from "@/types/locations/regency";
 import { ColumnDef } from "@tanstack/react-table";
@@ -15,7 +14,6 @@ import { toast } from "sonner";
 
 export const useRegencyColumns = () => {
 	const t = useTranslations();
-	const { hasPermission } = usePermissions();
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | null>(null);
 
@@ -129,8 +127,8 @@ export const useRegencyColumns = () => {
 						<>
 							<ActionColumn
 								editUrl={`/locations/regencies/edit/${row.original.uuid}`}
-								editPermission={hasPermission(Permission.RegencyEdit)}
-								deletePermission={hasPermission(Permission.RegencyDelete)}
+								editPermission={Permission.RegencyEdit}
+								deletePermission={Permission.RegencyDelete}
 								onDelete={() => {
 									setSelectedUuid(row.original.uuid);
 									setIsDeleteDialogOpen(true);

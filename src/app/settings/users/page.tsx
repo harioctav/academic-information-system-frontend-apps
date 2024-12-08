@@ -76,6 +76,10 @@ export default function HomePage() {
 										: undefined
 								}
 								isLoading={isLoading}
+								actionPermissions={{
+									edit: Permission.UserEdit,
+									delete: Permission.UserDelete,
+								}}
 							/>
 						</div>
 					</CardContent>

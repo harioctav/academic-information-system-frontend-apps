@@ -65,6 +65,7 @@ export default function HomePage() {
 						action={{
 							type: "create",
 							url: "/locations/districts/create",
+							permission: Permission.DistrictCreate,
 						}}
 					></PageHeader>
 					<CardContent>
@@ -112,6 +113,10 @@ export default function HomePage() {
 										: undefined
 								}
 								isLoading={isLoading}
+								actionPermissions={{
+									edit: Permission.DistrictEdit,
+									delete: Permission.DistrictDelete,
+								}}
 							/>
 						</div>
 					</CardContent>

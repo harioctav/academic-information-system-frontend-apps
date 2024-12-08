@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Permission } from "@/config/enums/permission.enum";
 import { getRoleBadgeVariant, getRoleLabel } from "@/config/enums/role.enum";
-import { usePermissions } from "@/hooks/permissions/use-permission";
 import { userService } from "@/lib/services/settings/user.service";
 import { User } from "@/types/settings/user";
 import { ColumnDef } from "@tanstack/react-table";
@@ -18,7 +17,6 @@ import { toast } from "sonner";
 export const useUserColumns = () => {
 	// setup
 	const t = useTranslations();
-	const { hasPermission } = usePermissions();
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | null>(null);
 
@@ -146,8 +144,8 @@ export const useUserColumns = () => {
 						<>
 							<ActionColumn
 								editUrl={`/settings/users/edit/${row.original.uuid}`}
-								editPermission={hasPermission(Permission.UserEdit)}
-								deletePermission={hasPermission(Permission.UserDelete)}
+								editPermission={Permission.UserEdit}
+								deletePermission={Permission.UserDelete}
 								onDelete={() => {
 									setSelectedUuid(row.original.uuid);
 									setIsDeleteDialogOpen(true);

@@ -1,25 +1,35 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChevronLeft, Plus } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { usePermissions } from "@/hooks/permissions/use-permission";
 
 interface PageHeaderProps {
 	title: string;
 	description: string;
 	action?: {
 		type: "create" | "back";
-		url?: string; // Optional URL for navigation
-		onClick?: () => void; // Optional click handler for dialog
+		url?: string;
+		onClick?: () => void;
 		resourceName?: string;
+		permission?: string;
 	};
 }
 
 export function PageHeader({ title, description, action }: PageHeaderProps) {
 	const t = useTranslations();
+	const { hasPermission } = usePermissions();
 
 	const renderActionButton = () => {
 		if (!action) return null;
+
+		// Check permission for create action
+		if (action.type === "create" && action.permission) {
+			if (!hasPermission(action.permission)) return null;
+		}
 
 		if (action.type === "create") {
 			return (

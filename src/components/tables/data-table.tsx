@@ -14,6 +14,7 @@ import { TablePagination } from "@/components/tables/partials/table-pagination";
 import { TableContent } from "@/components/tables/partials/table-content";
 import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 import { useTranslations } from "next-intl";
+import { usePermissions } from "@/hooks/permissions/use-permission";
 
 interface DataTableProps<TData> {
 	columns: ColumnDef<TData, unknown>[];
@@ -32,6 +33,10 @@ interface DataTableProps<TData> {
 	showSelection?: boolean;
 	isSpecialRow?: (row: TData) => boolean;
 	isLoading?: boolean;
+	actionPermissions?: {
+		edit: string;
+		delete: string;
+	};
 }
 
 export function DataTable<TData>({
@@ -48,8 +53,25 @@ export function DataTable<TData>({
 	showSelection,
 	isSpecialRow,
 	isLoading = false,
+	actionPermissions,
 }: DataTableProps<TData>) {
 	const t = useTranslations();
+	const { hasPermission } = usePermissions();
+
+	const visibleColumns = React.useMemo(() => {
+		if (!actionPermissions) return columns;
+
+		const hasAnyPermission =
+			hasPermission(actionPermissions.edit) ||
+			hasPermission(actionPermissions.delete);
+
+		if (!hasAnyPermission) {
+			return columns.filter((col) => col.id !== "actions");
+		}
+
+		return columns;
+	}, [columns, actionPermissions, hasPermission]);
+
 	const [rowSelection, setRowSelection] = React.useState({});
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({
@@ -86,7 +108,7 @@ export function DataTable<TData>({
 
 	const table = useReactTable({
 		data,
-		columns,
+		columns: visibleColumns,
 		pageCount,
 		state: {
 			sorting,

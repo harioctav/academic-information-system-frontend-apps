@@ -7,7 +7,6 @@ import { ArrowUpDown, Settings2 } from "lucide-react";
 import { useState } from "react";
 import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 import { ActionColumn } from "@/components/tables/partials/action-column";
-import { usePermissions } from "@/hooks/permissions/use-permission";
 import { provinceService } from "@/lib/services/locations/province.service";
 import { Permission } from "@/config/enums/permission.enum";
 import { useTranslations } from "next-intl";
@@ -15,7 +14,6 @@ import { toast } from "sonner";
 
 export const useProvinceColumns = () => {
 	const t = useTranslations();
-	const { hasPermission } = usePermissions();
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | null>(null);
 
@@ -122,8 +120,8 @@ export const useProvinceColumns = () => {
 						<>
 							<ActionColumn
 								onEdit={() => onEdit?.(province.uuid)}
-								editPermission={hasPermission(Permission.ProvinceEdit)}
-								deletePermission={hasPermission(Permission.ProvinceDelete)}
+								editPermission={Permission.ProvinceEdit}
+								deletePermission={Permission.ProvinceDelete}
 								onDelete={() => {
 									setSelectedUuid(province.uuid);
 									setIsDeleteDialogOpen(true);

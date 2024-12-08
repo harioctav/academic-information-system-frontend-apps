@@ -81,6 +81,10 @@ export default function RolePage() {
 										: undefined
 								}
 								isLoading={isLoading}
+								actionPermissions={{
+									edit: Permission.RoleEdit,
+									delete: Permission.RoleDelete,
+								}}
 							/>
 						</div>
 					</CardContent>

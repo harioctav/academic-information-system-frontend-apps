@@ -4,7 +4,6 @@ import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 import { ActionColumn } from "@/components/tables/partials/action-column";
 import { Button } from "@/components/ui/button";
 import { Permission } from "@/config/enums/permission.enum";
-import { usePermissions } from "@/hooks/permissions/use-permission";
 import { districtService } from "@/lib/services/locations/district.service";
 import { District } from "@/types/locations/district";
 import { ColumnDef } from "@tanstack/react-table";
@@ -15,7 +14,6 @@ import { toast } from "sonner";
 
 export const useDistrictColumns = () => {
 	const t = useTranslations();
-	const { hasPermission } = usePermissions();
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | null>(null);
 
@@ -134,8 +132,8 @@ export const useDistrictColumns = () => {
 						<>
 							<ActionColumn
 								editUrl={`/locations/districts/edit/${row.original.uuid}`}
-								editPermission={hasPermission(Permission.DistrictEdit)}
-								deletePermission={hasPermission(Permission.DistrictDelete)}
+								editPermission={Permission.DistrictEdit}
+								deletePermission={Permission.DistrictDelete}
 								onDelete={() => {
 									setSelectedUuid(row.original.uuid);
 									setIsDeleteDialogOpen(true);
