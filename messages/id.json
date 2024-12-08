@@ -126,6 +126,18 @@
 			"label": "Email",
 			"placeholder": "Masukkan email Anda"
 		},
+		"phone": {
+			"label": "Telepon",
+			"placeholder": "Masukkan nomor telepon"
+		},
+		"photo": {
+			"label": "Foto",
+			"placeholder": "Upload Foto Baru"
+		},
+		"roles": {
+			"label": "Peran",
+			"placeholder": "Masukkan peran pengguna"
+		},
 		"password": {
 			"label": "Kata Sandi",
 			"placeholder": "Masukkan kata sandi Anda"

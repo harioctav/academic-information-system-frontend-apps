@@ -45,4 +45,18 @@ function Badge({ className, variant, ...props }: BadgeProps) {
 	);
 }
 
+export type BadgeVariant =
+	| "default"
+	| "secondary"
+	| "destructive"
+	| "outline"
+	| "gray"
+	| "red"
+	| "yellow"
+	| "green"
+	| "blue"
+	| "indigo"
+	| "purple"
+	| "pink";
+
 export { Badge, badgeVariants };

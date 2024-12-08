@@ -126,6 +126,18 @@
 			"label": "Email",
 			"placeholder": "Enter your email"
 		},
+		"phone": {
+			"label": "Phone",
+			"placeholder": "Enter phone number"
+		},
+		"photo": {
+			"label": "Photo",
+			"placeholder": "Enter new Photo"
+		},
+		"roles": {
+			"label": "Role",
+			"placeholder": "Enter user role"
+		},
 		"password": {
 			"label": "Password",
 			"placeholder": "Enter your password"

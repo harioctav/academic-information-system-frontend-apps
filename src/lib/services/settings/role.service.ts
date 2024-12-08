@@ -34,6 +34,9 @@ const buildQueryParams = (params: Params) => {
 };
 
 export const roleService = {
+	/**
+	 * Display a listing of the resource.
+	 */
 	getRoles: async (params: Params) => {
 		const cacheKey = JSON.stringify(params);
 		const cachedData = cache.get(cacheKey);

@@ -1,3 +1,5 @@
+import { BadgeVariant } from "@/components/ui/badge";
+
 export enum UserRole {
 	SuperAdmin = "super_admin",
 	SubjectRegisTeam = "subject_regis_team",
@@ -12,6 +14,18 @@ export const UserRoleLabel: Record<UserRole, string> = {
 	[UserRole.FinanceTeam]: "Tim Keuangan",
 	[UserRole.StudentRegisTeam]: "Tim Pendaftaran Mahasiswa Baru",
 	[UserRole.FilingTeam]: "Tim Pemberkasan",
+};
+
+export const RoleBadgeVariants: Record<UserRole, BadgeVariant> = {
+	[UserRole.SuperAdmin]: "red",
+	[UserRole.SubjectRegisTeam]: "blue",
+	[UserRole.FinanceTeam]: "green",
+	[UserRole.StudentRegisTeam]: "purple",
+	[UserRole.FilingTeam]: "yellow",
+};
+
+export const getRoleBadgeVariant = (roleName: string): BadgeVariant => {
+	return RoleBadgeVariants[roleName as UserRole] || "gray";
 };
 
 export const getRoleOptions = () => {
