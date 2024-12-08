@@ -4,5 +4,6 @@ declare namespace NodeJS {
 		NEXT_PUBLIC_APP_URL: string;
 		NEXT_PUBLIC_JWT_SECRET: string;
 		NEXT_PUBLIC_TOKEN_EXPIRE_DAYS: number;
+		GENERATE_SOURCEMAP: boolean;
 	}
 }

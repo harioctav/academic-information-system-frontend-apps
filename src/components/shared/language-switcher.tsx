@@ -13,17 +13,17 @@ import { useState, useEffect } from "react";
 import { setCookie } from "cookies-next";
 
 export function LanguageSwitcher() {
-	const [currentLocale, setCurrentLocale] = useState("en");
+	const [currentLocale, setCurrentLocale] = useState("id");
 	const router = useRouter();
 
 	const languages = [
-		{ label: "English", locale: "en" },
 		{ label: "Indonesia", locale: "id" },
+		{ label: "English", locale: "en" },
 	];
 
 	useEffect(() => {
 		const cookieLocale = document.cookie.match("locale=([^;]+)");
-		setCurrentLocale(cookieLocale?.[1] || "en");
+		setCurrentLocale(cookieLocale?.[1] || "id");
 	}, []);
 
 	const handleLanguageChange = (newLocale: string) => {
