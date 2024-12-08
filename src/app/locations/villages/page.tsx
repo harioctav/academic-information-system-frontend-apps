@@ -70,7 +70,7 @@ export default function VillagePage() {
 						}}
 					/>
 					<CardContent>
-						<div className="flex flex-col sm:flex-row gap-2 mb-4">
+						<div className="flex flex-col sm:flex-row gap-2">
 							<div className="w-full sm:w-[280px]">
 								<AsyncSelectInput<District>
 									placeholder={t("input.filter.page", {

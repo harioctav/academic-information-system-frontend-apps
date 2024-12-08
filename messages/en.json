@@ -274,7 +274,12 @@
 	},
 	"table": {
 		"columns": "Columns",
-		"empty": "No Data Available"
+		"empty": "No Data Available",
+		"pagination": {
+			"next": "Next",
+			"previous": "Previous",
+			"info": "Showing {from} to {to} of {total} entries"
+		}
 	},
 	"message": {
 		"error": {

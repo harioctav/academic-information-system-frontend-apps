@@ -272,7 +272,12 @@
 	},
 	"table": {
 		"columns": "Kolom",
-		"empty": "Tidak Ada Data Tersedia"
+		"empty": "Tidak Ada Data Tersedia",
+		"pagination": {
+			"next": "Selanjutnya",
+			"previous": "Sebelumnya",
+			"info": "Menampilkan {from} sampai {to} dari {total} data"
+		}
 	},
 	"message": {
 		"error": {

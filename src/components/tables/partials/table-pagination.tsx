@@ -7,6 +7,7 @@ import {
 	PaginationNext,
 	PaginationPrevious,
 } from "@/components/ui/pagination";
+import { useTranslations } from "next-intl";
 
 interface TablePaginationProps<TData> {
 	table: Table<TData>;
@@ -24,6 +25,8 @@ export function TablePagination<TData>({
 	onPaginationChange,
 	pageCount,
 }: TablePaginationProps<TData>) {
+	const t = useTranslations();
+
 	const renderPaginationItems = () => {
 		const items = [];
 		const currentPage = pagination.pageIndex + 1;
@@ -55,15 +58,21 @@ export function TablePagination<TData>({
 		return items;
 	};
 
+	const from = pagination.pageIndex * pagination.pageSize + 1;
+	const to = Math.min(
+		(pagination.pageIndex + 1) * pagination.pageSize,
+		table.getFilteredRowModel().rows.length
+	);
+	const total = table.getFilteredRowModel().rows.length;
+
 	return (
 		<div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4">
 			<div className="text-sm text-muted-foreground order-2 sm:order-1">
-				Showing {pagination.pageIndex * pagination.pageSize + 1} to{" "}
-				{Math.min(
-					(pagination.pageIndex + 1) * pagination.pageSize,
-					table.getFilteredRowModel().rows.length
-				)}{" "}
-				of {table.getFilteredRowModel().rows.length} entries
+				{t("table.pagination.info", {
+					from,
+					to,
+					total,
+				})}
 			</div>
 			<div className="flex items-center space-x-6 order-1 sm:order-2">
 				<Pagination>
