@@ -238,8 +238,8 @@
 	},
 	"button": {
 		"common": {
-			"create": "Create New Data",
-			"edit": "Update Data",
+			"create": "Create",
+			"edit": "Edit",
 			"delete": "Delete",
 			"cancel": "Cancel",
 			"back": "Back to {page}",

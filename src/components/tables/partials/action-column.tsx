@@ -64,7 +64,7 @@ export function ActionColumn({
 									href={editUrl}
 									className="flex items-center text-orange-500 w-full"
 								>
-									<Pencil className="h-4 w-4 mr-2" />
+									<Pencil className="h-4 w-4 mr-4" />
 									{t("button.common.edit")}
 								</Link>
 							) : (
@@ -72,7 +72,7 @@ export function ActionColumn({
 									onClick={onEdit}
 									className="flex items-center text-orange-500 w-full"
 								>
-									<Pencil className="h-4 w-4 mr-2" />
+									<Pencil className="h-4 w-4 mr-4" />
 									{t("button.common.edit")}
 								</button>
 							)}
@@ -82,7 +82,7 @@ export function ActionColumn({
 					{hasDeleteAccess && (
 						<DropdownMenuItem
 							onClick={onDelete}
-							className="flex items-center text-red-600"
+							className="flex items-center text-red-500 w-full"
 						>
 							<Trash2 className="h-4 w-4 mr-2" />
 							{t("button.common.delete")}

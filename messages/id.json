@@ -236,8 +236,8 @@
 	},
 	"button": {
 		"common": {
-			"create": "Tambah Data Baru",
-			"edit": "Simpan Perubahan Data",
+			"create": "Tambah",
+			"edit": "Ubah",
 			"delete": "Hapus",
 			"cancel": "Batal",
 			"back": "Kembali ke {page}",
