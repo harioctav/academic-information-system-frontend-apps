@@ -46,7 +46,7 @@ export const useProvinceColumns = () => {
 							}
 							className="w-full"
 						>
-							{t("input.code.label")}
+							{t("input.common.code.label")}
 							<ArrowUpDown className="ml-2 h-4 w-4" />
 						</Button>
 					);
@@ -63,7 +63,7 @@ export const useProvinceColumns = () => {
 							}
 							className="w-full"
 						>
-							{t("input.name.label")}
+							{t("input.common.name.label")}
 							<ArrowUpDown className="ml-2 h-4 w-4" />
 						</Button>
 					);
@@ -80,7 +80,7 @@ export const useProvinceColumns = () => {
 							}
 							className="w-full"
 						>
-							{t("input.created_at.label")}
+							{t("input.meta.created_at.label")}
 							<ArrowUpDown className="ml-2 h-4 w-4" />
 						</Button>
 					);
@@ -99,7 +99,7 @@ export const useProvinceColumns = () => {
 							}
 							className="w-full"
 						>
-							{t("input.updated_at.label")}
+							{t("input.meta.updated_at.label")}
 							<ArrowUpDown className="ml-2 h-4 w-4" />
 						</Button>
 					);
@@ -139,8 +139,8 @@ export const useProvinceColumns = () => {
 								description={t("dialog.delete.description", {
 									page: t("navigation.menu.locations.provinces.label"),
 								})}
-								confirmText={t("button.delete")}
-								cancelText={t("button.cancel")}
+								confirmText={t("button.common.delete")}
+								cancelText={t("button.common.cancel")}
 							/>
 						</>
 					);

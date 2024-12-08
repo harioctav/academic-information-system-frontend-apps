@@ -197,8 +197,8 @@ export function DataTable<TData>({
 					description={t("dialog.delete-selected.description", {
 						selected: selectedRows.length,
 					})}
-					confirmText={t("button.delete")}
-					cancelText={t("button.cancel")}
+					confirmText={t("button.common.delete")}
+					cancelText={t("button.common.cancel")}
 				/>
 			)}
 		</div>

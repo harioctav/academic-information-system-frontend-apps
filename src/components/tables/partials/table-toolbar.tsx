@@ -72,7 +72,7 @@ export function TableToolbar<TData>({
 						className="w-full sm:w-auto"
 					>
 						<Trash2 className="h-4 w-4 mr-2" />
-						{t("button.delete-selected")} ({selectedRows.length})
+						{t("dialog.delete-selected.title")} ({selectedRows.length})
 					</Button>
 				)}
 			</div>

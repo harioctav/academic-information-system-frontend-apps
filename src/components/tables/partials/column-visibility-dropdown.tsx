@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
@@ -8,6 +10,7 @@ import {
 import { ChevronDown } from "lucide-react";
 import { Table } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
+import { getColumnTranslationPath } from "@/lib/utils/get-translation-path";
 
 interface ColumnVisibilityDropdownProps<TData> {
 	table: Table<TData>;
@@ -17,6 +20,7 @@ export function ColumnVisibilityDropdown<TData>({
 	table,
 }: ColumnVisibilityDropdownProps<TData>) {
 	const t = useTranslations();
+
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -36,7 +40,7 @@ export function ColumnVisibilityDropdown<TData>({
 								checked={column.getIsVisible()}
 								onCheckedChange={(value) => column.toggleVisibility(!!value)}
 							>
-								{t(`input.${column.id}.label`)}
+								{t(getColumnTranslationPath(column.id))}
 							</DropdownMenuCheckboxItem>
 						);
 					})}

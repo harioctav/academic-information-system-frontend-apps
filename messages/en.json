@@ -9,21 +9,25 @@
 			"profile": "Profile",
 			"change-password": "Change Password"
 		},
-		"not-found": {
-			"title": "404 Not Found",
-			"subtitle": "The page you're looking for doesn't exist"
+		"auth": {
+			"login": {
+				"title": "Login",
+				"description": "Enter your email below to login to your account"
+			},
+			"forgot-password": {
+				"title": "Forgot Password",
+				"description": "Enter your email below to recovery your account"
+			}
 		},
-		"forbidden": {
-			"title": "403 Forbidden",
-			"subtitle": "You don't have permission to access this page"
-		},
-		"login": {
-			"title": "Login",
-			"description": "Enter your email below to login to your account"
-		},
-		"forgot-password": {
-			"title": "Forgot Password",
-			"description": "Enter your email below to recovery your account"
+		"error": {
+			"not-found": {
+				"title": "404 Not Found",
+				"subtitle": "The page you're looking for doesn't exist"
+			},
+			"forbidden": {
+				"title": "403 Forbidden",
+				"subtitle": "You don't have permission to access this page"
+			}
 		}
 	},
 	"navigation": {
@@ -122,94 +126,108 @@
 		}
 	},
 	"input": {
-		"email": {
-			"label": "Email",
-			"placeholder": "Enter your email"
-		},
-		"phone": {
-			"label": "Phone",
-			"placeholder": "Enter phone number"
-		},
-		"photo": {
-			"label": "Photo",
-			"placeholder": "Enter new Photo"
-		},
-		"roles": {
-			"label": "Role",
-			"placeholder": "Enter user role"
-		},
-		"password": {
-			"label": "Password",
-			"placeholder": "Enter your password"
-		},
-		"search": {
-			"label": "Search",
-			"placeholder": "Input Keyword"
-		},
-		"code": {
-			"label": "Code",
-			"placeholder": "Enter Code"
-		},
-		"name": {
-			"label": "Name",
-			"placeholder": "Enter Name"
-		},
-		"type": {
-			"label": "Type",
-			"placeholder": "Enter Or Select Type"
-		},
 		"province_name": {
 			"label": "Province",
-			"placeholder": "Enter Or Select Province"
-		},
-		"regency_province_name": {
-			"label": "Province",
-			"placeholder": "Enter Or Select Province"
-		},
-		"district_regency_province_name": {
-			"label": "Province",
-			"placeholder": "Enter Or Select Province"
-		},
-		"district_regency_name": {
-			"label": "Regency",
-			"placeholder": "Enter Or Select Regency"
+			"placeholder": "Enter or Select Province"
 		},
 		"regency_name": {
 			"label": "Regency",
-			"placeholder": "Enter Or Select Regency"
+			"placeholder": "Enter or Select Regency"
 		},
 		"district_name": {
 			"label": "District",
-			"placeholder": "Enter Or Select District"
+			"placeholder": "Enter or Select District"
 		},
 		"village_name": {
 			"label": "Village",
-			"placeholder": "Enter Or Select Village"
+			"placeholder": "Enter or Select Village"
 		},
-		"full_code": {
-			"label": "Full Code",
-			"placeholder": "Enter Full Code"
+		"common": {
+			"search": {
+				"label": "Search",
+				"placeholder": "Input Keyword"
+			},
+			"name": {
+				"label": "Name",
+				"placeholder": "Enter Name"
+			},
+			"code": {
+				"label": "Code",
+				"placeholder": "Enter Code"
+			},
+			"type": {
+				"label": "Type",
+				"placeholder": "Enter Or Select Type"
+			}
 		},
-		"pos_code": {
-			"label": "Pos Code",
-			"placeholder": "Enter Pos Code"
+		"user": {
+			"email": {
+				"label": "Email",
+				"placeholder": "Enter your email"
+			},
+			"password": {
+				"label": "Password",
+				"placeholder": "Enter your password"
+			},
+			"phone": {
+				"label": "Phone",
+				"placeholder": "Enter phone number"
+			},
+			"photo": {
+				"label": "Photo",
+				"placeholder": "Enter new Photo"
+			},
+			"roles": {
+				"label": "Role",
+				"placeholder": "Enter user role"
+			}
 		},
-		"created_at": {
-			"label": "Created At",
-			"placeholder": "Enter Created At"
+		"location": {
+			"province": {
+				"label": "Province",
+				"placeholder": "Enter Or Select Province"
+			},
+			"regency": {
+				"label": "Regency",
+				"placeholder": "Enter Or Select Regency"
+			},
+			"district": {
+				"label": "District",
+				"placeholder": "Enter Or Select District"
+			},
+			"village": {
+				"label": "Village",
+				"placeholder": "Enter Or Select Village"
+			},
+			"pos_code": {
+				"label": "Pos Code",
+				"placeholder": "Enter Pos Code"
+			}
 		},
-		"updated_at": {
-			"label": "Updated At",
-			"placeholder": "Enter Updated At"
+		"meta": {
+			"created_at": {
+				"label": "Created At",
+				"placeholder": "Enter Created At"
+			},
+			"updated_at": {
+				"label": "Updated At",
+				"placeholder": "Enter Updated At"
+			},
+			"permissions_total": {
+				"label": "Permissions Total",
+				"placeholder": "Enter Permissions Total"
+			},
+			"users_total": {
+				"label": "Users Total",
+				"placeholder": "Enter Users Total"
+			},
+			"full_code": {
+				"label": "Full Code",
+				"placeholder": "Enter Full Code"
+			}
 		},
-		"permissions_total": {
-			"label": "Permissions Total",
-			"placeholder": "Enter Permissions Total"
-		},
-		"users_total": {
-			"label": "Users Total",
-			"placeholder": "Enter Users Total"
-		},
+		"select": "Select One",
+		"select-all": "Select All Data",
 		"actions": {
 			"label": "Actions"
 		},
@@ -219,28 +237,30 @@
 		}
 	},
 	"button": {
-		"back": "Back to {page}",
-		"back-to-list": "Back to List Page",
-		"login": "Login",
-		"return": "Return to Login Page",
-		"google": "Login with Google",
-		"forgot-password": "Forgot Password?",
-		"recovery": "Send Link Reset Password",
-		"or": "Or Continue With",
-		"cancel": "Cancel",
-		"logout": {
-			"label": "Logout",
-			"title": "Confirm Logout",
-			"description": "Are you sure you want to logout from your account?"
+		"common": {
+			"create": "Create New Data",
+			"edit": "Update Data",
+			"delete": "Delete",
+			"cancel": "Cancel",
+			"back": "Back to {page}",
+			"back-to-list": "Back to List Page",
+			"option": "Options",
+			"loading": "Loading...",
+			"manage_permissions": "Manage Permissions"
 		},
-		"delete": "Delete",
-		"delete-selected": "Delete Selected",
-		"create": "Create",
-		"edit": "Edit",
-		"option": "Options",
-		"forbidden": "Cannot modify this record.",
-		"loading": "Loading...",
-		"manage_permissions": "Atur Hak Akses"
+		"auth": {
+			"login": "Login",
+			"return": "Return to Login Page",
+			"google": "Login with Google",
+			"forgot-password": "Forgot Password?",
+			"recovery": "Send Link Reset Password",
+			"or": "Or Continue With",
+			"logout": {
+				"label": "Logout",
+				"title": "Confirm Logout",
+				"description": "Are you sure you want to logout from your account?"
+			}
+		}
 	},
 	"dialog": {
 		"delete": {
@@ -257,33 +277,48 @@
 		"empty": "No Data Available"
 	},
 	"message": {
-		"cannot_modify_super_admin": "Cannot Modify Super Admin",
-		"cannot_delete_has_relations": "Cannot Modify Role With Existing Users"
+		"error": {
+			"cannot_modify_super_admin": "Cannot Modify Super Admin",
+			"cannot_delete_has_relations": "Cannot Delete Item With Relations"
+		}
 	},
 	"permission": {
-		"index": "View list of",
-		"store": "Create new",
-		"show": "View details of",
-		"update": "Update",
-		"destroy": "Delete",
-		"users": {
-			"import": "Import User data from Excel",
-			"password": "Change User account password",
-			"profile": "View your own information"
+		"actions": {
+			"index": "View list",
+			"store": "Create new",
+			"show": "View details",
+			"update": "Update",
+			"destroy": "Delete"
+		},
+		"custom": {
+			"users": {
+				"import": "Import users from Excel",
+				"password": "Change user password",
+				"profile": "View own profile"
+			}
 		}
 	},
 	"module": {
-		"users": "User",
-		"roles": "Role",
-		"permissions": "Permission",
-		"majors": "Major",
-		"students": "Student",
-		"subjects": "Subject",
-		"provinces": "Province",
-		"regencies": "Regency",
-		"districts": "District",
-		"villages": "Village",
-		"grades": "Grade",
-		"recommendations": "Recommendation"
+		"title": "Module",
+		"academic": {
+			"majors": "Major",
+			"students": "Student",
+			"subjects": "Subject"
+		},
+		"evaluation": {
+			"grades": "Grade",
+			"recommendations": "Recommendation"
+		},
+		"location": {
+			"provinces": "Province",
+			"regencies": "Regency",
+			"districts": "District",
+			"villages": "Village"
+		},
+		"user": {
+			"users": "User",
+			"roles": "Role",
+			"permissions": "Permission"
+		}
 	}
 }

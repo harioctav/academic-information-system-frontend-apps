@@ -18,29 +18,29 @@ const ForgotPasswordForm = () => {
 		<Card className="mx-auto max-w-sm">
 			<CardHeader>
 				<CardTitle className="text-2xl">
-					{t("pages.forgot-password.title")}
+					{t("pages.auth.forgot-password.title")}
 				</CardTitle>
 				<CardDescription>
-					{t("pages.forgot-password.description")}
+					{t("pages.auth.forgot-password.description")}
 				</CardDescription>
 			</CardHeader>
 			<CardContent>
 				<div className="grid gap-4">
 					<div className="grid gap-2">
-						<Label htmlFor="email">{t("input.email.label")}</Label>
+						<Label htmlFor="email">{t("input.user.email.label")}</Label>
 						<Input
 							id="email"
 							type="email"
-							placeholder={t("input.email.placeholder")}
+							placeholder={t("input.user.email.placeholder")}
 							required
 						/>
 					</div>
 					<Button type="submit" className="w-full">
-						{t("button.recovery")}
+						{t("button.auth.recovery")}
 					</Button>
 				</div>
 				<div className="mt-4 text-center text-sm">
-					<Link href="/auth/login">{t("button.return")}</Link>
+					<Link href="/auth/login">{t("button.auth.return")}</Link>
 				</div>
 			</CardContent>
 		</Card>

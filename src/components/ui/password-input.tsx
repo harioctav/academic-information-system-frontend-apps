@@ -20,7 +20,7 @@ export function PasswordInput({ ...props }: PasswordInputProps) {
 			<Input
 				type={showPassword ? "text" : "password"}
 				{...props}
-				placeholder={t("input.password.placeholder")}
+				placeholder={t("input.user.password.placeholder")}
 			/>
 			<Button
 				type="button"

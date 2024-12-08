@@ -52,17 +52,19 @@ export function LoginForm() {
 		<form onSubmit={handleSubmit}>
 			<Card className="mx-auto w-full max-w-sm">
 				<CardHeader>
-					<CardTitle className="text-2xl">{t("pages.login.title")}</CardTitle>
-					<CardDescription>{t("pages.login.description")}</CardDescription>
+					<CardTitle className="text-2xl">
+						{t("pages.auth.login.title")}
+					</CardTitle>
+					<CardDescription>{t("pages.auth.login.description")}</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<div className="grid gap-4">
 						<div className="grid gap-2">
-							<Label htmlFor="email">{t("input.email.label")}</Label>
+							<Label htmlFor="email">{t("input.user.email.label")}</Label>
 							<Input
 								id="email"
 								type="email"
-								placeholder={t("input.email.placeholder")}
+								placeholder={t("input.user.email.placeholder")}
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 							/>
@@ -74,12 +76,14 @@ export function LoginForm() {
 						</div>
 						<div className="grid gap-2">
 							<div className="flex items-center">
-								<Label htmlFor="password">{t("input.password.label")}</Label>
+								<Label htmlFor="password">
+									{t("input.user.password.label")}
+								</Label>
 								<Link
 									href="/auth/forgot-password"
 									className="ml-auto inline-block text-sm underline"
 								>
-									{t("button.forgot-password")}
+									{t("button.auth.forgot-password")}
 								</Link>
 							</div>
 							<PasswordInput
@@ -100,7 +104,7 @@ export function LoginForm() {
 							className="w-full"
 							isLoading={isLoading}
 						>
-							Login
+							{t("button.auth.login")}
 						</SubmitButton>
 
 						<div className="relative">
@@ -109,7 +113,7 @@ export function LoginForm() {
 							</div>
 							<div className="relative flex justify-center text-xs uppercase">
 								<span className="bg-background px-2 text-muted-foreground">
-									{t("button.or")}
+									{t("button.auth.or")}
 								</span>
 							</div>
 						</div>

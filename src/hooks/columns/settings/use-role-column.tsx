@@ -45,7 +45,7 @@ export const useRoleColumns = () => {
 							}
 							className="w-full"
 						>
-							{t("input.name.label")}
+							{t("input.common.name.label")}
 							<ArrowUpDown className="ml-2 h-4 w-4" />
 						</Button>
 					);
@@ -54,7 +54,7 @@ export const useRoleColumns = () => {
 			},
 			{
 				accessorKey: "permissions_total",
-				header: t("input.permissions_total.label"),
+				header: t("input.meta.permissions_total.label"),
 				cell: ({ row }) => (
 					<div className="flex justify-center">
 						<Badge variant="green">{row.original.permissions_total}</Badge>
@@ -63,7 +63,7 @@ export const useRoleColumns = () => {
 			},
 			{
 				accessorKey: "users_total",
-				header: t("input.users_total.label"),
+				header: t("input.meta.users_total.label"),
 				cell: ({ row }) => (
 					<div className="flex justify-center">
 						<Badge variant="blue">{row.original.users_total}</Badge>
@@ -81,7 +81,7 @@ export const useRoleColumns = () => {
 							}
 							className="w-full"
 						>
-							{t("input.created_at.label")}
+							{t("input.meta.created_at.label")}
 							<ArrowUpDown className="ml-2 h-4 w-4" />
 						</Button>
 					);
@@ -100,7 +100,7 @@ export const useRoleColumns = () => {
 							}
 							className="w-full"
 						>
-							{t("input.updated_at.label")}
+							{t("input.meta.updated_at.label")}
 							<ArrowUpDown className="ml-2 h-4 w-4" />
 						</Button>
 					);
@@ -163,8 +163,8 @@ export const useRoleColumns = () => {
 								description={t("dialog.delete.description", {
 									page: t("navigation.menu.settings.roles.label"),
 								})}
-								confirmText={t("button.delete")}
-								cancelText={t("button.cancel")}
+								confirmText={t("button.common.delete")}
+								cancelText={t("button.common.cancel")}
 							/>
 						</>
 					);

@@ -55,7 +55,9 @@ const PermissionCategoryCard = ({
 								htmlFor={`category-${category.uuid}`}
 								className="font-medium"
 							>
-								{`${t(getPermissionCategoryLabel(category.name))} Resource`}
+								{`${t(getPermissionCategoryLabel(category.name))} ${t(
+									"module.title"
+								)}`}
 							</Label>
 						</div>
 						<AccordionTrigger />

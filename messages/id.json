@@ -4,44 +4,46 @@
 		"subtitle": "Cabang Sukabumi"
 	},
 	"pages": {
-		"home": "Beranda",
+		"home": "Dashboard",
 		"accounts": {
-			"profile": "Informasi Data Diri",
-			"change-password": "Ubah Kata Sandi"
+			"profile": "Profil",
+			"change-password": "Ganti Kata Sandi"
 		},
-		"not-found": {
-			"title": "404 Tidak Ditemukan",
-			"subtitle": "Halaman yang Anda cari tidak ada"
+		"auth": {
+			"login": {
+				"title": "Masuk",
+				"description": "Masukkan email Anda di bawah ini untuk masuk ke akun Anda"
+			},
+			"forgot-password": {
+				"title": "Lupa Kata Sandi",
+				"description": "Masukkan email Anda di bawah ini untuk memulihkan akun Anda"
+			}
 		},
-		"forbidden": {
-			"title": "403 Dilarang",
-			"subtitle": "Anda tidak memiliki izin untuk mengakses halaman ini"
-		},
-		"login": {
-			"title": "Masuk",
-			"description": "Masukkan email Anda di bawah ini untuk masuk ke akun Anda"
-		},
-		"forgot-password": {
-			"title": "Lupa Kata Sandi",
-			"description": "Masukkan email Anda di bawah ini untuk memulihkan akun Anda"
+		"error": {
+			"not-found": {
+				"title": "404 Tidak Ditemukan",
+				"subtitle": "Halaman yang Anda cari tidak ada"
+			},
+			"forbidden": {
+				"title": "403 Dilarang",
+				"subtitle": "Anda tidak memiliki izin untuk mengakses halaman ini"
+			}
 		}
 	},
 	"navigation": {
 		"groups": {
-			"platform": "Platform",
-			"management": "Manajemen",
 			"academic": "Akademik",
-			"region": "Managemen Wilayah",
-			"setting": "Managemen Pengguna"
+			"region": "Manajemen Wilayah",
+			"setting": "Manajemen Pengguna"
 		},
 		"menu": {
 			"academics": {
 				"title": "Akademik",
 				"majors": {
-					"label": "Program Studi",
-					"create": "Tambah Program Studi",
-					"edit": "Ubah Program Studi",
-					"delete": "Hapus Program Studi"
+					"label": "Jurusan",
+					"create": "Tambah Jurusan",
+					"edit": "Ubah Jurusan",
+					"delete": "Hapus Jurusan"
 				},
 				"students": {
 					"label": "Mahasiswa",
@@ -50,24 +52,24 @@
 					"delete": "Hapus Mahasiswa"
 				},
 				"subjects": {
-					"label": "Matakuliah",
-					"create": "Tambah Matakuliah",
-					"edit": "Ubah Matakuliah",
-					"delete": "Hapus Matakuliah"
+					"label": "Mata Kuliah",
+					"create": "Tambah Mata Kuliah",
+					"edit": "Ubah Mata Kuliah",
+					"delete": "Hapus Mata Kuliah"
 				}
 			},
 			"evaluations": {
 				"title": "Evaluasi",
 				"grades": {
 					"label": "Nilai",
-					"create": "Buat Nilai",
-					"edit": "Edit Nilai",
+					"create": "Tambah Nilai",
+					"edit": "Ubah Nilai",
 					"delete": "Hapus Nilai"
 				},
 				"recommendations": {
 					"label": "Rekomendasi",
-					"create": "Buat Rekomendasi",
-					"edit": "Edit Rekomendasi",
+					"create": "Tambah Rekomendasi",
+					"edit": "Ubah Rekomendasi",
 					"delete": "Hapus Rekomendasi"
 				}
 			},
@@ -75,141 +77,155 @@
 				"title": "Pengaturan",
 				"users": {
 					"label": "Pengguna",
-					"create": "Buat Pengguna",
-					"edit": "Edit Pengguna",
+					"create": "Tambah Pengguna",
+					"edit": "Ubah Pengguna",
 					"delete": "Hapus Pengguna"
 				},
 				"roles": {
 					"label": "Peran & Izin",
-					"create": "Buat Peran & Izin",
-					"edit": "Edit Peran & Izin",
+					"create": "Tambah Peran & Izin",
+					"edit": "Ubah Peran & Izin",
 					"delete": "Hapus Peran & Izin"
 				},
 				"profiles": {
 					"label": "Profil"
 				},
 				"change-password": {
-					"label": "Ubah Kata Sandi"
+					"label": "Ganti Kata Sandi"
 				}
 			},
 			"locations": {
 				"title": "Wilayah",
 				"provinces": {
 					"label": "Provinsi",
-					"create": "Buat Provinsi",
-					"edit": "Edit Provinsi",
+					"create": "Tambah Provinsi",
+					"edit": "Ubah Provinsi",
 					"delete": "Hapus Provinsi"
 				},
 				"regencies": {
-					"label": "Kota atau Kabupaten",
-					"create": "Buat Kota atau Kabupaten",
-					"edit": "Edit Kota atau Kabupaten",
-					"delete": "Hapus Kota atau Kabupaten"
+					"label": "Kabupaten atau Kota",
+					"create": "Tambah Kabupaten atau Kota",
+					"edit": "Ubah Kabupaten atau Kota",
+					"delete": "Hapus Kabupaten atau Kota"
 				},
 				"districts": {
 					"label": "Kecamatan",
-					"create": "Buat Kecamatan",
-					"edit": "Edit Kecamatan",
+					"create": "Tambah Kecamatan",
+					"edit": "Ubah Kecamatan",
 					"delete": "Hapus Kecamatan"
 				},
 				"villages": {
 					"label": "Desa atau Kelurahan",
-					"create": "Buat Desa atau Kelurahan",
-					"edit": "Edit Desa atau Kelurahan",
+					"create": "Tambah Desa atau Kelurahan",
+					"edit": "Ubah Desa atau Kelurahan",
 					"delete": "Hapus Desa atau Kelurahan"
 				}
 			}
 		}
 	},
 	"input": {
-		"email": {
-			"label": "Email",
-			"placeholder": "Masukkan email Anda"
-		},
-		"phone": {
-			"label": "Telepon",
-			"placeholder": "Masukkan nomor telepon"
-		},
-		"photo": {
-			"label": "Foto",
-			"placeholder": "Upload Foto Baru"
-		},
-		"roles": {
-			"label": "Peran",
-			"placeholder": "Masukkan peran pengguna"
-		},
-		"password": {
-			"label": "Kata Sandi",
-			"placeholder": "Masukkan kata sandi Anda"
-		},
-		"search": {
-			"label": "Pencarian",
-			"placeholder": "Masukkan Kata Kunci"
-		},
-		"code": {
-			"label": "Kode",
-			"placeholder": "Masukkan Kode"
-		},
-		"name": {
-			"label": "Nama",
-			"placeholder": "Masukkan Nama"
-		},
-		"type": {
-			"label": "Tipe",
-			"placeholder": "Masukkan atau Pilih Tipe"
-		},
 		"province_name": {
 			"label": "Provinsi",
 			"placeholder": "Masukkan atau Pilih Provinsi"
 		},
-		"regency_province_name": {
-			"label": "Provinsi",
-			"placeholder": "Masukkan atau Pilih Provinsi"
-		},
-		"district_regency_province_name": {
-			"label": "Provinsi",
-			"placeholder": "Masukkan atau Pilih Provinsi"
-		},
-		"district_regency_name": {
-			"label": "Kabupaten atau Kota",
-			"placeholder": "Masukkan atau Pilih Kabupaten"
-		},
 		"regency_name": {
-			"label": "Kabupaten",
-			"placeholder": "Masukkan atau Pilih Kota atau Kabupaten"
+			"label": "Kabupaten atau Kota",
+			"placeholder": "Masukkan atau Pilih Kabupaten atau Kota"
 		},
 		"district_name": {
 			"label": "Kecamatan",
 			"placeholder": "Masukkan atau Pilih Kecamatan"
 		},
 		"village_name": {
-			"label": "Desa atau Kelurahan",
-			"placeholder": "Masukkan atau Pilih Desa atau Kelurahan"
+			"label": "Desa/Kelurahan",
+			"placeholder": "Masukkan atau Pilih Desa/Kelurahan"
 		},
-		"pos_code": {
-			"label": "Kode Pos",
-			"placeholder": "Masukkan Kode Pos"
+		"common": {
+			"search": {
+				"label": "Cari",
+				"placeholder": "Masukkan Kata Kunci"
+			},
+			"name": {
+				"label": "Nama",
+				"placeholder": "Masukkan Nama"
+			},
+			"code": {
+				"label": "Kode",
+				"placeholder": "Masukkan Kode"
+			},
+			"type": {
+				"label": "Tipe",
+				"placeholder": "Masukkan atau Pilih Tipe"
+			}
 		},
-		"created_at": {
-			"label": "Dibuat Pada",
-			"placeholder": "Masukkan Tanggal Dibuat"
+		"user": {
+			"email": {
+				"label": "Email",
+				"placeholder": "Masukkan email Anda"
+			},
+			"password": {
+				"label": "Kata Sandi",
+				"placeholder": "Masukkan kata sandi Anda"
+			},
+			"phone": {
+				"label": "Nomor Telepon",
+				"placeholder": "Masukkan nomor telepon"
+			},
+			"photo": {
+				"label": "Foto",
+				"placeholder": "Masukkan Foto Baru"
+			},
+			"roles": {
+				"label": "Peran",
+				"placeholder": "Masukkan peran pengguna"
+			}
 		},
-		"updated_at": {
-			"label": "Diperbarui Pada",
-			"placeholder": "Masukkan Tanggal Diperbarui"
+		"location": {
+			"province": {
+				"label": "Provinsi",
+				"placeholder": "Masukkan atau Pilih Provinsi"
+			},
+			"regency": {
+				"label": "Kabupaten atau Kota",
+				"placeholder": "Masukkan atau Pilih Kabupaten atau Kota"
+			},
+			"district": {
+				"label": "Kecamatan",
+				"placeholder": "Masukkan atau Pilih Kecamatan"
+			},
+			"village": {
+				"label": "Desa atau Kelurahan",
+				"placeholder": "Masukkan atau Pilih Desa atau Kelurahan"
+			},
+			"pos_code": {
+				"label": "Kode Pos",
+				"placeholder": "Masukkan Kode Pos"
+			}
 		},
-		"permissions_total": {
-			"label": "Jumlah Hak Akses",
-			"placeholder": "Enter Jumlah Hak Akses"
+		"meta": {
+			"created_at": {
+				"label": "Dibuat Pada",
+				"placeholder": "Masukkan Tanggal Dibuat"
+			},
+			"updated_at": {
+				"label": "Diubah Pada",
+				"placeholder": "Masukkan Tanggal Diubah"
+			},
+			"permissions_total": {
+				"label": "Jumlah Izin",
+				"placeholder": "Masukkan Jumlah Izin"
+			},
+			"users_total": {
+				"label": "Jumlah Pengguna",
+				"placeholder": "Masukkan Jumlah Pengguna"
+			},
+			"full_code": {
+				"label": "Kode Lengkap",
+				"placeholder": "Masukkan Kode Lengkap"
+			}
 		},
-		"users_total": {
-			"label": "Jumlah Pengguna",
-			"placeholder": "Enter Jumlah Pengguna"
-		},
-		"full_code": {
-			"label": "Kode Lengkap",
-			"placeholder": "Masukkan Kode Lengkap"
-		},
+		"select": "Pilih Salah Satu",
+		"select-all": "Pilih Semua Data",
 		"actions": {
 			"label": "Aksi"
 		},
@@ -219,28 +235,30 @@
 		}
 	},
 	"button": {
-		"back": "Kembali ke {page}",
-		"back-to-list": "Kembali ke Halaman Daftar",
-		"login": "Masuk Aplikasi",
-		"return": "Lanjutkan ke Halaman Login",
-		"google": "Masuk menggunakan Google",
-		"forgot-password": "Lupa Kata Sandi?",
-		"recovery": "Kirim Tautan Reset Kata Sandi",
-		"or": "Atau Lanjutkan Dengan",
-		"cancel": "Batal",
-		"logout": {
-			"label": "Keluar",
-			"title": "Konfirmasi Keluar",
-			"description": "Apakah Anda yakin ingin keluar dari akun Anda?"
+		"common": {
+			"create": "Tambah Data Baru",
+			"edit": "Simpan Perubahan Data",
+			"delete": "Hapus",
+			"cancel": "Batal",
+			"back": "Kembali ke {page}",
+			"back-to-list": "Kembali ke Halaman Daftar",
+			"option": "Pilihan",
+			"loading": "Memuat...",
+			"manage_permissions": "Kelola Izin"
 		},
-		"delete": "Hapus",
-		"edit": "Ubah",
-		"create": "Tambah",
-		"option": "Opsi",
-		"delete-selected": "Hapus yang Dipilih",
-		"forbidden": "Tidak dapat mengubah catatan ini.",
-		"loading": "Memuat...",
-		"manage_permissions": "Atur Hak Akses"
+		"auth": {
+			"login": "Masuk",
+			"return": "Kembali ke Halaman Login",
+			"google": "Masuk dengan Google",
+			"forgot-password": "Lupa Kata Sandi?",
+			"recovery": "Kirim Tautan Reset Kata Sandi",
+			"or": "Atau Lanjutkan Dengan",
+			"logout": {
+				"label": "Keluar",
+				"title": "Konfirmasi Keluar",
+				"description": "Apakah Anda yakin ingin keluar dari akun Anda?"
+			}
+		}
 	},
 	"dialog": {
 		"delete": {
@@ -248,42 +266,57 @@
 			"description": "Apakah Anda yakin ingin menghapus {page} ini? Tindakan ini tidak dapat dibatalkan."
 		},
 		"delete-selected": {
-			"title": "Hapus Item yang Dipilih",
+			"title": "Hapus Item Terpilih",
 			"description": "Apakah Anda yakin ingin menghapus {selected} item yang dipilih? Tindakan ini tidak dapat dibatalkan."
 		}
 	},
 	"table": {
 		"columns": "Kolom",
-		"empty": "Data Tidak Tersedia atau Kosong"
+		"empty": "Tidak Ada Data Tersedia"
 	},
 	"message": {
-		"cannot_modify_super_admin": "Tidak Dapat Mengubah Super Admin",
-		"cannot_delete_has_relations": "Tidak Dapat Mengubah Role Yang memiliki Pengguna"
+		"error": {
+			"cannot_modify_super_admin": "Tidak Dapat Mengubah Super Admin",
+			"cannot_delete_has_relations": "Tidak Dapat Menghapus Item yang Memiliki Relasi"
+		}
 	},
 	"permission": {
-		"index": "Lihat daftar",
-		"store": "Buat baru",
-		"show": "Lihat detail",
-		"update": "Perbarui",
-		"destroy": "Hapus",
-		"users": {
-			"import": "Impor data Pengguna dari Excel",
-			"password": "Ubah kata sandi akun Pengguna",
-			"profile": "Lihat informasi Anda sendiri"
+		"actions": {
+			"index": "Lihat daftar",
+			"store": "Tambah baru",
+			"show": "Lihat detail",
+			"update": "Ubah",
+			"destroy": "Hapus"
+		},
+		"custom": {
+			"users": {
+				"import": "Impor pengguna dari Excel",
+				"password": "Ubah kata sandi pengguna",
+				"profile": "Lihat profil sendiri"
+			}
 		}
 	},
 	"module": {
-		"users": "Pengguna",
-		"roles": "Peran",
-		"permissions": "Izin",
-		"majors": "Jurusan",
-		"students": "Siswa",
-		"subjects": "Mata Pelajaran",
-		"provinces": "Provinsi",
-		"regencies": "Kabupaten",
-		"districts": "Kecamatan",
-		"villages": "Desa",
-		"grades": "Nilai",
-		"recommendations": "Rekomendasi"
+		"title": "Modul",
+		"academic": {
+			"majors": "Jurusan",
+			"students": "Mahasiswa",
+			"subjects": "Mata Kuliah"
+		},
+		"evaluation": {
+			"grades": "Nilai",
+			"recommendations": "Rekomendasi"
+		},
+		"location": {
+			"provinces": "Provinsi",
+			"regencies": "Kabupaten atau Kota",
+			"districts": "Kecamatan",
+			"villages": "Desa atau Kelurahan"
+		},
+		"user": {
+			"users": "Pengguna",
+			"roles": "Peran",
+			"permissions": "Izin"
+		}
 	}
 }

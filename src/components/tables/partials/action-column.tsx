@@ -53,7 +53,7 @@ export function ActionColumn({
 				<DropdownMenuTrigger asChild>
 					<Button variant="ghost" className="h-8 p-2 flex items-center">
 						<MoreVertical className="h-4 w-4 mr-2" />
-						<span>{t("button.option")}</span>
+						<span>{t("button.common.option")}</span>
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end">
@@ -65,7 +65,7 @@ export function ActionColumn({
 									className="flex items-center text-orange-500 w-full"
 								>
 									<Pencil className="h-4 w-4 mr-2" />
-									{t("button.edit")}
+									{t("button.common.edit")}
 								</Link>
 							) : (
 								<button
@@ -73,7 +73,7 @@ export function ActionColumn({
 									className="flex items-center text-orange-500 w-full"
 								>
 									<Pencil className="h-4 w-4 mr-2" />
-									{t("button.edit")}
+									{t("button.common.edit")}
 								</button>
 							)}
 						</DropdownMenuItem>
@@ -85,7 +85,7 @@ export function ActionColumn({
 							className="flex items-center text-red-600"
 						>
 							<Trash2 className="h-4 w-4 mr-2" />
-							{t("button.delete")}
+							{t("button.common.delete")}
 						</DropdownMenuItem>
 					)}
 				</DropdownMenuContent>

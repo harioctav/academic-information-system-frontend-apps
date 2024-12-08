@@ -78,7 +78,7 @@ export default function RegencyPage() {
 						}}
 					/>
 					<CardContent>
-						<div className="flex flex-col sm:flex-row gap-2 mb-4">
+						<div className="flex flex-col sm:flex-row gap-2">
 							<div className="w-full sm:w-[280px]">
 								<DynamicSelect
 									value={typeFilter}
@@ -89,9 +89,7 @@ export default function RegencyPage() {
 							</div>
 							<div className="w-full sm:w-[280px]">
 								<AsyncSelectInput<Province>
-									placeholder={t("input.filter.page", {
-										page: t("input.province_name.label"),
-									})}
+									placeholder={t("input.select")}
 									apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/provinces`}
 									value={selectedProvince}
 									onChange={(newValue) => {

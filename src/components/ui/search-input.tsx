@@ -14,7 +14,7 @@ export function SearchInput({ value, onChange, onClear }: SearchInputProps) {
 	return (
 		<div className="relative w-full sm:w-auto">
 			<Input
-				placeholder={t("input.search.placeholder")}
+				placeholder={t("input.common.search.placeholder")}
 				value={value}
 				onChange={onChange}
 				className="w-full pr-8"

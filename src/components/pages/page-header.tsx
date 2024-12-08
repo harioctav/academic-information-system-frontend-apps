@@ -37,13 +37,13 @@ export function PageHeader({ title, description, action }: PageHeaderProps) {
 					{action.url ? (
 						<Link href={action.url} className="flex items-center">
 							<Plus className="mr-1 h-4 w-4" />
-							{t("button.create")}{" "}
+							{t("button.common.create")}{" "}
 							{action.resourceName || title.split(" ").pop()}
 						</Link>
 					) : (
 						<div onClick={action.onClick} className="flex items-center">
 							<Plus className="mr-1 h-4 w-4" />
-							{t("button.create")}{" "}
+							{t("button.common.create")}{" "}
 							{action.resourceName || title.split(" ").pop()}
 						</div>
 					)}
@@ -55,7 +55,7 @@ export function PageHeader({ title, description, action }: PageHeaderProps) {
 			<Button size="sm" variant="destructive" asChild>
 				<Link href={action.url!} className="flex items-center">
 					<ChevronLeft className="mr-1 h-4 w-4" />
-					{t("button.back-to-list")}
+					{t("button.common.back-to-list")}
 				</Link>
 			</Button>
 		);

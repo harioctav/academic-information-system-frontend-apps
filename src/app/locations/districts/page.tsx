@@ -69,12 +69,10 @@ export default function HomePage() {
 						}}
 					></PageHeader>
 					<CardContent>
-						<div className="flex flex-col sm:flex-row gap-2 mb-4">
+						<div className="flex flex-col sm:flex-row gap-2">
 							<div className="w-full sm:w-[280px]">
 								<AsyncSelectInput<Regency>
-									placeholder={t("input.filter.page", {
-										page: t("input.regency_name.label"),
-									})}
+									placeholder={t("input.select")}
 									apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/regencies`}
 									value={selectedRegency}
 									onChange={(newValue) => {

@@ -104,7 +104,9 @@ export function NavigationUser() {
 							<DropdownMenuSeparator />
 							<DropdownMenuItem onClick={handleLogoutClick}>
 								<LogOut color="#c0392b" />
-								<span className="text-red-500">{t("button.logout.label")}</span>
+								<span className="text-red-500">
+									{t("button.auth.logout.label")}
+								</span>
 							</DropdownMenuItem>
 						</DropdownMenuContent>
 					</DropdownMenu>
@@ -115,10 +117,10 @@ export function NavigationUser() {
 				isOpen={showLogoutConfirmation}
 				onClose={() => setShowLogoutConfirmation(false)}
 				onConfirm={handleLogoutConfirm}
-				title={t("button.logout.title")}
-				description={t("button.logout.description")}
-				confirmText={t("button.logout.label")}
-				cancelText={t("button.cancel")}
+				title={t("button.auth.logout.title")}
+				description={t("button.auth.logout.description")}
+				confirmText={t("button.auth.logout.label")}
+				cancelText={t("button.common.cancel")}
 			/>
 		</>
 	);

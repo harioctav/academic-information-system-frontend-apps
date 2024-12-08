@@ -15,8 +15,10 @@ import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import PermissionCategoryCard from "@/components/pages/permission-category-card";
+import { useTranslations } from "next-intl";
 
 const RoleFormInput = ({ uuid, isEdit }: FormProps) => {
+	const t = useTranslations();
 	const [name, setName] = useState("");
 	const [permissionCategories, setPermissionCategories] = useState<
 		PermissionCategory[]
@@ -157,7 +159,7 @@ const RoleFormInput = ({ uuid, isEdit }: FormProps) => {
 			<form onSubmit={handleSubmit}>
 				<div className="mb-6">
 					<Label htmlFor="name" className="text-sm font-medium">
-						Name
+						{t("input.common.name.label")}
 					</Label>
 					<div className="flex items-center justify-between mt-2">
 						<Input
@@ -189,7 +191,7 @@ const RoleFormInput = ({ uuid, isEdit }: FormProps) => {
 									}
 								}}
 							/>
-							<Label htmlFor="select-all">Select All Permissions</Label>
+							<Label htmlFor="select-all">{t("input.select-all")}</Label>
 						</div>
 					</div>
 					{errors.name && (
@@ -216,7 +218,7 @@ const RoleFormInput = ({ uuid, isEdit }: FormProps) => {
 				</div>
 
 				<SubmitButton type="submit" isLoading={isLoading} className="mt-6">
-					{isEdit ? "Update Data" : "Create New Data"}
+					{isEdit ? t("button.common.edit") : t("button.common.create")}
 				</SubmitButton>
 			</form>
 		</div>

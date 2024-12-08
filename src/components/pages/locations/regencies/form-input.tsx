@@ -108,10 +108,10 @@ const RegencyFormInput = ({ uuid, isEdit }: FormProps) => {
 							htmlFor="provinces"
 							className="block text-sm font-medium mb-2"
 						>
-							{t("input.province_name.label")}
+							{t("input.location.province.label")}
 						</Label>
 						<AsyncSelectInput<Province>
-							placeholder={t("input.province_name.placeholder")}
+							placeholder={t("input.select")}
 							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/provinces`}
 							value={selectedProvince}
 							onChange={(newValue) => setSelectedProvince(newValue)}
@@ -126,14 +126,14 @@ const RegencyFormInput = ({ uuid, isEdit }: FormProps) => {
 
 					<div className="space-y-2">
 						<Label htmlFor="code" className="block text-sm font-medium mb-2">
-							{t("input.code.label")}
+							{t("input.common.code.label")}
 						</Label>
 						<Input
 							type="number"
 							min="0"
 							id="code"
 							name="code"
-							placeholder={t("input.code.placeholder")}
+							placeholder={t("input.common.code.placeholder")}
 							value={code}
 							onChange={(e) => setCode(e.target.value)}
 							className="w-full"
@@ -145,13 +145,13 @@ const RegencyFormInput = ({ uuid, isEdit }: FormProps) => {
 
 					<div className="space-y-2">
 						<Label htmlFor="name" className="block text-sm font-medium mb-2">
-							{t("input.name.label")}
+							{t("input.common.name.label")}
 						</Label>
 						<Input
 							type="text"
 							id="name"
 							name="name"
-							placeholder={t("input.name.placeholder")}
+							placeholder={t("input.common.name.placeholder")}
 							value={name}
 							onChange={(e) => setName(e.target.value)}
 							className="w-full"
@@ -164,13 +164,13 @@ const RegencyFormInput = ({ uuid, isEdit }: FormProps) => {
 					{/* Type */}
 					<div className="space-y-2">
 						<Label htmlFor="type" className="block text-sm font-medium mb-2">
-							{t("input.type.label")}
+							{t("input.common.type.label")}
 						</Label>
 						<DynamicSelect
 							value={type}
 							onChange={(value) => setType(value || "")}
 							options={regencyTypeOptions}
-							placeholder={t("input.type.placeholder")}
+							placeholder={t("input.common.type.placeholder")}
 						/>
 						{errors.type && (
 							<span className="text-sm text-red-500">{errors.type}</span>
@@ -178,7 +178,7 @@ const RegencyFormInput = ({ uuid, isEdit }: FormProps) => {
 					</div>
 
 					<SubmitButton type="submit" className="w-full" isLoading={isLoading}>
-						{isEdit ? t("button.edit") : t("button.create")}
+						{isEdit ? t("button.common.edit") : t("button.common.create")}
 					</SubmitButton>
 				</div>
 			</form>

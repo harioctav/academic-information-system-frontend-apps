@@ -46,7 +46,7 @@ export const useUserColumns = () => {
 							}
 							className="w-full"
 						>
-							{t("input.name.label")}
+							{t("input.common.name.label")}
 							<ArrowUpDown className="ml-2 h-4 w-4" />
 						</Button>
 					);
@@ -63,7 +63,7 @@ export const useUserColumns = () => {
 							}
 							className="w-full"
 						>
-							{t("input.email.label")}
+							{t("input.user.email.label")}
 							<ArrowUpDown className="ml-2 h-4 w-4" />
 						</Button>
 					);
@@ -71,14 +71,14 @@ export const useUserColumns = () => {
 			},
 			{
 				accessorKey: "phone",
-				header: t("input.phone.label"),
+				header: t("input.user.phone.label"),
 				cell: ({ row }) => {
 					return row.original.phone || "-";
 				},
 			},
 			{
 				accessorKey: "roles",
-				header: t("input.roles.label"),
+				header: t("input.user.roles.label"),
 				cell: ({ row }) => {
 					const roles = row.original.roles;
 					if (!roles || roles.length == 0) return "-";
@@ -105,7 +105,7 @@ export const useUserColumns = () => {
 							}
 							className="w-full"
 						>
-							{t("input.created_at.label")}
+							{t("input.meta.created_at.label")}
 							<ArrowUpDown className="ml-2 h-4 w-4" />
 						</Button>
 					);
@@ -124,7 +124,7 @@ export const useUserColumns = () => {
 							}
 							className="w-full"
 						>
-							{t("input.updated_at.label")}
+							{t("input.meta.updated_at.label")}
 							<ArrowUpDown className="ml-2 h-4 w-4" />
 						</Button>
 					);
@@ -165,8 +165,8 @@ export const useUserColumns = () => {
 								description={t("dialog.delete.description", {
 									page: t("navigation.menu.settings.users.label"),
 								})}
-								confirmText={t("button.delete")}
-								cancelText={t("button.cancel")}
+								confirmText={t("button.common.delete")}
+								cancelText={t("button.common.cancel")}
 							/>
 						</>
 					);
