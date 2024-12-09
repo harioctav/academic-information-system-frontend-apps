@@ -7,6 +7,7 @@ import { DataTable } from "@/components/tables/data-table";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { CustomFormatter } from "@/components/ui/async-select-formatter";
 import { Card, CardContent } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
 import { Permission } from "@/config/enums/permission.enum";
 import { useVillageColumns } from "@/hooks/columns/locations/use-village-column";
 import { usePermissions } from "@/hooks/permissions/use-permission";
@@ -87,10 +88,13 @@ export default function VillagePage() {
 					<CardContent>
 						<div className="flex flex-col sm:flex-row gap-2">
 							<div className="w-full sm:w-[280px]">
-								<AsyncSelectInput<District>
-									placeholder={t("input.filter.page", {
+								<Label className="block text-sm font-medium mb-2">
+									{t("input.filter.page", {
 										page: t("input.district_name.label"),
 									})}
+								</Label>
+								<AsyncSelectInput<District>
+									placeholder={t("input.select")}
 									apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/districts`}
 									value={selectedDistrict}
 									onChange={(newValue) => {

@@ -3,20 +3,14 @@
 import { DynamicDialog } from "@/components/shared/dynamic-dialog";
 import { useTranslations } from "next-intl";
 import DistrictFormInput from "@/components/pages/locations/districts/form-input";
-
-interface DistrictDialogProps {
-	isOpen: boolean;
-	onClose: () => void;
-	uuid?: string;
-	onSuccess?: () => void;
-}
+import { RegionDialogProps } from "@/types/from-prop";
 
 export function DistrictDialog({
 	isOpen,
 	onClose,
 	uuid,
 	onSuccess,
-}: DistrictDialogProps) {
+}: RegionDialogProps) {
 	const t = useTranslations();
 
 	return (

@@ -3,20 +3,14 @@
 import { DynamicDialog } from "@/components/shared/dynamic-dialog";
 import RegencyFormInput from "@/components/pages/locations/regencies/form-input";
 import { useTranslations } from "next-intl";
-
-interface RegencyDialogProps {
-	isOpen: boolean;
-	onClose: () => void;
-	uuid?: string;
-	onSuccess?: () => void;
-}
+import { RegionDialogProps } from "@/types/from-prop";
 
 export function RegencyDialog({
 	isOpen,
 	onClose,
 	uuid,
 	onSuccess,
-}: RegencyDialogProps) {
+}: RegionDialogProps) {
 	const t = useTranslations();
 
 	return (

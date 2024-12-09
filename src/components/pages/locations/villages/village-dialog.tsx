@@ -3,20 +3,14 @@
 import { DynamicDialog } from "@/components/shared/dynamic-dialog";
 import { useTranslations } from "next-intl";
 import VillageFormInput from "@/components/pages/locations/villages/form-input";
-
-interface VillageDialogProps {
-	isOpen: boolean;
-	onClose: () => void;
-	uuid?: string;
-	onSuccess?: () => void;
-}
+import { RegionDialogProps } from "@/types/from-prop";
 
 export function VillageDialog({
 	isOpen,
 	onClose,
 	uuid,
 	onSuccess,
-}: VillageDialogProps) {
+}: RegionDialogProps) {
 	const t = useTranslations();
 
 	return (

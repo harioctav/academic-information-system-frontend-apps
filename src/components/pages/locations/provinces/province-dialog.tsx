@@ -3,20 +3,14 @@
 import { DynamicDialog } from "@/components/shared/dynamic-dialog";
 import ProvinceFormInput from "@/components/pages/locations/provinces/form-input";
 import { useTranslations } from "next-intl";
-
-interface ProvinceDialogProps {
-	isOpen: boolean;
-	onClose: () => void;
-	uuid?: string;
-	onSuccess?: () => void;
-}
+import { RegionDialogProps } from "@/types/from-prop";
 
 export function ProvinceDialog({
 	isOpen,
 	onClose,
 	uuid,
 	onSuccess,
-}: ProvinceDialogProps) {
+}: RegionDialogProps) {
 	const t = useTranslations();
 
 	return (
