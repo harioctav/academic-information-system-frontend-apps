@@ -51,7 +51,7 @@ export default function ProvincePage() {
 		try {
 			const response = await provinceService.bulkDeleteProvinces(selectedIds);
 			toast.success(response.message);
-			fetchData();
+			await fetchData();
 		} catch (error) {
 			toast.error(error instanceof Error ? error.message : "An error occurred");
 		}
