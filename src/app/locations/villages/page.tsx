@@ -1,6 +1,7 @@
 "use client";
 
 import { MainLayout } from "@/components/layouts/main-layout";
+import { VillageDialog } from "@/components/pages/locations/villages/village-dialog";
 import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
@@ -27,6 +28,20 @@ export default function VillagePage() {
 	const [selectedDistrict, setSelectedDistrict] =
 		useState<SelectOption<District> | null>(null);
 
+	// Add dialog state
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
+
+	const handleCreate = () => {
+		setSelectedUuid(undefined);
+		setIsDialogOpen(true);
+	};
+
+	const handleEdit = (uuid: string) => {
+		setSelectedUuid(uuid);
+		setIsDialogOpen(true);
+	};
+
 	const {
 		data,
 		pageCount,
@@ -44,7 +59,7 @@ export default function VillagePage() {
 		},
 	});
 
-	const columns = createColumns(fetchData) as ColumnDef<Village>[];
+	const columns = createColumns(fetchData, handleEdit) as ColumnDef<Village>[];
 
 	const handleBulkDelete = async (selectedIds: string[]) => {
 		try {
@@ -65,7 +80,7 @@ export default function VillagePage() {
 						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
 						action={{
 							type: "create",
-							url: "/locations/villages/create",
+							onClick: handleCreate,
 							permission: Permission.VillageCreate,
 						}}
 					/>
@@ -128,6 +143,16 @@ export default function VillagePage() {
 					</CardContent>
 				</Card>
 			</div>
+
+			<VillageDialog
+				isOpen={isDialogOpen}
+				onClose={() => {
+					setIsDialogOpen(false);
+					setSelectedUuid(undefined);
+				}}
+				uuid={selectedUuid}
+				onSuccess={fetchData}
+			/>
 		</MainLayout>
 	);
 }

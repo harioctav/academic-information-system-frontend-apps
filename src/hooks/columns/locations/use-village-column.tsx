@@ -28,7 +28,10 @@ export const useVillageColumns = () => {
 		}
 	};
 
-	const createColumns = (refreshData: () => void) => {
+	const createColumns = (
+		refreshData: () => void,
+		onEdit?: (uuid: string) => void
+	) => {
 		const columns: ColumnDef<Village>[] = [
 			{
 				accessorKey: "district.regency.province.name",
@@ -137,7 +140,7 @@ export const useVillageColumns = () => {
 					return (
 						<>
 							<ActionColumn
-								editUrl={`/locations/villages/edit/${row.original.uuid}`}
+								onEdit={() => onEdit?.(row.original.uuid)}
 								editPermission={Permission.VillageEdit}
 								deletePermission={Permission.VillageDelete}
 								onDelete={() => {

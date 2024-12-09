@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-const DistrictFormInput = ({ uuid, isEdit }: FormProps) => {
+const DistrictFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const t = useTranslations();
 	const [code, setCode] = useState("");
 	const [name, setName] = useState("");
@@ -73,7 +73,10 @@ const DistrictFormInput = ({ uuid, isEdit }: FormProps) => {
 				toast.success(response.message);
 			}
 
-			router.push("/locations/districts");
+			if (onSuccess) {
+				onSuccess();
+			}
+
 			router.refresh();
 		} catch (error) {
 			const apiError = error as ApiError;

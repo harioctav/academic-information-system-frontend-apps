@@ -1,6 +1,7 @@
 "use client";
 
 import { MainLayout } from "@/components/layouts/main-layout";
+import { DistrictDialog } from "@/components/pages/locations/districts/distirct-dialog";
 import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
@@ -20,11 +21,24 @@ import { toast } from "sonner";
 export default function HomePage() {
 	const t = useTranslations();
 	const { hasPermission } = usePermissions();
-	const createColumns = useDistrictColumns();
 
 	// Filter
 	const [selectedRegency, setSelectedRegency] =
 		useState<SelectOption<Regency> | null>(null);
+
+	// Add dialog state
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
+
+	const handleCreate = () => {
+		setSelectedUuid(undefined);
+		setIsDialogOpen(true);
+	};
+
+	const handleEdit = (uuid: string) => {
+		setSelectedUuid(uuid);
+		setIsDialogOpen(true);
+	};
 
 	const {
 		data,
@@ -43,7 +57,8 @@ export default function HomePage() {
 		},
 	});
 
-	const columns = createColumns(fetchData) as ColumnDef<District>[];
+	const createColumns = useDistrictColumns();
+	const columns = createColumns(fetchData, handleEdit) as ColumnDef<District>[];
 
 	const handleBulkDelete = async (selectedIds: string[]) => {
 		try {
@@ -64,7 +79,7 @@ export default function HomePage() {
 						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
 						action={{
 							type: "create",
-							url: "/locations/districts/create",
+							onClick: handleCreate,
 							permission: Permission.DistrictCreate,
 						}}
 					></PageHeader>
@@ -120,6 +135,16 @@ export default function HomePage() {
 					</CardContent>
 				</Card>
 			</div>
+
+			<DistrictDialog
+				isOpen={isDialogOpen}
+				onClose={() => {
+					setIsDialogOpen(false);
+					setSelectedUuid(undefined);
+				}}
+				uuid={selectedUuid}
+				onSuccess={fetchData}
+			/>
 		</MainLayout>
 	);
 }

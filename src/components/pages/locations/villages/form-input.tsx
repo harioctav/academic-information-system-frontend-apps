@@ -1,6 +1,7 @@
 "use client";
 
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
+import { CustomFormatter } from "@/components/ui/async-select-formatter";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
@@ -14,7 +15,7 @@ import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-const VillageFormInput = ({ uuid, isEdit }: FormProps) => {
+const VillageFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const t = useTranslations();
 	const [code, setCode] = useState("");
 	const [name, setName] = useState("");
@@ -76,7 +77,10 @@ const VillageFormInput = ({ uuid, isEdit }: FormProps) => {
 				toast.success(response.message);
 			}
 
-			router.push("/locations/villages");
+			if (onSuccess) {
+				onSuccess();
+			}
+
 			router.refresh();
 		} catch (error) {
 			const apiError = error as ApiError;
@@ -108,9 +112,12 @@ const VillageFormInput = ({ uuid, isEdit }: FormProps) => {
 							value={selectedDistrict}
 							onChange={(newValue) => setSelectedDistrict(newValue)}
 							onClear={() => setSelectedDistrict(null)}
-							textFormatter={(item) =>
-								`${item.name} - ${item.regency.type} ${item.regency.name}`
-							}
+							textFormatter={(item) => (
+								<CustomFormatter
+									mainText={item.name}
+									subText={`${item.regency.type} ${item.regency.name}`}
+								/>
+							)}
 							isClearable
 						/>
 						{errors.districts && (
