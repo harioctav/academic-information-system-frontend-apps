@@ -115,26 +115,27 @@ export const useProvinceColumns = () => {
 					</div>
 				),
 				cell: ({ row }) => {
-					const province = row.original;
 					return (
 						<>
 							<ActionColumn
-								onEdit={() => onEdit?.(province.uuid)}
+								onEdit={() => onEdit?.(row.original.uuid)}
 								editPermission={Permission.ProvinceEdit}
 								deletePermission={Permission.ProvinceDelete}
 								onDelete={() => {
-									setSelectedUuid(province.uuid);
+									setSelectedUuid(row.original.uuid);
 									setIsDeleteDialogOpen(true);
 								}}
 							/>
 
 							<ConfirmationDialog
-								isOpen={isDeleteDialogOpen && selectedUuid === province.uuid}
+								isOpen={
+									isDeleteDialogOpen && selectedUuid === row.original.uuid
+								}
 								onClose={() => {
 									setIsDeleteDialogOpen(false);
 									setSelectedUuid(null);
 								}}
-								onConfirm={() => handleDelete(province.uuid, refreshData)}
+								onConfirm={() => handleDelete(row.original.uuid, refreshData)}
 								title={t("navigation.menu.locations.provinces.delete")}
 								description={t("dialog.delete.description", {
 									page: t("navigation.menu.locations.provinces.label"),
