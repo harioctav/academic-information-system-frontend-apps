@@ -2,6 +2,7 @@
 
 import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 import { ActionColumn } from "@/components/tables/partials/action-column";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Permission } from "@/config/enums/permission.enum";
@@ -35,6 +36,22 @@ export const useUserColumns = () => {
 
 	const createColumns = (refreshData: () => void) => {
 		const columns: ColumnDef<User>[] = [
+			{
+				accessorKey: "photo_url",
+				header: t("input.user.photo.label"),
+				cell: ({ row }) => {
+					const user = row.original;
+					return (
+						<Avatar className="h-8 w-8 circle">
+							<AvatarImage src={user.photo_url || undefined} alt={user.name} />
+							<AvatarFallback className="circle">
+								{user.name.substring(0, 2).toUpperCase()}
+							</AvatarFallback>
+						</Avatar>
+					);
+				},
+			},
+
 			{
 				accessorKey: "name",
 				header: ({ column }) => {

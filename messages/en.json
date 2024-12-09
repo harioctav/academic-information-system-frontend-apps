@@ -158,6 +158,10 @@
 			"type": {
 				"label": "Type",
 				"placeholder": "Enter Or Select Type"
+			},
+			"photo_url": {
+				"label": "Image",
+				"placeholder": "Enter new Image"
 			}
 		},
 		"user": {

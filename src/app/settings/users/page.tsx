@@ -14,7 +14,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
-export default function HomePage() {
+export default function UserPage() {
 	const t = useTranslations();
 	const { hasPermission } = usePermissions();
 	const createColumns = useUserColumns();

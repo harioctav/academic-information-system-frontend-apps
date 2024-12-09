@@ -14,10 +14,14 @@ export function ForbiddenPage() {
 		<GuestLayout>
 			<div className="flex flex-col items-center justify-center gap-4">
 				<ShieldX className="h-32 w-32 text-destructive animate-pulse" />
-				<h1 className="text-4xl font-bold">{t("pages.forbidden.title")}</h1>
-				<p className="text-muted-foreground">{t("pages.forbidden.subtitle")}</p>
+				<h1 className="text-4xl font-bold">
+					{t("pages.error.forbidden.title")}
+				</h1>
+				<p className="text-muted-foreground">
+					{t("pages.error.forbidden.subtitle")}
+				</p>
 				<Button onClick={() => router.push("/")}>
-					{t("button.back", {
+					{t("button.common.back", {
 						page: t("pages.home"),
 					})}
 				</Button>

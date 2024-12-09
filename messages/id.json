@@ -156,6 +156,10 @@
 			"type": {
 				"label": "Tipe",
 				"placeholder": "Masukkan atau Pilih Tipe"
+			},
+			"photo_url": {
+				"label": "Gambar",
+				"placeholder": "Pilih gambar Baru"
 			}
 		},
 		"user": {
