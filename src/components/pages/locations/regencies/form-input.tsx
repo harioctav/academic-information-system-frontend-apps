@@ -8,7 +8,6 @@ import { SubmitButton } from "@/components/ui/submit-button";
 import { RegencyType } from "@/config/enums/regency.type.enum";
 import { regencyService } from "@/lib/services/locations/regency.service";
 import { ApiError, ValidationErrors } from "@/types/api";
-import { FormProps } from "@/types/from-prop";
 import { Province } from "@/types/locations/province";
 import { RegencyRequest } from "@/types/locations/regency";
 import { useTranslations } from "next-intl";
@@ -16,7 +15,13 @@ import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-const RegencyFormInput = ({ uuid, isEdit }: FormProps) => {
+interface FormProps {
+	uuid?: string;
+	isEdit?: boolean;
+	onSuccess?: () => void;
+}
+
+const RegencyFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const t = useTranslations();
 	const [code, setCode] = useState("");
 	const [name, setName] = useState("");
@@ -83,7 +88,13 @@ const RegencyFormInput = ({ uuid, isEdit }: FormProps) => {
 				toast.success(response.message);
 			}
 
-			router.push("/locations/regencies");
+			console.log("After API call, before onSuccess");
+
+			if (onSuccess) {
+				onSuccess();
+			}
+			console.log("After onSuccess");
+
 			router.refresh();
 		} catch (error) {
 			const apiError = error as ApiError;
@@ -91,7 +102,7 @@ const RegencyFormInput = ({ uuid, isEdit }: FormProps) => {
 				setErrors(apiError.errors);
 			}
 			toast.error(
-				apiError.message || "An error occurred while saving the province"
+				apiError.message || "An error occurred while saving the regency"
 			);
 		} finally {
 			setIsLoading(false);

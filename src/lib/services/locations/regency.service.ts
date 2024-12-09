@@ -80,6 +80,11 @@ export const regencyService = {
 			throw result;
 		}
 
+		// Clear all list-related caches
+		Array.from(cache.keys())
+			.filter((key) => key.startsWith('{"page":'))
+			.forEach((key) => cache.delete(key));
+
 		return result;
 	},
 

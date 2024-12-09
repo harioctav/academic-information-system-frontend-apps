@@ -1,6 +1,7 @@
 "use client";
 
 import { MainLayout } from "@/components/layouts/main-layout";
+import { RegencyDialog } from "@/components/pages/locations/regencies/regency-dialog";
 import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
@@ -22,12 +23,25 @@ import { toast } from "sonner";
 export default function RegencyPage() {
 	const t = useTranslations();
 	const { hasPermission } = usePermissions();
-	const createColumns = useRegencyColumns();
 
 	// Filter
 	const [selectedProvince, setSelectedProvince] =
 		useState<SelectOption<Province> | null>(null);
 	const [typeFilter, setTypeFilter] = useState<string | undefined>(undefined);
+
+	// Add dialog state
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
+
+	const handleCreate = () => {
+		setSelectedUuid(undefined);
+		setIsDialogOpen(true);
+	};
+
+	const handleEdit = (uuid: string) => {
+		setSelectedUuid(uuid);
+		setIsDialogOpen(true);
+	};
 
 	const regencyTypeOptions = [
 		{ value: RegencyType.Kota, label: RegencyType.Kota },
@@ -52,7 +66,8 @@ export default function RegencyPage() {
 		},
 	});
 
-	const columns = createColumns(fetchData) as ColumnDef<Regency>[];
+	const createColumns = useRegencyColumns();
+	const columns = createColumns(fetchData, handleEdit) as ColumnDef<Regency>[];
 
 	const handleBulkDelete = async (selectedIds: string[]) => {
 		try {
@@ -73,7 +88,7 @@ export default function RegencyPage() {
 						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
 						action={{
 							type: "create",
-							url: "/locations/regencies/create",
+							onClick: handleCreate,
 							permission: Permission.RegencyCreate,
 						}}
 					/>
@@ -137,6 +152,16 @@ export default function RegencyPage() {
 					</CardContent>
 				</Card>
 			</div>
+
+			<RegencyDialog
+				isOpen={isDialogOpen}
+				onClose={() => {
+					setIsDialogOpen(false);
+					setSelectedUuid(undefined);
+				}}
+				uuid={selectedUuid}
+				onSuccess={fetchData}
+			/>
 		</MainLayout>
 	);
 }

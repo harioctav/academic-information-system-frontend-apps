@@ -30,7 +30,10 @@ export const useRegencyColumns = () => {
 		}
 	};
 
-	const createColumns = (refreshData: () => void) => {
+	const createColumns = (
+		refreshData: () => void,
+		onEdit?: (uuid: string) => void
+	) => {
 		const columns: ColumnDef<Regency>[] = [
 			{
 				accessorKey: "province.name",
@@ -126,7 +129,7 @@ export const useRegencyColumns = () => {
 					return (
 						<>
 							<ActionColumn
-								editUrl={`/locations/regencies/edit/${row.original.uuid}`}
+								onEdit={() => onEdit?.(row.original.uuid)}
 								editPermission={Permission.RegencyEdit}
 								deletePermission={Permission.RegencyDelete}
 								onDelete={() => {
