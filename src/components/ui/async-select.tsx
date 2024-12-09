@@ -25,6 +25,7 @@ interface AsyncSelectProps<T extends BaseEntity> {
 	) => void;
 	onClear?: () => void;
 	textFormatter: (item: T) => ReactNode;
+	valueFormatter?: (item: T) => string | number;
 	isClearable?: boolean;
 }
 
@@ -35,6 +36,7 @@ export function AsyncSelectInput<T extends BaseEntity>({
 	onChange,
 	onClear,
 	textFormatter,
+	valueFormatter,
 	isClearable = true,
 }: AsyncSelectProps<T>) {
 	const loadOptions: LoadOptions<
@@ -60,7 +62,7 @@ export function AsyncSelectInput<T extends BaseEntity>({
 		const data = (await response.json()) as ApiResponse<T[]>;
 
 		const options = data.data.map((item) => ({
-			value: item.id,
+			value: valueFormatter ? valueFormatter(item) : item.id,
 			label: textFormatter(item),
 			data: item,
 		}));

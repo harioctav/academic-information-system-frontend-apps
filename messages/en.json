@@ -162,6 +162,10 @@
 			"photo_url": {
 				"label": "Image",
 				"placeholder": "Enter new Image"
+			},
+			"status": {
+				"label": "Status",
+				"placeholder": "Enter or Select Status"
 			}
 		},
 		"user": {
@@ -289,6 +293,10 @@
 		"error": {
 			"cannot_modify_super_admin": "Cannot Modify Super Admin",
 			"cannot_delete_has_relations": "Cannot Delete Item With Relations"
+		},
+		"status": {
+			"active": "Active",
+			"in-active": "Inactive"
 		}
 	},
 	"permission": {

@@ -7,6 +7,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Permission } from "@/config/enums/permission.enum";
 import { getRoleBadgeVariant, getRoleLabel } from "@/config/enums/role.enum";
+import {
+	getStatusBadgeVariant,
+	getStatusLabel,
+} from "@/config/enums/status.enum";
 import { userService } from "@/lib/services/settings/user.service";
 import { User } from "@/types/settings/user";
 import { ColumnDef } from "@tanstack/react-table";
@@ -91,6 +95,18 @@ export const useUserColumns = () => {
 				header: t("input.user.phone.label"),
 				cell: ({ row }) => {
 					return row.original.phone || "-";
+				},
+			},
+
+			{
+				accessorKey: "status",
+				header: t("input.common.status.label"),
+				cell: ({ row }) => {
+					return (
+						<Badge variant={getStatusBadgeVariant(row.original.status)}>
+							{getStatusLabel(row.original.status, t)}
+						</Badge>
+					);
 				},
 			},
 			{

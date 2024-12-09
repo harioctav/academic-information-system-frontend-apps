@@ -160,6 +160,10 @@
 			"photo_url": {
 				"label": "Gambar",
 				"placeholder": "Pilih gambar Baru"
+			},
+			"status": {
+				"label": "Status",
+				"placeholder": "Masukkan atau Pilih Status"
 			}
 		},
 		"user": {
@@ -287,6 +291,10 @@
 		"error": {
 			"cannot_modify_super_admin": "Tidak Dapat Mengubah Super Admin",
 			"cannot_delete_has_relations": "Tidak Dapat Menghapus Item yang Memiliki Relasi"
+		},
+		"status": {
+			"active": "Aktif",
+			"in-active": "Tidak Aktif"
 		}
 	},
 	"permission": {
