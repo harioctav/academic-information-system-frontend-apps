@@ -93,6 +93,7 @@ export default function UserPage() {
 						</div>
 						<div className="relative p-1 mt-0">
 							<DataTable<User>
+								isSpecialRow={(row) => row.status == 1}
 								columns={columns}
 								data={data}
 								pageCount={pageCount}

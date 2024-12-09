@@ -176,8 +176,8 @@
 				"placeholder": "Masukkan kata sandi Anda"
 			},
 			"phone": {
-				"label": "Nomor Telepon",
-				"placeholder": "Masukkan nomor telepon"
+				"label": "Telepon",
+				"placeholder": "Masukkan telepon"
 			},
 			"photo": {
 				"label": "Foto",

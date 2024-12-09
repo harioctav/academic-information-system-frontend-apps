@@ -183,6 +183,14 @@ export const useUserColumns = () => {
 									setSelectedUuid(row.original.uuid);
 									setIsDeleteDialogOpen(true);
 								}}
+								conditions={[
+									// Hide delete button for active users
+									{
+										key: "is_active",
+										value: row.original.status == 1,
+										hideDelete: true,
+									},
+								]}
 							/>
 
 							<ConfirmationDialog

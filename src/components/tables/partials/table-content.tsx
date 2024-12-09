@@ -31,6 +31,13 @@ export function TableContent<TData>({
 	isLoading = false,
 }: TableContentProps<TData>) {
 	const t = useTranslations();
+
+	const hasSelectableRows = () => {
+		return table
+			.getRowModel()
+			.rows.some((row) => !isSpecialRow?.(row.original));
+	};
+
 	return (
 		<div className="rounded-md border">
 			<div className="overflow-x-auto">
@@ -38,7 +45,7 @@ export function TableContent<TData>({
 					<UITable>
 						<TableHeader>
 							<TableRow>
-								{showSelection && (
+								{showSelection && hasSelectableRows() && (
 									<TableHead className="sticky left-0 w-[50px] text-center">
 										<div className="flex justify-center">
 											<Checkbox
@@ -73,7 +80,10 @@ export function TableContent<TData>({
 							{isLoading ? (
 								<TableRow>
 									<TableCell
-										colSpan={columns.length + (showSelection ? 2 : 1)}
+										colSpan={
+											columns.length +
+											(showSelection && hasSelectableRows() ? 2 : 1)
+										}
 										className="text-center"
 									>
 										<div className="flex justify-center items-center">
@@ -85,7 +95,10 @@ export function TableContent<TData>({
 							) : table.getRowModel().rows.length === 0 ? (
 								<TableRow>
 									<TableCell
-										colSpan={columns.length + (showSelection ? 2 : 1)}
+										colSpan={
+											columns.length +
+											(showSelection && hasSelectableRows() ? 2 : 1)
+										}
 										className="text-center"
 									>
 										{t("table.empty")}
@@ -94,7 +107,7 @@ export function TableContent<TData>({
 							) : (
 								table.getRowModel().rows.map((row, index) => (
 									<TableRow key={row.id}>
-										{showSelection && (
+										{showSelection && hasSelectableRows() && (
 											<TableCell className="sticky left-0 text-center">
 												<div className="flex justify-center">
 													{!isSpecialRow?.(row.original) && (
