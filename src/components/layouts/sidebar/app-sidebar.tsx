@@ -14,6 +14,7 @@ import { NavigationSecondary } from "@/components/layouts/navigations/navigation
 import { NavigationMain } from "@/components/layouts/navigations/navigation-main";
 import { Command } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	const t = useTranslations();
@@ -24,7 +25,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 			<SidebarHeader>
 				<SidebarMenu>
 					<SidebarMenuButton size="lg" asChild>
-						<a href="#">
+						<Link href="/">
 							<div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground mr-1">
 								<Command className="size-4" />
 							</div>
@@ -34,7 +35,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 								</span>
 								<span className="truncate text-xs">{t("brand.subtitle")}</span>
 							</div>
-						</a>
+						</Link>
 					</SidebarMenuButton>
 				</SidebarMenu>
 			</SidebarHeader>

@@ -47,7 +47,7 @@ export function NavigationMain({ items }: NavigationProps) {
 			return;
 		}
 
-		const currentGroup = Object.entries(items).find(([_, groupItems]) =>
+		const currentGroup = Object.entries(items).find(([, groupItems]) =>
 			groupItems.some((item) =>
 				item.items?.some((subItem) => pathname.startsWith(subItem.url))
 			)
