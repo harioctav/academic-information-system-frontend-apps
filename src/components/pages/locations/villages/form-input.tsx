@@ -100,10 +100,10 @@ const VillageFormInput = ({ uuid, isEdit }: FormProps) => {
 							htmlFor="districts"
 							className="block text-sm font-medium mb-2"
 						>
-							{t("input.select")}
+							{t("input.district_name.label")}
 						</Label>
 						<AsyncSelectInput<District>
-							placeholder={t("input.district_name.placeholder")}
+							placeholder={t("input.select")}
 							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/districts`}
 							value={selectedDistrict}
 							onChange={(newValue) => setSelectedDistrict(newValue)}
