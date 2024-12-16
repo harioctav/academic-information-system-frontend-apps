@@ -34,10 +34,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 	const isAuthPage = pathname?.startsWith("/auth/");
 
 	useEffect(() => {
+		// Init auth
 		const initAuth = async () => {
 			setMounted(true);
 
+			// Redirect authenticated users away from auth pages
 			if (isAuthPage) {
+				const token = document.cookie.includes("token");
+				if (token) {
+					router.replace("/");
+					return;
+				}
 				setIsLoading(false);
 				return;
 			}
@@ -56,6 +63,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 		initAuth();
 
+		// Token refresh logic remains the same
 		if (!isAuthPage) {
 			const refreshTokenInterval = setInterval(async () => {
 				const refresh_token = document.cookie
@@ -73,7 +81,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 			return () => clearInterval(refreshTokenInterval);
 		}
-	}, [isAuthPage]);
+	}, [isAuthPage, pathname]);
 
 	const login = (response: AuthResponse) => {
 		setUser(response.user);

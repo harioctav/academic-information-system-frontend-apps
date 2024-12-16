@@ -43,7 +43,6 @@ async function handleTokenRefresh(request: NextRequest) {
 }
 
 export async function middleware(request: NextRequest) {
-	// handle token
 	const tokenCookie = request.cookies.get("token");
 	const { pathname } = request.nextUrl;
 
@@ -51,24 +50,23 @@ export async function middleware(request: NextRequest) {
 	const locale = request.cookies.get("locale")?.value || "en";
 	request.headers.set("x-locale", locale);
 
-	if (request.nextUrl.pathname === "/") {
-		// Check token first before redirecting to dashboard
-		if (!tokenCookie?.value) {
-			return NextResponse.redirect(new URL("/auth/login", request.url));
-		}
-
-		return NextResponse.redirect(new URL("/", request.url));
-	}
-
-	// Handle public routes
+	// Strict check for public routes first
 	if (routes.public.includes(pathname as PublicRoute)) {
 		if (tokenCookie?.value) {
-			return NextResponse.redirect(new URL("/dashboard", request.url));
+			return NextResponse.redirect(new URL("/", request.url));
 		}
 		return NextResponse.next();
 	}
 
-	// Check if token exists
+	// Handle root path
+	if (pathname === "/") {
+		if (!tokenCookie?.value) {
+			return NextResponse.redirect(new URL("/auth/login", request.url));
+		}
+		return NextResponse.next();
+	}
+
+	// Check if token exists for protected routes
 	if (!tokenCookie?.value) {
 		return NextResponse.redirect(new URL("/auth/login", request.url));
 	}
@@ -77,25 +75,18 @@ export async function middleware(request: NextRequest) {
 		const decoded = jwtDecode<JwtPayload>(tokenCookie.value);
 		const currentTime = Math.floor(Date.now() / 1000);
 
-		// Check if token is expired
 		if (decoded.exp < currentTime) {
-			// Try to refresh the token
 			const newToken = await handleTokenRefresh(request);
-
 			if (!newToken) {
 				return NextResponse.redirect(new URL("/auth/login", request.url));
 			}
-
-			// Create response with new token
 			const response = NextResponse.next();
 			response.cookies.set("token", newToken, { path: "/" });
 			return response;
 		}
 
-		// Check permissions for protected routes
 		if (validModulePaths.some((path) => pathname.startsWith(path))) {
 			const userPermissions = decoded.roles.flatMap((role) => role.permissions);
-
 			if (!checkPermission(pathname, userPermissions)) {
 				return NextResponse.redirect(new URL("/errors/forbidden", request.url));
 			}

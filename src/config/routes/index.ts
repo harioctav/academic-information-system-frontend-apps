@@ -23,7 +23,6 @@ export const validModulePaths = Object.values(routes.modules).flat();
 export const matcherPaths = [
 	"/",
 	"/auth/:path*",
-	"/dashboard/:path*",
 	"/settings/:path*",
 	"/locations/:path*",
 	"/academics/:path*",
