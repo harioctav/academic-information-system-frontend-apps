@@ -8,7 +8,7 @@ import { getRoleLabel } from "@/config/enums/role.enum";
 import { permissionCategoryService } from "@/lib/services/settings/permission-category.service";
 import { roleService } from "@/lib/services/settings/role.service";
 import { ApiError, ValidationErrors } from "@/types/api";
-import { FormProps } from "@/types/from-prop";
+import { FormProps } from "@/types/common";
 import { Permission } from "@/types/settings/permission";
 import { PermissionCategory } from "@/types/settings/permission-category";
 import { useRouter } from "next/navigation";

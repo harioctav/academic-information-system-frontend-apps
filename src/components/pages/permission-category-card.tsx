@@ -7,20 +7,12 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Permission } from "@/types/settings/permission";
-import { PermissionCategory } from "@/types/settings/permission-category";
 import {
 	getPermissionCategoryLabel,
 	getPermissionLabel,
 } from "@/config/enums/permission.category.enum";
 import { useTranslations } from "next-intl";
-
-interface PermissionCategoryCardProps {
-	category: PermissionCategory;
-	selectedPermissions: string[];
-	onPermissionChange: (permission: Permission) => void;
-	onCategoryChange: (permissions: Permission[]) => void;
-}
+import PermissionCategoryCardProps from "@/types/common";
 
 const PermissionCategoryCard = ({
 	category,

@@ -3,7 +3,7 @@
 import { DynamicDialog } from "@/components/shared/dynamic-dialog";
 import ProvinceFormInput from "@/components/pages/locations/provinces/form-input";
 import { useTranslations } from "next-intl";
-import { RegionDialogProps } from "@/types/from-prop";
+import { RegionDialogProps } from "@/types/common";
 
 export function ProvinceDialog({
 	isOpen,

@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { districtService } from "@/lib/services/locations/district.service";
 import { ApiError, ValidationErrors } from "@/types/api";
-import { FormProps } from "@/types/from-prop";
+import { FormProps } from "@/types/common";
 import { DistrictRequest } from "@/types/locations/district";
 import { Regency } from "@/types/locations/regency";
 import { useTranslations } from "next-intl";

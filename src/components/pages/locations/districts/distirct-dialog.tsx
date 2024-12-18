@@ -3,7 +3,7 @@
 import { DynamicDialog } from "@/components/shared/dynamic-dialog";
 import { useTranslations } from "next-intl";
 import DistrictFormInput from "@/components/pages/locations/districts/form-input";
-import { RegionDialogProps } from "@/types/from-prop";
+import { RegionDialogProps } from "@/types/common";
 
 export function DistrictDialog({
 	isOpen,

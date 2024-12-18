@@ -11,10 +11,11 @@ export default function HomePage() {
 				<PageHeader
 					title={t("pages.home")}
 					description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
-				></PageHeader>
+				/>
 				<CardContent>
 					<div className="flex flex-1 flex-col gap-4">
-						<div className="grid auto-rows-min gap-4 md:grid-cols-3">
+						<div className="grid auto-rows-min gap-4 md:grid-cols-4">
+							<div className="aspect-video rounded-xl bg-muted/50" />
 							<div className="aspect-video rounded-xl bg-muted/50" />
 							<div className="aspect-video rounded-xl bg-muted/50" />
 							<div className="aspect-video rounded-xl bg-muted/50" />

@@ -8,7 +8,7 @@ import { SubmitButton } from "@/components/ui/submit-button";
 import { RegencyType } from "@/config/enums/regency.type.enum";
 import { regencyService } from "@/lib/services/locations/regency.service";
 import { ApiError, ValidationErrors } from "@/types/api";
-import { FormProps } from "@/types/from-prop";
+import { FormProps } from "@/types/common";
 import { Province } from "@/types/locations/province";
 import { RegencyRequest } from "@/types/locations/regency";
 import { useTranslations } from "next-intl";

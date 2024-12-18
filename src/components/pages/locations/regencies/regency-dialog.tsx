@@ -3,7 +3,7 @@
 import { DynamicDialog } from "@/components/shared/dynamic-dialog";
 import RegencyFormInput from "@/components/pages/locations/regencies/form-input";
 import { useTranslations } from "next-intl";
-import { RegionDialogProps } from "@/types/from-prop";
+import { RegionDialogProps } from "@/types/common";
 
 export function RegencyDialog({
 	isOpen,
