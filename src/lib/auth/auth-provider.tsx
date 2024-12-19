@@ -1,18 +1,10 @@
 "use client";
 
 import { User } from "@/types/settings/user";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 import { authService } from "@/lib/auth/auth.service";
-
-interface AuthToken {
-	accessToken: string;
-	refreshToken: string;
-}
-
-interface AuthResponse {
-	user: User & { token: AuthToken };
-}
+import { AuthResponse } from "@/types/auth/auth";
 
 interface AuthContextType {
 	user: User | null;
@@ -26,83 +18,62 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const REFRESH_INTERVAL = 45 * 60 * 1000; // 45 minutes
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-	const [mounted, setMounted] = useState(false);
 	const [user, setUser] = useState<User | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const router = useRouter();
-	const pathname = usePathname();
-	const isAuthPage = pathname?.startsWith("/auth/");
 
 	useEffect(() => {
-		// Init auth
-		const initAuth = async () => {
-			setMounted(true);
+		let mounted = true;
 
-			// Redirect authenticated users away from auth pages
-			if (isAuthPage) {
-				const token = document.cookie.includes("token");
-				if (token) {
-					router.replace("/");
-					return;
+		const checkSession = async () => {
+			try {
+				const { user: sessionUser } = await authService.checkSession();
+				if (mounted) {
+					setUser(sessionUser);
 				}
-				setIsLoading(false);
-				return;
-			}
-
-			const token = document.cookie.includes("token");
-			if (token) {
-				try {
-					const data = await authService.checkSession();
-					setUser(data.user);
-				} catch {
+			} catch {
+				if (mounted) {
 					setUser(null);
 				}
+			} finally {
+				if (mounted) {
+					setIsLoading(false);
+				}
 			}
-			setIsLoading(false);
 		};
 
-		initAuth();
+		checkSession();
 
-		// Token refresh logic remains the same
-		if (!isAuthPage) {
-			const refreshTokenInterval = setInterval(async () => {
-				const refresh_token = document.cookie
-					.split("refresh_token=")[1]
-					?.split(";")[0];
-				if (refresh_token) {
-					try {
-						const data = await authService.refreshToken(refresh_token);
-						setUser(data.user);
-					} catch {
-						logout();
-					}
+		return () => {
+			mounted = false;
+		};
+	}, []);
+
+	useEffect(() => {
+		if (!isLoading && user) {
+			const refreshInterval = setInterval(async () => {
+				try {
+					const data = await authService.refreshToken();
+					setUser(data.user);
+				} catch {
+					await logout();
 				}
 			}, REFRESH_INTERVAL);
 
-			return () => clearInterval(refreshTokenInterval);
+			return () => clearInterval(refreshInterval);
 		}
-	}, [isAuthPage, pathname]);
+	}, [isLoading, user]);
 
-	const login = (response: AuthResponse) => {
+	const login = async (response: AuthResponse) => {
 		setUser(response.user);
-		router.push("/");
+		router.replace("/");
 	};
 
 	const logout = async () => {
-		try {
-			await authService.logout();
-			document.cookie =
-				"token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-			document.cookie =
-				"refresh_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-			setUser(null);
-			window.location.href = "/auth/login";
-		} catch (error) {
-			console.error("Logout failed:", error);
-		}
+		await authService.logout();
+		setUser(null);
+		router.replace("/auth/login");
 	};
-
-	if (!mounted) return null;
 
 	return (
 		<AuthContext.Provider value={{ user, login, logout, isLoading }}>

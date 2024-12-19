@@ -13,7 +13,6 @@ import { FormProps } from "@/types/common";
 import { District } from "@/types/locations/district";
 import { VillageRequest } from "@/types/locations/village";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -25,7 +24,6 @@ const VillageFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const [selectedDistrict, setSelectedDistrict] =
 		useState<SelectOption<District> | null>(null);
 
-	const router = useRouter();
 	const [errors, setErrors] = useState<ValidationErrors>({});
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -69,28 +67,21 @@ const VillageFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 
 		try {
 			if (isEdit && uuid) {
-				const response = await villageService.updateVillage(
-					uuid,
-					villageRequest
-				);
-				toast.success(response.message);
+				await villageService.updateVillage(uuid, villageRequest);
 			} else {
-				const response = await villageService.storeVillage(villageRequest);
-				toast.success(response.message);
+				await villageService.storeVillage(villageRequest);
 			}
 
 			if (onSuccess) {
 				onSuccess();
 			}
-
-			router.refresh();
 		} catch (error) {
 			const apiError = error as ApiError;
 			if (apiError.errors) {
 				setErrors(apiError.errors);
 			}
 			toast.error(
-				apiError.message || "An error occurred while saving the province"
+				apiError.message || "An error occurred while saving the village"
 			);
 		} finally {
 			setIsLoading(false);

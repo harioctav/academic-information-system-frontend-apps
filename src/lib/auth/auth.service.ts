@@ -1,4 +1,5 @@
-import { AuthRequest, AuthResponse } from "@/types/auth/auth";
+import { TokenStorage } from "@/lib/utils/token-storage";
+import { AuthRequest } from "@/types/auth/auth";
 
 export const authService = {
 	login: async (credentials: AuthRequest) => {
@@ -10,7 +11,6 @@ export const authService = {
 					"Content-Type": "application/json",
 					Accept: "application/json",
 				},
-				credentials: "include",
 				body: JSON.stringify(credentials),
 			}
 		);
@@ -24,50 +24,44 @@ export const authService = {
 		}
 
 		const data = await response.json();
-
-		const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
-		document.cookie = `token=${
-			data.user.token.access_token
-		}; expires=${expires.toUTCString()}; path=/`;
-		document.cookie = `refresh_token=${
+		TokenStorage.setTokens(
+			data.user.token.access_token,
 			data.user.token.refresh_token
-		}; expires=${expires.toUTCString()}; path=/`;
+		);
 		return data;
 	},
 
 	checkSession: async () => {
+		const token = TokenStorage.getAccessToken();
+		if (!token) return { user: null };
+
 		try {
-			const token = document.cookie.split("token=")[1]?.split(";")[0];
-
-			// Return early if no token exists
-			if (!token) {
-				return { user: null };
-			}
-
 			const response = await fetch(
 				`${process.env.NEXT_PUBLIC_API_URL}/auth/user`,
 				{
-					method: "GET",
 					headers: {
-						"Content-Type": "application/json",
-						Accept: "application/json",
 						Authorization: `Bearer ${token}`,
+						Accept: "application/json",
 					},
-					credentials: "include",
 				}
 			);
 
 			if (!response.ok) {
+				TokenStorage.clearTokens();
 				return { user: null };
 			}
 
 			return response.json();
 		} catch {
+			TokenStorage.clearTokens();
 			return { user: null };
 		}
 	},
 
-	refreshToken: async (refresh_token: string): Promise<AuthResponse> => {
+	refreshToken: async () => {
+		const refresh_token = TokenStorage.getRefreshToken();
+		if (!refresh_token) throw new Error("No refresh token");
+
 		const response = await fetch(
 			`${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`,
 			{
@@ -76,46 +70,34 @@ export const authService = {
 					"Content-Type": "application/json",
 					Accept: "application/json",
 				},
-				credentials: "include",
 				body: JSON.stringify({ refresh_token }),
 			}
 		);
 
+		if (!response.ok) {
+			TokenStorage.clearTokens();
+			throw new Error("Failed to refresh token");
+		}
+
 		const data = await response.json();
-		if (!response.ok) throw data;
-
-		const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
-		document.cookie = `token=${
-			data.token.access_token
-		}; expires=${expires.toUTCString()}; path=/`;
-		document.cookie = `refresh_token=${
-			data.token.refresh_token
-		}; expires=${expires.toUTCString()}; path=/`;
-
+		TokenStorage.setTokens(data.token.access_token, data.token.refresh_token);
 		return data;
 	},
 
 	logout: async () => {
-		const token = document.cookie.split("token=")[1]?.split(";")[0];
+		const token = TokenStorage.getAccessToken();
+		if (!token) return;
 
-		const response = await fetch(
-			`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`,
-			{
+		try {
+			await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
 				method: "POST",
 				headers: {
-					"Content-Type": "application/json",
-					Accept: "application/json",
 					Authorization: `Bearer ${token}`,
+					Accept: "application/json",
 				},
-				credentials: "include",
-			}
-		);
-
-		if (!response.ok) {
-			throw new Error("Logout failed");
+			});
+		} finally {
+			TokenStorage.clearTokens();
 		}
-
-		document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-		return response.json();
 	},
 };

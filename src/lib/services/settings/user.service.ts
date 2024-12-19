@@ -1,81 +1,18 @@
+import { BaseService } from "@/lib/base.service";
 import { Params } from "@/types/api";
-import { UserRequest, UserResponse } from "@/types/settings/user";
+import { User, UserRequest } from "@/types/settings/user";
+import { TokenStorage } from "@/lib/utils/token-storage";
 
-const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL;
-const CACHE_DURATION = 60000; // 1 minute
-const cache = new Map();
-
-const getToken = () => document.cookie.split("token=")[1]?.split(";")[0];
-
-const headers = {
-	"Content-Type": "application/json",
-	Accept: "application/json",
-	Authorization: `Bearer ${getToken()}`,
-};
-
-const buildQueryParams = (params: Params) => {
-	const queryParams = new URLSearchParams({
-		page: params.page.toString(),
-		per_page: params.perPage.toString(),
-		sort_by: params.sortBy,
-		sort_direction: params.sortDirection,
-		...(params.search && { search: params.search }),
-	});
-
-	if (params.filters) {
-		Object.entries(params.filters).forEach(([key, value]) => {
-			if (value !== undefined && value !== null) {
-				queryParams.append(key, value.toString());
-			}
-		});
+class UserService extends BaseService {
+	constructor() {
+		super("/settings/users");
 	}
 
-	return queryParams.toString();
-};
+	getUsers = (params: Params) => {
+		return this.get<User[]>("", params);
+	};
 
-export const userService = {
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @param params
-	 * @returns
-	 */
-	getUsers: async (params: Params) => {
-		const cacheKey = JSON.stringify(params);
-		const cachedData = cache.get(cacheKey);
-
-		if (cachedData) {
-			return cachedData;
-		}
-
-		const query = buildQueryParams(params);
-		const response = await fetch(`${BASE_API_URL}/settings/users?${query}`, {
-			headers,
-			credentials: "include",
-		});
-
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
-		if (!response.ok) {
-			throw new Error("Failed to fetch users");
-		}
-
-		const data = await response.json();
-		cache.set(cacheKey, data);
-		setTimeout(() => cache.delete(cacheKey), CACHE_DURATION);
-
-		return data;
-	},
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param request
-	 * @returns
-	 */
-	storeUser: async (request: UserRequest) => {
+	storeUser = (request: UserRequest) => {
 		const formData = new FormData();
 		formData.append("name", request.name);
 		formData.append("email", request.email);
@@ -89,60 +26,27 @@ export const userService = {
 			formData.append("photo", request.photo);
 		}
 
-		const response = await fetch(`${BASE_API_URL}/settings/users`, {
+		return fetch(this.baseUrl, {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
-				Authorization: `Bearer ${getToken()}`,
+				Authorization: `Bearer ${TokenStorage.getAccessToken()}`,
 			},
 			credentials: "include",
 			body: formData,
+		}).then(async (response) => {
+			const result = await response.json();
+			if (!response.ok) throw result;
+			this.clearListCache();
+			return result;
 		});
+	};
 
-		const result = await response.json();
+	showUser = (uuid: string) => {
+		return this.get<User>(`/${uuid}`);
+	};
 
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
-		if (!response.ok) {
-			throw result;
-		}
-
-		return result;
-	},
-
-	/**
-	 *  Display the specified resource.
-	 *
-	 * @param uuid
-	 * @returns
-	 */
-	showUser: async (uuid: string) => {
-		const response = await fetch(`${BASE_API_URL}/settings/users/${uuid}`, {
-			headers,
-			credentials: "include",
-		});
-
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
-		if (!response.ok) {
-			throw new Error("Failed to fetch user data");
-		}
-
-		return response.json() as Promise<UserResponse>;
-	},
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param uuid
-	 * @param request
-	 * @returns
-	 */
-	updateUser: async (uuid: string, request: UserRequest) => {
+	updateUser = (uuid: string, request: UserRequest) => {
 		const formData = new FormData();
 		formData.append("name", request.name);
 		formData.append("email", request.email);
@@ -157,75 +61,29 @@ export const userService = {
 			formData.append("photo", request.photo);
 		}
 
-		const response = await fetch(`${BASE_API_URL}/settings/users/${uuid}`, {
+		return fetch(`${this.baseUrl}/${uuid}`, {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
-				Authorization: `Bearer ${getToken()}`,
+				Authorization: `Bearer ${TokenStorage.getAccessToken()}`,
 			},
 			credentials: "include",
 			body: formData,
+		}).then(async (response) => {
+			const result = await response.json();
+			if (!response.ok) throw result;
+			this.clearListCache();
+			return result;
 		});
+	};
 
-		const result = await response.json();
+	deleteUser = (uuid: string) => {
+		return this.delete<void, User>(`/${uuid}`);
+	};
 
-		if (!response.ok) {
-			throw result;
-		}
+	bulkDeleteUsers = (ids: string[]) => {
+		return this.delete<{ ids: string[] }, User>("/bulk-delete", { ids });
+	};
+}
 
-		return result;
-	},
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param uuid
-	 * @returns
-	 */
-	deleteUser: async (uuid: string) => {
-		const response = await fetch(`${BASE_API_URL}/settings/users/${uuid}`, {
-			method: "DELETE",
-			headers,
-			credentials: "include",
-		});
-
-		const result = await response.json();
-
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
-		if (!response.ok) {
-			throw result;
-		}
-
-		return result;
-	},
-
-	/**
-	 * Remove multiple resources from storage.
-	 *
-	 * @param ids
-	 * @returns
-	 */
-	bulkDeleteUsers: async (ids: string[]) => {
-		const response = await fetch(`${BASE_API_URL}/settings/users/bulk-delete`, {
-			method: "DELETE",
-			headers,
-			credentials: "include",
-			body: JSON.stringify({ ids }),
-		});
-
-		const result = await response.json();
-
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
-		if (!response.ok) {
-			throw result;
-		}
-
-		return result;
-	},
-};
+export const userService = new UserService();

@@ -1,164 +1,35 @@
+import { BaseService } from "@/lib/base.service";
 import { Params } from "@/types/api";
-import {
-	ProvinceCollectionResponse,
-	ProvinceRequest,
-	ProvinceResponse,
-} from "@/types/locations/province";
+import { Province, ProvinceRequest } from "@/types/locations/province";
 
-const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL;
-const getToken = () => document.cookie.split("token=")[1]?.split(";")[0];
+class ProvinceService extends BaseService {
+	constructor() {
+		super("/locations/provinces");
+	}
 
-const headers = {
-	"Content-Type": "application/json",
-	Accept: "application/json",
-	Authorization: `Bearer ${getToken()}`,
-};
+	getProvinces = (params: Params) => {
+		return this.get<Province[]>("", params);
+	};
 
-export const provinceService = {
-	// Display a listing of the resource.
-	getProvinces: async (params: Params) => {
-		const queryString = new URLSearchParams({
-			page: params.page.toString(),
-			per_page: params.perPage.toString(),
-			sort_by: params.sortBy,
-			sort_direction: params.sortDirection,
-			...(params.search && { search: params.search }),
-		}).toString();
+	storeProvince = (request: ProvinceRequest) => {
+		return this.post<ProvinceRequest, Province>("", request);
+	};
 
-		const response = await fetch(
-			`${BASE_API_URL}/locations/provinces?${queryString}`,
-			{
-				headers,
-				credentials: "include",
-			}
-		);
+	showProvince = (uuid: string) => {
+		return this.get<Province>(`/${uuid}`);
+	};
 
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
+	updateProvince = (uuid: string, request: ProvinceRequest) => {
+		return this.put<ProvinceRequest, Province>(`/${uuid}`, request);
+	};
 
-		if (!response.ok) {
-			throw new Error("Failed to fetch provinces");
-		}
+	deleteProvince = (uuid: string) => {
+		return this.delete<void, Province>(`/${uuid}`);
+	};
 
-		return response.json() as Promise<ProvinceCollectionResponse>;
-	},
+	bulkDeleteProvinces = (ids: string[]) => {
+		return this.delete<{ ids: string[] }, Province>("/bulk-delete", { ids });
+	};
+}
 
-	// Store a newly created resource in storage.
-	storeProvince: async (request: ProvinceRequest) => {
-		// Setup request & URL
-		const response = await fetch(`${BASE_API_URL}/locations/provinces`, {
-			method: "POST",
-			headers,
-			credentials: "include",
-			body: JSON.stringify(request),
-		});
-
-		const result = await response.json();
-
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
-		if (!response.ok) {
-			throw result;
-		}
-
-		return result;
-	},
-
-	// Display the specified resource.
-	showProvince: async (uuid: string) => {
-		const response = await fetch(
-			`${BASE_API_URL}/locations/provinces/${uuid}`,
-			{
-				headers,
-				credentials: "include",
-			}
-		);
-
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
-		if (!response.ok) {
-			throw new Error("Failed to fetch province");
-		}
-
-		return response.json() as Promise<ProvinceResponse>;
-	},
-
-	// Update the specified resource in storage.
-	updateProvince: async (uuid: string, request: ProvinceRequest) => {
-		const response = await fetch(
-			`${BASE_API_URL}/locations/provinces/${uuid}`,
-			{
-				method: "PUT",
-				headers,
-				credentials: "include",
-				body: JSON.stringify(request),
-			}
-		);
-
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
-		const result = await response.json();
-
-		if (!response.ok) {
-			throw result;
-		}
-
-		return result;
-	},
-
-	// Remove the specified resource from storage.
-	deleteProvince: async (uuid: string) => {
-		const response = await fetch(
-			`${BASE_API_URL}/locations/provinces/${uuid}`,
-			{
-				method: "DELETE",
-				headers,
-				credentials: "include",
-			}
-		);
-
-		const result = await response.json();
-
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
-		if (!response.ok) {
-			throw result;
-		}
-
-		return result;
-	},
-
-	// Remove multiple resources from storage.
-	bulkDeleteProvinces: async (ids: string[]) => {
-		const response = await fetch(
-			`${BASE_API_URL}/locations/provinces/bulk-delete`,
-			{
-				method: "DELETE",
-				headers,
-				credentials: "include",
-				body: JSON.stringify({ ids }),
-			}
-		);
-
-		const result = await response.json();
-
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
-
-		if (!response.ok) {
-			throw result;
-		}
-
-		return result;
-	},
-};
+export const provinceService = new ProvinceService();
