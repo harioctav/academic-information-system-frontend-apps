@@ -1,6 +1,5 @@
 "use client";
 
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { userService } from "@/lib/services/settings/user.service";
@@ -14,7 +13,10 @@ import { FormProps } from "@/types/common";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { Role } from "@/types/settings/role";
 import { getRoleLabel } from "@/config/enums/role.enum";
-import ImageInput from "@/components/ui/image-input";
+import ImageInput from "@/components/forms/image-input";
+import { NameInput } from "@/components/forms/name-input";
+import { PhoneInput } from "@/components/forms/phone-input";
+import { EmailInput } from "@/components/forms/email-input";
 
 const UserFormInput = ({ uuid, isEdit }: FormProps) => {
 	const router = useRouter();
@@ -155,68 +157,26 @@ const UserFormInput = ({ uuid, isEdit }: FormProps) => {
 						)}
 					</div>
 
-					<div className="space-y-2">
-						<Label htmlFor="name" className="block text-sm font-medium mb-2">
-							{t("input.common.name.label")}
-						</Label>
-						<Input
-							type="text"
-							id="name"
-							name="name"
-							placeholder={t("input.common.name.placeholder")}
-							value={formData.name}
-							onChange={(e) =>
-								setFormData({ ...formData, name: e.target.value })
-							}
-							className="w-full"
-							disabled={isLoading}
-						/>
-						{errors.name && (
-							<span className="text-sm text-red-500">{errors.name[0]}</span>
-						)}
-					</div>
+					<NameInput
+						value={formData.name}
+						onChange={(value) => setFormData({ ...formData, name: value })}
+						error={errors.name?.[0]}
+						disabled={isLoading}
+					/>
 
-					<div className="space-y-2">
-						<Label htmlFor="email" className="block text-sm font-medium mb-2">
-							{t("input.user.email.label")}
-						</Label>
-						<Input
-							type="email"
-							id="email"
-							name="email"
-							placeholder={t("input.user.email.placeholder")}
-							value={formData.email}
-							onChange={(e) =>
-								setFormData({ ...formData, email: e.target.value })
-							}
-							className="w-full"
-							disabled={isLoading}
-						/>
-						{errors.email && (
-							<span className="text-sm text-red-500">{errors.email[0]}</span>
-						)}
-					</div>
+					<EmailInput
+						value={formData.email}
+						onChange={(value) => setFormData({ ...formData, email: value })}
+						error={errors.email?.[0]}
+						disabled={isLoading}
+					/>
 
-					<div className="space-y-2">
-						<Label htmlFor="phone" className="block text-sm font-medium mb-2">
-							{t("input.user.phone.label")}
-						</Label>
-						<Input
-							type="tel"
-							id="phone"
-							name="phone"
-							placeholder={t("input.user.phone.placeholder")}
-							value={formData.phone}
-							onChange={(e) =>
-								setFormData({ ...formData, phone: e.target.value })
-							}
-							className="w-full"
-							disabled={isLoading}
-						/>
-						{errors.phone && (
-							<span className="text-sm text-red-500">{errors.phone[0]}</span>
-						)}
-					</div>
+					<PhoneInput
+						value={formData.phone}
+						onChange={(value) => setFormData({ ...formData, phone: value })}
+						error={errors.phone?.[0]}
+						disabled={isLoading}
+					/>
 
 					<SubmitButton type="submit" className="w-full" isLoading={isLoading}>
 						{isEdit ? t("button.common.edit") : t("button.common.create")}

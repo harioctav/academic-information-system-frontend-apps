@@ -1,8 +1,10 @@
 "use client";
 
+import { CodeInput } from "@/components/forms/code-input";
+import { NameInput } from "@/components/forms/name-input";
+import { PosCodeInput } from "@/components/forms/pos-code-input";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { CustomFormatter } from "@/components/ui/async-select-formatter";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { villageService } from "@/lib/services/locations/village.service";
@@ -124,64 +126,27 @@ const VillageFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 							<span className="text-sm text-red-500">{errors.districts}</span>
 						)}
 					</div>
-					<div className="space-y-2">
-						<Label htmlFor="code" className="block text-sm font-medium mb-2">
-							{t("input.common.code.label")}
-						</Label>
-						<Input
-							type="number"
-							min="0"
-							id="code"
-							name="code"
-							placeholder={t("input.common.code.placeholder")}
-							value={code}
-							onChange={(e) => setCode(e.target.value)}
-							className="w-full"
-						/>
-						{errors.code && (
-							<span className="text-sm text-red-500">{errors.code[0]}</span>
-						)}
-					</div>
 
-					<div className="space-y-2">
-						<Label htmlFor="name" className="block text-sm font-medium mb-2">
-							{t("input.common.name.label")}
-						</Label>
-						<Input
-							type="text"
-							id="name"
-							name="name"
-							placeholder={t("input.common.name.placeholder")}
-							value={name}
-							onChange={(e) => setName(e.target.value)}
-							className="w-full"
-						/>
-						{errors.name && (
-							<span className="text-sm text-red-500">{errors.name[0]}</span>
-						)}
-					</div>
+					<CodeInput
+						value={code}
+						onChange={(value) => setCode(value)}
+						error={errors.code?.[0]}
+						disabled={isLoading}
+					/>
 
-					<div className="space-y-2">
-						<Label
-							htmlFor="pos_code"
-							className="block text-sm font-medium mb-2"
-						>
-							{t("input.location.pos_code.label")}
-						</Label>
-						<Input
-							type="number"
-							min="0"
-							id="pos_code"
-							name="pos_code"
-							placeholder={t("input.location.pos_code.placeholder")}
-							value={posCode}
-							onChange={(e) => setPosCode(e.target.value)}
-							className="w-full"
-						/>
-						{errors.posCode && (
-							<span className="text-sm text-red-500">{errors.posCode[0]}</span>
-						)}
-					</div>
+					<NameInput
+						value={name}
+						onChange={(value) => setName(value)}
+						error={errors.name?.[0]}
+						disabled={isLoading}
+					/>
+
+					<PosCodeInput
+						value={posCode}
+						onChange={(value) => setPosCode(value)}
+						error={errors.posCode?.[0]}
+						disabled={isLoading}
+					/>
 
 					<SubmitButton type="submit" className="w-full" isLoading={isLoading}>
 						{isEdit ? t("button.common.edit") : t("button.common.create")}

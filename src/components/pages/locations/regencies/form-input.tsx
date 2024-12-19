@@ -1,8 +1,9 @@
 "use client";
 
+import { CodeInput } from "@/components/forms/code-input";
+import { NameInput } from "@/components/forms/name-input";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { DynamicSelect } from "@/components/ui/dynamic-select";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { RegencyType } from "@/config/enums/regency.type.enum";
@@ -127,42 +128,19 @@ const RegencyFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 						)}
 					</div>
 
-					<div className="space-y-2">
-						<Label htmlFor="code" className="block text-sm font-medium mb-2">
-							{t("input.common.code.label")}
-						</Label>
-						<Input
-							type="number"
-							min="0"
-							id="code"
-							name="code"
-							placeholder={t("input.common.code.placeholder")}
-							value={code}
-							onChange={(e) => setCode(e.target.value)}
-							className="w-full"
-						/>
-						{errors.code && (
-							<span className="text-sm text-red-500">{errors.code[0]}</span>
-						)}
-					</div>
+					<CodeInput
+						value={code}
+						onChange={(value) => setCode(value)}
+						error={errors.code?.[0]}
+						disabled={isLoading}
+					/>
 
-					<div className="space-y-2">
-						<Label htmlFor="name" className="block text-sm font-medium mb-2">
-							{t("input.common.name.label")}
-						</Label>
-						<Input
-							type="text"
-							id="name"
-							name="name"
-							placeholder={t("input.common.name.placeholder")}
-							value={name}
-							onChange={(e) => setName(e.target.value)}
-							className="w-full"
-						/>
-						{errors.name && (
-							<span className="text-sm text-red-500">{errors.name[0]}</span>
-						)}
-					</div>
+					<NameInput
+						value={name}
+						onChange={(value) => setName(value)}
+						error={errors.name?.[0]}
+						disabled={isLoading}
+					/>
 
 					{/* Type */}
 					<div className="space-y-2">

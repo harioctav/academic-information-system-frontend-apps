@@ -36,3 +36,38 @@ export interface ImageInputProps {
 	disabled?: boolean;
 	fallback?: string;
 }
+
+export interface NameInputProps {
+	value: string;
+	onChange: (value: string) => void;
+	error?: string;
+	disabled?: boolean;
+}
+
+export interface PhoneInputProps {
+	value: string | undefined;
+	onChange: (value: string) => void;
+	error?: string;
+	disabled?: boolean;
+}
+
+export interface EmailInputProps {
+	value: string;
+	onChange: (value: string) => void;
+	error?: string;
+	disabled?: boolean;
+}
+
+export interface PosCodeInputProps {
+	value: string;
+	onChange: (value: string) => void;
+	error?: string;
+	disabled?: boolean;
+}
+
+export interface CodeInputProps {
+	value: string;
+	onChange: (value: string) => void;
+	error?: string;
+	disabled?: boolean;
+}
