@@ -64,6 +64,11 @@ export default function UserPage() {
 					<PageHeader
 						title={t("navigation.menu.settings.users.label")}
 						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
+						action={{
+							type: "create",
+							url: "/settings/users/create",
+							permission: Permission.UserCreate,
+						}}
 					/>
 					<CardContent>
 						<div className="flex flex-col sm:flex-row gap-2">

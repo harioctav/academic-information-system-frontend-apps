@@ -10,12 +10,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useCallback } from "react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
-
-interface FormProps {
-	uuid?: string;
-	isEdit?: boolean;
-	onSuccess?: () => void;
-}
+import { FormProps } from "@/types/common";
 
 const ProvinceFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();

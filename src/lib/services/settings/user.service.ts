@@ -76,24 +76,34 @@ export const userService = {
 	 * @returns
 	 */
 	storeUser: async (request: UserRequest) => {
-		const data = new FormData();
+		const formData = new FormData();
+		formData.append("name", request.name);
+		formData.append("email", request.email);
+		formData.append("roles", request.roles.toString());
 
-		data.append("name", request.name);
-		data.append("email", request.email);
-		data.append("roles", request.roles.toString());
+		if (request.phone) {
+			formData.append("phone", request.phone);
+		}
 
 		if (request.photo) {
-			data.append("photo", request.photo);
+			formData.append("photo", request.photo);
 		}
 
 		const response = await fetch(`${BASE_API_URL}/settings/users`, {
 			method: "POST",
-			headers,
+			headers: {
+				Accept: "application/json",
+				Authorization: `Bearer ${getToken()}`,
+			},
 			credentials: "include",
-			body: JSON.stringify(request),
+			body: formData,
 		});
 
 		const result = await response.json();
+
+		if (response.status === 403) {
+			throw new Error("You don't have permission to access this resource");
+		}
 
 		if (!response.ok) {
 			throw result;
@@ -133,25 +143,29 @@ export const userService = {
 	 * @returns
 	 */
 	updateUser: async (uuid: string, request: UserRequest) => {
-		const data = new FormData();
+		const formData = new FormData();
+		formData.append("name", request.name);
+		formData.append("email", request.email);
+		formData.append("roles", request.roles.toString());
+		formData.append("_method", "PATCH");
 
-		// Append text fields
-		data.append("name", request.name);
-		data.append("email", request.email);
-		data.append("phone", request.phone);
-		data.append("roles", request.roles.toString());
-		data.append("_method", "PUT");
+		if (request.phone) {
+			formData.append("phone", request.phone);
+		}
+
+		if (request.photo) {
+			formData.append("photo", request.photo);
+		}
 
 		const response = await fetch(`${BASE_API_URL}/settings/users/${uuid}`, {
 			method: "POST",
-			headers,
+			headers: {
+				Accept: "application/json",
+				Authorization: `Bearer ${getToken()}`,
+			},
 			credentials: "include",
-			body: JSON.stringify(request),
+			body: formData,
 		});
-
-		if (response.status === 403) {
-			throw new Error("You don't have permission to access this resource");
-		}
 
 		const result = await response.json();
 

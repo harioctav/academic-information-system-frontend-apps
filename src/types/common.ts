@@ -27,3 +27,12 @@ export default interface PermissionCategoryCardProps {
 	onPermissionChange: (permission: Permission) => void;
 	onCategoryChange: (permissions: Permission[]) => void;
 }
+
+export interface ImageInputProps {
+	value?: string | null;
+	onChange?: (file?: File) => void;
+	onRemove?: () => void;
+	name: string;
+	disabled?: boolean;
+	fallback?: string;
+}

@@ -19,10 +19,9 @@ export interface User {
 export interface UserRequest {
 	name: string;
 	email: string;
-	phone: string;
+	phone?: string;
 	roles: number;
 	photo?: File;
-	_method?: string;
 }
 
 export type UserResponse = ApiResponse<User>;
