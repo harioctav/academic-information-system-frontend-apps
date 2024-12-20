@@ -165,6 +165,14 @@
 			"status": {
 				"label": "Status",
 				"placeholder": "Masukkan atau Pilih Status"
+			},
+			"degree": {
+				"label": "Jenjang atau Tingkat",
+				"placeholder": "Masukkan atau Pilih Jenjang atau Tingkat"
+			},
+			"total_course_credit": {
+				"label": "Total Jumlah SKS",
+				"placeholder": "Masukkan Total Jumlah SKS"
 			}
 		},
 		"user": {

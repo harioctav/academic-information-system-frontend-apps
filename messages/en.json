@@ -167,6 +167,14 @@
 			"status": {
 				"label": "Status",
 				"placeholder": "Enter or Select Status"
+			},
+			"degree": {
+				"label": "Degree",
+				"placeholder": "Enter or Select Degree"
+			},
+			"total_course_credit": {
+				"label": "Total Course Credit",
+				"placeholder": "Enter Total Course Credit"
 			}
 		},
 		"user": {

@@ -62,7 +62,7 @@ export default function ProvincePage() {
 
 	return (
 		<MainLayout>
-			<div className="w-full">
+			<div className="container mx-auto overflow-x-hidden">
 				<Card>
 					<PageHeader
 						title={t("navigation.menu.locations.provinces.label")}
