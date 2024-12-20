@@ -53,48 +53,56 @@ export function VillageShowDialog({
 			{isLoading ? (
 				<div>Loading...</div>
 			) : village ? (
-				<div className="space-y-4">
-					<div>
-						<label className="font-semibold">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+					<div className="space-y-2">
+						<label className="text-sm text-muted-foreground block">
 							{t("input.province_name.label")}
 						</label>
-						<p>{village.district.regency.province.name}</p>
+						<p className="font-semibold">
+							{village.district.regency.province.name}
+						</p>
 					</div>
-					<div>
-						<label className="font-semibold">
+
+					<div className="space-y-2">
+						<label className="text-sm text-muted-foreground block">
 							{t("input.regency_name.label")}
 						</label>
-						<p>{`${village.district.regency.type} ${village.district.regency.name}`}</p>
+						<p className="font-semibold">{`${village.district.regency.type} ${village.district.regency.name}`}</p>
 					</div>
-					<div>
-						<label className="font-semibold">
+
+					<div className="space-y-2">
+						<label className="text-sm text-muted-foreground block">
 							{t("input.district_name.label")}
 						</label>
-						<p>{village.district.name}</p>
+						<p className="font-semibold">{village.district.name}</p>
 					</div>
-					<div>
-						<label className="font-semibold">
-							{t("input.common.name.label")}
+
+					<div className="space-y-2">
+						<label className="text-sm text-muted-foreground block">
+							{t("input.location.village.label")}
 						</label>
-						<p>{village.name}</p>
+						<p className="font-semibold">{village.name}</p>
 					</div>
-					<div>
-						<label className="font-semibold">
+
+					<div className="space-y-2">
+						<label className="text-sm text-muted-foreground block">
 							{t("input.common.code.label")}
 						</label>
-						<p>{village.code}</p>
+						<p className="font-semibold">{village.code}</p>
 					</div>
-					<div>
-						<label className="font-semibold">
+
+					<div className="space-y-2">
+						<label className="text-sm text-muted-foreground block">
 							{t("input.meta.full_code.label")}
 						</label>
-						<p>{village.full_code}</p>
+						<p className="font-semibold">{village.full_code}</p>
 					</div>
-					<div>
-						<label className="font-semibold">
+
+					<div className="space-y-2 md:col-span-2">
+						<label className="text-sm text-muted-foreground block">
 							{t("input.location.pos_code.label")}
 						</label>
-						<p>{village.pos_code || "-"}</p>
+						<p className="font-semibold">{village.pos_code || "-"}</p>
 					</div>
 				</div>
 			) : null}
