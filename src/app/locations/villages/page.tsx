@@ -2,6 +2,7 @@
 
 import { MainLayout } from "@/components/layouts/main-layout";
 import { VillageDialog } from "@/components/pages/locations/villages/village-dialog";
+import { VillageShowDialog } from "@/components/pages/locations/villages/village-show-dialog";
 import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
@@ -33,6 +34,8 @@ export default function VillagePage() {
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
 
+	const [isShowDialogOpen, setIsShowDialogOpen] = useState(false);
+
 	const handleCreate = () => {
 		setSelectedUuid(undefined);
 		setIsDialogOpen(true);
@@ -41,6 +44,11 @@ export default function VillagePage() {
 	const handleEdit = (uuid: string) => {
 		setSelectedUuid(uuid);
 		setIsDialogOpen(true);
+	};
+
+	const handleShow = (uuid: string) => {
+		setSelectedUuid(uuid);
+		setIsShowDialogOpen(true);
 	};
 
 	const {
@@ -60,7 +68,11 @@ export default function VillagePage() {
 		},
 	});
 
-	const columns = createColumns(fetchData, handleEdit) as ColumnDef<Village>[];
+	const columns = createColumns(
+		fetchData,
+		handleEdit,
+		handleShow
+	) as ColumnDef<Village>[];
 
 	const handleBulkDelete = async (selectedIds: string[]) => {
 		try {
@@ -156,6 +168,15 @@ export default function VillagePage() {
 				}}
 				uuid={selectedUuid}
 				onSuccess={fetchData}
+			/>
+
+			<VillageShowDialog
+				isOpen={isShowDialogOpen}
+				onClose={() => {
+					setIsShowDialogOpen(false);
+					setSelectedUuid(undefined);
+				}}
+				uuid={selectedUuid}
 			/>
 		</MainLayout>
 	);

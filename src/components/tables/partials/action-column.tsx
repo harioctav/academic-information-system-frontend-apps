@@ -6,11 +6,14 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { usePermissions } from "@/hooks/permissions/use-permission";
-import { MoreVertical, Pencil, Trash2 } from "lucide-react";
+import { Eye, MoreVertical, Pencil, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 interface ActionColumnProps {
+	showUrl?: string;
+	onShow?: () => void;
+	showPermission?: string;
 	editUrl?: string;
 	onEdit?: () => void;
 	editPermission: string;
@@ -19,12 +22,16 @@ interface ActionColumnProps {
 	conditions?: {
 		key: string;
 		value: boolean;
+		hideShow?: boolean;
 		hideEdit?: boolean;
 		hideDelete?: boolean;
 	}[];
 }
 
 export function ActionColumn({
+	showUrl,
+	onShow,
+	showPermission,
 	editUrl,
 	onEdit,
 	editPermission,
@@ -35,6 +42,9 @@ export function ActionColumn({
 	const t = useTranslations();
 	const { hasPermission } = usePermissions();
 
+	const shouldHideShow = conditions.some(
+		(condition) => condition.value && condition.hideShow
+	);
 	const shouldHideEdit = conditions.some(
 		(condition) => condition.value && condition.hideEdit
 	);
@@ -42,10 +52,13 @@ export function ActionColumn({
 		(condition) => condition.value && condition.hideDelete
 	);
 
+	const hasShowAccess = showPermission
+		? hasPermission(showPermission) && !shouldHideShow
+		: false;
 	const hasEditAccess = hasPermission(editPermission) && !shouldHideEdit;
 	const hasDeleteAccess = hasPermission(deletePermission) && !shouldHideDelete;
 
-	if (!hasEditAccess && !hasDeleteAccess) return null;
+	if (!hasShowAccess && !hasEditAccess && !hasDeleteAccess) return null;
 
 	return (
 		<div className="flex justify-center">
@@ -57,6 +70,28 @@ export function ActionColumn({
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end">
+					{hasShowAccess && (
+						<DropdownMenuItem>
+							{showUrl ? (
+								<Link
+									href={showUrl}
+									className="flex items-center text-blue-500 w-full"
+								>
+									<Eye className="h-4 w-4 mr-4" />
+									{t("button.common.show")}
+								</Link>
+							) : (
+								<button
+									onClick={onShow}
+									className="flex items-center text-blue-500 w-full"
+								>
+									<Eye className="h-4 w-4 mr-4" />
+									{t("button.common.show")}
+								</button>
+							)}
+						</DropdownMenuItem>
+					)}
+
 					{hasEditAccess && (
 						<DropdownMenuItem>
 							{editUrl ? (

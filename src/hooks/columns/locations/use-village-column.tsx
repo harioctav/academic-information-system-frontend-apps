@@ -30,7 +30,8 @@ export const useVillageColumns = () => {
 
 	const createColumns = (
 		refreshData: () => void,
-		onEdit?: (uuid: string) => void
+		onEdit?: (uuid: string) => void,
+		onShow?: (uuid: string) => void
 	) => {
 		const columns: ColumnDef<Village>[] = [
 			{
@@ -140,8 +141,10 @@ export const useVillageColumns = () => {
 					return (
 						<>
 							<ActionColumn
+								onShow={() => onShow?.(row.original.uuid)}
 								onEdit={() => onEdit?.(row.original.uuid)}
 								editPermission={Permission.VillageEdit}
+								showPermission={Permission.VillageShow}
 								deletePermission={Permission.VillageDelete}
 								onDelete={() => {
 									setSelectedUuid(row.original.uuid);

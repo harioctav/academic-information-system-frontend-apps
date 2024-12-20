@@ -40,20 +40,23 @@
 			"academics": {
 				"title": "Akademik",
 				"majors": {
-					"label": "Jurusan",
-					"create": "Tambah Jurusan",
-					"edit": "Ubah Jurusan",
-					"delete": "Hapus Jurusan"
+					"label": "Program Studi",
+					"create": "Tambah Program Studi",
+					"edit": "Ubah Program Studi",
+					"show": "Detail Program Studi",
+					"delete": "Hapus Program Studi"
 				},
 				"students": {
 					"label": "Mahasiswa",
 					"create": "Tambah Mahasiswa",
+					"show": "Detail Mahasiswa",
 					"edit": "Ubah Mahasiswa",
 					"delete": "Hapus Mahasiswa"
 				},
 				"subjects": {
 					"label": "Mata Kuliah",
 					"create": "Tambah Mata Kuliah",
+					"show": "Detail Mata Kuliah",
 					"edit": "Ubah Mata Kuliah",
 					"delete": "Hapus Mata Kuliah"
 				}
@@ -63,12 +66,14 @@
 				"grades": {
 					"label": "Nilai",
 					"create": "Tambah Nilai",
+					"show": "Detail Nilai",
 					"edit": "Ubah Nilai",
 					"delete": "Hapus Nilai"
 				},
 				"recommendations": {
 					"label": "Rekomendasi",
 					"create": "Tambah Rekomendasi",
+					"show": "Detail Rekomendasi",
 					"edit": "Ubah Rekomendasi",
 					"delete": "Hapus Rekomendasi"
 				}
@@ -78,6 +83,7 @@
 				"users": {
 					"label": "Pengguna",
 					"create": "Tambah Pengguna",
+					"show": "Detail Pengguna",
 					"edit": "Ubah Pengguna",
 					"delete": "Hapus Pengguna",
 					"change_status": "Ubah Status"
@@ -85,6 +91,7 @@
 				"roles": {
 					"label": "Peran & Izin",
 					"create": "Tambah Peran & Izin",
+					"show": "Detail Peran & Izin",
 					"edit": "Ubah Peran & Izin",
 					"delete": "Hapus Peran & Izin"
 				},
@@ -92,7 +99,7 @@
 					"label": "Profil"
 				},
 				"change-password": {
-					"label": "Ganti Kata Sandi"
+					"label": "Ubah Kata Sandi"
 				}
 			},
 			"locations": {
@@ -100,24 +107,28 @@
 				"provinces": {
 					"label": "Provinsi",
 					"create": "Tambah Provinsi",
+					"show": "Detail Provinsi",
 					"edit": "Ubah Provinsi",
 					"delete": "Hapus Provinsi"
 				},
 				"regencies": {
 					"label": "Kabupaten atau Kota",
 					"create": "Tambah Kabupaten atau Kota",
+					"show": "Detail Kabupaten atau Kota",
 					"edit": "Ubah Kabupaten atau Kota",
 					"delete": "Hapus Kabupaten atau Kota"
 				},
 				"districts": {
 					"label": "Kecamatan",
 					"create": "Tambah Kecamatan",
+					"show": "Detail Kecamatan",
 					"edit": "Ubah Kecamatan",
 					"delete": "Hapus Kecamatan"
 				},
 				"villages": {
 					"label": "Desa atau Kelurahan",
 					"create": "Tambah Desa atau Kelurahan",
+					"show": "Detail Desa atau Kelurahan",
 					"edit": "Ubah Desa atau Kelurahan",
 					"delete": "Hapus Desa atau Kelurahan"
 				}
@@ -255,6 +266,7 @@
 		"common": {
 			"create": "Tambah",
 			"edit": "Ubah",
+			"show": "Detail",
 			"delete": "Hapus",
 			"cancel": "Batal",
 			"back": "Kembali ke {page}",
