@@ -269,6 +269,7 @@
 			"show": "Detail",
 			"delete": "Hapus",
 			"cancel": "Batal",
+			"close": "Tutup",
 			"back": "Kembali ke {page}",
 			"back-to-list": "Kembali ke Halaman Daftar",
 			"option": "Pilihan",

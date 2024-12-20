@@ -71,3 +71,15 @@ export interface CodeInputProps {
 	error?: string;
 	disabled?: boolean;
 }
+
+export interface ListItemProps {
+	label: string;
+	value: string;
+	maxCharacters?: number;
+}
+
+export interface ShowDialogProps {
+	isOpen: boolean;
+	onClose: () => void;
+	uuid?: string;
+}

@@ -271,6 +271,7 @@
 			"show": "Detail",
 			"delete": "Delete",
 			"cancel": "Cancel",
+			"close": "Close",
 			"back": "Back to {page}",
 			"back-to-list": "Back to List Page",
 			"option": "Options",

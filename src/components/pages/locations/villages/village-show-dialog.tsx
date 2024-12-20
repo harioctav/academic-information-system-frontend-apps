@@ -6,18 +6,11 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Village } from "@/types/locations/village";
 import { toast } from "sonner";
+import { ShowDialogProps } from "@/types/common";
+import { ListItem } from "@/components/ui/list-item";
+import ListContainer from "@/components/ui/list-container";
 
-interface VillageShowDialogProps {
-	isOpen: boolean;
-	onClose: () => void;
-	uuid?: string;
-}
-
-export function VillageShowDialog({
-	isOpen,
-	onClose,
-	uuid,
-}: VillageShowDialogProps) {
+export function VillageShowDialog({ isOpen, onClose, uuid }: ShowDialogProps) {
 	const t = useTranslations();
 	const [village, setVillage] = useState<Village | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
@@ -53,58 +46,36 @@ export function VillageShowDialog({
 			{isLoading ? (
 				<div>Loading...</div>
 			) : village ? (
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-					<div className="space-y-2">
-						<label className="text-sm text-muted-foreground block">
-							{t("input.province_name.label")}
-						</label>
-						<p className="font-semibold">
-							{village.district.regency.province.name}
-						</p>
-					</div>
+				<ListContainer>
+					<ListItem
+						label={t("input.meta.full_code.label")}
+						value={village.full_code}
+					/>
+					<ListItem
+						label={t("input.location.village.label")}
+						value={village.name}
+					/>
 
-					<div className="space-y-2">
-						<label className="text-sm text-muted-foreground block">
-							{t("input.regency_name.label")}
-						</label>
-						<p className="font-semibold">{`${village.district.regency.type} ${village.district.regency.name}`}</p>
-					</div>
+					<ListItem
+						label={t("input.location.pos_code.label")}
+						value={village.pos_code || "-"}
+					/>
 
-					<div className="space-y-2">
-						<label className="text-sm text-muted-foreground block">
-							{t("input.district_name.label")}
-						</label>
-						<p className="font-semibold">{village.district.name}</p>
-					</div>
+					<ListItem
+						label={t("input.district_name.label")}
+						value={village.district.name}
+					/>
 
-					<div className="space-y-2">
-						<label className="text-sm text-muted-foreground block">
-							{t("input.location.village.label")}
-						</label>
-						<p className="font-semibold">{village.name}</p>
-					</div>
+					<ListItem
+						label={t("input.regency_name.label")}
+						value={`${village.district.regency.type} ${village.district.regency.name}`}
+					/>
 
-					<div className="space-y-2">
-						<label className="text-sm text-muted-foreground block">
-							{t("input.common.code.label")}
-						</label>
-						<p className="font-semibold">{village.code}</p>
-					</div>
-
-					<div className="space-y-2">
-						<label className="text-sm text-muted-foreground block">
-							{t("input.meta.full_code.label")}
-						</label>
-						<p className="font-semibold">{village.full_code}</p>
-					</div>
-
-					<div className="space-y-2 md:col-span-2">
-						<label className="text-sm text-muted-foreground block">
-							{t("input.location.pos_code.label")}
-						</label>
-						<p className="font-semibold">{village.pos_code || "-"}</p>
-					</div>
-				</div>
+					<ListItem
+						label={t("input.province_name.label")}
+						value={village.district.regency.province.name}
+					/>
+				</ListContainer>
 			) : null}
 		</DynamicDialog>
 	);
