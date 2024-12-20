@@ -305,6 +305,20 @@
 			"description": "Apakah anda yakin ingin mengubah status untuk data berikut ini? Tindakan ini tidak dapat dibatalkan."
 		}
 	},
+	"widget": {
+		"majors": {
+			"total": "Jumlah Program Studi"
+		},
+		"subjects": {
+			"total": "Jumlah Matakuliah"
+		},
+		"users": {
+			"total": "Jumlah Pengguna Aktif"
+		},
+		"students": {
+			"total": "Jumlah Mahasiswa"
+		}
+	},
 	"table": {
 		"columns": "Kolom",
 		"empty": "Tidak Ada Data Tersedia",

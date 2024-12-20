@@ -307,6 +307,20 @@
 			"description": "Are you sure you want to change the status for this data? This action cannot be undone."
 		}
 	},
+	"widget": {
+		"majors": {
+			"total": "Total Majors"
+		},
+		"subjects": {
+			"total": "Total Subjects"
+		},
+		"users": {
+			"total": "Total Users"
+		},
+		"students": {
+			"total": "Total Students"
+		}
+	},
 	"table": {
 		"columns": "Columns",
 		"empty": "No Data Available",

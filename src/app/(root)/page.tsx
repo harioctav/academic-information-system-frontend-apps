@@ -1,11 +1,40 @@
+"use client";
+
 import { PageHeader } from "@/components/pages/page-header";
 import { StatWidget } from "@/components/shared/widgets/stat-widget";
 import { Card, CardContent } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
-import { ShoppingBag, Users, CreditCard, Package } from "lucide-react";
+import { Users, BookOpen, School, GraduationCap } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Dashboard } from "@/types/dashboard";
+import { dashboardService } from "@/lib/services/dashboard.service";
+import { toast } from "sonner";
 
 export default function DashboardPage() {
 	const t = useTranslations();
+
+	// setup data
+	const [dashboard, setDashboard] = useState<Dashboard | null>(null);
+	const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(() => {
+		setIsLoading(true);
+		dashboardService
+			.dashboardData()
+			.then((response) => {
+				setDashboard(response.data);
+			})
+			.catch((error) => {
+				toast.error(
+					error instanceof Error
+						? error.message
+						: "Failed to load dashboard data"
+				);
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
+	}, []);
 
 	return (
 		<div className="container mx-auto overflow-x-hidden">
@@ -17,10 +46,32 @@ export default function DashboardPage() {
 				<CardContent>
 					<div className="flex flex-1 flex-col gap-4">
 						<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-							<StatWidget icon={ShoppingBag} value={1500} label="Sales" />
-							<StatWidget icon={Users} value={2450} label="Customers" />
-							<StatWidget icon={CreditCard} value="$12,500" label="Revenue" />
-							<StatWidget icon={Package} value={154} label="Products" />
+							{isLoading ? (
+								<div>Loading...</div>
+							) : dashboard ? (
+								<>
+									<StatWidget
+										icon={School}
+										value={dashboard.majors}
+										label={t("widget.majors.total")}
+									/>
+									<StatWidget
+										icon={BookOpen}
+										value={dashboard.subjects}
+										label={t("widget.subjects.total")}
+									/>
+									<StatWidget
+										icon={GraduationCap}
+										value={1000}
+										label={t("widget.students.total")}
+									/>
+									<StatWidget
+										icon={Users}
+										value={dashboard.users}
+										label={t("widget.users.total")}
+									/>
+								</>
+							) : null}
 						</div>
 						<div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50" />
 					</div>
