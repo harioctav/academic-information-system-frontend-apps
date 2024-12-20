@@ -2,6 +2,7 @@
 
 import { MainLayout } from "@/components/layouts/main-layout";
 import { RegencyDialog } from "@/components/pages/locations/regencies/regency-dialog";
+import RegencyShowDialog from "@/components/pages/locations/regencies/regency-show-dialog";
 import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
@@ -33,6 +34,7 @@ export default function RegencyPage() {
 	// Add dialog state
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
+	const [isShowDialogOpen, setIsShowDialogOpen] = useState(false);
 
 	const handleCreate = () => {
 		setSelectedUuid(undefined);
@@ -42,6 +44,11 @@ export default function RegencyPage() {
 	const handleEdit = (uuid: string) => {
 		setSelectedUuid(uuid);
 		setIsDialogOpen(true);
+	};
+
+	const handleShow = (uuid: string) => {
+		setSelectedUuid(uuid);
+		setIsShowDialogOpen(true);
 	};
 
 	const regencyTypeOptions = [
@@ -68,7 +75,12 @@ export default function RegencyPage() {
 	});
 
 	const createColumns = useRegencyColumns();
-	const columns = createColumns(fetchData, handleEdit) as ColumnDef<Regency>[];
+
+	const columns = createColumns(
+		fetchData,
+		handleEdit,
+		handleShow
+	) as ColumnDef<Regency>[];
 
 	const handleBulkDelete = async (selectedIds: string[]) => {
 		try {
@@ -170,6 +182,15 @@ export default function RegencyPage() {
 				}}
 				uuid={selectedUuid}
 				onSuccess={fetchData}
+			/>
+
+			<RegencyShowDialog
+				isOpen={isShowDialogOpen}
+				onClose={() => {
+					setIsShowDialogOpen(false);
+					setSelectedUuid(undefined);
+				}}
+				uuid={selectedUuid}
 			/>
 		</MainLayout>
 	);

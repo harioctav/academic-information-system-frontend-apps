@@ -2,6 +2,7 @@
 
 import { MainLayout } from "@/components/layouts/main-layout";
 import { ProvinceDialog } from "@/components/pages/locations/provinces/province-dialog";
+import ProvinceShowDialog from "@/components/pages/locations/provinces/province-show-dialog";
 import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { Card, CardContent } from "@/components/ui/card";
@@ -23,6 +24,8 @@ export default function ProvincePage() {
 	// Dialog Setup
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
+
+	const [isShowDialogOpen, setIsShowDialogOpen] = useState(false);
 
 	const {
 		data,
@@ -47,6 +50,11 @@ export default function ProvincePage() {
 		setIsDialogOpen(true);
 	};
 
+	const handleShow = (uuid: string) => {
+		setSelectedUuid(uuid);
+		setIsShowDialogOpen(true);
+	};
+
 	const handleBulkDelete = async (selectedIds: string[]) => {
 		try {
 			const response = await provinceService.bulkDeleteProvinces(selectedIds);
@@ -58,7 +66,12 @@ export default function ProvincePage() {
 	};
 
 	const createColumns = useProvinceColumns();
-	const columns = createColumns(fetchData, handleEdit) as ColumnDef<Province>[];
+
+	const columns = createColumns(
+		fetchData,
+		handleEdit,
+		handleShow
+	) as ColumnDef<Province>[];
 
 	return (
 		<MainLayout>
@@ -115,6 +128,15 @@ export default function ProvincePage() {
 				}}
 				uuid={selectedUuid}
 				onSuccess={fetchData}
+			/>
+
+			<ProvinceShowDialog
+				isOpen={isShowDialogOpen}
+				onClose={() => {
+					setIsShowDialogOpen(false);
+					setSelectedUuid(undefined);
+				}}
+				uuid={selectedUuid}
 			/>
 		</MainLayout>
 	);

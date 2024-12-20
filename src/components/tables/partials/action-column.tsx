@@ -70,28 +70,6 @@ export function ActionColumn({
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end">
-					{hasShowAccess && (
-						<DropdownMenuItem>
-							{showUrl ? (
-								<Link
-									href={showUrl}
-									className="flex items-center text-blue-500 w-full"
-								>
-									<Eye className="h-4 w-4 mr-4" />
-									{t("button.common.show")}
-								</Link>
-							) : (
-								<button
-									onClick={onShow}
-									className="flex items-center text-blue-500 w-full"
-								>
-									<Eye className="h-4 w-4 mr-4" />
-									{t("button.common.show")}
-								</button>
-							)}
-						</DropdownMenuItem>
-					)}
-
 					{hasEditAccess && (
 						<DropdownMenuItem>
 							{editUrl ? (
@@ -109,6 +87,28 @@ export function ActionColumn({
 								>
 									<Pencil className="h-4 w-4 mr-4" />
 									{t("button.common.edit")}
+								</button>
+							)}
+						</DropdownMenuItem>
+					)}
+
+					{hasShowAccess && (
+						<DropdownMenuItem>
+							{showUrl ? (
+								<Link
+									href={showUrl}
+									className="flex items-center text-blue-500 w-full"
+								>
+									<Eye className="h-4 w-4 mr-4" />
+									{t("button.common.show")}
+								</Link>
+							) : (
+								<button
+									onClick={onShow}
+									className="flex items-center text-blue-500 w-full"
+								>
+									<Eye className="h-4 w-4 mr-4" />
+									{t("button.common.show")}
 								</button>
 							)}
 						</DropdownMenuItem>

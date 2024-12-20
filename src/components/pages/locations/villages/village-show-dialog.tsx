@@ -47,6 +47,7 @@ export function VillageShowDialog({ isOpen, onClose, uuid }: ShowDialogProps) {
 				<div>Loading...</div>
 			) : village ? (
 				<ListContainer>
+					<ListItem label={t("input.common.code.label")} value={village.code} />
 					<ListItem
 						label={t("input.meta.full_code.label")}
 						value={village.full_code}
@@ -55,25 +56,29 @@ export function VillageShowDialog({ isOpen, onClose, uuid }: ShowDialogProps) {
 						label={t("input.location.village.label")}
 						value={village.name}
 					/>
-
 					<ListItem
 						label={t("input.location.pos_code.label")}
 						value={village.pos_code || "-"}
 					/>
-
 					<ListItem
 						label={t("input.district_name.label")}
 						value={village.district.name}
 					/>
-
 					<ListItem
 						label={t("input.regency_name.label")}
 						value={`${village.district.regency.type} ${village.district.regency.name}`}
 					/>
-
 					<ListItem
 						label={t("input.province_name.label")}
 						value={village.district.regency.province.name}
+					/>
+					<ListItem
+						label={t("input.meta.created_at.label")}
+						value={village.created_at.formatted}
+					/>
+					<ListItem
+						label={t("input.meta.updated_at.label")}
+						value={village.updated_at.formatted}
 					/>
 				</ListContainer>
 			) : null}

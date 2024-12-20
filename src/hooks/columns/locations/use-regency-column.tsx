@@ -32,7 +32,8 @@ export const useRegencyColumns = () => {
 
 	const createColumns = (
 		refreshData: () => void,
-		onEdit?: (uuid: string) => void
+		onEdit?: (uuid: string) => void,
+		onShow?: (uuid: string) => void
 	) => {
 		const columns: ColumnDef<Regency>[] = [
 			{
@@ -129,8 +130,10 @@ export const useRegencyColumns = () => {
 					return (
 						<>
 							<ActionColumn
+								onShow={() => onShow?.(row.original.uuid)}
 								onEdit={() => onEdit?.(row.original.uuid)}
 								editPermission={Permission.RegencyEdit}
+								showPermission={Permission.RegencyShow}
 								deletePermission={Permission.RegencyDelete}
 								onDelete={() => {
 									setSelectedUuid(row.original.uuid);

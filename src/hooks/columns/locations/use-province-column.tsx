@@ -32,7 +32,8 @@ export const useProvinceColumns = () => {
 
 	const createColumns = (
 		refreshData: () => void,
-		onEdit?: (uuid: string) => void
+		onEdit?: (uuid: string) => void,
+		onShow?: (uuid: string) => void
 	) => {
 		const columns: ColumnDef<Province>[] = [
 			{
@@ -118,8 +119,10 @@ export const useProvinceColumns = () => {
 					return (
 						<>
 							<ActionColumn
+								onShow={() => onShow?.(row.original.uuid)}
 								onEdit={() => onEdit?.(row.original.uuid)}
 								editPermission={Permission.ProvinceEdit}
+								showPermission={Permission.ProvinceShow}
 								deletePermission={Permission.ProvinceDelete}
 								onDelete={() => {
 									setSelectedUuid(row.original.uuid);

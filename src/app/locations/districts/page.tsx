@@ -2,6 +2,7 @@
 
 import { MainLayout } from "@/components/layouts/main-layout";
 import { DistrictDialog } from "@/components/pages/locations/districts/distirct-dialog";
+import DistrictShowDialog from "@/components/pages/locations/districts/district-show-dialog";
 import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
@@ -31,6 +32,8 @@ export default function HomePage() {
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
 
+	const [isShowDialogOpen, setIsShowDialogOpen] = useState(false);
+
 	const handleCreate = () => {
 		setSelectedUuid(undefined);
 		setIsDialogOpen(true);
@@ -39,6 +42,11 @@ export default function HomePage() {
 	const handleEdit = (uuid: string) => {
 		setSelectedUuid(uuid);
 		setIsDialogOpen(true);
+	};
+
+	const handleShow = (uuid: string) => {
+		setSelectedUuid(uuid);
+		setIsShowDialogOpen(true);
 	};
 
 	const {
@@ -59,7 +67,12 @@ export default function HomePage() {
 	});
 
 	const createColumns = useDistrictColumns();
-	const columns = createColumns(fetchData, handleEdit) as ColumnDef<District>[];
+
+	const columns = createColumns(
+		fetchData,
+		handleEdit,
+		handleShow
+	) as ColumnDef<District>[];
 
 	const handleBulkDelete = async (selectedIds: string[]) => {
 		try {
@@ -150,6 +163,15 @@ export default function HomePage() {
 				}}
 				uuid={selectedUuid}
 				onSuccess={fetchData}
+			/>
+
+			<DistrictShowDialog
+				isOpen={isShowDialogOpen}
+				onClose={() => {
+					setIsShowDialogOpen(false);
+					setSelectedUuid(undefined);
+				}}
+				uuid={selectedUuid}
 			/>
 		</MainLayout>
 	);

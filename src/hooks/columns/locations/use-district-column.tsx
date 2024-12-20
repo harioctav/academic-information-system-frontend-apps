@@ -32,7 +32,8 @@ export const useDistrictColumns = () => {
 
 	const createColumns = (
 		refreshData: () => void,
-		onEdit?: (uuid: string) => void
+		onEdit?: (uuid: string) => void,
+		onShow?: (uuid: string) => void
 	) => {
 		const columns: ColumnDef<District>[] = [
 			{
@@ -134,7 +135,9 @@ export const useDistrictColumns = () => {
 					return (
 						<>
 							<ActionColumn
+								onShow={() => onShow?.(row.original.uuid)}
 								onEdit={() => onEdit?.(row.original.uuid)}
+								showPermission={Permission.DistrictShow}
 								editPermission={Permission.DistrictEdit}
 								deletePermission={Permission.DistrictDelete}
 								onDelete={() => {
