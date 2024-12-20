@@ -5,9 +5,11 @@ import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { Card, CardContent } from "@/components/ui/card";
+import { DynamicSelect } from "@/components/ui/dynamic-select";
 import { Label } from "@/components/ui/label";
 import { Permission } from "@/config/enums/permission.enum";
 import { getRoleLabel } from "@/config/enums/role.enum";
+import { getStatusOptions } from "@/config/enums/status.enum";
 import { useUserColumns } from "@/hooks/columns/settings/use-user-column";
 import { usePermissions } from "@/hooks/permissions/use-permission";
 import { useDataTable } from "@/hooks/use-datatable";
@@ -24,9 +26,15 @@ export default function UserPage() {
 	const { hasPermission } = usePermissions();
 	const createColumns = useUserColumns();
 
+	// Setup Filter
+	const [statusFilter, setStatusFilter] = useState<string | undefined>(
+		undefined
+	);
 	const [selectedRole, setSelectedRole] = useState<SelectOption<Role> | null>(
 		null
 	);
+
+	const statusOptions = getStatusOptions(t);
 
 	const {
 		data,
@@ -42,6 +50,7 @@ export default function UserPage() {
 	} = useDataTable<User>(userService.getUsers, {
 		filters: {
 			roles: selectedRole?.data.name,
+			status: statusFilter !== "all" ? statusFilter : undefined,
 		},
 	});
 
@@ -93,6 +102,19 @@ export default function UserPage() {
 									textFormatter={(item) => getRoleLabel(item.name)}
 									valueFormatter={(item) => item.name}
 									isClearable
+								/>
+							</div>
+							<div className="w-full sm:w-[280px]">
+								<Label className="block text-sm font-medium mb-2">
+									{t("input.filter.page", {
+										page: t("input.common.status.label"),
+									})}
+								</Label>
+								<DynamicSelect
+									value={statusFilter}
+									onChange={setStatusFilter}
+									options={statusOptions}
+									placeholder={t("input.select")}
 								/>
 							</div>
 						</div>

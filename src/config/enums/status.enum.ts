@@ -24,6 +24,13 @@ export const getStatusLabel = (status: number, t: TFunction): string => {
 	}
 };
 
+export const getStatusOptions = (t: TFunction) => {
+	return [
+		{ value: Status.Active.toString(), label: t("message.status.active") },
+		{ value: Status.Inactive.toString(), label: t("message.status.in-active") },
+	];
+};
+
 export const getStatusBadgeVariant = (status: number): BadgeVariant => {
 	return StatusBadgeVariant[status as Status] || "gray";
 };
