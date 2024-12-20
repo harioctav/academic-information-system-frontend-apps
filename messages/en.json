@@ -81,7 +81,8 @@
 					"label": "Users",
 					"create": "Create User",
 					"edit": "Edit User",
-					"delete": "Delete User"
+					"delete": "Delete User",
+					"change_status": "Change Status"
 				},
 				"roles": {
 					"label": "Role & Permissions",
@@ -254,7 +255,8 @@
 			"back-to-list": "Back to List Page",
 			"option": "Options",
 			"loading": "Loading...",
-			"manage_permissions": "Manage Permissions"
+			"manage_permissions": "Manage Permissions",
+			"continue": "Continue"
 		},
 		"auth": {
 			"login": "Login",
@@ -278,6 +280,10 @@
 		"delete-selected": {
 			"title": "Delete Selected Items",
 			"description": "Are you sure you want to delete {selected} selected items? This action cannot be undone."
+		},
+		"status": {
+			"title": "Change Status",
+			"description": "Are you sure you want to change the status for this data? This action cannot be undone."
 		}
 	},
 	"table": {

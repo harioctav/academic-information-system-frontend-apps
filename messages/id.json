@@ -79,7 +79,8 @@
 					"label": "Pengguna",
 					"create": "Tambah Pengguna",
 					"edit": "Ubah Pengguna",
-					"delete": "Hapus Pengguna"
+					"delete": "Hapus Pengguna",
+					"change_status": "Ubah Status"
 				},
 				"roles": {
 					"label": "Peran & Izin",
@@ -252,7 +253,8 @@
 			"back-to-list": "Kembali ke Halaman Daftar",
 			"option": "Pilihan",
 			"loading": "Memuat...",
-			"manage_permissions": "Kelola Izin"
+			"manage_permissions": "Kelola Izin",
+			"continue": "Lanjutkan"
 		},
 		"auth": {
 			"login": "Masuk",
@@ -276,6 +278,10 @@
 		"delete-selected": {
 			"title": "Hapus Item Terpilih",
 			"description": "Apakah Anda yakin ingin menghapus {selected} item yang dipilih? Tindakan ini tidak dapat dibatalkan."
+		},
+		"status": {
+			"title": "Ubah Status",
+			"description": "Apakah anda yakin ingin mengubah status untuk data berikut ini? Tindakan ini tidak dapat dibatalkan."
 		}
 	},
 	"table": {

@@ -81,6 +81,10 @@ class UserService extends BaseService {
 		return this.delete<void, User>(`/${uuid}`);
 	};
 
+	changeUserStatus = (uuid: string) => {
+		return this.put<Record<string, never>, User>(`/status/${uuid}`, {});
+	};
+
 	bulkDeleteUsers = (ids: string[]) => {
 		return this.delete<{ ids: string[] }, User>("/bulk-delete", { ids });
 	};

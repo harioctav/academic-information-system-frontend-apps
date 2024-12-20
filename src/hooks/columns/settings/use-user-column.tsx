@@ -24,6 +24,7 @@ export const useUserColumns = () => {
 	const t = useTranslations();
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | null>(null);
+	const [isStatusDialogOpen, setIsStatusDialogOpen] = useState(false);
 
 	const handleDelete = async (uuid: string, onSuccess: () => void) => {
 		try {
@@ -34,6 +35,19 @@ export const useUserColumns = () => {
 			toast.error(error instanceof Error ? error.message : "An error occurred");
 		} finally {
 			setIsDeleteDialogOpen(false);
+			setSelectedUuid(null);
+		}
+	};
+
+	const handleStatusChange = async (uuid: string, onSuccess: () => void) => {
+		try {
+			const response = await userService.changeUserStatus(uuid);
+			toast.success(response.message);
+			onSuccess();
+		} catch (error) {
+			toast.error(error instanceof Error ? error.message : "An error occurred");
+		} finally {
+			setIsStatusDialogOpen(false);
 			setSelectedUuid(null);
 		}
 	};
@@ -97,15 +111,40 @@ export const useUserColumns = () => {
 					return row.original.phone || "-";
 				},
 			},
-
 			{
 				accessorKey: "status",
 				header: t("input.common.status.label"),
 				cell: ({ row }) => {
 					return (
-						<Badge variant={getStatusBadgeVariant(row.original.status)}>
-							{getStatusLabel(row.original.status, t)}
-						</Badge>
+						<>
+							<Badge
+								variant={getStatusBadgeVariant(row.original.status)}
+								className="cursor-pointer"
+								onClick={() => {
+									setSelectedUuid(row.original.uuid);
+									setIsStatusDialogOpen(true);
+								}}
+							>
+								{getStatusLabel(row.original.status, t)}
+							</Badge>
+
+							<ConfirmationDialog
+								isOpen={
+									isStatusDialogOpen && selectedUuid === row.original.uuid
+								}
+								onClose={() => {
+									setIsStatusDialogOpen(false);
+									setSelectedUuid(null);
+								}}
+								onConfirm={() =>
+									handleStatusChange(row.original.uuid, refreshData)
+								}
+								title={t("dialog.status.title")}
+								description={t("dialog.status.description")}
+								confirmText={t("button.common.continue")}
+								cancelText={t("button.common.cancel")}
+							/>
+						</>
 					);
 				},
 			},
