@@ -6,7 +6,10 @@ import SubjectShowDialog from "@/components/pages/academics/subjects/subject-sho
 import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { Card, CardContent } from "@/components/ui/card";
+import { DynamicSelect } from "@/components/ui/dynamic-select";
+import { Label } from "@/components/ui/label";
 import { Permission } from "@/config/enums/permission.enum";
+import { getSubjectStatusOptions } from "@/config/enums/subject.status.enum";
 import { useSubjectColumns } from "@/hooks/columns/academics/use-subject-column";
 import { usePermissions } from "@/hooks/permissions/use-permission";
 import { useDataTable } from "@/hooks/use-datatable";
@@ -24,8 +27,11 @@ export default function HomePage() {
 	// Dialog Setup
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
-
 	const [isShowDialogOpen, setIsShowDialogOpen] = useState(false);
+
+	const [subjectStatusFilter, setSubjectStatusFilter] = useState<
+		string | undefined
+	>(undefined);
 
 	// DataTable setup
 	const {
@@ -39,7 +45,12 @@ export default function HomePage() {
 		setSearchQuery,
 		fetchData,
 		isLoading,
-	} = useDataTable<Subject>(subjectService.getSubjects);
+	} = useDataTable<Subject>(subjectService.getSubjects, {
+		filters: {
+			subject_status:
+				subjectStatusFilter !== "all" ? subjectStatusFilter : undefined,
+		},
+	});
 
 	const handleCreate = () => {
 		setSelectedUuid(undefined);
@@ -88,6 +99,21 @@ export default function HomePage() {
 						}}
 					/>
 					<CardContent>
+						<div className="flex flex-col sm:flex-row gap-2">
+							<div className="w-full sm:w-[280px]">
+								<Label className="block text-sm font-medium mb-2">
+									{t("input.filter.page", {
+										page: t("input.common.subject_status.label"),
+									})}
+								</Label>
+								<DynamicSelect
+									value={subjectStatusFilter}
+									onChange={setSubjectStatusFilter}
+									options={getSubjectStatusOptions()}
+									placeholder={t("input.select")}
+								/>
+							</div>
+						</div>
 						<div className="relative p-1 mt-0">
 							<DataTable<Subject>
 								columns={columns}
