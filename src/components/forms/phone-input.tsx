@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { PhoneInputProps } from "@/types/common";
+import { InputProps } from "@/types/common";
 import { useTranslations } from "next-intl";
 
 export const PhoneInput = ({
@@ -8,7 +8,7 @@ export const PhoneInput = ({
 	onChange,
 	error,
 	disabled,
-}: PhoneInputProps) => {
+}: InputProps) => {
 	const t = useTranslations();
 
 	const handlePhoneChange = (inputValue: string) => {

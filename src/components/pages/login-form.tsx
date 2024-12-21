@@ -74,6 +74,17 @@ export function LoginForm() {
 								</small>
 							)}
 						</div>
+
+						{/* <DynamicInput
+							type="email"
+							name="email"
+							label={t("input.common.email.label")}
+							value={email}
+							onChange={setEmail}
+							error={errors.email?.[0]}
+							disabled={isLoading}
+						/> */}
+
 						<div className="grid gap-2">
 							<div className="flex items-center">
 								<Label htmlFor="password">

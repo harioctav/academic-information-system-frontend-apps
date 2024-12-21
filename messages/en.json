@@ -155,6 +155,7 @@
 			"placeholder": "Enter or Select Village"
 		},
 		"common": {
+			"placeholder": "Enter {field}",
 			"search": {
 				"label": "Search",
 				"placeholder": "Input Keyword"
@@ -186,6 +187,22 @@
 			"total_course_credit": {
 				"label": "Total Course Credit",
 				"placeholder": "Enter Total Course Credit"
+			},
+			"course_credit": {
+				"label": "Course Credit",
+				"placeholder": "Enter or Select Course Credit"
+			},
+			"subject_status": {
+				"label": "Subject Status",
+				"placeholder": "Enter or Select Subject Status"
+			},
+			"exam_time": {
+				"label": "Exam Time",
+				"placeholder": "Enter or Select Exam Time"
+			},
+			"subject_note": {
+				"label": "Subject Note",
+				"placeholder": "Enter or Select Subject Note"
 			}
 		},
 		"user": {

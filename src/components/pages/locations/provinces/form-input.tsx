@@ -9,8 +9,8 @@ import React, { useEffect, useCallback } from "react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { FormProps } from "@/types/common";
-import { CodeInput } from "@/components/forms/code-input";
 import { NameInput } from "@/components/forms/name-input";
+import { DynamicInput } from "@/components/forms/dynamic-input";
 
 const ProvinceFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
@@ -84,11 +84,15 @@ const ProvinceFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		<div className="w-full max-w-md mx-auto py-3">
 			<form onSubmit={handleSubmit}>
 				<div className="grid gap-6">
-					<CodeInput
+					<DynamicInput
+						type="number"
+						name="code"
+						label={t("input.common.code.label")}
 						value={code}
-						onChange={(value) => setCode(value)}
+						onChange={setCode}
 						error={errors.code?.[0]}
 						disabled={isLoading}
+						min={1}
 					/>
 
 					<NameInput

@@ -78,7 +78,6 @@ export function DataTable<TData>({
 			created_at: false,
 			updated_at: false,
 			full_code: false,
-			code: false,
 		});
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
 	const [inputValue, setInputValue] = React.useState(searchQuery);

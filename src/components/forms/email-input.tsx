@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { EmailInputProps } from "@/types/common";
+import { InputProps } from "@/types/common";
 import { useTranslations } from "next-intl";
 
 export const EmailInput = ({
@@ -8,7 +8,7 @@ export const EmailInput = ({
 	onChange,
 	error,
 	disabled,
-}: EmailInputProps) => {
+}: InputProps) => {
 	const t = useTranslations();
 
 	return (

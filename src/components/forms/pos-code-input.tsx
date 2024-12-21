@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { PosCodeInputProps } from "@/types/common";
+import { InputProps } from "@/types/common";
 import { useTranslations } from "next-intl";
 
 export const PosCodeInput = ({
@@ -8,7 +8,7 @@ export const PosCodeInput = ({
 	onChange,
 	error,
 	disabled,
-}: PosCodeInputProps) => {
+}: InputProps) => {
 	const t = useTranslations();
 
 	return (

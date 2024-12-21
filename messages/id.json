@@ -54,11 +54,11 @@
 					"delete": "Hapus Mahasiswa"
 				},
 				"subjects": {
-					"label": "Mata Kuliah",
-					"create": "Tambah Mata Kuliah",
-					"show": "Detail Mata Kuliah",
-					"edit": "Ubah Mata Kuliah",
-					"delete": "Hapus Mata Kuliah"
+					"label": "Matakuliah",
+					"create": "Tambah Matakuliah",
+					"show": "Detail Matakuliah",
+					"edit": "Ubah Matakuliah",
+					"delete": "Hapus Matakuliah"
 				}
 			},
 			"evaluations": {
@@ -153,6 +153,7 @@
 			"placeholder": "Masukkan atau Pilih Desa/Kelurahan"
 		},
 		"common": {
+			"placeholder": "Masukkan {field}",
 			"search": {
 				"label": "Cari",
 				"placeholder": "Masukkan Kata Kunci"
@@ -184,6 +185,22 @@
 			"total_course_credit": {
 				"label": "Total Jumlah SKS",
 				"placeholder": "Masukkan Total Jumlah SKS"
+			},
+			"course_credit": {
+				"label": "SKS",
+				"placeholder": "Masukkan atau Pilih SKS"
+			},
+			"subject_status": {
+				"label": "Status Matakuliah",
+				"placeholder": "Masukkan atau Pilih Status Matakuliah"
+			},
+			"exam_time": {
+				"label": "Waktu Ujian",
+				"placeholder": "Masukkan atau Pilih Waktu Ujian"
+			},
+			"subject_note": {
+				"label": "Catatan Matakuliah",
+				"placeholder": "Masukkan atau Pilih Catatan Matakuliah"
 			}
 		},
 		"user": {
@@ -253,7 +270,7 @@
 			}
 		},
 		"select": "Pilih Salah Satu",
-		"select-all": "Pilih Semua Data",
+		"select-all": "Pilih Semua",
 		"actions": {
 			"label": "Aksi"
 		},

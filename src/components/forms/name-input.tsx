@@ -1,14 +1,9 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { NameInputProps } from "@/types/common";
+import { InputProps } from "@/types/common";
 import { useTranslations } from "next-intl";
 
-export const NameInput = ({
-	value,
-	onChange,
-	error,
-	disabled,
-}: NameInputProps) => {
+export const NameInput = ({ value, onChange, error, disabled }: InputProps) => {
 	const t = useTranslations();
 
 	return (
