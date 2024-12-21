@@ -129,8 +129,10 @@ export const useMajorColumns = () => {
 					return (
 						<>
 							<ActionColumn
+								showUrl={`/academics/majors/show/${row.original.uuid}`}
 								onEdit={() => onEdit?.(row.original.uuid)}
 								editPermission={Permission.MajorEdit}
+								showPermission={Permission.MajorShow}
 								deletePermission={Permission.MajorDelete}
 								onDelete={() => {
 									setSelectedUuid(row.original.uuid);

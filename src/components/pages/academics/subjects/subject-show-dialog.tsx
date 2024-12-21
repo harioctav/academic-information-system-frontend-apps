@@ -84,6 +84,17 @@ const SubjectShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 						className="text-center"
 						fullWidth
 					/>
+
+					<GridItem
+						label={t("input.meta.created_at.label")}
+						value={subject.created_at.formatted}
+						className="text-center"
+					/>
+					<GridItem
+						label={t("input.meta.updated_at.label")}
+						value={subject.updated_at.formatted}
+						className="text-center"
+					/>
 				</GridContainer>
 			) : null}
 		</DynamicDialog>
