@@ -38,6 +38,12 @@ export enum Permission {
 	MajorEdit = "majors.update",
 	MajorDelete = "majors.destroy",
 
+	MajorSubjectIndex = "majors.subjects.index",
+	MajorSubjectCreate = "majors.subjects.store",
+	MajorSubjectShow = "majors.subjects.show",
+	MajorSubjectEdit = "majors.subjects.update",
+	MajorSubjectDelete = "majors.subjects.destroy",
+
 	StudentIndex = "students.index",
 	StudentCreate = "students.store",
 	StudentShow = "students.show",

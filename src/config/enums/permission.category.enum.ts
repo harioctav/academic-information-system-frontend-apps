@@ -13,6 +13,7 @@ const ModuleLabels: Record<string, string> = {
 	roles: "module.user.roles",
 	permissions: "module.user.permissions",
 	majors: "module.academic.majors",
+	"majors.subjects": "module.academic.major_subjects",
 	students: "module.academic.students",
 	subjects: "module.academic.subjects",
 	provinces: "module.location.provinces",
@@ -38,6 +39,11 @@ interface PermissionLabelParts {
 type PermissionLabelResult = string | PermissionLabelParts;
 
 export function getPermissionCategoryLabel(categoryName: string): string {
+	// Pisahkan kategori majors.subjects
+	if (categoryName === "majors.subjects") {
+		return ModuleLabels["majors.subjects"];
+	}
+
 	const label = categoryName.split(".")[0];
 	return ModuleLabels[label] || categoryName;
 }
@@ -45,12 +51,21 @@ export function getPermissionCategoryLabel(categoryName: string): string {
 export function getPermissionLabel(
 	permissionName: string
 ): PermissionLabelResult {
-	// Handle custom permissions first
 	if (CustomPermissionLabels[permissionName]) {
 		return CustomPermissionLabels[permissionName];
 	}
 
-	// Handle core actions
+	const parts = permissionName.split(".");
+
+	// Pisahkan permission majors.subjects
+	if (parts[0] === "majors" && parts[1] === "subjects") {
+		return {
+			action: CoreActions[parts[2] as keyof typeof CoreActions],
+			module: ModuleLabels["majors.subjects"],
+		};
+	}
+
+	// Handling untuk permission biasa
 	const [module, action] = permissionName.split(".");
 	const moduleKey = ModuleLabels[module] || module;
 

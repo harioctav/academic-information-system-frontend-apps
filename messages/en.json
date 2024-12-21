@@ -377,6 +377,7 @@
 		"title": "Module",
 		"academic": {
 			"majors": "Major",
+			"major_subjects": "Subject in Major",
 			"students": "Student",
 			"subjects": "Subject"
 		},

@@ -374,7 +374,8 @@
 	"module": {
 		"title": "Modul",
 		"academic": {
-			"majors": "Jurusan",
+			"majors": "Program Studi",
+			"major_subjects": "Matakuliah ke Program Studi",
 			"students": "Mahasiswa",
 			"subjects": "Mata Kuliah"
 		},
