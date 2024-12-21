@@ -80,7 +80,7 @@ const SubjectShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 					/>
 					<GridItem
 						label={t("input.common.subject_note.label")}
-						value={subject.subject_note}
+						value={subject.subject_note || "--"}
 						className="text-center"
 						fullWidth
 					/>
