@@ -83,7 +83,7 @@ export class BaseService {
 		return data;
 	}
 
-	protected async post<T, R>(
+	protected async post<T, R = { message: string }>(
 		endpoint: string,
 		body: T
 	): Promise<ApiResponse<R>> {
@@ -104,7 +104,7 @@ export class BaseService {
 		return result;
 	}
 
-	protected async put<T, R>(
+	protected async put<T, R = { message: string }>(
 		endpoint: string,
 		body: T
 	): Promise<ApiResponse<R>> {

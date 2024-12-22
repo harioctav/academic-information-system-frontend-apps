@@ -98,31 +98,34 @@ export default function HomePage() {
 						}}
 					></PageHeader>
 					<CardContent>
-						<div className="flex flex-col sm:flex-row gap-2">
-							<div className="w-full sm:w-[380px]">
-								<Label className="block text-sm font-medium mb-2">
-									{t("input.filter.page", {
-										page: t("input.regency_name.label"),
-									})}
-								</Label>
-								<AsyncSelectInput<Regency>
-									placeholder={t("input.select")}
-									apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/regencies`}
-									value={selectedRegency}
-									onChange={(newValue) => {
-										setSelectedRegency(newValue);
-										setPagination({ ...pagination, pageIndex: 0 });
-									}}
-									onClear={() => {
-										setSelectedRegency(null);
-										setPagination({ ...pagination, pageIndex: 0 });
-									}}
-									textFormatter={(item) => `${item.type} ${item.name}`}
-									isClearable
-								/>
-							</div>
-						</div>
 						<div className="relative p-1 mt-0">
+							{/* Filter */}
+							<div className="flex flex-col sm:flex-row gap-2">
+								<div className="w-full sm:w-[380px]">
+									<Label className="block text-sm font-medium mb-2">
+										{t("input.filter.page", {
+											page: t("input.regency_name.label"),
+										})}
+									</Label>
+									<AsyncSelectInput<Regency>
+										placeholder={t("input.select")}
+										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/regencies`}
+										value={selectedRegency}
+										onChange={(newValue) => {
+											setSelectedRegency(newValue);
+											setPagination({ ...pagination, pageIndex: 0 });
+										}}
+										onClear={() => {
+											setSelectedRegency(null);
+											setPagination({ ...pagination, pageIndex: 0 });
+										}}
+										textFormatter={(item) => `${item.type} ${item.name}`}
+										isClearable
+									/>
+								</div>
+							</div>
+
+							{/* Table */}
 							<DataTable<District>
 								columns={columns}
 								data={data}

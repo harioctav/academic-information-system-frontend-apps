@@ -98,36 +98,39 @@ export default function VillagePage() {
 						}}
 					/>
 					<CardContent>
-						<div className="flex flex-col sm:flex-row gap-2">
-							<div className="w-full sm:w-[280px]">
-								<Label className="block text-sm font-medium mb-2">
-									{t("input.filter.page", {
-										page: t("input.district_name.label"),
-									})}
-								</Label>
-								<AsyncSelectInput<District>
-									placeholder={t("input.select")}
-									apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/districts`}
-									value={selectedDistrict}
-									onChange={(newValue) => {
-										setSelectedDistrict(newValue);
-										setPagination({ ...pagination, pageIndex: 0 });
-									}}
-									onClear={() => {
-										setSelectedDistrict(null);
-										setPagination({ ...pagination, pageIndex: 0 });
-									}}
-									textFormatter={(item) => (
-										<CustomFormatter
-											mainText={item.name}
-											subText={`${item.regency.type} ${item.regency.name}`}
-										/>
-									)}
-									isClearable
-								/>
-							</div>
-						</div>
 						<div className="relative p-1 mt-0">
+							{/* Filter */}
+							<div className="flex flex-col sm:flex-row gap-2">
+								<div className="w-full sm:w-[280px]">
+									<Label className="block text-sm font-medium mb-2">
+										{t("input.filter.page", {
+											page: t("input.district_name.label"),
+										})}
+									</Label>
+									<AsyncSelectInput<District>
+										placeholder={t("input.select")}
+										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/districts`}
+										value={selectedDistrict}
+										onChange={(newValue) => {
+											setSelectedDistrict(newValue);
+											setPagination({ ...pagination, pageIndex: 0 });
+										}}
+										onClear={() => {
+											setSelectedDistrict(null);
+											setPagination({ ...pagination, pageIndex: 0 });
+										}}
+										textFormatter={(item) => (
+											<CustomFormatter
+												mainText={item.name}
+												subText={`${item.regency.type} ${item.regency.name}`}
+											/>
+										)}
+										isClearable
+									/>
+								</div>
+							</div>
+
+							{/* DataTable */}
 							<DataTable<Village>
 								columns={columns}
 								data={data}

@@ -106,42 +106,45 @@ export default function RegencyPage() {
 						}}
 					/>
 					<CardContent>
-						<div className="flex flex-col sm:flex-row gap-2">
-							<div className="w-full sm:w-[280px]">
-								<Label className="block text-sm font-medium mb-2">
-									{t("input.filter.type")}
-								</Label>
-								<DynamicSelect
-									value={typeFilter}
-									onChange={setTypeFilter}
-									options={regencyTypeOptions}
-									placeholder={t("input.select")}
-								/>
-							</div>
-							<div className="w-full sm:w-[280px]">
-								<Label className="block text-sm font-medium mb-2">
-									{t("input.filter.page", {
-										page: t("input.province_name.label"),
-									})}
-								</Label>
-								<AsyncSelectInput<Province>
-									placeholder={t("input.select")}
-									apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/provinces`}
-									value={selectedProvince}
-									onChange={(newValue) => {
-										setSelectedProvince(newValue);
-										setPagination({ ...pagination, pageIndex: 0 });
-									}}
-									onClear={() => {
-										setSelectedProvince(null);
-										setPagination({ ...pagination, pageIndex: 0 });
-									}}
-									textFormatter={(item) => item.name}
-									isClearable
-								/>
-							</div>
-						</div>
 						<div className="relative p-1 mt-0">
+							{/* Filter */}
+							<div className="flex flex-col sm:flex-row gap-2">
+								<div className="w-full sm:w-[280px]">
+									<Label className="block text-sm font-medium mb-2">
+										{t("input.filter.type")}
+									</Label>
+									<DynamicSelect
+										value={typeFilter}
+										onChange={setTypeFilter}
+										options={regencyTypeOptions}
+										placeholder={t("input.select")}
+									/>
+								</div>
+								<div className="w-full sm:w-[280px]">
+									<Label className="block text-sm font-medium mb-2">
+										{t("input.filter.page", {
+											page: t("input.province_name.label"),
+										})}
+									</Label>
+									<AsyncSelectInput<Province>
+										placeholder={t("input.select")}
+										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/provinces`}
+										value={selectedProvince}
+										onChange={(newValue) => {
+											setSelectedProvince(newValue);
+											setPagination({ ...pagination, pageIndex: 0 });
+										}}
+										onClear={() => {
+											setSelectedProvince(null);
+											setPagination({ ...pagination, pageIndex: 0 });
+										}}
+										textFormatter={(item) => item.name}
+										isClearable
+									/>
+								</div>
+							</div>
+
+							{/* DataTable */}
 							<DataTable<Regency>
 								columns={columns}
 								data={data}

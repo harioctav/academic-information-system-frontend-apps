@@ -44,7 +44,14 @@
 					"create": "Tambah Program Studi",
 					"edit": "Ubah Program Studi",
 					"show": "Detail Program Studi",
-					"delete": "Hapus Program Studi"
+					"delete": "Hapus Program Studi",
+					"subjects": {
+						"label": "Matakuliah Program Studi",
+						"create": "Tambah Matakuliah Program Studi",
+						"edit": "Ubah Matakuliah Program Studi",
+						"show": "Detail Matakuliah Program Studi",
+						"delete": "Hapus Matakuliah Program Studi"
+					}
 				},
 				"students": {
 					"label": "Mahasiswa",
@@ -158,6 +165,14 @@
 				"label": "Cari",
 				"placeholder": "Masukkan Kata Kunci"
 			},
+			"subject_name": {
+				"label": "Nama Matakuliah",
+				"placeholder": "Enter Nama Matakuliah"
+			},
+			"subject_code": {
+				"label": "Kode Matakuliah",
+				"placeholder": "Enter Kode Matakuliah"
+			},
 			"name": {
 				"label": "Nama",
 				"placeholder": "Masukkan Nama"
@@ -168,7 +183,7 @@
 			},
 			"type": {
 				"label": "Tipe",
-				"placeholder": "Masukkan atau Pilih Tipe"
+				"placeholder": "Masukkan Tipe"
 			},
 			"photo_url": {
 				"label": "Gambar",
@@ -176,11 +191,11 @@
 			},
 			"status": {
 				"label": "Status",
-				"placeholder": "Masukkan atau Pilih Status"
+				"placeholder": "Masukkan Status"
 			},
 			"degree": {
 				"label": "Jenjang atau Tingkat",
-				"placeholder": "Masukkan atau Pilih Jenjang atau Tingkat"
+				"placeholder": "Masukkan Jenjang atau Tingkat"
 			},
 			"total_course_credit": {
 				"label": "Total Jumlah SKS",
@@ -188,19 +203,23 @@
 			},
 			"course_credit": {
 				"label": "SKS",
-				"placeholder": "Masukkan atau Pilih SKS"
+				"placeholder": "Masukkan SKS"
 			},
 			"subject_status": {
 				"label": "Status Matakuliah",
-				"placeholder": "Masukkan atau Pilih Status Matakuliah"
+				"placeholder": "Masukkan Status Matakuliah"
 			},
 			"exam_time": {
 				"label": "Waktu Ujian",
-				"placeholder": "Masukkan atau Pilih Waktu Ujian"
+				"placeholder": "Masukkan Waktu Ujian"
 			},
 			"subject_note": {
 				"label": "Catatan Matakuliah",
-				"placeholder": "Masukkan atau Pilih Catatan Matakuliah"
+				"placeholder": "Masukkan Catatan Matakuliah"
+			},
+			"semester": {
+				"label": "Semester",
+				"placeholder": "Masukkan Semester"
 			}
 		},
 		"user": {

@@ -3,25 +3,31 @@
 import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 import { ActionColumn } from "@/components/tables/partials/action-column";
 import { Button } from "@/components/ui/button";
-import { getDegreeLabel } from "@/config/enums/degree.type.enum";
 import { Permission } from "@/config/enums/permission.enum";
-import { majorService } from "@/lib/services/academics/major.service";
-import { Major } from "@/types/academics/major";
+import { majorSubjectService } from "@/lib/services/academics/major.subject.service";
+import { MajorSubject } from "@/types/academics/major.subject";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Settings2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { toast } from "sonner";
 
-export const useMajorColumns = () => {
+export const useMajorSubjectColumns = () => {
 	const t = useTranslations();
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | null>(null);
 
-	// Handle Delete Data
-	const handleDelete = async (uuid: string, onSuccess: () => void) => {
+	/** Handle Delete Data */
+	const handleDelete = async (
+		majorUuid: string,
+		majorSubjectUuid: string,
+		onSuccess: () => void
+	) => {
 		try {
-			const response = await majorService.deleteMajor(uuid);
+			const response = await majorSubjectService.deleteMajorSubject(
+				majorUuid,
+				majorSubjectUuid
+			);
 			toast.success(response.message);
 			onSuccess();
 		} catch (error) {
@@ -32,13 +38,10 @@ export const useMajorColumns = () => {
 		}
 	};
 
-	const createColumns = (
-		refreshData: () => void,
-		onEdit?: (uuid: string) => void
-	) => {
-		const columns: ColumnDef<Major>[] = [
+	const createColumns = (refreshData: () => void) => {
+		const columns: ColumnDef<MajorSubject>[] = [
 			{
-				accessorKey: "code",
+				accessorKey: "subject.code",
 				header: ({ column }) => {
 					return (
 						<Button
@@ -55,7 +58,7 @@ export const useMajorColumns = () => {
 				},
 			},
 			{
-				accessorKey: "name",
+				accessorKey: "subject.name",
 				header: ({ column }) => {
 					return (
 						<Button
@@ -72,13 +75,8 @@ export const useMajorColumns = () => {
 				},
 			},
 			{
-				accessorKey: "degree",
-				header: t("input.common.degree.label"),
-				cell: ({ row }) => getDegreeLabel(row.original.degree),
-			},
-			{
-				accessorKey: "total_course_credit",
-				header: t("input.common.total_course_credit.label"),
+				accessorKey: "semester",
+				header: t("input.common.semester.label"),
 			},
 			{
 				accessorKey: "created_at",
@@ -129,11 +127,7 @@ export const useMajorColumns = () => {
 					return (
 						<>
 							<ActionColumn
-								showUrl={`/academics/majors/${row.original.uuid}/subjects`}
-								onEdit={() => onEdit?.(row.original.uuid)}
-								editPermission={Permission.MajorEdit}
-								showPermission={Permission.MajorShow}
-								deletePermission={Permission.MajorDelete}
+								deletePermission={Permission.MajorSubjectDelete}
 								onDelete={() => {
 									setSelectedUuid(row.original.uuid);
 									setIsDeleteDialogOpen(true);
@@ -148,10 +142,16 @@ export const useMajorColumns = () => {
 									setIsDeleteDialogOpen(false);
 									setSelectedUuid(null);
 								}}
-								onConfirm={() => handleDelete(row.original.uuid, refreshData)}
-								title={t("navigation.menu.academics.majors.delete")}
+								onConfirm={() =>
+									handleDelete(
+										row.original.major.uuid,
+										row.original.uuid,
+										refreshData
+									)
+								}
+								title={t("navigation.menu.academics.majors.subjects.delete")}
 								description={t("dialog.delete.description", {
-									page: t("navigation.menu.academics.majors.label"),
+									page: t("navigation.menu.academics.majors.subjects.label"),
 								})}
 								confirmText={t("button.common.delete")}
 								cancelText={t("button.common.cancel")}

@@ -46,7 +46,14 @@
 					"create": "Create Major",
 					"edit": "Edit Major",
 					"show": "Detail Major",
-					"delete": "Delete Major"
+					"delete": "Delete Major",
+					"subjects": {
+						"label": "Major Subjects",
+						"create": "Create Major Subjects",
+						"edit": "Edit Major Subjects",
+						"show": "Detail Major Subjects",
+						"delete": "Delete Major Subjects"
+					}
 				},
 				"students": {
 					"label": "Students",
@@ -160,6 +167,14 @@
 				"label": "Search",
 				"placeholder": "Input Keyword"
 			},
+			"subject_name": {
+				"label": "Subject Name",
+				"placeholder": "Enter Subject Name"
+			},
+			"subject_code": {
+				"label": "Subject Code",
+				"placeholder": "Enter Subject Code"
+			},
 			"name": {
 				"label": "Name",
 				"placeholder": "Enter Name"
@@ -203,6 +218,10 @@
 			"subject_note": {
 				"label": "Subject Note",
 				"placeholder": "Enter or Select Subject Note"
+			},
+			"semester": {
+				"label": "Semester",
+				"placeholder": "Enter or Select Semester"
 			}
 		},
 		"user": {

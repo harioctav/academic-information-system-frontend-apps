@@ -16,7 +16,7 @@ interface ActionColumnProps {
 	showPermission?: string;
 	editUrl?: string;
 	onEdit?: () => void;
-	editPermission: string;
+	editPermission?: string;
 	deletePermission: string;
 	onDelete: () => void;
 	conditions?: {
@@ -55,7 +55,9 @@ export function ActionColumn({
 	const hasShowAccess = showPermission
 		? hasPermission(showPermission) && !shouldHideShow
 		: false;
-	const hasEditAccess = hasPermission(editPermission) && !shouldHideEdit;
+	const hasEditAccess = editPermission
+		? hasPermission(editPermission) && !shouldHideEdit
+		: false;
 	const hasDeleteAccess = hasPermission(deletePermission) && !shouldHideDelete;
 
 	if (!hasShowAccess && !hasEditAccess && !hasDeleteAccess) return null;
