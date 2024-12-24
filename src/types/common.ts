@@ -55,3 +55,24 @@ export interface ShowDialogProps {
 	onClose: () => void;
 	uuid?: string;
 }
+
+export interface ActionButtonProps {
+	type: "create" | "back";
+	url?: string;
+	onClick?: () => void;
+	resourceName?: string;
+	permission?: string;
+	title?: string;
+}
+
+export interface PageHeaderProps {
+	title: string;
+	description: string;
+	action?: {
+		type: "create" | "back";
+		url?: string;
+		onClick?: () => void;
+		resourceName?: string;
+		permission?: string;
+	};
+}

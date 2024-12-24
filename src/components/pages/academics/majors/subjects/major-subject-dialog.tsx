@@ -3,14 +3,19 @@
 import { DynamicDialog } from "@/components/shared/dynamic-dialog";
 import { RegionDialogProps } from "@/types/common";
 import { useTranslations } from "next-intl";
-import MajorFormInput from "@/components/pages/academics/majors/form-input";
+import MajorSubjectFormInput from "@/components/pages/academics/majors/subjects/form-input";
 
-export function MajorDialog({
+interface MajorSubjectDialogProps extends RegionDialogProps {
+	majorUuid: string;
+}
+
+const MajorSubjectDialog = ({
 	isOpen,
 	onClose,
 	uuid,
 	onSuccess,
-}: RegionDialogProps) {
+	majorUuid,
+}: MajorSubjectDialogProps) => {
 	const t = useTranslations();
 
 	return (
@@ -19,14 +24,15 @@ export function MajorDialog({
 			onClose={onClose}
 			title={
 				uuid
-					? t("navigation.menu.academics.majors.edit")
-					: t("navigation.menu.academics.majors.create")
+					? t("navigation.menu.academics.majors.subjects.edit")
+					: t("navigation.menu.academics.majors.subjects.create")
 			}
 			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
 		>
-			<MajorFormInput
+			<MajorSubjectFormInput
 				uuid={uuid}
 				isEdit={!!uuid}
+				majorUuid={majorUuid}
 				onSuccess={() => {
 					onClose();
 					onSuccess?.();
@@ -34,4 +40,6 @@ export function MajorDialog({
 			/>
 		</DynamicDialog>
 	);
-}
+};
+
+export default MajorSubjectDialog;

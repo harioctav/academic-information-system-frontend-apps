@@ -38,7 +38,10 @@ export const useMajorSubjectColumns = () => {
 		}
 	};
 
-	const createColumns = (refreshData: () => void) => {
+	const createColumns = (
+		refreshData: () => void,
+		onEdit?: (uuid: string) => void
+	) => {
 		const columns: ColumnDef<MajorSubject>[] = [
 			{
 				accessorKey: "subject.code",
@@ -128,6 +131,8 @@ export const useMajorSubjectColumns = () => {
 						<>
 							<ActionColumn
 								deletePermission={Permission.MajorSubjectDelete}
+								onEdit={() => onEdit?.(row.original.uuid)}
+								editPermission={Permission.MajorSubjectEdit}
 								onDelete={() => {
 									setSelectedUuid(row.original.uuid);
 									setIsDeleteDialogOpen(true);

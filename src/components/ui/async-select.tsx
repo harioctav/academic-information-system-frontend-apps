@@ -1,7 +1,7 @@
 "use client";
 
 import { AsyncPaginate, LoadOptions } from "react-select-async-paginate";
-import { ActionMeta, SingleValue, GroupBase } from "react-select";
+import { ActionMeta, SingleValue, GroupBase, MultiValue } from "react-select";
 import { ApiResponse } from "@/types/api";
 import { ReactNode } from "react";
 
@@ -15,19 +15,33 @@ export interface SelectOption<T> {
 	data: T;
 }
 
-interface AsyncSelectProps<T extends BaseEntity> {
-	placeholder?: string;
-	apiUrl: string;
+type SingleSelectProps<T extends BaseEntity> = {
+	isMulti?: false;
 	value?: SelectOption<T> | null;
 	onChange?: (
 		newValue: SingleValue<SelectOption<T>>,
 		actionMeta: ActionMeta<SelectOption<T>>
 	) => void;
+};
+
+type MultiSelectProps<T extends BaseEntity> = {
+	isMulti: true;
+	value?: SelectOption<T>[] | null;
+	onChange?: (
+		newValue: MultiValue<SelectOption<T>>,
+		actionMeta: ActionMeta<SelectOption<T>>
+	) => void;
+};
+
+type AsyncSelectProps<T extends BaseEntity> = {
+	placeholder?: string;
+	apiUrl: string;
 	onClear?: () => void;
 	textFormatter: (item: T) => ReactNode;
 	valueFormatter?: (item: T) => string | number;
 	isClearable?: boolean;
-}
+	isDisabled?: boolean;
+} & (SingleSelectProps<T> | MultiSelectProps<T>);
 
 export function AsyncSelectInput<T extends BaseEntity>({
 	placeholder,
@@ -38,6 +52,8 @@ export function AsyncSelectInput<T extends BaseEntity>({
 	textFormatter,
 	valueFormatter,
 	isClearable = true,
+	isMulti = false,
+	isDisabled = false,
 }: AsyncSelectProps<T>) {
 	const loadOptions: LoadOptions<
 		SelectOption<T>,
@@ -67,7 +83,6 @@ export function AsyncSelectInput<T extends BaseEntity>({
 			data: item,
 		}));
 
-		// Add default values for meta properties
 		const currentPageNumber = data.meta?.current_page ?? 1;
 		const lastPageNumber = data.meta?.last_page ?? 1;
 
@@ -81,14 +96,22 @@ export function AsyncSelectInput<T extends BaseEntity>({
 	};
 
 	const handleChange = (
-		newValue: SingleValue<SelectOption<T>>,
+		newValue: SingleValue<SelectOption<T>> | MultiValue<SelectOption<T>>,
 		actionMeta: ActionMeta<SelectOption<T>>
 	) => {
 		if (actionMeta.action === "clear" && onClear) {
 			onClear();
 		}
-		if (onChange) {
-			onChange(newValue, actionMeta);
+		if (onChange && isMulti) {
+			(onChange as MultiSelectProps<T>["onChange"])?.(
+				newValue as MultiValue<SelectOption<T>>,
+				actionMeta
+			);
+		} else if (onChange) {
+			(onChange as SingleSelectProps<T>["onChange"])?.(
+				newValue as SingleValue<SelectOption<T>>,
+				actionMeta
+			);
 		}
 	};
 
@@ -98,6 +121,8 @@ export function AsyncSelectInput<T extends BaseEntity>({
 			loadOptions={loadOptions}
 			onChange={handleChange}
 			isClearable={isClearable}
+			isMulti={isMulti}
+			isDisabled={isDisabled}
 			placeholder={placeholder}
 			classNamePrefix="react-select"
 			additional={{

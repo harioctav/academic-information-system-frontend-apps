@@ -1,7 +1,9 @@
 "use client";
 
 import { MainLayout } from "@/components/layouts/main-layout";
+import MajorSubjectDialog from "@/components/pages/academics/majors/subjects/major-subject-dialog";
 import { PageHeader } from "@/components/pages/page-header";
+import { ActionButton } from "@/components/shared/buttons/action-button";
 import { DataTable } from "@/components/tables/data-table";
 import {
 	Card,
@@ -43,6 +45,18 @@ export default function MajorSubjectPage({
 	const [semesterFilter, setSemesterFilter] = useState<string | undefined>(
 		undefined
 	);
+	const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+	const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
+
+	const handleCreate = () => {
+		setSelectedUuid(undefined);
+		setIsCreateDialogOpen(true);
+	};
+
+	const handleEdit = (uuid: string) => {
+		setSelectedUuid(uuid);
+		setIsCreateDialogOpen(true);
+	};
 
 	const {
 		data,
@@ -100,7 +114,11 @@ export default function MajorSubjectPage({
 	};
 
 	const createColumns = useMajorSubjectColumns();
-	const columns = createColumns(fetchData) as ColumnDef<MajorSubject>[];
+
+	const columns = createColumns(
+		fetchData,
+		handleEdit
+	) as ColumnDef<MajorSubject>[];
 
 	if (!major) {
 		return <LoadingPage />;
@@ -147,7 +165,7 @@ export default function MajorSubjectPage({
 								</Card>
 							</div>
 
-							<div className="flex flex-col sm:flex-row gap-2">
+							<div className="flex flex-col sm:flex-row justify-between gap-4">
 								<div className="w-full sm:w-[280px]">
 									<Label className="block text-sm font-medium mb-2">
 										{t("input.filter.page", {
@@ -159,6 +177,14 @@ export default function MajorSubjectPage({
 										onChange={setSemesterFilter}
 										options={getSemesterOptions()}
 										placeholder={t("input.select")}
+									/>
+								</div>
+								<div className="flex justify-center sm:justify-end items-end w-full sm:w-auto">
+									<ActionButton
+										type="create"
+										onClick={() => handleCreate()}
+										resourceName={t("navigation.menu.academics.subjects.label")}
+										permission={Permission.MajorSubjectCreate}
 									/>
 								</div>
 							</div>
@@ -194,6 +220,17 @@ export default function MajorSubjectPage({
 					</CardContent>
 				</Card>
 			</div>
+
+			<MajorSubjectDialog
+				isOpen={isCreateDialogOpen}
+				onClose={() => {
+					setIsCreateDialogOpen(false);
+					setSelectedUuid(undefined);
+				}}
+				uuid={selectedUuid}
+				majorUuid={resolvedParams.uuid}
+				onSuccess={fetchData}
+			/>
 		</MainLayout>
 	);
 }

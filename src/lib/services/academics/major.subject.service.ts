@@ -3,6 +3,7 @@ import {
 	MajorSubject,
 	MajorSubjectRequest,
 } from "@/types/academics/major.subject";
+import { Subject } from "@/types/academics/subject";
 import { Params } from "@/types/api";
 
 class MajorSubjectService extends BaseService {
@@ -14,13 +15,27 @@ class MajorSubjectService extends BaseService {
 		return this.get<MajorSubject[]>(`/${majorUuid}/subjects`, params);
 	};
 
+	getAvailableMajorSubjects = (majorUuid: string, params: Params) => {
+		return this.get<Subject[]>(`/${majorUuid}/subjects/conditions`, params);
+	};
+
 	storeMajorSubject = (majorUuid: string, request: MajorSubjectRequest) => {
-		// Since we expect only a message response, we don't need to specify a response type
 		return this.post<MajorSubjectRequest>(`/${majorUuid}/subjects`, request);
 	};
 
 	showMajorSubject = (majorUuid: string, majorSubjectUuid: string) => {
 		return this.get<MajorSubject>(`/${majorUuid}/subjects/${majorSubjectUuid}`);
+	};
+
+	updateMajorSubject = (
+		majorUuid: string,
+		majorSubjectUuid: string,
+		request: MajorSubjectRequest
+	) => {
+		return this.put<MajorSubjectRequest, MajorSubject>(
+			`/${majorUuid}/subjects/${majorSubjectUuid}`,
+			request
+		);
 	};
 
 	deleteMajorSubject = (majorUuid: string, majorSubjectUuid: string) => {
