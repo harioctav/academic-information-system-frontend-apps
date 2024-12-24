@@ -168,6 +168,7 @@ export default function RegencyPage() {
 								}
 								isLoading={isLoading}
 								actionPermissions={{
+									show: Permission.RegencyShow,
 									edit: Permission.RegencyEdit,
 									delete: Permission.RegencyDelete,
 								}}

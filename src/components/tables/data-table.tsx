@@ -34,8 +34,9 @@ interface DataTableProps<TData> {
 	isSpecialRow?: (row: TData) => boolean;
 	isLoading?: boolean;
 	actionPermissions?: {
-		edit: string;
-		delete: string;
+		show?: string;
+		edit?: string;
+		delete?: string;
 	};
 }
 
@@ -62,8 +63,15 @@ export function DataTable<TData>({
 		if (!actionPermissions) return columns;
 
 		const hasAnyPermission =
-			hasPermission(actionPermissions.edit) ||
-			hasPermission(actionPermissions.delete);
+			(actionPermissions.show
+				? hasPermission(actionPermissions.show)
+				: false) ||
+			(actionPermissions.edit
+				? hasPermission(actionPermissions.edit)
+				: false) ||
+			(actionPermissions.delete
+				? hasPermission(actionPermissions.delete)
+				: false);
 
 		if (!hasAnyPermission) {
 			return columns.filter((col) => col.id !== "actions");

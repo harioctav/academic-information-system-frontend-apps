@@ -82,6 +82,7 @@ export default function RolePage() {
 								}
 								isLoading={isLoading}
 								actionPermissions={{
+									show: Permission.RoleShow,
 									edit: Permission.RoleEdit,
 									delete: Permission.RoleDelete,
 								}}

@@ -111,6 +111,7 @@ export default function ProvincePage() {
 								}
 								isLoading={isLoading}
 								actionPermissions={{
+									show: Permission.ProvinceShow,
 									edit: Permission.ProvinceEdit,
 									delete: Permission.ProvinceDelete,
 								}}

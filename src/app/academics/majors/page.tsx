@@ -87,22 +87,23 @@ export default function MajorPage() {
 						}}
 					/>
 					<CardContent>
-						<div className="flex flex-col sm:flex-row gap-2">
-							<div className="w-full sm:w-[280px]">
-								<Label className="block text-sm font-medium mb-2">
-									{t("input.filter.page", {
-										page: t("input.common.degree.label"),
-									})}
-								</Label>
-								<DynamicSelect
-									value={degreeFilter}
-									onChange={setDegreeFilter}
-									options={getDegreeOptions()}
-									placeholder={t("input.select")}
-								/>
-							</div>
-						</div>
 						<div className="relative p-1 mt-0">
+							<div className="flex flex-col sm:flex-row gap-2">
+								<div className="w-full sm:w-[280px]">
+									<Label className="block text-sm font-medium mb-2">
+										{t("input.filter.page", {
+											page: t("input.common.degree.label"),
+										})}
+									</Label>
+									<DynamicSelect
+										value={degreeFilter}
+										onChange={setDegreeFilter}
+										options={getDegreeOptions()}
+										placeholder={t("input.select")}
+									/>
+								</div>
+							</div>
+
 							<DataTable<Major>
 								isSpecialRow={(row) => row.total_course_credit > 0}
 								columns={columns}
@@ -127,6 +128,7 @@ export default function MajorPage() {
 								}
 								isLoading={isLoading}
 								actionPermissions={{
+									show: Permission.MajorShow,
 									edit: Permission.MajorEdit,
 									delete: Permission.MajorDelete,
 								}}

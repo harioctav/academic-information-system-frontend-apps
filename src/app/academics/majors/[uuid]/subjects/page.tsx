@@ -165,57 +165,63 @@ export default function MajorSubjectPage({
 								</Card>
 							</div>
 
-							<div className="flex flex-col sm:flex-row justify-between gap-4">
-								<div className="w-full sm:w-[280px]">
-									<Label className="block text-sm font-medium mb-2">
-										{t("input.filter.page", {
-											page: t("input.common.semester.label"),
-										})}
-									</Label>
-									<DynamicSelect
-										value={semesterFilter}
-										onChange={setSemesterFilter}
-										options={getSemesterOptions()}
-										placeholder={t("input.select")}
-									/>
-								</div>
-								<div className="flex justify-center sm:justify-end items-end w-full sm:w-auto">
-									<ActionButton
-										type="create"
-										onClick={() => handleCreate()}
-										resourceName={t("navigation.menu.academics.subjects.label")}
-										permission={Permission.MajorSubjectCreate}
-									/>
-								</div>
-							</div>
+							{hasPermission(Permission.MajorSubjectIndex) && (
+								<>
+									<div className="flex flex-col sm:flex-row justify-between gap-4">
+										<div className="w-full sm:w-[280px]">
+											<Label className="block text-sm font-medium mb-2">
+												{t("input.filter.page", {
+													page: t("input.common.semester.label"),
+												})}
+											</Label>
+											<DynamicSelect
+												value={semesterFilter}
+												onChange={setSemesterFilter}
+												options={getSemesterOptions()}
+												placeholder={t("input.select")}
+											/>
+										</div>
+										<div className="flex justify-center sm:justify-end items-end w-full sm:w-auto">
+											<ActionButton
+												type="create"
+												onClick={() => handleCreate()}
+												resourceName={t(
+													"navigation.menu.academics.subjects.label"
+												)}
+												permission={Permission.MajorSubjectCreate}
+											/>
+										</div>
+									</div>
 
-							<DataTable<MajorSubject>
-								columns={columns}
-								data={data}
-								pageCount={pageCount}
-								pagination={pagination}
-								sorting={sorting}
-								searchQuery={searchQuery}
-								onPaginationChange={(pageIndex, pageSize) =>
-									setPagination({ pageIndex, pageSize })
-								}
-								onSortingChange={(newSorting) => setSorting(newSorting)}
-								onSearchChange={(query) => {
-									setSearchQuery(query);
-									setPagination({ ...pagination, pageIndex: 0 });
-								}}
-								showSelection={hasPermission(Permission.MajorSubjectDelete)}
-								onBulkDelete={
-									hasPermission(Permission.MajorSubjectDelete)
-										? handleBulkDelete
-										: undefined
-								}
-								isLoading={isLoading}
-								actionPermissions={{
-									edit: Permission.MajorSubjectEdit,
-									delete: Permission.MajorSubjectDelete,
-								}}
-							/>
+									<DataTable<MajorSubject>
+										columns={columns}
+										data={data}
+										pageCount={pageCount}
+										pagination={pagination}
+										sorting={sorting}
+										searchQuery={searchQuery}
+										onPaginationChange={(pageIndex, pageSize) =>
+											setPagination({ pageIndex, pageSize })
+										}
+										onSortingChange={(newSorting) => setSorting(newSorting)}
+										onSearchChange={(query) => {
+											setSearchQuery(query);
+											setPagination({ ...pagination, pageIndex: 0 });
+										}}
+										showSelection={hasPermission(Permission.MajorSubjectDelete)}
+										onBulkDelete={
+											hasPermission(Permission.MajorSubjectDelete)
+												? handleBulkDelete
+												: undefined
+										}
+										isLoading={isLoading}
+										actionPermissions={{
+											edit: Permission.MajorSubjectEdit,
+											delete: Permission.MajorSubjectDelete,
+										}}
+									/>
+								</>
+							)}
 						</div>
 					</CardContent>
 				</Card>

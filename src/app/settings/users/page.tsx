@@ -143,6 +143,7 @@ export default function UserPage() {
 								}
 								isLoading={isLoading}
 								actionPermissions={{
+									show: Permission.UserShow,
 									edit: Permission.UserEdit,
 									delete: Permission.UserDelete,
 								}}

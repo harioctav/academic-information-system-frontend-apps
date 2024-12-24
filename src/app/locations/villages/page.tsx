@@ -154,6 +154,7 @@ export default function VillagePage() {
 								}
 								isLoading={isLoading}
 								actionPermissions={{
+									show: Permission.VillageShow,
 									edit: Permission.VillageEdit,
 									delete: Permission.VillageDelete,
 								}}

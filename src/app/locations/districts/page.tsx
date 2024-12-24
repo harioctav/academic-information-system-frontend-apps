@@ -149,6 +149,7 @@ export default function HomePage() {
 								}
 								isLoading={isLoading}
 								actionPermissions={{
+									show: Permission.DistrictShow,
 									edit: Permission.DistrictEdit,
 									delete: Permission.DistrictDelete,
 								}}

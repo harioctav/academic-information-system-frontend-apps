@@ -93,7 +93,6 @@ export function ActionColumn({
 							)}
 						</DropdownMenuItem>
 					)}
-
 					{hasShowAccess && (
 						<DropdownMenuItem>
 							{showUrl ? (
@@ -115,7 +114,6 @@ export function ActionColumn({
 							)}
 						</DropdownMenuItem>
 					)}
-
 					{hasDeleteAccess && (
 						<DropdownMenuItem
 							onClick={onDelete}

@@ -99,22 +99,23 @@ export default function HomePage() {
 						}}
 					/>
 					<CardContent>
-						<div className="flex flex-col sm:flex-row gap-2">
-							<div className="w-full sm:w-[280px]">
-								<Label className="block text-sm font-medium mb-2">
-									{t("input.filter.page", {
-										page: t("input.common.subject_status.label"),
-									})}
-								</Label>
-								<DynamicSelect
-									value={subjectStatusFilter}
-									onChange={setSubjectStatusFilter}
-									options={getSubjectStatusOptions()}
-									placeholder={t("input.select")}
-								/>
-							</div>
-						</div>
 						<div className="relative p-1 mt-0">
+							<div className="flex flex-col sm:flex-row gap-2">
+								<div className="w-full sm:w-[280px]">
+									<Label className="block text-sm font-medium mb-2">
+										{t("input.filter.page", {
+											page: t("input.common.subject_status.label"),
+										})}
+									</Label>
+									<DynamicSelect
+										value={subjectStatusFilter}
+										onChange={setSubjectStatusFilter}
+										options={getSubjectStatusOptions()}
+										placeholder={t("input.select")}
+									/>
+								</div>
+							</div>
+
 							<DataTable<Subject>
 								columns={columns}
 								data={data}
@@ -138,6 +139,7 @@ export default function HomePage() {
 								}
 								isLoading={isLoading}
 								actionPermissions={{
+									show: Permission.SubjectShow,
 									edit: Permission.SubjectEdit,
 									delete: Permission.SubjectDelete,
 								}}
