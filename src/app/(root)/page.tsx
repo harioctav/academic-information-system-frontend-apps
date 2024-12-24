@@ -2,6 +2,7 @@
 
 import { PageHeader } from "@/components/pages/page-header";
 import { StatWidget } from "@/components/shared/widgets/stat-widget";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { Card, CardContent } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
 import { Users, BookOpen, School, GraduationCap } from "lucide-react";
@@ -47,7 +48,16 @@ export default function DashboardPage() {
 					<div className="flex flex-1 flex-col gap-4">
 						<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 							{isLoading ? (
-								<div>Loading...</div>
+								[...Array(4)].map((_, index) => (
+									<Card
+										key={index}
+										className="hover:shadow-md transition-shadow duration-200"
+									>
+										<div className="p-6">
+											<LoadingSpinner className="min-h-[80px]" />
+										</div>
+									</Card>
+								))
 							) : dashboard ? (
 								<>
 									<StatWidget

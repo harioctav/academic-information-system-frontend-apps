@@ -110,7 +110,7 @@ export function TableContent<TData>({
 										{showSelection && hasSelectableRows() && (
 											<TableCell className="sticky left-0 text-center">
 												<div className="flex justify-center">
-													{!isSpecialRow?.(row.original) && (
+													{!isSpecialRow?.(row.original) ? (
 														<Checkbox
 															checked={row.getIsSelected()}
 															onCheckedChange={(value) =>
@@ -119,6 +119,8 @@ export function TableContent<TData>({
 															aria-label="Select row"
 															className="h-4 w-4"
 														/>
+													) : (
+														<span className="font-bold">-</span>
 													)}
 												</div>
 											</TableCell>

@@ -6,7 +6,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { usePermissions } from "@/hooks/permissions/use-permission";
-import { Eye, MoreVertical, Pencil, Trash2 } from "lucide-react";
+import { Eye, MoreVertical, Pencil, Trash2, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
@@ -60,7 +60,13 @@ export function ActionColumn({
 		: false;
 	const hasDeleteAccess = hasPermission(deletePermission) && !shouldHideDelete;
 
-	if (!hasShowAccess && !hasEditAccess && !hasDeleteAccess) return null;
+	if (!hasShowAccess && !hasEditAccess && !hasDeleteAccess) {
+		return (
+			<div className="flex justify-center">
+				<X className="h-4 w-4 text-muted-foreground" />
+			</div>
+		);
+	}
 
 	return (
 		<div className="flex justify-center">

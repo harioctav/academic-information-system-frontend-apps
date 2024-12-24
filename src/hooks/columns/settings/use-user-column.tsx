@@ -11,6 +11,7 @@ import {
 	getStatusBadgeVariant,
 	getStatusLabel,
 } from "@/config/enums/status.enum";
+import { useAuth } from "@/lib/auth/auth-provider";
 import { userService } from "@/lib/services/settings/user.service";
 import { User } from "@/types/settings/user";
 import { ColumnDef } from "@tanstack/react-table";
@@ -22,6 +23,7 @@ import { toast } from "sonner";
 export const useUserColumns = () => {
 	// setup
 	const t = useTranslations();
+	const { user } = useAuth();
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | null>(null);
 	const [isStatusDialogOpen, setIsStatusDialogOpen] = useState(false);
@@ -52,7 +54,10 @@ export const useUserColumns = () => {
 		}
 	};
 
-	const createColumns = (refreshData: () => void) => {
+	const createColumns = (
+		refreshData: () => void,
+		onShow?: (uuid: string) => void
+	) => {
 		const columns: ColumnDef<User>[] = [
 			{
 				accessorKey: "photo_url",
@@ -216,6 +221,8 @@ export const useUserColumns = () => {
 						<>
 							<ActionColumn
 								editUrl={`/settings/users/edit/${row.original.uuid}`}
+								onShow={() => onShow?.(row.original.uuid)}
+								showPermission={Permission.UserShow}
 								editPermission={Permission.UserEdit}
 								deletePermission={Permission.UserDelete}
 								onDelete={() => {
@@ -223,11 +230,17 @@ export const useUserColumns = () => {
 									setIsDeleteDialogOpen(true);
 								}}
 								conditions={[
-									// Hide delete button for active users
 									{
 										key: "is_active",
 										value: row.original.status == 1,
 										hideDelete: true,
+									},
+									{
+										key: "is_current_user",
+										value: row.original.uuid === user?.uuid,
+										hideShow: true,
+										hideDelete: true,
+										hideEdit: true,
 									},
 								]}
 							/>

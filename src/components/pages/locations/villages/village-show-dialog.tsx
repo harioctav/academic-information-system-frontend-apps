@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { ShowDialogProps } from "@/types/common";
 import { ListItem } from "@/components/ui/list-item";
 import ListContainer from "@/components/ui/list-container";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 
 export function VillageShowDialog({ isOpen, onClose, uuid }: ShowDialogProps) {
 	const t = useTranslations();
@@ -44,7 +45,7 @@ export function VillageShowDialog({ isOpen, onClose, uuid }: ShowDialogProps) {
 			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
 		>
 			{isLoading ? (
-				<div>Loading...</div>
+				<LoadingSpinner />
 			) : village ? (
 				<ListContainer>
 					<ListItem label={t("input.common.code.label")} value={village.code} />

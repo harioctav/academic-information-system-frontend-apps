@@ -1,6 +1,6 @@
 interface GridItemProps {
 	label: string;
-	value: string | number;
+	value: string | number | React.ReactNode;
 	fullWidth?: boolean;
 	className?: string;
 }
@@ -16,7 +16,7 @@ export function GridItem({
 			className={`space-y-2 ${fullWidth ? "md:col-span-2" : ""} ${className}`}
 		>
 			<label className="text-sm text-muted-foreground block">{label}</label>
-			<p className="font-semibold">{value}</p>
+			<div className="font-semibold">{value}</div>
 		</div>
 	);
 }

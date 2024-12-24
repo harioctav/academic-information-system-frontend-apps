@@ -3,6 +3,7 @@
 import { DynamicDialog } from "@/components/shared/dynamic-dialog";
 import ListContainer from "@/components/ui/list-container";
 import { ListItem } from "@/components/ui/list-item";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { provinceService } from "@/lib/services/locations/province.service";
 import { ShowDialogProps } from "@/types/common";
 import { Province } from "@/types/locations/province";
@@ -44,7 +45,7 @@ const ProvinceShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
 		>
 			{isLoading ? (
-				<div>Loading...</div>
+				<LoadingSpinner />
 			) : province ? (
 				<ListContainer>
 					<ListItem

@@ -3,6 +3,7 @@
 import { DynamicDialog } from "@/components/shared/dynamic-dialog";
 import ListContainer from "@/components/ui/list-container";
 import { ListItem } from "@/components/ui/list-item";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { regencyService } from "@/lib/services/locations/regency.service";
 import { ShowDialogProps } from "@/types/common";
 import { Regency } from "@/types/locations/regency";
@@ -44,7 +45,7 @@ const RegencyShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
 		>
 			{isLoading ? (
-				<div>Loading...</div>
+				<LoadingSpinner />
 			) : regency ? (
 				<ListContainer>
 					<ListItem label={t("input.common.code.label")} value={regency.code} />

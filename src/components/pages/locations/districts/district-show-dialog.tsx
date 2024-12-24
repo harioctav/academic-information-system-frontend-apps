@@ -3,6 +3,7 @@
 import { DynamicDialog } from "@/components/shared/dynamic-dialog";
 import ListContainer from "@/components/ui/list-container";
 import { ListItem } from "@/components/ui/list-item";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { districtService } from "@/lib/services/locations/district.service";
 import { ShowDialogProps } from "@/types/common";
 import { District } from "@/types/locations/district";
@@ -44,7 +45,7 @@ const DistrictShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
 		>
 			{isLoading ? (
-				<div>Loading...</div>
+				<LoadingSpinner />
 			) : district ? (
 				<ListContainer>
 					<ListItem
