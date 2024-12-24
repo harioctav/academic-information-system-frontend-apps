@@ -142,7 +142,9 @@ export default function MajorSubjectPage({
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
 								<Card className="w-full">
 									<CardHeader>
-										<CardTitle>Detail Program Studi {major?.name}</CardTitle>
+										<CardTitle>
+											{t("navigation.menu.academics.majors.show")} {major?.name}
+										</CardTitle>
 										<CardDescription>
 											Lorem ipsum dolor sit amet consectetur adipisicing elit.
 											Obcaecati, quia.

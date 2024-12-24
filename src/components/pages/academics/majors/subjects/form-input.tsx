@@ -14,6 +14,7 @@ import React, { useCallback, useEffect } from "react";
 import { toast } from "sonner";
 import { Subject } from "@/types/academics/subject";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
+import { majorSubjectOptionService } from "@/lib/services/academics/major.subject.option.service";
 
 interface MajorSubjectFormProps extends FormProps {
 	majorUuid: string;
@@ -39,7 +40,7 @@ const MajorSubjectFormInput = ({
 		if (!uuid || !majorUuid) return;
 
 		try {
-			const response = await majorSubjectService.showMajorSubject(
+			const response = await majorSubjectOptionService.showMajorSubject(
 				majorUuid,
 				uuid
 			);
@@ -142,7 +143,7 @@ const MajorSubjectFormInput = ({
 						</Label>
 						<AsyncSelectInput<Subject>
 							isMulti={true}
-							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/academics/majors/${majorUuid}/subjects/conditions`}
+							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/majors/${majorUuid}/subjects/conditions`}
 							placeholder={t("input.select")}
 							value={selectedSubjects}
 							onChange={(newValue) => {

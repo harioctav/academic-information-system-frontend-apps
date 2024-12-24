@@ -128,7 +128,7 @@ export default function RegencyPage() {
 									</Label>
 									<AsyncSelectInput<Province>
 										placeholder={t("input.select")}
-										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/provinces`}
+										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/provinces`}
 										value={selectedProvince}
 										onChange={(newValue) => {
 											setSelectedProvince(newValue);

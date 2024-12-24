@@ -100,7 +100,7 @@ export default function UserPage() {
 								</Label>
 								<AsyncSelectInput<Role>
 									placeholder={t("input.select")}
-									apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/settings/roles`}
+									apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/roles`}
 									value={selectedRole}
 									onChange={(newValue) => {
 										setSelectedRole(newValue);

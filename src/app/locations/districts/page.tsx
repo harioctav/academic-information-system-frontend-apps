@@ -109,7 +109,7 @@ export default function HomePage() {
 									</Label>
 									<AsyncSelectInput<Regency>
 										placeholder={t("input.select")}
-										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/regencies`}
+										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/regencies`}
 										value={selectedRegency}
 										onChange={(newValue) => {
 											setSelectedRegency(newValue);

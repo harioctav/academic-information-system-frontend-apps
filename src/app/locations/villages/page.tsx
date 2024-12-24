@@ -109,7 +109,7 @@ export default function VillagePage() {
 									</Label>
 									<AsyncSelectInput<District>
 										placeholder={t("input.select")}
-										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/districts`}
+										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/districts`}
 										value={selectedDistrict}
 										onChange={(newValue) => {
 											setSelectedDistrict(newValue);

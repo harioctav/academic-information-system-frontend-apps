@@ -23,10 +23,6 @@ class MajorSubjectService extends BaseService {
 		return this.post<MajorSubjectRequest>(`/${majorUuid}/subjects`, request);
 	};
 
-	showMajorSubject = (majorUuid: string, majorSubjectUuid: string) => {
-		return this.get<MajorSubject>(`/${majorUuid}/subjects/${majorSubjectUuid}`);
-	};
-
 	updateMajorSubject = (
 		majorUuid: string,
 		majorSubjectUuid: string,
