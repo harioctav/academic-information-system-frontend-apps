@@ -2,6 +2,7 @@
 
 import { MainLayout } from "@/components/layouts/main-layout";
 import { PageHeader } from "@/components/pages/page-header";
+import UserFormDialog from "@/components/pages/settings/users/user-form-dialog";
 import UserShowDialog from "@/components/pages/settings/users/user-show-dialog";
 import { DataTable } from "@/components/tables/data-table";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
@@ -37,8 +38,19 @@ export default function UserPage() {
 		null
 	);
 
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [isShowDialogOpen, setIsShowDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
+
+	const handleCreate = () => {
+		setSelectedUuid(undefined);
+		setIsDialogOpen(true);
+	};
+
+	const handleEdit = (uuid: string) => {
+		setSelectedUuid(uuid);
+		setIsDialogOpen(true);
+	};
 
 	const handleShow = (uuid: string) => {
 		setSelectedUuid(uuid);
@@ -65,7 +77,11 @@ export default function UserPage() {
 		},
 	});
 
-	const columns = createColumns(fetchData, handleShow) as ColumnDef<User>[];
+	const columns = createColumns(
+		fetchData,
+		handleEdit,
+		handleShow
+	) as ColumnDef<User>[];
 
 	const handleBulkDelete = async (selectedIds: string[]) => {
 		try {
@@ -88,7 +104,7 @@ export default function UserPage() {
 						})}
 						action={{
 							type: "create",
-							url: "/settings/users/create",
+							onClick: handleCreate,
 							permission: Permission.UserCreate,
 						}}
 					/>
@@ -167,6 +183,16 @@ export default function UserPage() {
 					</CardContent>
 				</Card>
 			</div>
+
+			<UserFormDialog
+				isOpen={isDialogOpen}
+				onClose={() => {
+					setIsDialogOpen(false);
+					setSelectedUuid(undefined);
+				}}
+				uuid={selectedUuid}
+				onSuccess={fetchData}
+			/>
 
 			<UserShowDialog
 				isOpen={isShowDialogOpen}

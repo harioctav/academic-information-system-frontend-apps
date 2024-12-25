@@ -18,7 +18,7 @@ import { NameInput } from "@/components/forms/name-input";
 import { PhoneInput } from "@/components/forms/phone-input";
 import { EmailInput } from "@/components/forms/email-input";
 
-const UserFormInput = ({ uuid, isEdit }: FormProps) => {
+const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
 	const t = useTranslations();
 	const [formData, setFormData] = React.useState<UserRequest>({
@@ -88,7 +88,10 @@ const UserFormInput = ({ uuid, isEdit }: FormProps) => {
 				toast.success(response.message);
 			}
 
-			router.push("/settings/users");
+			if (onSuccess) {
+				onSuccess();
+			}
+
 			router.refresh();
 		} catch (error) {
 			const apiError = error as ApiError;
@@ -172,7 +175,7 @@ const UserFormInput = ({ uuid, isEdit }: FormProps) => {
 					/>
 
 					<PhoneInput
-						value={formData.phone}
+						value={formData.phone ?? ""}
 						onChange={(value) => setFormData({ ...formData, phone: value })}
 						error={errors.phone?.[0]}
 						disabled={isLoading}

@@ -58,6 +58,7 @@ export const useUserColumns = () => {
 
 	const createColumns = (
 		refreshData: () => void,
+		onEdit?: (uuid: string) => void,
 		onShow?: (uuid: string) => void
 	) => {
 		const columns: ColumnDef<User>[] = [
@@ -226,7 +227,7 @@ export const useUserColumns = () => {
 					return (
 						<>
 							<ActionColumn
-								editUrl={`/settings/users/edit/${row.original.uuid}`}
+								onEdit={() => onEdit?.(row.original.uuid)}
 								onShow={() => onShow?.(row.original.uuid)}
 								showPermission={Permission.UserShow}
 								editPermission={Permission.UserEdit}
