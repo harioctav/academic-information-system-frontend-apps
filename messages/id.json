@@ -140,6 +140,12 @@
 					"delete": "Hapus Desa atau Kelurahan"
 				}
 			}
+		},
+		"description": {
+			"index": "Menampilkan daftar sumber daya data {page}.",
+			"create": "Menyimpan sumber daya data {page} baru ke penyimpanan.",
+			"edit": "Memperbarui sumber daya data {page} yang dipilih di penyimpanan.",
+			"show": "Menampilkan detail sumber daya data {page} yang dipilih."
 		}
 	},
 	"input": {

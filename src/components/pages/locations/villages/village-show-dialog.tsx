@@ -42,7 +42,9 @@ export function VillageShowDialog({ isOpen, onClose, uuid }: ShowDialogProps) {
 			isOpen={isOpen}
 			onClose={onClose}
 			title={t("navigation.menu.locations.villages.show")}
-			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
+			description={t("navigation.description.show", {
+				page: t("navigation.menu.locations.villages.label"),
+			})}
 		>
 			{isLoading ? (
 				<LoadingSpinner />

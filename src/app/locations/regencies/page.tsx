@@ -98,7 +98,9 @@ export default function RegencyPage() {
 				<Card>
 					<PageHeader
 						title={t("navigation.menu.locations.regencies.label")}
-						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
+						description={t("navigation.description.index", {
+							page: t("navigation.menu.locations.regencies.label"),
+						})}
 						action={{
 							type: "create",
 							onClick: handleCreate,

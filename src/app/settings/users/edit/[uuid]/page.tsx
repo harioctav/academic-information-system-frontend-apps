@@ -29,7 +29,9 @@ const EditUserPage = ({ params }: { params: Promise<{ uuid: string }> }) => {
 				<Card>
 					<PageHeader
 						title={t("navigation.menu.settings.users.edit")}
-						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
+						description={t("navigation.description.edit", {
+							page: t("navigation.menu.settings.users.label"),
+						})}
 						action={{
 							type: "back",
 							url: "/settings/users",

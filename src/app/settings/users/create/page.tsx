@@ -14,7 +14,9 @@ const CreateUserPage = () => {
 				<Card>
 					<PageHeader
 						title={t("navigation.menu.settings.users.create")}
-						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
+						description={t("navigation.description.create", {
+							page: t("navigation.menu.settings.users.label"),
+						})}
 						action={{
 							type: "back",
 							url: "/settings/users",

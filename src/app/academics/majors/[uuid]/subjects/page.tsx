@@ -130,7 +130,9 @@ export default function MajorSubjectPage({
 				<Card>
 					<PageHeader
 						title={t("navigation.menu.academics.majors.subjects.label")}
-						description="Major subjects management"
+						description={t("navigation.description.index", {
+							page: t("navigation.menu.academics.majors.subjects.label"),
+						})}
 						action={{
 							type: "back",
 							url: "/academics/majors",
@@ -146,8 +148,9 @@ export default function MajorSubjectPage({
 											{t("navigation.menu.academics.majors.show")} {major?.name}
 										</CardTitle>
 										<CardDescription>
-											Lorem ipsum dolor sit amet consectetur adipisicing elit.
-											Obcaecati, quia.
+											{t("navigation.description.show", {
+												page: t("navigation.menu.academics.majors.label"),
+											})}
 										</CardDescription>
 									</CardHeader>
 									<CardContent>

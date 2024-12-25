@@ -22,7 +22,15 @@ export function MajorDialog({
 					? t("navigation.menu.academics.majors.edit")
 					: t("navigation.menu.academics.majors.create")
 			}
-			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
+			description={
+				uuid
+					? t("navigation.description.edit", {
+							page: t("navigation.menu.academics.majors.label"),
+					  })
+					: t("navigation.description.create", {
+							page: t("navigation.menu.academics.majors.label"),
+					  })
+			}
 		>
 			<MajorFormInput
 				uuid={uuid}

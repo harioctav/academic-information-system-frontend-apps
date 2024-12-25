@@ -79,7 +79,9 @@ export default function MajorPage() {
 				<Card>
 					<PageHeader
 						title={t("navigation.menu.academics.majors.label")}
-						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
+						description={t("navigation.description.index", {
+							page: t("navigation.menu.academics.majors.label"),
+						})}
 						action={{
 							type: "create",
 							onClick: handleCreate,

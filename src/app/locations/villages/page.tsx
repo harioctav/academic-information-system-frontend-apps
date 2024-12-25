@@ -90,7 +90,9 @@ export default function VillagePage() {
 				<Card>
 					<PageHeader
 						title={t("navigation.menu.locations.villages.label")}
-						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
+						description={t("navigation.description.index", {
+							page: t("navigation.menu.locations.villages.label"),
+						})}
 						action={{
 							type: "create",
 							onClick: handleCreate,

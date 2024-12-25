@@ -83,7 +83,9 @@ export default function UserPage() {
 				<Card>
 					<PageHeader
 						title={t("navigation.menu.settings.users.label")}
-						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
+						description={t("navigation.description.index", {
+							page: t("navigation.menu.settings.users.label"),
+						})}
 						action={{
 							type: "create",
 							url: "/settings/users/create",

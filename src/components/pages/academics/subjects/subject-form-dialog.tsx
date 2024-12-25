@@ -20,7 +20,15 @@ const SubjectFormDialog = ({
 					? t("navigation.menu.academics.subjects.edit")
 					: t("navigation.menu.academics.subjects.create")
 			}
-			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
+			description={
+				uuid
+					? t("navigation.description.edit", {
+							page: t("navigation.menu.academics.subjects.label"),
+					  })
+					: t("navigation.description.create", {
+							page: t("navigation.menu.academics.subjects.label"),
+					  })
+			}
 		>
 			<SubjectFormInput
 				uuid={uuid}

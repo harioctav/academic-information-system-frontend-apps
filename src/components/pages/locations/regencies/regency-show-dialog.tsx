@@ -42,7 +42,9 @@ const RegencyShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 			isOpen={isOpen}
 			onClose={onClose}
 			title={t("navigation.menu.locations.regencies.show")}
-			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
+			description={t("navigation.description.show", {
+				page: t("navigation.menu.locations.regencies.label"),
+			})}
 		>
 			{isLoading ? (
 				<LoadingSpinner />

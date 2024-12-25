@@ -42,7 +42,9 @@ const SubjectShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 			isOpen={isOpen}
 			onClose={onClose}
 			title={t("navigation.menu.academics.subjects.show")}
-			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
+			description={t("navigation.description.show", {
+				page: t("navigation.menu.academics.subjects.label"),
+			})}
 		>
 			{isLoading ? (
 				<div>Loading...</div>

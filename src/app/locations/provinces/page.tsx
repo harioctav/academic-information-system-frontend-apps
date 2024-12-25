@@ -79,7 +79,9 @@ export default function ProvincePage() {
 				<Card>
 					<PageHeader
 						title={t("navigation.menu.locations.provinces.label")}
-						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
+						description={t("navigation.description.index", {
+							page: t("navigation.menu.locations.provinces.label"),
+						})}
 						action={{
 							type: "create",
 							onClick: handleCreate,

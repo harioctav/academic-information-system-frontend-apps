@@ -27,7 +27,15 @@ const MajorSubjectDialog = ({
 					? t("navigation.menu.academics.majors.subjects.edit")
 					: t("navigation.menu.academics.majors.subjects.create")
 			}
-			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
+			description={
+				uuid
+					? t("navigation.description.edit", {
+							page: t("navigation.menu.academics.majors.subjects.label"),
+					  })
+					: t("navigation.description.create", {
+							page: t("navigation.menu.academics.majors.subjects.label"),
+					  })
+			}
 		>
 			<MajorSubjectFormInput
 				uuid={uuid}

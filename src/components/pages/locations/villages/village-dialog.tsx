@@ -22,7 +22,15 @@ export function VillageDialog({
 					? t("navigation.menu.locations.villages.edit")
 					: t("navigation.menu.locations.villages.create")
 			}
-			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
+			description={
+				uuid
+					? t("navigation.description.edit", {
+							page: t("navigation.menu.locations.villages.label"),
+					  })
+					: t("navigation.description.create", {
+							page: t("navigation.menu.locations.villages.label"),
+					  })
+			}
 		>
 			<VillageFormInput
 				uuid={uuid}

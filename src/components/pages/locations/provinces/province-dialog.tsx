@@ -22,7 +22,15 @@ export function ProvinceDialog({
 					? t("navigation.menu.locations.provinces.edit")
 					: t("navigation.menu.locations.provinces.create")
 			}
-			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
+			description={
+				uuid
+					? t("navigation.description.edit", {
+							page: t("navigation.menu.locations.provinces.label"),
+					  })
+					: t("navigation.description.create", {
+							page: t("navigation.menu.locations.provinces.label"),
+					  })
+			}
 		>
 			<ProvinceFormInput
 				uuid={uuid}

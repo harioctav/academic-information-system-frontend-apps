@@ -52,7 +52,9 @@ export default function RolePage() {
 				<Card>
 					<PageHeader
 						title={t("navigation.menu.settings.roles.label")}
-						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
+						description={t("navigation.description.index", {
+							page: t("navigation.menu.settings.roles.label"),
+						})}
 					/>
 					<CardContent>
 						<div className="relative p-1 mt-0">

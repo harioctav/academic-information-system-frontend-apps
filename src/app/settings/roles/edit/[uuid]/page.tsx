@@ -30,7 +30,9 @@ const EditRolePage = ({ params }: { params: Promise<{ uuid: string }> }) => {
 				<Card>
 					<PageHeader
 						title={t("navigation.menu.settings.roles.edit")}
-						description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti, iusto?"
+						description={t("navigation.description.edit", {
+							page: t("navigation.menu.settings.roles.label"),
+						})}
 						action={{
 							type: "back",
 							url: "/settings/roles",

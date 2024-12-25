@@ -22,7 +22,15 @@ export function RegencyDialog({
 					? t("navigation.menu.locations.regencies.edit")
 					: t("navigation.menu.locations.regencies.create")
 			}
-			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
+			description={
+				uuid
+					? t("navigation.description.edit", {
+							page: t("navigation.menu.locations.regencies.label"),
+					  })
+					: t("navigation.description.create", {
+							page: t("navigation.menu.locations.regencies.label"),
+					  })
+			}
 		>
 			<RegencyFormInput
 				uuid={uuid}

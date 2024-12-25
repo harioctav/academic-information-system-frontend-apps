@@ -22,7 +22,15 @@ export function DistrictDialog({
 					? t("navigation.menu.locations.districts.edit")
 					: t("navigation.menu.locations.districts.create")
 			}
-			description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, cum?"
+			description={
+				uuid
+					? t("navigation.description.edit", {
+							page: t("navigation.menu.locations.districts.label"),
+					  })
+					: t("navigation.description.create", {
+							page: t("navigation.menu.locations.districts.label"),
+					  })
+			}
 		>
 			<DistrictFormInput
 				uuid={uuid}
