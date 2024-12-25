@@ -11,6 +11,7 @@ import {
 	getStatusBadgeVariant,
 	getStatusLabel,
 } from "@/config/enums/status.enum";
+import { usePermissions } from "@/hooks/permissions/use-permission";
 import { useAuth } from "@/lib/auth/auth-provider";
 import { userService } from "@/lib/services/settings/user.service";
 import { User } from "@/types/settings/user";
@@ -24,6 +25,7 @@ export const useUserColumns = () => {
 	// setup
 	const t = useTranslations();
 	const { user } = useAuth();
+	const { hasPermission } = usePermissions();
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 	const [selectedUuid, setSelectedUuid] = useState<string | null>(null);
 	const [isStatusDialogOpen, setIsStatusDialogOpen] = useState(false);
@@ -126,29 +128,33 @@ export const useUserColumns = () => {
 								variant={getStatusBadgeVariant(row.original.status)}
 								className="cursor-pointer"
 								onClick={() => {
-									setSelectedUuid(row.original.uuid);
-									setIsStatusDialogOpen(true);
+									if (hasPermission(Permission.UserStatus)) {
+										setSelectedUuid(row.original.uuid);
+										setIsStatusDialogOpen(true);
+									}
 								}}
 							>
 								{getStatusLabel(row.original.status, t)}
 							</Badge>
 
-							<ConfirmationDialog
-								isOpen={
-									isStatusDialogOpen && selectedUuid === row.original.uuid
-								}
-								onClose={() => {
-									setIsStatusDialogOpen(false);
-									setSelectedUuid(null);
-								}}
-								onConfirm={() =>
-									handleStatusChange(row.original.uuid, refreshData)
-								}
-								title={t("dialog.status.title")}
-								description={t("dialog.status.description")}
-								confirmText={t("button.common.continue")}
-								cancelText={t("button.common.cancel")}
-							/>
+							{hasPermission(Permission.UserStatus) && (
+								<ConfirmationDialog
+									isOpen={
+										isStatusDialogOpen && selectedUuid === row.original.uuid
+									}
+									onClose={() => {
+										setIsStatusDialogOpen(false);
+										setSelectedUuid(null);
+									}}
+									onConfirm={() =>
+										handleStatusChange(row.original.uuid, refreshData)
+									}
+									title={t("dialog.status.title")}
+									description={t("dialog.status.description")}
+									confirmText={t("button.common.continue")}
+									cancelText={t("button.common.cancel")}
+								/>
+							)}
 						</>
 					);
 				},

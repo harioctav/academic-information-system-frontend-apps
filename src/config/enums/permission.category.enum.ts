@@ -29,6 +29,7 @@ const CustomPermissionLabels: Record<string, string> = {
 	"users.import": "permission.custom.users.import",
 	"users.password": "permission.custom.users.password",
 	"users.profile": "permission.custom.users.profile",
+	"users.status": "permission.custom.users.status",
 };
 
 interface PermissionLabelParts {

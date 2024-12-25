@@ -67,6 +67,7 @@ export enum Permission {
 	UserCreate = "users.store",
 	UserShow = "users.show",
 	UserProfile = "users.profile",
+	UserStatus = "users.status",
 	UserPassword = "users.password",
 	UserEdit = "users.update",
 	UserDelete = "users.destroy",

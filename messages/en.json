@@ -388,7 +388,8 @@
 			"users": {
 				"import": "Import users from Excel",
 				"password": "Change user password",
-				"profile": "View own profile"
+				"profile": "View own profile",
+				"status": "Change user Status"
 			}
 		}
 	},

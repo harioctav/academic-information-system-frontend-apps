@@ -386,7 +386,8 @@
 			"users": {
 				"import": "Impor pengguna dari Excel",
 				"password": "Ubah kata sandi pengguna",
-				"profile": "Lihat profil sendiri"
+				"profile": "Lihat profil sendiri",
+				"status": "Ubah status Pengguna"
 			}
 		}
 	},
