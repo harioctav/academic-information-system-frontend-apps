@@ -72,7 +72,7 @@ export default function DashboardPage() {
 									/>
 									<StatWidget
 										icon={GraduationCap}
-										value={1000}
+										value={dashboard.students}
 										label={t("widget.students.total")}
 									/>
 									<StatWidget

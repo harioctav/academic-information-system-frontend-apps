@@ -20,7 +20,7 @@ export const getStatusLabel = (status: number, t: TFunction): string => {
 		case Status.Inactive:
 			return t("message.status.in-active");
 		default:
-			return "Unknown";
+			return t("message.gender.unknown");
 	}
 };
 

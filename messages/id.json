@@ -226,6 +226,22 @@
 			"semester": {
 				"label": "Semester",
 				"placeholder": "Masukkan Semester"
+			},
+			"nim": {
+				"label": "NIM",
+				"placeholder": "Masukkan NIM"
+			},
+			"nik": {
+				"label": "NIK",
+				"placeholder": "Masukkan NIK"
+			},
+			"student_photo_url": {
+				"label": "Foto",
+				"placeholder": "Masukkan Foto Mahasiswa"
+			},
+			"gender": {
+				"label": "Jenis Kelamin",
+				"placeholder": "Masukkan Jenis Kelamin"
 			}
 		},
 		"user": {
@@ -378,6 +394,15 @@
 		"status": {
 			"active": "Aktif",
 			"in-active": "Tidak Aktif"
+		},
+		"gender": {
+			"male": "Laki - Laki",
+			"female": "Perempuan",
+			"unknown": "Tidak Diketahui"
+		},
+		"address_type": {
+			"domicile": "Alamat Domisili",
+			"id_card": "Alamat KTP"
 		}
 	},
 	"permission": {

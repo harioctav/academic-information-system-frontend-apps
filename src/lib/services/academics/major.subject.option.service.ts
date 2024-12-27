@@ -3,7 +3,7 @@ import { MajorSubject } from "@/types/academics/major.subject";
 
 class MajorSubjectOptionService extends BaseService {
 	constructor() {
-		super("/options/majors");
+		super("/options/academics/majors");
 	}
 
 	showMajorSubject = (majorUuid: string, majorSubjectUuid: string) => {

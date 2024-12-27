@@ -228,6 +228,22 @@
 			"semester": {
 				"label": "Semester",
 				"placeholder": "Enter or Select Semester"
+			},
+			"nim": {
+				"label": "NIM",
+				"placeholder": "Enter or Select NIM"
+			},
+			"nik": {
+				"label": "NIK",
+				"placeholder": "Enter or Select NIK"
+			},
+			"student_photo_url": {
+				"label": "Photo",
+				"placeholder": "Enter or Select Student Photo"
+			},
+			"gender": {
+				"label": "Gender",
+				"placeholder": "Enter or Select Gender"
 			}
 		},
 		"user": {
@@ -380,6 +396,15 @@
 		"status": {
 			"active": "Active",
 			"in-active": "Inactive"
+		},
+		"gender": {
+			"male": "Male",
+			"female": "Female",
+			"unknown": "Unknown"
+		},
+		"address_type": {
+			"domicile": "Domicile Address",
+			"id_card": "Id Card Address"
 		}
 	},
 	"permission": {

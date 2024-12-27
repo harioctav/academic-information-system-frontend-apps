@@ -103,7 +103,7 @@ export default function HomePage() {
 						<div className="relative p-1 mt-0">
 							{/* Filter */}
 							<div className="flex flex-col sm:flex-row gap-2">
-								<div className="w-full sm:w-[380px]">
+								<div className="w-full sm:w-[280px]">
 									<Label className="block text-sm font-medium mb-2">
 										{t("input.filter.page", {
 											page: t("input.regency_name.label"),
@@ -111,7 +111,7 @@ export default function HomePage() {
 									</Label>
 									<AsyncSelectInput<Regency>
 										placeholder={t("input.select")}
-										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/regencies`}
+										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/locations/regencies`}
 										value={selectedRegency}
 										onChange={(newValue) => {
 											setSelectedRegency(newValue);

@@ -116,7 +116,7 @@ const RegencyFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 						</Label>
 						<AsyncSelectInput<Province>
 							placeholder={t("input.select")}
-							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/provinces`}
+							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/locations/provinces`}
 							value={selectedProvince}
 							onChange={(newValue) => setSelectedProvince(newValue)}
 							onClear={() => setSelectedProvince(null)}

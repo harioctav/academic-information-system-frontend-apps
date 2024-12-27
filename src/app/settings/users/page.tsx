@@ -109,45 +109,46 @@ export default function UserPage() {
 						}}
 					/>
 					<CardContent>
-						<div className="flex flex-col sm:flex-row gap-2">
-							<div className="w-full sm:w-[280px]">
-								<Label className="block text-sm font-medium mb-2">
-									{t("input.filter.page", {
-										page: t("input.user.roles.label"),
-									})}
-								</Label>
-								<AsyncSelectInput<Role>
-									placeholder={t("input.select")}
-									apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/roles`}
-									value={selectedRole}
-									onChange={(newValue) => {
-										setSelectedRole(newValue);
-										setPagination({ ...pagination, pageIndex: 0 });
-									}}
-									onClear={() => {
-										setSelectedRole(null);
-										setPagination({ ...pagination, pageIndex: 0 });
-									}}
-									textFormatter={(item) => getRoleLabel(item.name)}
-									valueFormatter={(item) => item.name}
-									isClearable
-								/>
-							</div>
-							<div className="w-full sm:w-[280px]">
-								<Label className="block text-sm font-medium mb-2">
-									{t("input.filter.page", {
-										page: t("input.common.status.label"),
-									})}
-								</Label>
-								<DynamicSelect
-									value={statusFilter}
-									onChange={setStatusFilter}
-									options={statusOptions}
-									placeholder={t("input.select")}
-								/>
-							</div>
-						</div>
 						<div className="relative p-1 mt-0">
+							<div className="flex flex-col sm:flex-row gap-2">
+								<div className="w-full sm:w-[280px]">
+									<Label className="block text-sm font-medium mb-2">
+										{t("input.filter.page", {
+											page: t("input.user.roles.label"),
+										})}
+									</Label>
+									<AsyncSelectInput<Role>
+										placeholder={t("input.select")}
+										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/roles`}
+										value={selectedRole}
+										onChange={(newValue) => {
+											setSelectedRole(newValue);
+											setPagination({ ...pagination, pageIndex: 0 });
+										}}
+										onClear={() => {
+											setSelectedRole(null);
+											setPagination({ ...pagination, pageIndex: 0 });
+										}}
+										textFormatter={(item) => getRoleLabel(item.name)}
+										valueFormatter={(item) => item.name}
+										isClearable
+									/>
+								</div>
+								<div className="w-full sm:w-[280px]">
+									<Label className="block text-sm font-medium mb-2">
+										{t("input.filter.page", {
+											page: t("input.common.status.label"),
+										})}
+									</Label>
+									<DynamicSelect
+										value={statusFilter}
+										onChange={setStatusFilter}
+										options={statusOptions}
+										placeholder={t("input.select")}
+									/>
+								</div>
+							</div>
+
 							<DataTable<User>
 								isSpecialRow={(row) =>
 									row.status == 1 || row.uuid === user?.uuid

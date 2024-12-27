@@ -105,7 +105,7 @@ const DistrictFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 						</Label>
 						<AsyncSelectInput<Regency>
 							placeholder={t("input.select")}
-							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/regencies`}
+							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/locations/regencies`}
 							value={selectedRegency}
 							onChange={(newValue) => setSelectedRegency(newValue)}
 							onClear={() => setSelectedRegency(null)}

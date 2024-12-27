@@ -77,7 +77,6 @@ export const useUserColumns = () => {
 					);
 				},
 			},
-
 			{
 				accessorKey: "name",
 				header: ({ column }) => {

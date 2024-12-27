@@ -103,7 +103,7 @@ export default function VillagePage() {
 						<div className="relative p-1 mt-0">
 							{/* Filter */}
 							<div className="flex flex-col sm:flex-row gap-2">
-								<div className="w-full sm:w-[280px]">
+								<div className="w-full sm:w-[300px]">
 									<Label className="block text-sm font-medium mb-2">
 										{t("input.filter.page", {
 											page: t("input.district_name.label"),
@@ -111,7 +111,7 @@ export default function VillagePage() {
 									</Label>
 									<AsyncSelectInput<District>
 										placeholder={t("input.select")}
-										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/districts`}
+										apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/locations/districts`}
 										value={selectedDistrict}
 										onChange={(newValue) => {
 											setSelectedDistrict(newValue);

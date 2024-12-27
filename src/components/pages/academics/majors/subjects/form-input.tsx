@@ -143,7 +143,7 @@ const MajorSubjectFormInput = ({
 						</Label>
 						<AsyncSelectInput<Subject>
 							isMulti={true}
-							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/majors/${majorUuid}/subjects/conditions`}
+							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/academics/majors/${majorUuid}/subjects/conditions`}
 							placeholder={t("input.select")}
 							value={selectedSubjects}
 							onChange={(newValue) => {

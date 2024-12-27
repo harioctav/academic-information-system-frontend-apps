@@ -101,7 +101,7 @@ const VillageFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 						</Label>
 						<AsyncSelectInput<District>
 							placeholder={t("input.select")}
-							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/locations/districts`}
+							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/options/locations/districts`}
 							value={selectedDistrict}
 							onChange={(newValue) => setSelectedDistrict(newValue)}
 							onClear={() => setSelectedDistrict(null)}
