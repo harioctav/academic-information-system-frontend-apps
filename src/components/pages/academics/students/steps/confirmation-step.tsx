@@ -20,9 +20,10 @@ import { GridAvatarItem } from "@/components/ui/grid-avatar-item";
 
 interface ConfirmationStepProps {
 	formData: StudentRequest;
+	photoUrl?: string | null;
 }
 
-const ConfirmationStep = ({ formData }: ConfirmationStepProps) => {
+const ConfirmationStep = ({ formData, photoUrl }: ConfirmationStepProps) => {
 	const t = useTranslations();
 
 	return (
@@ -41,7 +42,7 @@ const ConfirmationStep = ({ formData }: ConfirmationStepProps) => {
 							avatar={
 								formData.student_photo_path
 									? URL.createObjectURL(formData.student_photo_path)
-									: null
+									: photoUrl || null
 							}
 							fullWidth
 							centered={true}

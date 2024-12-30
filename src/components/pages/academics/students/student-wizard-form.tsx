@@ -36,6 +36,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { StudentRequest } from "@/types/academics/student";
 import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
+import { LoadingDialog } from "@/components/shared/loading-dialog";
 
 interface StudentWizardFormProps {
 	uuid?: string;
@@ -56,6 +57,7 @@ const StudentWizardForm = ({
 	const [isLoading, setIsLoading] = useState(false);
 	const [errors, setErrors] = useState<ValidationErrors>({});
 	const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const [formData, setFormData] = useState<StudentRequest>(
 		initialData || {
@@ -309,6 +311,7 @@ const StudentWizardForm = ({
 	};
 
 	const handleSubmit = async () => {
+		setIsSubmitting(true);
 		setIsLoading(true);
 		try {
 			const submissionData: StudentRequest = {
@@ -376,6 +379,7 @@ const StudentWizardForm = ({
 			}
 			toast.error(apiError.message || t("message.error.save"));
 		} finally {
+			setIsSubmitting(false);
 			setIsLoading(false);
 			setShowConfirmDialog(false);
 		}
@@ -430,7 +434,7 @@ const StudentWizardForm = ({
 					/>
 				);
 			case 6:
-				return <ConfirmationStep formData={formData} />;
+				return <ConfirmationStep formData={formData} photoUrl={photoUrl} />;
 			default:
 				return null;
 		}
@@ -485,7 +489,7 @@ const StudentWizardForm = ({
 									size="sm"
 								>
 									<Check className="mr-1 w-4 h-4" />
-									{t("button.common.create")}
+									{isEdit ? t("button.common.edit") : t("button.common.create")}
 								</SubmitButton>
 							)}
 						</CardFooter>
@@ -502,6 +506,8 @@ const StudentWizardForm = ({
 				confirmText={t("button.common.continue")}
 				cancelText={t("button.common.cancel")}
 			/>
+
+			<LoadingDialog isOpen={isSubmitting} />
 		</div>
 	);
 };

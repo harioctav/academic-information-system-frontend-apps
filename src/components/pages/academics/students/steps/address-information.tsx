@@ -9,7 +9,8 @@ import { Regency } from "@/types/locations/regency";
 import { District } from "@/types/locations/district";
 import { Village } from "@/types/locations/village";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { locationSelectService } from "@/lib/services/selects/location.select.service";
 
 interface AddressInformationStepProps {
 	formData: StudentRequest;
@@ -46,6 +47,8 @@ const AddressInformationStep = ({
 	const [selectedIdCardVillage, setSelectedIdCardVillage] =
 		useState<SelectOption<Village> | null>(null);
 
+	const initialLoadDone = useRef(false);
+
 	const updateAddress = (
 		type: AddressType,
 		data: Partial<(typeof formData.addresses)[0]>
@@ -61,6 +64,123 @@ const AddressInformationStep = ({
 
 		setFormData({ ...formData, addresses });
 	};
+
+	useEffect(() => {
+		const loadInitialAddresses = async () => {
+			if (!initialLoadDone.current && formData.addresses.length > 0) {
+				if (formData.addresses.length > 0) {
+					// Untuk alamat domisili
+					const domicileAddress = formData.addresses.find(
+						(addr) => addr.type === AddressType.Domicile
+					);
+
+					if (domicileAddress?.village_id) {
+						try {
+							const villageResponse = await locationSelectService.showVillage(
+								domicileAddress.village_id
+							);
+
+							const village = villageResponse.data;
+							if (village) {
+								setSelectedDomicileProvince({
+									label: village.district.regency.province.name,
+									value: village.district.regency.province.uuid,
+									data: village.district.regency.province,
+								});
+
+								setSelectedDomicileRegency({
+									label: `${village.district.regency.type} ${village.district.regency.name}`,
+									value: village.district.regency.uuid,
+									data: village.district.regency,
+								});
+
+								setSelectedDomicileDistrict({
+									label: village.district.name,
+									value: village.district.uuid,
+									data: village.district,
+								});
+
+								setSelectedDomicileVillage({
+									label: village.name,
+									value: village.uuid,
+									data: village,
+								});
+							}
+						} catch (error) {
+							console.error("Failed to load domicile address data:", error);
+							// Reset selections if error occurs
+							setSelectedDomicileProvince(null);
+							setSelectedDomicileRegency(null);
+							setSelectedDomicileDistrict(null);
+							setSelectedDomicileVillage(null);
+						}
+					} else {
+						// Reset selections if no village_id
+						setSelectedDomicileProvince(null);
+						setSelectedDomicileRegency(null);
+						setSelectedDomicileDistrict(null);
+						setSelectedDomicileVillage(null);
+					}
+
+					// Untuk alamat KTP
+					const idCardAddress = formData.addresses.find(
+						(addr) => addr.type === AddressType.IdCard
+					);
+
+					if (idCardAddress?.village_id) {
+						try {
+							const villageResponse = await locationSelectService.showVillage(
+								idCardAddress.village_id
+							);
+
+							const village = villageResponse.data;
+							if (village) {
+								setSelectedIdCardProvince({
+									label: village.district.regency.province.name,
+									value: village.district.regency.province.uuid,
+									data: village.district.regency.province,
+								});
+
+								setSelectedIdCardRegency({
+									label: `${village.district.regency.type} ${village.district.regency.name}`,
+									value: village.district.regency.uuid,
+									data: village.district.regency,
+								});
+
+								setSelectedIdCardDistrict({
+									label: village.district.name,
+									value: village.district.uuid,
+									data: village.district,
+								});
+
+								setSelectedIdCardVillage({
+									label: village.name,
+									value: village.uuid,
+									data: village,
+								});
+							}
+						} catch (error) {
+							console.error("Failed to load ID card address data:", error);
+							// Reset selections if error occurs
+							setSelectedIdCardProvince(null);
+							setSelectedIdCardRegency(null);
+							setSelectedIdCardDistrict(null);
+							setSelectedIdCardVillage(null);
+						}
+					} else {
+						// Reset selections if no village_id
+						setSelectedIdCardProvince(null);
+						setSelectedIdCardRegency(null);
+						setSelectedIdCardDistrict(null);
+						setSelectedIdCardVillage(null);
+					}
+				}
+				initialLoadDone.current = true;
+			}
+		};
+
+		loadInitialAddresses();
+	}, [formData.addresses]);
 
 	return (
 		<div className="space-y-8">

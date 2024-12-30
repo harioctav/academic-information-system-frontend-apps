@@ -109,6 +109,10 @@ const StudentShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 								/>
 								<GridItem
 									label={t("input.common.nik.label")}
+									value={student.uuid || "-"}
+								/>
+								<GridItem
+									label={t("input.common.nik.label")}
 									value={student.nik || "-"}
 								/>
 								<GridItem

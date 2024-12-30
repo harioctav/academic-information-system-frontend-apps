@@ -26,6 +26,7 @@ export interface ApiResponse<T> {
 }
 
 export interface Params {
+	id?: string | number;
 	page?: number;
 	perPage?: number;
 	sortBy?: string;
