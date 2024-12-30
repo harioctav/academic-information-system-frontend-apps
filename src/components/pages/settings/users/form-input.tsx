@@ -6,7 +6,7 @@ import { userService } from "@/lib/services/settings/user.service";
 import { ApiError, ValidationErrors } from "@/types/api";
 import { UserRequest } from "@/types/settings/user";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { FormProps } from "@/types/common";
@@ -20,18 +20,19 @@ import { DynamicInput } from "@/components/forms/dynamic-input";
 const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
 	const t = useTranslations();
-	const [formData, setFormData] = React.useState<UserRequest>({
+	const [formData, setFormData] = useState<UserRequest>({
 		name: "",
 		email: "",
 		phone: "",
 		roles: 0,
 		photo: undefined,
 	});
-	const [errors, setErrors] = React.useState<ValidationErrors>({});
-	const [isLoading, setIsLoading] = React.useState(false);
-	const [selectedRole, setSelectedRole] =
-		React.useState<SelectOption<Role> | null>(null);
-	const [imagePreview, setImagePreview] = React.useState<string | null>(null);
+	const [errors, setErrors] = useState<ValidationErrors>({});
+	const [isLoading, setIsLoading] = useState(false);
+	const [selectedRole, setSelectedRole] = useState<SelectOption<Role> | null>(
+		null
+	);
+	const [imagePreview, setImagePreview] = useState<string | null>(null);
 
 	const loadUserData = useCallback(async () => {
 		if (!uuid) return;

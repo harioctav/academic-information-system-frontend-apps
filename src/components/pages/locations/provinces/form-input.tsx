@@ -5,7 +5,7 @@ import { provinceService } from "@/lib/services/locations/province.service";
 import { ApiError, ValidationErrors } from "@/types/api";
 import { ProvinceRequest } from "@/types/locations/province";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { FormProps } from "@/types/common";
@@ -14,10 +14,10 @@ import { DynamicInput } from "@/components/forms/dynamic-input";
 const ProvinceFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
 	const t = useTranslations();
-	const [code, setCode] = React.useState("");
-	const [name, setName] = React.useState("");
-	const [errors, setErrors] = React.useState<ValidationErrors>({});
-	const [isLoading, setIsLoading] = React.useState(false);
+	const [code, setCode] = useState("");
+	const [name, setName] = useState("");
+	const [errors, setErrors] = useState<ValidationErrors>({});
+	const [isLoading, setIsLoading] = useState(false);
 
 	const loadProvinceData = useCallback(async () => {
 		if (!uuid) return;

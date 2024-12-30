@@ -10,7 +10,7 @@ import { ApiError, ValidationErrors } from "@/types/api";
 import { FormProps } from "@/types/common";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Subject } from "@/types/academics/subject";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
@@ -28,11 +28,11 @@ const MajorSubjectFormInput = ({
 }: MajorSubjectFormProps) => {
 	const router = useRouter();
 	const t = useTranslations();
-	const [subjects, setSubjects] = React.useState<string[]>([]);
-	const [semester, setSemester] = React.useState<number>(0);
-	const [errors, setErrors] = React.useState<ValidationErrors>({});
-	const [isLoading, setIsLoading] = React.useState(false);
-	const [selectedSubjects, setSelectedSubjects] = React.useState<
+	const [subjects, setSubjects] = useState<string[]>([]);
+	const [semester, setSemester] = useState<number>(0);
+	const [errors, setErrors] = useState<ValidationErrors>({});
+	const [isLoading, setIsLoading] = useState(false);
+	const [selectedSubjects, setSelectedSubjects] = useState<
 		SelectOption<Subject>[]
 	>([]);
 

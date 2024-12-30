@@ -1,7 +1,5 @@
 "use client";
 
-import { CodeInput } from "@/components/forms/code-input";
-import { NameInput } from "@/components/forms/name-input";
 import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
@@ -12,17 +10,18 @@ import { ApiError, ValidationErrors } from "@/types/api";
 import { FormProps } from "@/types/common";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
+import { DynamicInput } from "@/components/forms/dynamic-input";
 
 const MajorFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
 	const t = useTranslations();
-	const [code, setCode] = React.useState("");
-	const [name, setName] = React.useState("");
-	const [degree, setDegree] = React.useState("");
-	const [errors, setErrors] = React.useState<ValidationErrors>({});
-	const [isLoading, setIsLoading] = React.useState(false);
+	const [code, setCode] = useState("");
+	const [name, setName] = useState("");
+	const [degree, setDegree] = useState("");
+	const [errors, setErrors] = useState<ValidationErrors>({});
+	const [isLoading, setIsLoading] = useState(false);
 
 	const LoadMajorData = useCallback(async () => {
 		if (!uuid) return;
@@ -87,16 +86,23 @@ const MajorFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		<div className="w-full max-w-md mx-auto py-3">
 			<form onSubmit={handleSubmit}>
 				<div className="grid gap-6">
-					<CodeInput
+					<DynamicInput
+						type="number"
+						name="code"
+						label={t("input.common.code.label")}
 						value={code}
-						onChange={(value) => setCode(value)}
+						onChange={setCode}
 						error={errors.code?.[0]}
 						disabled={isLoading}
+						min={1}
 					/>
 
-					<NameInput
+					<DynamicInput
+						type="text"
+						name="name"
+						label={t("input.common.name.label")}
 						value={name}
-						onChange={(value) => setName(value)}
+						onChange={setName}
 						error={errors.name?.[0]}
 						disabled={isLoading}
 					/>
