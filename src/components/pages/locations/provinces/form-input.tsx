@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { FormProps } from "@/types/common";
 import { DynamicInput } from "@/components/forms/dynamic-input";
+import { locationOptionService } from "@/lib/services/options/location.option.service";
 
 const ProvinceFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
@@ -23,7 +24,7 @@ const ProvinceFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		if (!uuid) return;
 
 		try {
-			const response = await provinceService.showProvince(uuid);
+			const response = await locationOptionService.showProvince(uuid);
 			setCode(response.data.code.toString());
 			setName(response.data.name);
 		} catch (error) {

@@ -5,6 +5,7 @@ import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { districtService } from "@/lib/services/locations/district.service";
+import { locationOptionService } from "@/lib/services/options/location.option.service";
 import { ApiError, ValidationErrors } from "@/types/api";
 import { FormProps } from "@/types/common";
 import { DistrictRequest } from "@/types/locations/district";
@@ -29,7 +30,7 @@ const DistrictFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		if (!uuid) return;
 
 		try {
-			const response = await districtService.showDistrict(uuid);
+			const response = await locationOptionService.showDistrict(uuid);
 			setCode(response.data.code.toString());
 			setName(response.data.name);
 			setSelectedRegency({

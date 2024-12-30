@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { getStatusOptions } from "@/config/enums/status.enum";
 import { getStatusRegistrationOptions } from "@/config/enums/status.registration.enum";
-import { majorOptionService } from "@/lib/services/options/major.service.option";
+import { academicOptionService } from "@/lib/services/options/academic.option.service";
 import { Major } from "@/types/academics/major";
 import { StudentRequest } from "@/types/academics/student";
 import { useTranslations } from "next-intl";
@@ -34,7 +34,7 @@ const AcademicInformationStep = ({
 		const loadInitialMajor = async () => {
 			if (formData.major && !initialLoadDone.current) {
 				try {
-					const response = await majorOptionService.getMajors({
+					const response = await academicOptionService.getMajors({
 						page: 1,
 						perPage: 1,
 						sortBy: "id",

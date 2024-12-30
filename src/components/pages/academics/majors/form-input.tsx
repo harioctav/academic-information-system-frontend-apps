@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { DynamicInput } from "@/components/forms/dynamic-input";
+import { academicOptionService } from "@/lib/services/options/academic.option.service";
 
 const MajorFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
@@ -27,7 +28,7 @@ const MajorFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		if (!uuid) return;
 
 		try {
-			const response = await majorService.showMajor(uuid);
+			const response = await academicOptionService.showMajor(uuid);
 			setCode(response.data.code.toString());
 			setName(response.data.name);
 			setDegree(response.data.degree);

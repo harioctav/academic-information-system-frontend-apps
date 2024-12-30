@@ -6,6 +6,7 @@ import { CustomFormatter } from "@/components/ui/async-select-formatter";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { villageService } from "@/lib/services/locations/village.service";
+import { locationOptionService } from "@/lib/services/options/location.option.service";
 import { ApiError, ValidationErrors } from "@/types/api";
 import { FormProps } from "@/types/common";
 import { District } from "@/types/locations/district";
@@ -29,7 +30,7 @@ const VillageFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		if (!uuid) return;
 
 		try {
-			const response = await villageService.showVillage(uuid);
+			const response = await locationOptionService.showVillage(uuid);
 			setCode(response.data.code.toString());
 			setName(response.data.name);
 			setPosCode(response.data.pos_code);
@@ -140,7 +141,7 @@ const VillageFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 					<DynamicInput
 						type="number"
 						name="pos_code"
-						label={t("input.common.pos_code.label")}
+						label={t("input.location.pos_code.label")}
 						value={posCode}
 						onChange={setPosCode}
 						error={errors.posCode?.[0]}

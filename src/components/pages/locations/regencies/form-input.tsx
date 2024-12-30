@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { DynamicInput } from "@/components/forms/dynamic-input";
+import { locationOptionService } from "@/lib/services/options/location.option.service";
 
 const RegencyFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const t = useTranslations();
@@ -37,7 +38,7 @@ const RegencyFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		if (!uuid) return;
 
 		try {
-			const response = await regencyService.showRegency(uuid);
+			const response = await locationOptionService.showRegency(uuid);
 			setCode(response.data.code.toString());
 			setName(response.data.name);
 			setType(response.data.type);

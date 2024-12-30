@@ -13,6 +13,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
+import { academicOptionService } from "@/lib/services/options/academic.option.service";
 
 const SubjectFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
@@ -33,7 +34,7 @@ const SubjectFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		if (!uuid) return;
 
 		try {
-			const response = await subjectService.showSubject(uuid);
+			const response = await academicOptionService.showSubject(uuid);
 			setCode(response.data.code);
 			setName(response.data.name);
 			setCourseCredit(response.data.course_credit);
