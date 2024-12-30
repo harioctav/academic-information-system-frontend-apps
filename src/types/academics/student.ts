@@ -32,21 +32,24 @@ export interface Student {
 export interface StudentRequest {
 	// Basic Information
 	nim: string;
-	nik?: string;
 	name: string;
 	email?: string;
+	religion: string;
+	phone: string;
+	student_photo_path?: File;
+
+	// Birth Status Infomation
+	nik?: string;
 	birth_place?: string;
 	birth_date?: string;
 	gender: string;
-	religion: string;
-	status_registration?: string;
-	status_activity?: number;
-	phone: string;
 
 	// Academic Information
 	major: number;
 	initial_registration_period?: string;
 	origin_department?: string;
+	status_registration?: string;
+	status_activity?: number;
 	upbjj?: string;
 
 	// Address Information
@@ -61,7 +64,6 @@ export interface StudentRequest {
 	}[];
 
 	// Additional Information
-	student_photo_path?: File;
 	parent_name?: string;
 	parent_phone_number?: string;
 }
