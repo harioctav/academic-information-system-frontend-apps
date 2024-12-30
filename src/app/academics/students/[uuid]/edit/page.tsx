@@ -5,7 +5,7 @@ import StudentWizardForm from "@/components/pages/academics/students/student-wiz
 import { PageHeader } from "@/components/pages/page-header";
 import { Card, CardContent } from "@/components/ui/card";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
-import { studentService } from "@/lib/services/academics/student.service";
+import { academicOptionService } from "@/lib/services/options/academic.option.service";
 import { Student } from "@/types/academics/student";
 import { ApiError } from "@/types/api";
 import { useTranslations } from "next-intl";
@@ -22,7 +22,9 @@ const StudentEditPage = ({ params }: { params: Promise<{ uuid: string }> }) => {
 	useEffect(() => {
 		const fetchStudent = async () => {
 			try {
-				const response = await studentService.showStudent(resolvedParams.uuid);
+				const response = await academicOptionService.showStudent(
+					resolvedParams.uuid
+				);
 				setStudent(response.data);
 			} catch (err) {
 				const apiError = err as ApiError;
