@@ -117,35 +117,36 @@ class StudentService extends BaseService {
 		const formData = new FormData();
 
 		// Map basic required fields
-		const requiredFields = {
-			nim: request.nim,
-			name: request.name,
-			gender: request.gender,
-			religion: request.religion,
-			phone: request.phone,
-			major: request.major.toString(),
-		};
-		Object.entries(requiredFields).forEach(([key, value]) =>
-			formData.append(key, value)
-		);
+		formData.append("nim", request.nim);
+		formData.append("name", request.name);
+		formData.append("gender", request.gender);
+		formData.append("religion", request.religion);
+		formData.append("phone", request.phone);
+		formData.append("major", request.major.toString());
+		formData.append("_method", "PATCH");
 
 		// Map optional fields
-		const optionalFields = {
-			nik: request.nik,
-			email: request.email,
-			birth_place: request.birth_place,
-			birth_date: request.birth_date,
-			status_registration: request.status_registration,
-			status_activity: request.status_activity?.toString(),
-			initial_registration_period: request.initial_registration_period,
-			origin_department: request.origin_department,
-			upbjj: request.upbjj,
-			parent_name: request.parent_name,
-			parent_phone_number: request.parent_phone_number,
-		};
-		Object.entries(optionalFields).forEach(([key, value]) => {
-			if (value) formData.append(key, value);
-		});
+		if (request.nik) formData.append("nik", request.nik);
+		if (request.email) formData.append("email", request.email);
+		if (request.birth_place)
+			formData.append("birth_place", request.birth_place);
+		if (request.birth_date) formData.append("birth_date", request.birth_date);
+		if (request.status_registration)
+			formData.append("status_registration", request.status_registration);
+		if (request.status_activity !== undefined)
+			formData.append("status_activity", request.status_activity.toString());
+		if (request.initial_registration_period)
+			formData.append(
+				"initial_registration_period",
+				request.initial_registration_period
+			);
+		if (request.origin_department)
+			formData.append("origin_department", request.origin_department);
+		if (request.upbjj) formData.append("upbjj", request.upbjj);
+		if (request.parent_name)
+			formData.append("parent_name", request.parent_name);
+		if (request.parent_phone_number)
+			formData.append("parent_phone_number", request.parent_phone_number);
 
 		// Handle addresses
 		request.addresses.forEach((address, index) => {
@@ -154,15 +155,24 @@ class StudentService extends BaseService {
 			});
 		});
 
-		// Handle file upload
 		if (request.student_photo_path) {
 			formData.append("student_photo_path", request.student_photo_path);
 		}
 
-		// Add _method field for Laravel to handle PUT request
-		formData.append("_method", "PATCH");
-
-		return this.post<FormData, Student>(`/${uuid}`, formData);
+		return fetch(`${this.baseUrl}/${uuid}`, {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				Authorization: `Bearer ${TokenStorage.getAccessToken()}`,
+			},
+			credentials: "include",
+			body: formData,
+		}).then(async (response) => {
+			const result = await response.json();
+			if (!response.ok) throw result;
+			this.clearListCache();
+			return result;
+		});
 	};
 
 	/**
