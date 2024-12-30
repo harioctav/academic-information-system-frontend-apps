@@ -8,10 +8,22 @@ class UserService extends BaseService {
 		super("/settings/users");
 	}
 
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @param params
+	 * @returns
+	 */
 	getUsers = (params: Params) => {
 		return this.get<User[]>("", params);
 	};
 
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param request
+	 * @returns
+	 */
 	storeUser = (request: UserRequest) => {
 		const formData = new FormData();
 		formData.append("name", request.name);
@@ -42,10 +54,23 @@ class UserService extends BaseService {
 		});
 	};
 
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param uuid
+	 * @returns
+	 */
 	showUser = (uuid: string) => {
 		return this.get<User>(`/${uuid}`);
 	};
 
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param uuid
+	 * @param request
+	 * @returns
+	 */
 	updateUser = (uuid: string, request: UserRequest) => {
 		const formData = new FormData();
 		formData.append("name", request.name);
@@ -77,14 +102,32 @@ class UserService extends BaseService {
 		});
 	};
 
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param uuid
+	 * @returns
+	 */
 	deleteUser = (uuid: string) => {
 		return this.delete<void, User>(`/${uuid}`);
 	};
 
+	/**
+	 * Change the status of the specified user.
+	 *
+	 * @param uuid
+	 * @returns The updated user object.
+	 */
 	changeUserStatus = (uuid: string) => {
 		return this.put<Record<string, never>, User>(`/status/${uuid}`, {});
 	};
 
+	/**
+	 * Remove multiple resources from storage.
+	 *
+	 * @param ids
+	 * @returns
+	 */
 	bulkDeleteUsers = (ids: string[]) => {
 		return this.delete<{ ids: string[] }, User>("/bulk-delete", { ids });
 	};
