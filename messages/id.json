@@ -17,6 +17,10 @@
 			"forgot-password": {
 				"title": "Lupa Kata Sandi",
 				"description": "Masukkan email Anda di bawah ini untuk memulihkan akun Anda"
+			},
+			"reset-password": {
+				"title": "Reset Kata Sandi",
+				"description": "Masukkan kata sandi baru Anda di bawah ini untuk mereset akun Anda"
 			}
 		},
 		"error": {
@@ -331,6 +335,10 @@
 				"label": "Telepon",
 				"placeholder": "Masukkan telepon"
 			},
+			"password_confirmation": {
+				"label": "Password Konfirmasi",
+				"placeholder": "Masukkan kata sandi Anda"
+			},
 			"photo": {
 				"label": "Foto",
 				"placeholder": "Masukkan Foto Baru"
@@ -429,6 +437,7 @@
 			"google": "Masuk dengan Google",
 			"forgot-password": "Lupa Kata Sandi?",
 			"recovery": "Kirim Tautan Reset Kata Sandi",
+			"reset": "Atur Ulang Kata Sandi",
 			"or": "Atau Lanjutkan Dengan",
 			"logout": {
 				"label": "Keluar",

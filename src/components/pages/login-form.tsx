@@ -114,6 +114,7 @@ export function LoginForm() {
 							type="submit"
 							className="w-full"
 							isLoading={isLoading}
+							disabled={isLoading}
 						>
 							{t("button.auth.login")}
 						</SubmitButton>

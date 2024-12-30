@@ -17,6 +17,10 @@
 			"forgot-password": {
 				"title": "Forgot Password",
 				"description": "Enter your email below to recovery your account"
+			},
+			"reset-password": {
+				"title": "Reset Password",
+				"description": "Enter your new password below to reset your account"
 			}
 		},
 		"error": {
@@ -329,6 +333,10 @@
 				"label": "Password",
 				"placeholder": "Enter your password"
 			},
+			"password_confirmation": {
+				"label": "Password Confirmation",
+				"placeholder": "Enter your password"
+			},
 			"phone": {
 				"label": "Phone",
 				"placeholder": "Enter phone number"
@@ -431,6 +439,7 @@
 			"google": "Login with Google",
 			"forgot-password": "Forgot Password?",
 			"recovery": "Send Link Reset Password",
+			"reset": "Reset Password",
 			"or": "Or Continue With",
 			"logout": {
 				"label": "Logout",

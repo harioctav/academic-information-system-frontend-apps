@@ -1,5 +1,5 @@
 export const routes = {
-	public: ["/auth/login", "/auth/forgot-password"],
+	public: ["/auth/login", "/auth/forgot-password", "/auth/reset-password"],
 	modules: {
 		settings: ["/settings/users", "/settings/roles"],
 		locations: [
