@@ -150,6 +150,32 @@
 			"show": "Display the selected {page} resource details."
 		}
 	},
+	"steps": {
+		"basic_information": {
+			"title": "Basic Information",
+			"description": "Student's personal data and identity"
+		},
+		"birth_status": {
+			"title": "Birth Status",
+			"description": "Student's place and date of birth information"
+		},
+		"academic_information": {
+			"title": "Academic Information",
+			"description": "Student's academic data and study status"
+		},
+		"address_information": {
+			"title": "Address Information",
+			"description": "Student's domicile and ID card address data"
+		},
+		"parent_information": {
+			"title": "Parent Information",
+			"description": "Parent's contact and identity data"
+		},
+		"confirmation_data": {
+			"title": "Confirm Data",
+			"description": "Review all entered data"
+		}
+	},
 	"input": {
 		"province_name": {
 			"label": "Province",
@@ -244,6 +270,46 @@
 			"gender": {
 				"label": "Gender",
 				"placeholder": "Enter or Select Gender"
+			},
+			"religion": {
+				"label": "Religion",
+				"placeholder": "Enter or Select Religion"
+			},
+			"parent_name": {
+				"label": "Parent Name",
+				"placeholder": "Enter Parent Name"
+			},
+			"parent_phone_number": {
+				"label": "Parent Phone Number",
+				"placeholder": "Enter Parent Phone Number"
+			},
+			"birth_place": {
+				"label": "Birth Place",
+				"placeholder": "Enter Birth Place"
+			},
+			"birth_date": {
+				"label": "Birth Date",
+				"placeholder": "Select Birth Date"
+			},
+			"initial_registration_period": {
+				"label": "Initial Registration Period",
+				"placeholder": "Enter Initial Registration Period"
+			},
+			"origin_department": {
+				"label": "Origin Department",
+				"placeholder": "Enter Origin Department"
+			},
+			"upbjj": {
+				"label": "UPBJJ",
+				"placeholder": "Enter UPBJJ"
+			},
+			"status_registration": {
+				"label": "Status Registration",
+				"placeholder": "Enter Status Registration"
+			},
+			"status_activity": {
+				"label": "Status Activity",
+				"placeholder": "Enter Status Activity"
 			}
 		},
 		"user": {
@@ -288,6 +354,20 @@
 			"pos_code": {
 				"label": "Pos Code",
 				"placeholder": "Enter Pos Code"
+			},
+			"address": {
+				"type": {
+					"domicile": {
+						"label": "Domicile Address",
+						"placeholder": "Enter detail Domicile address"
+					},
+					"id_card": {
+						"label": "Id Card Address",
+						"placeholder": "Enter detail Id Card address"
+					}
+				},
+				"label": "Full Address",
+				"placeholder": "Enter Full Address"
 			}
 		},
 		"meta": {
@@ -363,6 +443,10 @@
 		"status": {
 			"title": "Change Status",
 			"description": "Are you sure you want to change the status for this data? This action cannot be undone."
+		},
+		"submit": {
+			"title": "Confirm Data Submission",
+			"description": "Are you sure all the data entered is correct? This action cannot be undone."
 		}
 	},
 	"widget": {
@@ -447,5 +531,37 @@
 			"roles": "Role",
 			"permissions": "Permission"
 		}
+	},
+	"month": {
+		"january": "January",
+		"february": "February",
+		"march": "March",
+		"april": "April",
+		"may": "May",
+		"june": "June",
+		"july": "July",
+		"august": "August",
+		"september": "September",
+		"october": "October",
+		"november": "November",
+		"december": "December"
+	},
+	"validation": {
+		"required": "{field} is required",
+		"numeric": "{field} must be a number",
+		"unique": "{field} has already been taken",
+		"email": "{field} must be a valid email address",
+		"max": "{field} may not be greater than {max} characters",
+		"min": "{field} must be at least {min} characters",
+		"digits": "{field} must be {digits} digits",
+		"date": "{field} must be a valid date",
+		"exists": "{field} does not exist in our records",
+		"mimes": "{field} must be a file of type: {types}",
+		"image": "{field} must be an image",
+		"between": "{field} must be between {min} and {max}",
+		"registration_period_format": "Format must be 'YYYY GANJIL' or 'YYYY GENAP'",
+		"regex": "{field} format is invalid",
+		"year_range": "Year must be between {min} and {max}",
+		"semester_options": "Semester must be either 'GANJIL' or 'GENAP'"
 	}
 }

@@ -1,21 +1,20 @@
-import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { InputProps } from "@/types/common";
 import { useTranslations } from "next-intl";
 import { ChangeEvent } from "react";
 
-interface DynamicInputProps extends InputProps {
-	type: "text" | "number" | "email" | "tel" | "password";
+interface DynamicTextareaProps {
 	name: string;
 	label: string;
 	placeholder?: string;
-	min?: number;
-	max?: number;
-	step?: number | "any";
+	value: string;
+	onChange: (value: string) => void;
+	error?: string;
+	disabled?: boolean;
+	rows?: number;
 }
 
-export const DynamicInput = ({
-	type,
+export const DynamicTextarea = ({
 	name,
 	label,
 	placeholder,
@@ -23,13 +22,11 @@ export const DynamicInput = ({
 	onChange,
 	error,
 	disabled,
-	min,
-	max,
-	step,
-}: DynamicInputProps) => {
+	rows = 4,
+}: DynamicTextareaProps) => {
 	const t = useTranslations();
 
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+	const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
 		onChange(e.target.value);
 	};
 
@@ -38,8 +35,7 @@ export const DynamicInput = ({
 			<Label htmlFor={name} className="block text-sm font-medium mb-2">
 				{label}
 			</Label>
-			<Input
-				type={type}
+			<Textarea
 				id={name}
 				name={name}
 				placeholder={
@@ -49,9 +45,7 @@ export const DynamicInput = ({
 				onChange={handleChange}
 				className="w-full"
 				disabled={disabled}
-				min={min}
-				max={max}
-				step={step}
+				rows={rows}
 			/>
 			{error && <span className="text-sm text-red-500">{error}</span>}
 		</div>

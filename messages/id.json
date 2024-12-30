@@ -148,6 +148,32 @@
 			"show": "Menampilkan detail sumber daya data {page} yang dipilih."
 		}
 	},
+	"steps": {
+		"basic_information": {
+			"title": "Informasi Dasar",
+			"description": "Data pribadi dan identitas mahasiswa"
+		},
+		"birth_status": {
+			"title": "Status Kelahiran",
+			"description": "Informasi tempat dan tanggal lahir mahasiswa"
+		},
+		"academic_information": {
+			"title": "Informasi Akademik",
+			"description": "Data akademik dan status perkuliahan mahasiswa"
+		},
+		"address_information": {
+			"title": "Informasi Alamat",
+			"description": "Data alamat domisili dan KTP mahasiswa"
+		},
+		"parent_information": {
+			"title": "Informasi Orang Tua",
+			"description": "Data kontak dan identitas orang tua mahasiswa"
+		},
+		"confirmation_data": {
+			"title": "Konfirmasi Data",
+			"description": "Periksa kembali semua data yang telah dimasukkan"
+		}
+	},
 	"input": {
 		"province_name": {
 			"label": "Provinsi",
@@ -242,6 +268,46 @@
 			"gender": {
 				"label": "Jenis Kelamin",
 				"placeholder": "Masukkan Jenis Kelamin"
+			},
+			"religion": {
+				"label": "Agama",
+				"placeholder": "Masukkan atau Pilih Agama"
+			},
+			"parent_name": {
+				"label": "Nama Orang Tua",
+				"placeholder": "Masukkan Nama Orang Tua"
+			},
+			"parent_phone_number": {
+				"label": "Nomor Telepon Orang Tua",
+				"placeholder": "Masukkan Nomor Telepon Orang Tua"
+			},
+			"birth_place": {
+				"label": "Tempat Lahir",
+				"placeholder": "Masukkan Tempat Lahir"
+			},
+			"birth_date": {
+				"label": "Tanggal Lahir",
+				"placeholder": "Pilih Tanggal Lahir"
+			},
+			"initial_registration_period": {
+				"label": "Periode Registrasi Awal",
+				"placeholder": "Masukkan Periode Registrasi Awal"
+			},
+			"origin_department": {
+				"label": "Jurusan Asal",
+				"placeholder": "Masukkan Jurusan Asal"
+			},
+			"upbjj": {
+				"label": "UPBJJ",
+				"placeholder": "Masukkan UPBJJ"
+			},
+			"status_registration": {
+				"label": "Status Registrasi",
+				"placeholder": "Masukkan Status Registrasi"
+			},
+			"status_activity": {
+				"label": "Status Mahasiswa",
+				"placeholder": "Masukkan Status Mahasiswa"
 			}
 		},
 		"user": {
@@ -286,6 +352,20 @@
 			"pos_code": {
 				"label": "Kode Pos",
 				"placeholder": "Masukkan Kode Pos"
+			},
+			"address": {
+				"type": {
+					"domicile": {
+						"label": "Alamat Domisili",
+						"placeholder": "Masukkan detail alamat domisili"
+					},
+					"id_card": {
+						"label": "Alamat KTP",
+						"placeholder": "Masukkan detail alamat KTP"
+					}
+				},
+				"label": "Alamat Lengkap",
+				"placeholder": "Masukkan Alamat Lengkap"
 			}
 		},
 		"meta": {
@@ -361,6 +441,10 @@
 		"status": {
 			"title": "Ubah Status",
 			"description": "Apakah anda yakin ingin mengubah status untuk data berikut ini? Tindakan ini tidak dapat dibatalkan."
+		},
+		"submit": {
+			"title": "Konfirmasi Pengiriman Data",
+			"description": "Apakah Anda yakin semua data yang dimasukkan sudah benar? Tindakan ini tidak dapat dibatalkan."
 		}
 	},
 	"widget": {
@@ -445,5 +529,37 @@
 			"roles": "Peran",
 			"permissions": "Izin"
 		}
+	},
+	"month": {
+		"january": "Januari",
+		"february": "Februari",
+		"march": "Maret",
+		"april": "April",
+		"may": "Mei",
+		"june": "Juni",
+		"july": "Juli",
+		"august": "Agustus",
+		"september": "September",
+		"october": "Oktober",
+		"november": "November",
+		"december": "Desember"
+	},
+	"validation": {
+		"required": "{field} harus diisi",
+		"numeric": "{field} harus berupa angka",
+		"unique": "{field} sudah digunakan",
+		"email": "{field} harus berupa alamat email yang valid",
+		"max": "{field} tidak boleh lebih dari {max} karakter",
+		"min": "{field} minimal harus {min} karakter",
+		"digits": "{field} harus {digits} digit",
+		"date": "{field} harus berupa tanggal yang valid",
+		"exists": "{field} tidak ditemukan dalam data kami",
+		"mimes": "{field} harus berupa file dengan tipe: {types}",
+		"image": "{field} harus berupa gambar",
+		"between": "{field} harus diantara {min} dan {max}",
+		"registration_period_format": "Format harus 'YYYY GANJIL' atau 'YYYY GENAP'",
+		"regex": "Format {field} tidak valid",
+		"year_range": "Tahun harus diantara {min} dan {max}",
+		"semester_options": "Semester harus 'GANJIL' atau 'GENAP'"
 	}
 }

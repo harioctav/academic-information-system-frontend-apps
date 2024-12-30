@@ -14,9 +14,8 @@ import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { Role } from "@/types/settings/role";
 import { getRoleLabel } from "@/config/enums/role.enum";
 import ImageInput from "@/components/forms/image-input";
-import { NameInput } from "@/components/forms/name-input";
 import { PhoneInput } from "@/components/forms/phone-input";
-import { EmailInput } from "@/components/forms/email-input";
+import { DynamicInput } from "@/components/forms/dynamic-input";
 
 const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
@@ -160,14 +159,20 @@ const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 						)}
 					</div>
 
-					<NameInput
+					<DynamicInput
+						type="text"
+						name="name"
+						label={t("input.common.name.label")}
 						value={formData.name}
 						onChange={(value) => setFormData({ ...formData, name: value })}
 						error={errors.name?.[0]}
 						disabled={isLoading}
 					/>
 
-					<EmailInput
+					<DynamicInput
+						type="email"
+						name="email"
+						label={t("input.user.email.label")}
 						value={formData.email}
 						onChange={(value) => setFormData({ ...formData, email: value })}
 						error={errors.email?.[0]}

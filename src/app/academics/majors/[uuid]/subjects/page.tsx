@@ -12,7 +12,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { DynamicSelect } from "@/components/ui/dynamic-select";
+import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { Label } from "@/components/ui/label";
 import ListContainer from "@/components/ui/list-container";
 import { ListItem } from "@/components/ui/list-item";

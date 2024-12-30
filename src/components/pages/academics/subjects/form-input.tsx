@@ -1,6 +1,6 @@
 import { DynamicInput } from "@/components/forms/dynamic-input";
 import { CheckboxGroup } from "@/components/ui/checkbox-group";
-import { DynamicSelect } from "@/components/ui/dynamic-select";
+import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { SubjectNote } from "@/config/enums/subject.note.enum";

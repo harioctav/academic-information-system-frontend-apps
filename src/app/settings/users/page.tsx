@@ -7,7 +7,7 @@ import UserShowDialog from "@/components/pages/settings/users/user-show-dialog";
 import { DataTable } from "@/components/tables/data-table";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { Card, CardContent } from "@/components/ui/card";
-import { DynamicSelect } from "@/components/ui/dynamic-select";
+import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { Label } from "@/components/ui/label";
 import { Permission } from "@/config/enums/permission.enum";
 import { getRoleLabel } from "@/config/enums/role.enum";

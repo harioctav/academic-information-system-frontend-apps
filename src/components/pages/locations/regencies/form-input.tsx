@@ -1,9 +1,7 @@
 "use client";
 
-import { CodeInput } from "@/components/forms/code-input";
-import { NameInput } from "@/components/forms/name-input";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
-import { DynamicSelect } from "@/components/ui/dynamic-select";
+import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { RegencyType } from "@/config/enums/regency.type.enum";
@@ -16,6 +14,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
+import { DynamicInput } from "@/components/forms/dynamic-input";
 
 const RegencyFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const t = useTranslations();
@@ -128,16 +127,23 @@ const RegencyFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 						)}
 					</div>
 
-					<CodeInput
+					<DynamicInput
+						type="number"
+						name="code"
+						label={t("input.common.code.label")}
 						value={code}
-						onChange={(value) => setCode(value)}
+						onChange={setCode}
 						error={errors.code?.[0]}
 						disabled={isLoading}
+						min={1}
 					/>
 
-					<NameInput
+					<DynamicInput
+						type="text"
+						name="name"
+						label={t("input.common.name.label")}
 						value={name}
-						onChange={(value) => setName(value)}
+						onChange={setName}
 						error={errors.name?.[0]}
 						disabled={isLoading}
 					/>

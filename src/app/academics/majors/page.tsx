@@ -5,7 +5,7 @@ import { MajorDialog } from "@/components/pages/academics/majors/major-dialog";
 import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { Card, CardContent } from "@/components/ui/card";
-import { DynamicSelect } from "@/components/ui/dynamic-select";
+import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { Label } from "@/components/ui/label";
 import { getDegreeOptions } from "@/config/enums/degree.type.enum";
 import { Permission } from "@/config/enums/permission.enum";

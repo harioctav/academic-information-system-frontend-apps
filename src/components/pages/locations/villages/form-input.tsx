@@ -1,8 +1,6 @@
 "use client";
 
-import { CodeInput } from "@/components/forms/code-input";
-import { NameInput } from "@/components/forms/name-input";
-import { PosCodeInput } from "@/components/forms/pos-code-input";
+import { DynamicInput } from "@/components/forms/dynamic-input";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { CustomFormatter } from "@/components/ui/async-select-formatter";
 import { Label } from "@/components/ui/label";
@@ -118,23 +116,33 @@ const VillageFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 						)}
 					</div>
 
-					<CodeInput
+					<DynamicInput
+						type="number"
+						name="code"
+						label={t("input.common.code.label")}
 						value={code}
-						onChange={(value) => setCode(value)}
+						onChange={setCode}
 						error={errors.code?.[0]}
 						disabled={isLoading}
+						min={1}
 					/>
 
-					<NameInput
+					<DynamicInput
+						type="text"
+						name="name"
+						label={t("input.common.name.label")}
 						value={name}
-						onChange={(value) => setName(value)}
+						onChange={setName}
 						error={errors.name?.[0]}
 						disabled={isLoading}
 					/>
 
-					<PosCodeInput
+					<DynamicInput
+						type="number"
+						name="pos_code"
+						label={t("input.common.pos_code.label")}
 						value={posCode}
-						onChange={(value) => setPosCode(value)}
+						onChange={setPosCode}
 						error={errors.posCode?.[0]}
 						disabled={isLoading}
 					/>

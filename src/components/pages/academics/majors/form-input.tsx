@@ -2,7 +2,7 @@
 
 import { CodeInput } from "@/components/forms/code-input";
 import { NameInput } from "@/components/forms/name-input";
-import { DynamicSelect } from "@/components/ui/dynamic-select";
+import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { getDegreeOptions } from "@/config/enums/degree.type.enum";

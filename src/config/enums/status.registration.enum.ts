@@ -10,13 +10,13 @@ export const StatusRegistrationLabel: Record<StatusRegistration, string> = {
 	[StatusRegistration.Unknown]: "Tidak Diketahui",
 };
 
-export const getReligionOptions = () => {
+export const getStatusRegistrationOptions = () => {
 	return Object.entries(StatusRegistrationLabel).map(([value, label]) => ({
 		value,
 		label,
 	}));
 };
 
-export const getReligionLabel = (value: string): string => {
+export const getStatusRegistrationLabel = (value: string): string => {
 	return StatusRegistrationLabel[value as StatusRegistration] || value;
 };

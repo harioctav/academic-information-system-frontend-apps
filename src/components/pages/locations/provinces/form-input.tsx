@@ -9,7 +9,6 @@ import React, { useEffect, useCallback } from "react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import { FormProps } from "@/types/common";
-import { NameInput } from "@/components/forms/name-input";
 import { DynamicInput } from "@/components/forms/dynamic-input";
 
 const ProvinceFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
@@ -95,9 +94,12 @@ const ProvinceFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 						min={1}
 					/>
 
-					<NameInput
+					<DynamicInput
+						type="text"
+						name="name"
+						label={t("input.common.name.label")}
 						value={name}
-						onChange={(value) => setName(value)}
+						onChange={setName}
 						error={errors.name?.[0]}
 						disabled={isLoading}
 					/>

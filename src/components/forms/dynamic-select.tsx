@@ -22,6 +22,8 @@ interface DynamicSelectProps {
 	options: SelectOption[];
 	placeholder?: string;
 	className?: string;
+	error?: string;
+	disabled?: boolean;
 }
 
 export function DynamicSelect({

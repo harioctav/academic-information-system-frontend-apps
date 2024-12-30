@@ -2,7 +2,7 @@
 
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
-import { DynamicSelect } from "@/components/ui/dynamic-select";
+import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { getSemesterOptions } from "@/config/enums/semester.enum";
 import { majorSubjectService } from "@/lib/services/academics/major.subject.service";
 import { MajorSubjectRequest } from "@/types/academics/major.subject";

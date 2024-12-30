@@ -56,6 +56,7 @@ export interface StudentRequest {
 		regency_id: number;
 		district_id: number;
 		village_id: number;
+		pos_code: string;
 		address: string;
 	}[];
 

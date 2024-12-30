@@ -15,7 +15,7 @@ export const getGenderTypeLabel = (gender: string, t: TFunction): string => {
 		case GenderType.Female:
 			return t("message.gender.female");
 		default:
-			return t("message.gender.unknown");
+			return "-";
 	}
 };
 
