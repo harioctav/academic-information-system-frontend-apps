@@ -26,10 +26,10 @@ export interface ApiResponse<T> {
 }
 
 export interface Params {
-	page: number;
-	perPage: number;
-	sortBy: string;
-	sortDirection: "asc" | "desc";
+	page?: number;
+	perPage?: number;
+	sortBy?: string;
+	sortDirection?: "asc" | "desc";
 	search?: string;
 	type?: string;
 	filters?: {

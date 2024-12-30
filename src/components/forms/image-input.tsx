@@ -34,7 +34,7 @@ const ImageInput = ({
 
 	return (
 		<div className="space-y-2">
-			<div className="flex items-center gap-4">
+			<div className="flex items-center gap-4 mb-5">
 				<Avatar className="w-20 h-20">
 					{imageSource && <AvatarImage src={imageSource} alt={name} />}
 					<AvatarFallback>

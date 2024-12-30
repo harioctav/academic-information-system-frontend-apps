@@ -110,21 +110,25 @@ const StudentWizardForm = ({
 				t("validation.required", { field: t("input.common.nim.label") }),
 			];
 		}
+
 		if (!formData.name.trim()) {
 			errors.name = [
 				t("validation.required", { field: t("input.common.name.label") }),
 			];
 		}
+
 		if (!formData.email?.trim()) {
 			errors.email = [
 				t("validation.required", { field: t("input.user.email.label") }),
 			];
 		}
+
 		if (!formData.phone?.trim()) {
 			errors.phone = [
 				t("validation.required", { field: t("input.user.phone.label") }),
 			];
 		}
+
 		if (!formData.religion) {
 			errors.religion = [
 				t("validation.required", { field: t("input.common.religion.label") }),
@@ -137,11 +141,6 @@ const StudentWizardForm = ({
 	const validateBirthStatus = () => {
 		const errors: ValidationErrors = {};
 
-		if (!formData.nik?.trim()) {
-			errors.nik = [
-				t("validation.required", { field: t("input.common.nik.label") }),
-			];
-		}
 		if (formData.nik && formData.nik.length !== 16) {
 			errors.nik = [
 				t("validation.digits", {
@@ -150,21 +149,10 @@ const StudentWizardForm = ({
 				}),
 			];
 		}
+
 		if (!formData.gender) {
 			errors.gender = [
 				t("validation.required", { field: t("input.common.gender.label") }),
-			];
-		}
-		if (!formData.birth_place?.trim()) {
-			errors.birth_place = [
-				t("validation.required", {
-					field: t("input.common.birth_place.label"),
-				}),
-			];
-		}
-		if (!formData.birth_date) {
-			errors.birth_date = [
-				t("validation.required", { field: t("input.common.birth_date.label") }),
 			];
 		}
 
@@ -173,14 +161,6 @@ const StudentWizardForm = ({
 
 	const validateAcademicInformation = () => {
 		const errors: ValidationErrors = {};
-
-		if (!formData.initial_registration_period?.trim()) {
-			errors.initial_registration_period = [
-				t("validation.required", {
-					field: t("input.common.initial_registration_period.label"),
-				}),
-			];
-		}
 
 		if (formData.initial_registration_period) {
 			const regex = /^[0-9]{4}\s(GANJIL|GENAP)$/;
@@ -208,23 +188,12 @@ const StudentWizardForm = ({
 			}
 		}
 
-		if (!formData.origin_department?.trim()) {
-			errors.origin_department = [
-				t("validation.required", {
-					field: t("input.common.origin_department.label"),
-				}),
-			];
-		}
-		if (!formData.upbjj?.trim()) {
-			errors.upbjj = [
-				t("validation.required", { field: t("input.common.upbjj.label") }),
-			];
-		}
 		if (!formData.major) {
 			errors.major = [
 				t("validation.required", { field: t("module.academic.majors") }),
 			];
 		}
+
 		if (!formData.status_registration) {
 			errors.status_registration = [
 				t("validation.required", {
@@ -232,6 +201,7 @@ const StudentWizardForm = ({
 				}),
 			];
 		}
+
 		if (formData.status_activity === undefined) {
 			errors.status_activity = [
 				t("validation.required", {
@@ -296,22 +266,6 @@ const StudentWizardForm = ({
 
 	const validateParentInformation = () => {
 		const errors: ValidationErrors = {};
-
-		if (!formData.parent_name?.trim()) {
-			errors.parent_name = [
-				t("validation.required", {
-					field: t("input.common.parent_name.label"),
-				}),
-			];
-		}
-		if (!formData.parent_phone_number?.trim()) {
-			errors.parent_phone_number = [
-				t("validation.required", {
-					field: t("input.common.parent_phone_number.label"),
-				}),
-			];
-		}
-
 		return errors;
 	};
 

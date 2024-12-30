@@ -308,6 +308,14 @@
 			"status_activity": {
 				"label": "Status Mahasiswa",
 				"placeholder": "Masukkan Status Mahasiswa"
+			},
+			"age": {
+				"label": "Usia",
+				"placeholder": "Masukkan Usia"
+			},
+			"year": {
+				"label": "Tahun",
+				"placeholder": "Masukkan Tahun"
 			}
 		},
 		"user": {

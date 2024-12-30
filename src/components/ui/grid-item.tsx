@@ -12,11 +12,11 @@ export function GridItem({
 	className = "",
 }: GridItemProps) {
 	return (
-		<div
-			className={`space-y-2 ${fullWidth ? "md:col-span-2" : ""} ${className}`}
-		>
+		<div className={`${fullWidth ? "md:col-span-2" : ""} ${className}`}>
 			<label className="text-sm text-muted-foreground block">{label}</label>
-			<div className="font-semibold">{value}</div>
+			<div className="font-semibold break-words overflow-wrap-anywhere">
+				{value}
+			</div>
 		</div>
 	);
 }

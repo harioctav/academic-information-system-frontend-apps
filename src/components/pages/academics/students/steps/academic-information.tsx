@@ -5,10 +5,11 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { getStatusOptions } from "@/config/enums/status.enum";
 import { getStatusRegistrationOptions } from "@/config/enums/status.registration.enum";
+import { majorOptionService } from "@/lib/services/options/major.service.option";
 import { Major } from "@/types/academics/major";
 import { StudentRequest } from "@/types/academics/student";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface AcademicInformationStepProps {
 	formData: StudentRequest;
@@ -25,8 +26,41 @@ const AcademicInformationStep = ({
 }: AcademicInformationStepProps) => {
 	const t = useTranslations();
 
+	const initialLoadDone = useRef(false);
 	const [selectedMajor, setSelectedMajor] =
-		useState<SelectOption<Major> | null>();
+		useState<SelectOption<Major> | null>(null);
+
+	useEffect(() => {
+		const loadInitialMajor = async () => {
+			if (formData.major && !initialLoadDone.current) {
+				try {
+					const response = await majorOptionService.getMajors({
+						page: 1,
+						perPage: 1,
+						sortBy: "id",
+						sortDirection: "asc",
+						filters: {
+							id: formData.major.toString(),
+						},
+					});
+
+					if (response.data && response.data.length > 0) {
+						const major = response.data[0];
+						setSelectedMajor({
+							label: major.name,
+							value: major.uuid,
+							data: major,
+						});
+						initialLoadDone.current = true;
+					}
+				} catch (error) {
+					console.error("Failed to load major data:", error);
+				}
+			}
+		};
+
+		loadInitialMajor();
+	}, [formData.major]);
 
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-2 gap-6">

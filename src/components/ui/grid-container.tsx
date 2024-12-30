@@ -8,7 +8,9 @@ export function GridContainer({
 	className = "",
 }: GridContainerProps) {
 	return (
-		<div className={`grid grid-cols-1 md:grid-cols-2 gap-4 ${className}`}>
+		<div
+			className={`grid grid-cols-1 md:grid-cols-2 gap-4 w-full ${className}`}
+		>
 			{children}
 		</div>
 	);

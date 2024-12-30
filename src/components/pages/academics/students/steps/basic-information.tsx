@@ -43,7 +43,7 @@ const BasicInformationStep = ({
 		<div className="w-full">
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 				{/* Image input centered and spanning full width */}
-				<div className="col-span-full md:col-span-2 max-w-md mx-auto w-full">
+				<div className="col-span-full md:col-span-2 max-w-md w-full">
 					<div className="space-y-2">
 						<Label htmlFor="photo" className="block text-sm font-medium mb-2">
 							{t("input.user.photo.label")}
@@ -73,7 +73,7 @@ const BasicInformationStep = ({
 				</div>
 
 				<DynamicInput
-					type="text"
+					type="number"
 					name="nim"
 					label={t("input.common.nim.label")}
 					value={formData.nim}

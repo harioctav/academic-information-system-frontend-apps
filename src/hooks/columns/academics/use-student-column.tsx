@@ -41,7 +41,10 @@ export const useStudentColumns = () => {
 		}
 	};
 
-	const createColumns = (refreshData: () => void) => {
+	const createColumns = (
+		refreshData: () => void,
+		onShow?: (uuid: string) => void
+	) => {
 		/** Setup Student Columns */
 		const columns: ColumnDef<Student>[] = [
 			{
@@ -82,6 +85,7 @@ export const useStudentColumns = () => {
 			{
 				accessorKey: "nik",
 				header: t("input.common.nik.label"),
+				cell: ({ row }) => row.original.nik || "-",
 			},
 			{
 				accessorKey: "name",
@@ -172,7 +176,7 @@ export const useStudentColumns = () => {
 						<>
 							<ActionColumn
 								editUrl={`/academics/students/${row.original.uuid}/edit`}
-								showUrl={`/academics/students/${row.original.uuid}/show`}
+								onShow={() => onShow?.(row.original.uuid)}
 								showPermission={Permission.StudentShow}
 								editPermission={Permission.StudentEdit}
 								deletePermission={Permission.StudentDelete}

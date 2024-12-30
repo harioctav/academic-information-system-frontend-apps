@@ -1,6 +1,7 @@
 "use client";
 
 import { MainLayout } from "@/components/layouts/main-layout";
+import StudentShowDialog from "@/components/pages/academics/students/student-show-dialog";
 import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,15 +13,22 @@ import { studentService } from "@/lib/services/academics/student.service";
 import { Student } from "@/types/academics/student";
 import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import { toast } from "sonner";
 
 export default function StudentPage() {
 	const t = useTranslations();
 
-	/** Setup Datatable */
 	const { hasPermission } = usePermissions();
 	const createColumns = useStudentColumns();
 
+	/** Dialog show */
+	const [isShowDialogOpen, setIsShowDialogOpen] = useState(false);
+
+	/** Get uuid when action button on click */
+	const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
+
+	/** Setup Datatable */
 	const {
 		data,
 		pageCount,
@@ -34,7 +42,12 @@ export default function StudentPage() {
 		isLoading,
 	} = useDataTable<Student>(studentService.getStudents);
 
-	const columns = createColumns(fetchData) as ColumnDef<Student>[];
+	const handleShow = (uuid: string) => {
+		setSelectedUuid(uuid);
+		setIsShowDialogOpen(true);
+	};
+
+	const columns = createColumns(fetchData, handleShow) as ColumnDef<Student>[];
 
 	/**
 	 * Handle to multiple delete students
@@ -100,6 +113,15 @@ export default function StudentPage() {
 					</CardContent>
 				</Card>
 			</div>
+
+			<StudentShowDialog
+				isOpen={isShowDialogOpen}
+				onClose={() => {
+					setIsShowDialogOpen(false);
+					setSelectedUuid(undefined);
+				}}
+				uuid={selectedUuid}
+			/>
 		</MainLayout>
 	);
 }

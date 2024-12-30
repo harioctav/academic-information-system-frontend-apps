@@ -310,6 +310,14 @@
 			"status_activity": {
 				"label": "Status Activity",
 				"placeholder": "Enter Status Activity"
+			},
+			"age": {
+				"label": "Age",
+				"placeholder": "Enter Age"
+			},
+			"year": {
+				"label": "Year",
+				"placeholder": "Enter Year"
 			}
 		},
 		"user": {
