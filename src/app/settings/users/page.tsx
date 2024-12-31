@@ -7,7 +7,6 @@ import UserShowDialog from "@/components/pages/settings/users/user-show-dialog";
 import { DataTable } from "@/components/tables/data-table";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { Card, CardContent } from "@/components/ui/card";
-import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { Label } from "@/components/ui/label";
 import { Permission } from "@/config/enums/permission.enum";
 import { getRoleLabel } from "@/config/enums/role.enum";
@@ -23,6 +22,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { toast } from "sonner";
+import { DynamicSelectRS } from "@/components/forms/dynamic-select-react";
 
 export default function UserPage() {
 	const t = useTranslations();
@@ -140,7 +140,7 @@ export default function UserPage() {
 											page: t("input.common.status.label"),
 										})}
 									</Label>
-									<DynamicSelect
+									<DynamicSelectRS
 										value={statusFilter}
 										onChange={setStatusFilter}
 										options={statusOptions}

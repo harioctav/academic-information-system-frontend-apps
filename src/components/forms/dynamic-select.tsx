@@ -10,6 +10,7 @@ import {
 	SelectSeparator,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 interface SelectOption {
 	value: string;
@@ -33,6 +34,7 @@ export function DynamicSelect({
 	placeholder = "Select Option",
 	className,
 }: DynamicSelectProps) {
+	const t = useTranslations();
 	const [key, setKey] = useState(+new Date());
 
 	const handleChange = (newValue: string) => {
@@ -62,7 +64,7 @@ export function DynamicSelect({
 							setKey(+new Date());
 						}}
 					>
-						Clear
+						{t("button.common.clear")}
 					</Button>
 				</SelectContent>
 			</Select>

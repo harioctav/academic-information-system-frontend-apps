@@ -429,7 +429,8 @@
 			"option": "Pilihan",
 			"loading": "Memuat...",
 			"manage_permissions": "Kelola Izin",
-			"continue": "Lanjutkan"
+			"continue": "Lanjutkan",
+			"clear": "Bersihkan"
 		},
 		"auth": {
 			"login": "Masuk",

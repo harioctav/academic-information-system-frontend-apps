@@ -92,7 +92,11 @@ class StudentService extends BaseService {
 			const result = await response.json();
 			if (!response.ok) throw result;
 			this.clearListCache();
-			return result;
+			return {
+				...result,
+				success: true,
+				status: response.status,
+			};
 		});
 	};
 
@@ -171,7 +175,11 @@ class StudentService extends BaseService {
 			const result = await response.json();
 			if (!response.ok) throw result;
 			this.clearListCache();
-			return result;
+			return {
+				...result,
+				success: true,
+				status: response.status,
+			};
 		});
 	};
 

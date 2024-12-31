@@ -1,5 +1,5 @@
 import { DynamicInput } from "@/components/forms/dynamic-input";
-import { DynamicSelect } from "@/components/forms/dynamic-select";
+import { DynamicSelectRS } from "@/components/forms/dynamic-select-react";
 import ImageInput from "@/components/forms/image-input";
 import { PhoneInput } from "@/components/forms/phone-input";
 import { Label } from "@/components/ui/label";
@@ -113,7 +113,7 @@ const BasicInformationStep = ({
 					<Label htmlFor="religion" className="block text-sm font-medium mb-2">
 						{t("input.common.religion.label")}
 					</Label>
-					<DynamicSelect
+					<DynamicSelectRS
 						value={formData.religion}
 						onChange={(value) =>
 							setFormData({ ...formData, religion: value || "" })

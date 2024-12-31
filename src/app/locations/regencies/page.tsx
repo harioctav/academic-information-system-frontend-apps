@@ -1,5 +1,6 @@
 "use client";
 
+import { DynamicSelectRS } from "@/components/forms/dynamic-select-react";
 import { MainLayout } from "@/components/layouts/main-layout";
 import { RegencyDialog } from "@/components/pages/locations/regencies/regency-dialog";
 import RegencyShowDialog from "@/components/pages/locations/regencies/regency-show-dialog";
@@ -7,7 +8,6 @@ import { PageHeader } from "@/components/pages/page-header";
 import { DataTable } from "@/components/tables/data-table";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { Card, CardContent } from "@/components/ui/card";
-import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { Label } from "@/components/ui/label";
 import { Permission } from "@/config/enums/permission.enum";
 import { RegencyType } from "@/config/enums/regency.type.enum";
@@ -115,7 +115,7 @@ export default function RegencyPage() {
 									<Label className="block text-sm font-medium mb-2">
 										{t("input.filter.type")}
 									</Label>
-									<DynamicSelect
+									<DynamicSelectRS
 										value={typeFilter}
 										onChange={setTypeFilter}
 										options={regencyTypeOptions}

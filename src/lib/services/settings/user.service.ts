@@ -1,7 +1,7 @@
 import { BaseService } from "@/lib/base.service";
+import { TokenStorage } from "@/lib/utils/token-storage";
 import { Params } from "@/types/api";
 import { User, UserRequest } from "@/types/settings/user";
-import { TokenStorage } from "@/lib/utils/token-storage";
 
 class UserService extends BaseService {
 	constructor() {
@@ -50,7 +50,11 @@ class UserService extends BaseService {
 			const result = await response.json();
 			if (!response.ok) throw result;
 			this.clearListCache();
-			return result;
+			return {
+				...result,
+				success: true,
+				status: response.status,
+			};
 		});
 	};
 
@@ -98,7 +102,11 @@ class UserService extends BaseService {
 			const result = await response.json();
 			if (!response.ok) throw result;
 			this.clearListCache();
-			return result;
+			return {
+				...result,
+				success: true,
+				status: response.status,
+			};
 		});
 	};
 

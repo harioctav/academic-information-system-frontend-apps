@@ -12,11 +12,14 @@ import { FormProps } from "@/types/common";
 import { District } from "@/types/locations/district";
 import { VillageRequest } from "@/types/locations/village";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const VillageFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const t = useTranslations();
+	const router = useRouter();
+
 	const [code, setCode] = useState("");
 	const [name, setName] = useState("");
 	const [posCode, setPosCode] = useState("");
@@ -57,7 +60,7 @@ const VillageFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		setIsLoading(true);
 		setErrors({});
 
-		const villageRequest: VillageRequest = {
+		const request: VillageRequest = {
 			code: parseInt(code),
 			name: name,
 			pos_code: parseInt(posCode),
@@ -66,13 +69,19 @@ const VillageFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 
 		try {
 			if (isEdit && uuid) {
-				await villageService.updateVillage(uuid, villageRequest);
+				const response = await villageService.updateVillage(uuid, request);
+				if (response.success) {
+					toast.success(response.message);
+					if (onSuccess) onSuccess();
+					router.refresh();
+				}
 			} else {
-				await villageService.storeVillage(villageRequest);
-			}
-
-			if (onSuccess) {
-				onSuccess();
+				const response = await villageService.storeVillage(request);
+				if (response.success) {
+					toast.success(response.message);
+					if (onSuccess) onSuccess();
+					router.refresh();
+				}
 			}
 		} catch (error) {
 			const apiError = error as ApiError;
@@ -80,7 +89,7 @@ const VillageFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 				setErrors(apiError.errors);
 			}
 			toast.error(
-				apiError.message || "An error occurred while saving the village"
+				apiError.message || "An error occurred while saving the Village"
 			);
 		} finally {
 			setIsLoading(false);

@@ -1,6 +1,5 @@
 "use client";
 
-import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { getDegreeOptions } from "@/config/enums/degree.type.enum";
@@ -14,6 +13,7 @@ import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { DynamicInput } from "@/components/forms/dynamic-input";
 import { academicOptionService } from "@/lib/services/options/academic.option.service";
+import { DynamicSelectRS } from "@/components/forms/dynamic-select-react";
 
 const MajorFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
@@ -59,17 +59,19 @@ const MajorFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		try {
 			if (isEdit && uuid) {
 				const response = await majorService.updateMajor(uuid, request);
-				toast.success(response.message);
+				if (response.success) {
+					toast.success(response.message);
+					if (onSuccess) onSuccess();
+					router.refresh();
+				}
 			} else {
 				const response = await majorService.storeMajor(request);
-				toast.success(response.message);
+				if (response.success) {
+					toast.success(response.message);
+					if (onSuccess) onSuccess();
+					router.refresh();
+				}
 			}
-
-			if (onSuccess) {
-				onSuccess();
-			}
-
-			router.refresh();
 		} catch (error) {
 			const apiError = error as ApiError;
 			if (apiError.errors) {
@@ -112,14 +114,16 @@ const MajorFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 						<Label htmlFor="degree" className="block text-sm font-medium mb-2">
 							{t("input.common.degree.label")}
 						</Label>
-						<DynamicSelect
+						<DynamicSelectRS
 							value={degree}
 							onChange={(value) => setDegree(value || "")}
 							options={getDegreeOptions()}
 							placeholder={t("input.select")}
 						/>
-						{errors.degree && (
-							<span className="text-sm text-red-500">{errors.degree}</span>
+						{errors.degree?.[0] && (
+							<span className="text-sm text-destructive">
+								{errors.degree[0]}
+							</span>
 						)}
 					</div>
 

@@ -5,17 +5,8 @@ import MajorSubjectDialog from "@/components/pages/academics/majors/subjects/maj
 import { PageHeader } from "@/components/pages/page-header";
 import { ActionButton } from "@/components/shared/buttons/action-button";
 import { DataTable } from "@/components/tables/data-table";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
-import { DynamicSelect } from "@/components/forms/dynamic-select";
+import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import ListContainer from "@/components/ui/list-container";
-import { ListItem } from "@/components/ui/list-item";
 import { LoadingPage } from "@/components/ui/loading-page";
 import { getDegreeLabel } from "@/config/enums/degree.type.enum";
 import { Permission } from "@/config/enums/permission.enum";
@@ -31,6 +22,10 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import { use, useEffect, useState } from "react";
 import { toast } from "sonner";
+import { Info } from "lucide-react";
+import { GridContainer } from "@/components/ui/grid-container";
+import { GridItem } from "@/components/ui/grid-item";
+import { DynamicSelectRS } from "@/components/forms/dynamic-select-react";
 
 export default function MajorSubjectPage({
 	params,
@@ -143,29 +138,28 @@ export default function MajorSubjectPage({
 						<div className="relative p-1 mt-0">
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
 								<Card className="w-full">
-									<CardHeader>
-										<CardTitle>
-											{t("navigation.menu.academics.majors.show")} {major?.name}
-										</CardTitle>
-										<CardDescription>
-											{t("navigation.description.show", {
-												page: t("navigation.menu.academics.majors.label"),
-											})}
-										</CardDescription>
-									</CardHeader>
+									<PageHeader
+										title={`${t("navigation.menu.academics.majors.show")} ${
+											major?.name
+										}`}
+										description={t("navigation.description.show", {
+											page: t("navigation.menu.academics.majors.label"),
+										})}
+										icon={<Info />}
+									/>
 									<CardContent>
-										<ListContainer>
-											<ListItem label="Kode" value={major?.code} />
-											<ListItem label="Program Studi" value={major?.name} />
-											<ListItem
+										<GridContainer>
+											<GridItem label="Kode" value={major?.code} />
+											<GridItem label="Program Studi" value={major?.name} />
+											<GridItem
 												label="Jenjang atau Tingkatan"
 												value={getDegreeLabel(major?.degree)}
 											/>
-											<ListItem
+											<GridItem
 												label="Jumlah SKS Wajib Tempuh"
 												value={totalCredits.toString()}
 											/>
-										</ListContainer>
+										</GridContainer>
 									</CardContent>
 								</Card>
 							</div>
@@ -179,7 +173,7 @@ export default function MajorSubjectPage({
 													page: t("input.common.semester.label"),
 												})}
 											</Label>
-											<DynamicSelect
+											<DynamicSelectRS
 												value={semesterFilter}
 												onChange={setSemesterFilter}
 												options={getSemesterOptions()}

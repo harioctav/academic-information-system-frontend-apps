@@ -1,12 +1,13 @@
 "use client";
 
 import { DynamicDialog } from "@/components/shared/dynamic-dialog";
-import ListContainer from "@/components/ui/list-container";
-import { ListItem } from "@/components/ui/list-item";
+import { GridContainer } from "@/components/ui/grid-container";
+import { GridItem } from "@/components/ui/grid-item";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { regencyService } from "@/lib/services/locations/regency.service";
 import { ShowDialogProps } from "@/types/common";
 import { Regency } from "@/types/locations/regency";
+import { Info } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -45,33 +46,47 @@ const RegencyShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 			description={t("navigation.description.show", {
 				page: t("navigation.menu.locations.regencies.label"),
 			})}
+			icon={<Info />}
 		>
 			{isLoading ? (
 				<LoadingSpinner />
 			) : regency ? (
-				<ListContainer>
-					<ListItem label={t("input.common.code.label")} value={regency.code} />
-					<ListItem
+				<GridContainer>
+					<GridItem
+						label={t("input.common.code.label")}
+						value={regency.code}
+						className="text-center"
+						fullWidth
+					/>
+					<GridItem
 						label={t("input.meta.full_code.label")}
 						value={regency.full_code}
+						className="text-center"
+						fullWidth
 					/>
-					<ListItem
+					<GridItem
 						label={t("input.location.regency.label")}
 						value={`${regency.type} ${regency.name}`}
+						className="text-center"
+						fullWidth
 					/>
-					<ListItem
+					<GridItem
 						label={t("input.province_name.label")}
 						value={regency.province.name}
+						className="text-center"
+						fullWidth
 					/>
-					<ListItem
+					<GridItem
 						label={t("input.meta.created_at.label")}
 						value={regency.created_at.formatted}
+						className="text-center"
 					/>
-					<ListItem
+					<GridItem
 						label={t("input.meta.updated_at.label")}
 						value={regency.updated_at.formatted}
+						className="text-center"
 					/>
-				</ListContainer>
+				</GridContainer>
 			) : null}
 		</DynamicDialog>
 	);

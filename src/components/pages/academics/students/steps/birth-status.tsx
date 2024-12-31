@@ -3,8 +3,8 @@ import { Label } from "@/components/ui/label";
 import { StudentRequest } from "@/types/academics/student";
 import { useTranslations } from "next-intl";
 import { DatePicker } from "@/components/ui/date-picker";
-import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { getGenderTypeOptions } from "@/config/enums/gender.type.enum";
+import { DynamicSelectRS } from "@/components/forms/dynamic-select-react";
 
 interface BirthStatusStepProps {
 	formData: StudentRequest;
@@ -37,7 +37,7 @@ const BirthStatusStep = ({
 				<Label htmlFor="gender" className="block text-sm font-medium mb-2">
 					{t("input.common.gender.label")}
 				</Label>
-				<DynamicSelect
+				<DynamicSelectRS
 					value={formData.gender}
 					onChange={(value) =>
 						setFormData({ ...formData, gender: value || "" })

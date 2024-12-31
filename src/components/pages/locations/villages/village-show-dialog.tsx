@@ -7,9 +7,10 @@ import { useTranslations } from "next-intl";
 import { Village } from "@/types/locations/village";
 import { toast } from "sonner";
 import { ShowDialogProps } from "@/types/common";
-import { ListItem } from "@/components/ui/list-item";
-import ListContainer from "@/components/ui/list-container";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { Info } from "lucide-react";
+import { GridContainer } from "@/components/ui/grid-container";
+import { GridItem } from "@/components/ui/grid-item";
 
 export function VillageShowDialog({ isOpen, onClose, uuid }: ShowDialogProps) {
 	const t = useTranslations();
@@ -45,45 +46,65 @@ export function VillageShowDialog({ isOpen, onClose, uuid }: ShowDialogProps) {
 			description={t("navigation.description.show", {
 				page: t("navigation.menu.locations.villages.label"),
 			})}
+			icon={<Info />}
 		>
 			{isLoading ? (
 				<LoadingSpinner />
 			) : village ? (
-				<ListContainer>
-					<ListItem label={t("input.common.code.label")} value={village.code} />
-					<ListItem
+				<GridContainer className="p-5">
+					<GridItem
+						label={t("input.common.code.label")}
+						value={village.code}
+						className="text-center"
+						fullWidth
+					/>
+					<GridItem
 						label={t("input.meta.full_code.label")}
 						value={village.full_code}
+						className="text-center"
+						fullWidth
 					/>
-					<ListItem
+					<GridItem
 						label={t("input.location.village.label")}
 						value={village.name}
+						className="text-center"
+						fullWidth
 					/>
-					<ListItem
+					<GridItem
 						label={t("input.location.pos_code.label")}
 						value={village.pos_code || "-"}
+						className="text-center"
+						fullWidth
 					/>
-					<ListItem
+					<GridItem
 						label={t("input.district_name.label")}
 						value={village.district.name}
+						className="text-center"
+						fullWidth
 					/>
-					<ListItem
+					<GridItem
 						label={t("input.regency_name.label")}
 						value={`${village.district.regency.type} ${village.district.regency.name}`}
+						className="text-center"
+						fullWidth
 					/>
-					<ListItem
+					<GridItem
 						label={t("input.province_name.label")}
 						value={village.district.regency.province.name}
+						className="text-center"
+						fullWidth
 					/>
-					<ListItem
+					<GridItem
 						label={t("input.meta.created_at.label")}
 						value={village.created_at.formatted}
+						className="text-center"
 					/>
-					<ListItem
+					<GridItem
 						label={t("input.meta.updated_at.label")}
 						value={village.updated_at.formatted}
+						className="text-center"
 					/>
-				</ListContainer>
+				</GridContainer>
 			) : null}
 		</DynamicDialog>
 	);

@@ -2,7 +2,6 @@
 
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
-import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { getSemesterOptions } from "@/config/enums/semester.enum";
 import { majorSubjectService } from "@/lib/services/academics/major.subject.service";
 import { MajorSubjectRequest } from "@/types/academics/major.subject";
@@ -15,6 +14,7 @@ import { toast } from "sonner";
 import { Subject } from "@/types/academics/subject";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { majorSubjectOptionService } from "@/lib/services/academics/major.subject.option.service";
+import { DynamicSelectRS } from "@/components/forms/dynamic-select-react";
 
 interface MajorSubjectFormProps extends FormProps {
 	majorUuid: string;
@@ -123,7 +123,7 @@ const MajorSubjectFormInput = ({
 						>
 							{t("input.common.semester.label")}
 						</Label>
-						<DynamicSelect
+						<DynamicSelectRS
 							value={semester.toString()}
 							onChange={(value) => setSemester(Number(value))}
 							options={getSemesterOptions()}

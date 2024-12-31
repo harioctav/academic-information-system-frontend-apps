@@ -1,7 +1,6 @@
 "use client";
 
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
-import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { RegencyType } from "@/config/enums/regency.type.enum";
@@ -16,6 +15,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { DynamicInput } from "@/components/forms/dynamic-input";
 import { locationOptionService } from "@/lib/services/options/location.option.service";
+import { DynamicSelectRS } from "@/components/forms/dynamic-select-react";
 
 const RegencyFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const t = useTranslations();
@@ -65,7 +65,7 @@ const RegencyFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		setIsLoading(true);
 		setErrors({});
 
-		const regencyRequest: RegencyRequest = {
+		const request: RegencyRequest = {
 			code: parseInt(code),
 			name: name,
 			type: type,
@@ -74,28 +74,27 @@ const RegencyFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 
 		try {
 			if (isEdit && uuid) {
-				const response = await regencyService.updateRegency(
-					uuid,
-					regencyRequest
-				);
-				toast.success(response.message);
+				const response = await regencyService.updateRegency(uuid, request);
+				if (response.success) {
+					toast.success(response.message);
+					if (onSuccess) onSuccess();
+					router.refresh();
+				}
 			} else {
-				const response = await regencyService.storeRegency(regencyRequest);
-				toast.success(response.message);
+				const response = await regencyService.storeRegency(request);
+				if (response.success) {
+					toast.success(response.message);
+					if (onSuccess) onSuccess();
+					router.refresh();
+				}
 			}
-
-			if (onSuccess) {
-				onSuccess();
-			}
-
-			router.refresh();
 		} catch (error) {
 			const apiError = error as ApiError;
 			if (apiError.errors) {
 				setErrors(apiError.errors);
 			}
 			toast.error(
-				apiError.message || "An error occurred while saving the regency"
+				apiError.message || "An error occurred while saving the Regency"
 			);
 		} finally {
 			setIsLoading(false);
@@ -154,7 +153,7 @@ const RegencyFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 						<Label htmlFor="type" className="block text-sm font-medium mb-2">
 							{t("input.common.type.label")}
 						</Label>
-						<DynamicSelect
+						<DynamicSelectRS
 							value={type}
 							onChange={(value) => setType(value || "")}
 							options={regencyTypeOptions}

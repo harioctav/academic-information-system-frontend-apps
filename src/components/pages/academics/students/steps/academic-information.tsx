@@ -1,5 +1,5 @@
 import { DynamicInput } from "@/components/forms/dynamic-input";
-import { DynamicSelect } from "@/components/forms/dynamic-select";
+import { DynamicSelectRS } from "@/components/forms/dynamic-select-react";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -130,7 +130,7 @@ const AcademicInformationStep = ({
 				>
 					{t("input.common.status_registration.label")}
 				</Label>
-				<DynamicSelect
+				<DynamicSelectRS
 					value={formData.status_registration || ""}
 					onChange={(value) =>
 						setFormData({ ...formData, status_registration: value })

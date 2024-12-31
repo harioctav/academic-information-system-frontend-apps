@@ -45,35 +45,34 @@ const ProvinceFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		setIsLoading(true);
 		setErrors({});
 
-		const provinceData: ProvinceRequest = {
+		const request: ProvinceRequest = {
 			code: parseInt(code),
 			name: name,
 		};
 
 		try {
 			if (isEdit && uuid) {
-				const response = await provinceService.updateProvince(
-					uuid,
-					provinceData
-				);
-				toast.success(response.message);
+				const response = await provinceService.updateProvince(uuid, request);
+				if (response.success) {
+					toast.success(response.message);
+					if (onSuccess) onSuccess();
+					router.refresh();
+				}
 			} else {
-				const response = await provinceService.storeProvince(provinceData);
-				toast.success(response.message);
+				const response = await provinceService.storeProvince(request);
+				if (response.success) {
+					toast.success(response.message);
+					if (onSuccess) onSuccess();
+					router.refresh();
+				}
 			}
-
-			if (onSuccess) {
-				onSuccess();
-			}
-
-			router.refresh();
 		} catch (error) {
 			const apiError = error as ApiError;
 			if (apiError.errors) {
 				setErrors(apiError.errors);
 			}
 			toast.error(
-				apiError.message || "An error occurred while saving the province"
+				apiError.message || "An error occurred while saving the Province"
 			);
 		} finally {
 			setIsLoading(false);

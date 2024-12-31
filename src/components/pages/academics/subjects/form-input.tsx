@@ -1,6 +1,5 @@
 import { DynamicInput } from "@/components/forms/dynamic-input";
 import { CheckboxGroup } from "@/components/ui/checkbox-group";
-import { DynamicSelect } from "@/components/forms/dynamic-select";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { SubjectNote } from "@/config/enums/subject.note.enum";
@@ -14,6 +13,7 @@ import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { academicOptionService } from "@/lib/services/options/academic.option.service";
+import { DynamicSelectRS } from "@/components/forms/dynamic-select-react";
 
 const SubjectFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
@@ -145,7 +145,7 @@ const SubjectFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 						>
 							{t("input.common.subject_status.label")}
 						</Label>
-						<DynamicSelect
+						<DynamicSelectRS
 							value={subjectStatus}
 							onChange={(value) => setSubjectStatus(value || "")}
 							options={getSubjectStatusOptions()}

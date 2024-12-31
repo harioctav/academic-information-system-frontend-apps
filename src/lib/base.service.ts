@@ -127,25 +127,20 @@ export class BaseService {
 				body: JSON.stringify(body),
 			});
 
-			const result = await response.json().catch(() => ({}));
+			const result = await response.json();
 
-			if (response.status === 403) {
-				return {
-					status: response.status,
-					success: false,
-					message:
-						result.message ||
-						"You don't have permission to perform this action",
-					data: {} as R,
+			// Add this block to handle validation errors (422 status)
+			if (response.status === 422) {
+				throw {
+					message: result.message,
+					errors: result.errors,
 				};
 			}
 
 			if (!response.ok) {
-				return {
-					status: response.status,
-					success: false,
+				throw {
 					message: result.message || "Request failed",
-					data: {} as R,
+					errors: result.errors,
 				};
 			}
 
@@ -156,14 +151,7 @@ export class BaseService {
 				status: response.status,
 			};
 		} catch (error) {
-			const errorMessage =
-				error instanceof Error ? error.message : "An unexpected error occurred";
-			return {
-				status: 500,
-				success: false,
-				message: errorMessage,
-				data: {} as R,
-			};
+			throw error;
 		}
 	}
 
@@ -179,25 +167,19 @@ export class BaseService {
 				body: JSON.stringify(body),
 			});
 
-			const result = await response.json().catch(() => ({}));
+			const result = await response.json();
 
-			if (response.status === 403) {
-				return {
-					status: response.status,
-					success: false,
-					message:
-						result.message ||
-						"You don't have permission to perform this action",
-					data: {} as R,
+			if (response.status === 422) {
+				throw {
+					message: result.message,
+					errors: result.errors,
 				};
 			}
 
 			if (!response.ok) {
-				return {
-					status: response.status,
-					success: false,
+				throw {
 					message: result.message || "Request failed",
-					data: {} as R,
+					errors: result.errors,
 				};
 			}
 
@@ -208,14 +190,7 @@ export class BaseService {
 				status: response.status,
 			};
 		} catch (error) {
-			const errorMessage =
-				error instanceof Error ? error.message : "An unexpected error occurred";
-			return {
-				status: 500,
-				success: false,
-				message: errorMessage,
-				data: {} as R,
-			};
+			throw error;
 		}
 	}
 

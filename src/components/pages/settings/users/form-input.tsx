@@ -82,24 +82,26 @@ const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		try {
 			if (isEdit && uuid) {
 				const response = await userService.updateUser(uuid, formData);
-				toast.success(response.message);
+				if (response.success) {
+					toast.success(response.message);
+					if (onSuccess) onSuccess();
+					router.refresh();
+				}
 			} else {
 				const response = await userService.storeUser(formData);
-				toast.success(response.message);
+				if (response.success) {
+					toast.success(response.message);
+					if (onSuccess) onSuccess();
+					router.refresh();
+				}
 			}
-
-			if (onSuccess) {
-				onSuccess();
-			}
-
-			router.refresh();
 		} catch (error) {
 			const apiError = error as ApiError;
 			if (apiError.errors) {
 				setErrors(apiError.errors);
 			}
 			toast.error(
-				apiError.message || "An error occurred while saving the user"
+				apiError.message || "An error occurred while saving the User"
 			);
 		} finally {
 			setIsLoading(false);
@@ -110,31 +112,6 @@ const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		<div className="w-full max-w-md mx-auto py-3">
 			<form onSubmit={handleSubmit}>
 				<div className="grid gap-6">
-					<div className="space-y-2">
-						<Label htmlFor="roles" className="block text-sm font-medium mb-2">
-							{t("input.user.roles.label")}
-						</Label>
-						<AsyncSelectInput<Role>
-							placeholder={t("input.select")}
-							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/settings/roles`}
-							value={selectedRole}
-							onChange={(newValue) => {
-								setSelectedRole(newValue);
-								setFormData({ ...formData, roles: newValue?.data.id || 0 });
-							}}
-							onClear={() => {
-								setSelectedRole(null);
-								setFormData({ ...formData, roles: 0 });
-							}}
-							textFormatter={(item) => getRoleLabel(item.name)}
-							valueFormatter={(item) => item.id}
-							isClearable
-						/>
-						{errors.roles && (
-							<span className="text-sm text-red-500">{errors.roles[0]}</span>
-						)}
-					</div>
-
 					<div className="space-y-2">
 						<Label htmlFor="photo" className="block text-sm font-medium mb-2">
 							{t("input.user.photo.label")}
@@ -186,6 +163,31 @@ const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 						error={errors.phone?.[0]}
 						disabled={isLoading}
 					/>
+
+					<div className="space-y-2">
+						<Label htmlFor="roles" className="block text-sm font-medium mb-2">
+							{t("input.user.roles.label")}
+						</Label>
+						<AsyncSelectInput<Role>
+							placeholder={t("input.select")}
+							apiUrl={`${process.env.NEXT_PUBLIC_API_URL}/settings/roles`}
+							value={selectedRole}
+							onChange={(newValue) => {
+								setSelectedRole(newValue);
+								setFormData({ ...formData, roles: newValue?.data.id || 0 });
+							}}
+							onClear={() => {
+								setSelectedRole(null);
+								setFormData({ ...formData, roles: 0 });
+							}}
+							textFormatter={(item) => getRoleLabel(item.name)}
+							valueFormatter={(item) => item.id}
+							isClearable
+						/>
+						{errors.roles && (
+							<span className="text-sm text-red-500">{errors.roles[0]}</span>
+						)}
+					</div>
 
 					<SubmitButton type="submit" className="w-full" isLoading={isLoading}>
 						{isEdit ? t("button.common.edit") : t("button.common.create")}

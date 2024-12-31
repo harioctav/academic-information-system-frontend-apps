@@ -431,7 +431,8 @@
 			"option": "Options",
 			"loading": "Loading...",
 			"manage_permissions": "Manage Permissions",
-			"continue": "Continue"
+			"continue": "Continue",
+			"clear": "Clear"
 		},
 		"auth": {
 			"login": "Login",

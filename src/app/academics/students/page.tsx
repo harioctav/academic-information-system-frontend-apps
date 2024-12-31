@@ -1,6 +1,6 @@
 "use client";
 
-import { DynamicSelect } from "@/components/forms/dynamic-select";
+import { DynamicSelectRS } from "@/components/forms/dynamic-select-react";
 import { MainLayout } from "@/components/layouts/main-layout";
 import StudentShowDialog from "@/components/pages/academics/students/student-show-dialog";
 import { PageHeader } from "@/components/pages/page-header";
@@ -131,7 +131,7 @@ export default function StudentPage() {
 											page: t("input.common.status_registration.label"),
 										})}
 									</Label>
-									<DynamicSelect
+									<DynamicSelectRS
 										value={statusRegisFilter}
 										onChange={setStatusRegisFilter}
 										options={getStatusRegistrationOptions()}
