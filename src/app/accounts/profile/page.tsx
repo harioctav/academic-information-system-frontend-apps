@@ -3,7 +3,7 @@
 import { MainLayout } from "@/components/layouts/main-layout";
 import UpdateProfileForm from "@/components/pages/accounts/update-profile-form";
 import { PageHeader } from "@/components/pages/page-header";
-import { ProfileCard } from "@/components/shared/profile-card";
+import { ProfileCard } from "@/components/pages/accounts/profile-card";
 import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/lib/services/auth/auth-provider";
 import { UserCircle } from "lucide-react";

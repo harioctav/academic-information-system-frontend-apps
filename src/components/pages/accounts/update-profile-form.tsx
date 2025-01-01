@@ -2,7 +2,6 @@
 
 import { DynamicInput } from "@/components/forms/dynamic-input";
 import { PhoneInput } from "@/components/forms/phone-input";
-import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import UploadImage from "@/components/ui/upload-image";
@@ -22,7 +21,9 @@ const UpdateProfileForm = ({ user, onSuccess }: UpdateProfileFormProps) => {
 	const t = useTranslations();
 	const [isLoading, setIsLoading] = useState(false);
 	const [errors, setErrors] = useState<ValidationErrors>({});
-	const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+	const [imagePreview, setImagePreview] = useState<string | null>(
+		user.photo_url
+	);
 	const [formData, setFormData] = useState<UserRequest>({
 		name: user.name || "",
 		email: user.email || "",
@@ -32,31 +33,8 @@ const UpdateProfileForm = ({ user, onSuccess }: UpdateProfileFormProps) => {
 	});
 
 	const handleDeleteImage = () => {
-		if (user.photo_url) {
-			setShowDeleteConfirmation(true);
-		} else {
-			setFormData({ ...formData, photo: undefined });
-		}
-	};
-
-	const confirmDeleteImage = async () => {
-		setIsLoading(true);
-		try {
-			const response = await accountService.deleteUserImage(user.uuid);
-			if (response.code === 200) {
-				toast.success(response.message);
-				setFormData({ ...formData, photo: undefined });
-				if (onSuccess) {
-					await onSuccess();
-				}
-			}
-		} catch (error) {
-			const apiError = error as ApiError;
-			toast.error(apiError.message || "Failed to delete image");
-		} finally {
-			setIsLoading(false);
-			setShowDeleteConfirmation(false);
-		}
+		setFormData({ ...formData, photo: undefined });
+		setImagePreview(null);
 	};
 
 	const handleSubmit = async (e: React.FormEvent) => {
@@ -93,9 +71,10 @@ const UpdateProfileForm = ({ user, onSuccess }: UpdateProfileFormProps) => {
 						</Label>
 
 						<UploadImage
-							initialImage={user.photo_url}
+							initialImage={imagePreview}
 							onImageUpload={(file) => {
 								setFormData({ ...formData, photo: file });
+								setImagePreview(URL.createObjectURL(file));
 							}}
 							onDeleteImage={handleDeleteImage}
 						/>
@@ -137,16 +116,6 @@ const UpdateProfileForm = ({ user, onSuccess }: UpdateProfileFormProps) => {
 					</SubmitButton>
 				</div>
 			</form>
-
-			<ConfirmationDialog
-				isOpen={showDeleteConfirmation}
-				onClose={() => setShowDeleteConfirmation(false)}
-				onConfirm={confirmDeleteImage}
-				title={t("dialog.deleteImage.title")}
-				description={t("dialog.deleteImage.description")}
-				confirmText={t("button.common.delete")}
-				cancelText={t("button.common.cancel")}
-			/>
 		</div>
 	);
 };

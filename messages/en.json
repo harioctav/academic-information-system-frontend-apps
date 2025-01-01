@@ -335,7 +335,8 @@
 			},
 			"image": {
 				"label": "Image",
-				"placeholder": "Upload New Image"
+				"placeholder": "Upload New Image",
+				"helper": "Upload a new image to replace image data, deleting image data can only be done on the detail page"
 			}
 		},
 		"user": {

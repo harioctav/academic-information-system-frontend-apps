@@ -333,7 +333,8 @@
 			},
 			"image": {
 				"label": "Gambar",
-				"placeholder": "Unggah Gambar Baru"
+				"placeholder": "Unggah Gambar Baru",
+				"helper": "Unggah gambar baru untuk mengganti data gambar, menghapus data gambar hanya bisa dilakukan di halaman detail"
 			}
 		},
 		"user": {

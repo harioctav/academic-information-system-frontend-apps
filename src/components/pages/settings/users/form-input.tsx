@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { userService } from "@/lib/services/settings/user.service";
 import { ApiError, ValidationErrors } from "@/types/api";
-import { User, UserRequest } from "@/types/settings/user";
+import { UserRequest } from "@/types/settings/user";
 import { useRouter } from "next/navigation";
 import { useEffect, useCallback, useState } from "react";
 import { toast } from "sonner";
@@ -16,7 +16,6 @@ import { getRoleLabel } from "@/config/enums/role.enum";
 import { PhoneInput } from "@/components/forms/phone-input";
 import { DynamicInput } from "@/components/forms/dynamic-input";
 import UploadImage from "@/components/ui/upload-image";
-import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 
 const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
@@ -34,37 +33,10 @@ const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		null
 	);
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
-	const [userData, setUserData] = useState<User | null>(null);
-	const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
 	const handleDeleteImage = () => {
-		if (isEdit && userData?.photo_url) {
-			setShowDeleteConfirmation(true);
-		} else {
-			setFormData({ ...formData, photo: undefined });
-			setImagePreview(null);
-		}
-	};
-
-	const confirmDeleteImage = async () => {
-		setIsLoading(true);
-		try {
-			const response = await userService.deleteUserImage(uuid);
-			if (response.code === 200) {
-				toast.success(response.message);
-				setFormData({ ...formData, photo: undefined });
-				setImagePreview(null);
-				if (onSuccess) {
-					await onSuccess();
-				}
-			}
-		} catch (error) {
-			const apiError = error as ApiError;
-			toast.error(apiError.message || "Failed to delete image");
-		} finally {
-			setIsLoading(false);
-			setShowDeleteConfirmation(false);
-		}
+		setFormData({ ...formData, photo: undefined });
+		setImagePreview(null);
 	};
 
 	const loadUserData = useCallback(async () => {
@@ -72,7 +44,6 @@ const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		try {
 			setIsLoading(true);
 			const response = await userService.showUser(uuid);
-			setUserData(response.data);
 
 			// Set form data with loaded user data
 			setFormData({
@@ -222,16 +193,6 @@ const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 					</SubmitButton>
 				</div>
 			</form>
-
-			<ConfirmationDialog
-				isOpen={showDeleteConfirmation}
-				onClose={() => setShowDeleteConfirmation(false)}
-				onConfirm={confirmDeleteImage}
-				title={t("dialog.deleteImage.title")}
-				description={t("dialog.deleteImage.description")}
-				confirmText={t("button.common.delete")}
-				cancelText={t("button.common.cancel")}
-			/>
 		</div>
 	);
 };

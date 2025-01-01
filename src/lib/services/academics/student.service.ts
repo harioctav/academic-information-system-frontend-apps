@@ -202,6 +202,33 @@ class StudentService extends BaseService {
 	bulkDeleteStudents = (ids: string[]) => {
 		return this.delete<{ ids: string[] }, Student>("/bulk-delete", { ids });
 	};
+
+	/**
+	 * Deletes the student's image from storage.
+	 */
+	deleteStudentImage = (uuid: string | undefined) => {
+		if (!uuid) {
+			throw new Error("UUID is required");
+		}
+
+		return fetch(`${this.baseUrl}/${uuid}/delete-image`, {
+			method: "GET",
+			headers: {
+				Accept: "application/json",
+				Authorization: `Bearer ${TokenStorage.getAccessToken()}`,
+			},
+			credentials: "include",
+		}).then(async (response) => {
+			const result = await response.json();
+			if (!response.ok) throw result;
+			this.clearListCache();
+			return {
+				code: result.code,
+				message: result.message,
+				success: true,
+			};
+		});
+	};
 }
 
 export const studentService = new StudentService();

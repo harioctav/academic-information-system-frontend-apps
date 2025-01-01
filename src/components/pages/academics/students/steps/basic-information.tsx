@@ -1,8 +1,8 @@
 import { DynamicInput } from "@/components/forms/dynamic-input";
 import { DynamicSelectRS } from "@/components/forms/dynamic-select-react";
-import ImageInput from "@/components/forms/image-input";
 import { PhoneInput } from "@/components/forms/phone-input";
 import { Label } from "@/components/ui/label";
+import UploadImage from "@/components/ui/upload-image";
 import { getReligionOptions } from "@/config/enums/religion.type";
 import { StudentRequest } from "@/types/academics/student";
 import { useTranslations } from "next-intl";
@@ -49,19 +49,16 @@ const BasicInformationStep = ({
 							{t("input.user.photo.label")}
 						</Label>
 
-						<ImageInput
-							value={imagePreview}
-							onChange={(file) => {
+						<UploadImage
+							initialImage={imagePreview}
+							onImageUpload={(file) => {
 								setFormData({ ...formData, student_photo_path: file });
-								setImagePreview(file ? URL.createObjectURL(file) : null);
+								setImagePreview(URL.createObjectURL(file));
 							}}
-							onRemove={() => {
+							onDeleteImage={() => {
 								setFormData({ ...formData, student_photo_path: undefined });
 								setImagePreview(null);
 							}}
-							name={formData.name}
-							disabled={isLoading}
-							fallback={formData.name.charAt(0)}
 						/>
 
 						{errors.student_photo_path && (

@@ -46,45 +46,49 @@ const UploadImage = ({
 	};
 
 	return (
-		<div className="relative w-32 h-32">
-			<label
-				htmlFor="image-upload"
-				className="flex flex-col items-center justify-center w-full h-full border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-400 transition-colors"
-			>
-				{preview ? (
-					<div className="relative w-full h-full">
-						<Image
-							src={preview}
-							alt="Preview"
-							fill
-							className="object-cover rounded-lg"
-							unoptimized
-						/>
-						<button
-							type="button"
-							onClick={handleDelete}
-							className="absolute -top-2 -right-2 p-1 bg-red-500 rounded-full text-white hover:bg-red-600"
-						>
-							<X className="w-4 h-4" />
-						</button>
-					</div>
-				) : (
-					<div className="flex flex-col items-center justify-center p-4 text-gray-500">
-						<Upload className="w-8 h-8 mb-2" />
-						<span className="text-xs text-center">
-							{t("input.common.image.placeholder")}
-						</span>
-					</div>
-				)}
-
-				<input
-					id="image-upload"
-					type="file"
-					className="hidden"
-					accept="image/*"
-					onChange={handleImageChange}
-				/>
-			</label>
+		<div>
+			<div className="relative w-32 h-32">
+				<label
+					htmlFor="image-upload"
+					className="flex flex-col items-center justify-center w-full h-full border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-gray-400 transition-colors"
+				>
+					{preview ? (
+						<div className="relative w-full h-full">
+							<Image
+								src={preview}
+								alt="Preview"
+								fill
+								className="object-cover rounded-lg"
+								unoptimized
+							/>
+							<button
+								type="button"
+								onClick={handleDelete}
+								className="absolute -top-2 -right-2 p-1 bg-red-500 rounded-full text-white hover:bg-red-600"
+							>
+								<X className="w-4 h-4" />
+							</button>
+						</div>
+					) : (
+						<div className="flex flex-col items-center justify-center p-4 text-gray-500">
+							<Upload className="w-8 h-8 mb-2" />
+							<span className="text-xs text-center">
+								{t("input.common.image.placeholder")}
+							</span>
+						</div>
+					)}
+					<input
+						id="image-upload"
+						type="file"
+						className="hidden"
+						accept="image/*"
+						onChange={handleImageChange}
+					/>
+				</label>
+			</div>
+			<p className="mt-2 text-sm text-muted-foreground">
+				{t("input.common.image.helper")}
+			</p>
 		</div>
 	);
 };

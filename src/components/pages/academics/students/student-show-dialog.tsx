@@ -34,6 +34,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AddressType } from "@/config/enums/address.type.enum";
+import { ApiError } from "@/types/api";
+import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 
 const StudentShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 	const t = useTranslations();
@@ -42,6 +44,36 @@ const StudentShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 
 	const [copyDomicileIcon, setCopyDomicileIcon] = useState(false);
 	const [copyIdCardIcon, setCopyIdCardIcon] = useState(false);
+
+	const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+
+	const handleDeleteImage = () => {
+		if (student?.student_photo_url) {
+			setShowDeleteConfirmation(true);
+		}
+	};
+
+	const confirmDeleteImage = async () => {
+		if (!uuid) return;
+
+		setIsLoading(true);
+		try {
+			const response = await studentService.deleteStudentImage(uuid);
+			if (response.code === 200) {
+				toast.success(response.message);
+				// Since we've already checked uuid is not undefined above,
+				// we can safely use it here
+				const updatedStudent = await studentService.showStudent(uuid);
+				setStudent(updatedStudent.data);
+			}
+		} catch (error) {
+			const apiError = error as ApiError;
+			toast.error(apiError.message || "Failed to delete image");
+		} finally {
+			setIsLoading(false);
+			setShowDeleteConfirmation(false);
+		}
+	};
 
 	const copyToClipboard = (
 		text: string,
@@ -106,6 +138,8 @@ const StudentShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 									avatar={student.student_photo_url}
 									fullWidth
 									className="mb-2"
+									showDeleteButton={true}
+									onDeleteImage={handleDeleteImage}
 								/>
 								<GridItem
 									label={t("input.common.nik.label")}
@@ -307,6 +341,17 @@ const StudentShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 							</GridContainer>
 						</CardContent>
 					</Card>
+					<>
+						<ConfirmationDialog
+							isOpen={showDeleteConfirmation}
+							onClose={() => setShowDeleteConfirmation(false)}
+							onConfirm={confirmDeleteImage}
+							title={t("dialog.deleteImage.title")}
+							description={t("dialog.deleteImage.description")}
+							confirmText={t("button.common.delete")}
+							cancelText={t("button.common.cancel")}
+						/>
+					</>
 				</div>
 			) : null}
 		</DynamicDialog>
