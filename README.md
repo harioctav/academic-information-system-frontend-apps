@@ -53,9 +53,9 @@ This project is licensed under the GNU Affero General Public License v3.0 (AGPL-
 
 ## Contact
 
--- Developer: Hari Octavian
--- Email: aldiama.octavian@gmail.com
--- LinkedIn: [Hari Octavian](https://www.linkedin.com/in/aldiama-octavian/)
--- Project: [System Information Academic UT Sukabumi](https://github.com/harioctav/academic-information-system-frontend-apps)
+- Developer: Hari Octavian
+- Email: aldiama.octavian@gmail.com
+- LinkedIn: [Hari Octavian](https://www.linkedin.com/in/aldiama-octavian/)
+- Project: [System Information Academic UT Sukabumi](https://github.com/harioctav/academic-information-system-frontend-apps)
 
 The README now includes the AGPL-3.0 license information and your contact details. The AGPL-3.0 license is a strong copyleft license that ensures the software and any modifications remain open source.
