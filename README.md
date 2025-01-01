@@ -1,6 +1,17 @@
 # Academic Information System Frontend
 
-A modern academic information system built with Next.js, providing a seamless experience for managing academic data and processes.
+A comprehensive academic management platform built with Next.js that streamlines educational operations. This system provides robust features for managing student data, course schedules, grades, and academic processes with a modern, user-friendly interface.
+
+Key Highlights:
+
+- Efficient academic data management
+- Real-time updates and notifications
+- Secure user authentication and authorization
+- Responsive design for all devices
+- Fast and reliable performance
+- Integration-ready architecture
+
+This frontend application serves as the user interface for educational institutions looking to digitize and modernize their academic management processes
 
 ## Features
 
