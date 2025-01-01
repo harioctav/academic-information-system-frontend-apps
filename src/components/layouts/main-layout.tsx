@@ -10,7 +10,7 @@ import {
 import { PageBreadcrumb } from "@/components/shared/breadcrumbs/page-breadcrumb";
 import { ModeToggle } from "@/components/shared/mode-toggle";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
-import { useAuth } from "@/lib/auth/auth-provider";
+import { useAuth } from "@/lib/services/auth/auth-provider";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { routes, validModulePaths } from "@/config/routes/index";

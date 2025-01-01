@@ -44,7 +44,7 @@ export function ActionButton({
 		<Button size="sm" variant="destructive" asChild>
 			<Link href={url!} className="flex items-center">
 				<ChevronLeft className="mr-1 h-4 w-4" />
-				{t("button.common.back-to-list")}
+				{t("button.common.back")}
 			</Link>
 		</Button>
 	);

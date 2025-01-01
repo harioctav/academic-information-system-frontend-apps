@@ -14,7 +14,7 @@ import { getStatusOptions } from "@/config/enums/status.enum";
 import { useUserColumns } from "@/hooks/columns/settings/use-user-column";
 import { usePermissions } from "@/hooks/permissions/use-permission";
 import { useDataTable } from "@/hooks/use-datatable";
-import { useAuth } from "@/lib/auth/auth-provider";
+import { useAuth } from "@/lib/services/auth/auth-provider";
 import { userService } from "@/lib/services/settings/user.service";
 import { Role } from "@/types/settings/role";
 import { User } from "@/types/settings/user";

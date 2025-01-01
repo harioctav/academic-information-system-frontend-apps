@@ -139,6 +139,36 @@ class UserService extends BaseService {
 	bulkDeleteUsers = (ids: string[]) => {
 		return this.delete<{ ids: string[] }, User>("/bulk-delete", { ids });
 	};
+
+	/**
+	 * Deletes the user's image.
+	 *
+	 * @param uuid - The unique identifier of the user.
+	 * @returns An object containing the response code, message, and a success flag.
+	 */
+	deleteUserImage = (uuid: string | undefined) => {
+		if (!uuid) {
+			throw new Error("UUID is required");
+		}
+
+		return fetch(`${this.baseUrl}/${uuid}/delete-image`, {
+			method: "GET",
+			headers: {
+				Accept: "application/json",
+				Authorization: `Bearer ${TokenStorage.getAccessToken()}`,
+			},
+			credentials: "include",
+		}).then(async (response) => {
+			const result = await response.json();
+			if (!response.ok) throw result;
+			this.clearListCache();
+			return {
+				code: result.code,
+				message: result.message,
+				success: true,
+			};
+		});
+	};
 }
 
 export const userService = new UserService();

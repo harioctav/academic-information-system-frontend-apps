@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "@/lib/auth/auth-provider";
+import { useAuth } from "@/lib/services/auth/auth-provider";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { LoadingPage } from "@/components/ui/loading-page";

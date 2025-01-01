@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import { forgotPasswordService } from "@/lib/auth/forgot.password.service";
+import { forgotPasswordService } from "@/lib/services/auth/forgot.password.service";
 import { toast } from "sonner";
 import { SubmitButton } from "../ui/submit-button";
 

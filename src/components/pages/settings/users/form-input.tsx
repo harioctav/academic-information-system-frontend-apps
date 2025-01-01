@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { userService } from "@/lib/services/settings/user.service";
 import { ApiError, ValidationErrors } from "@/types/api";
-import { UserRequest } from "@/types/settings/user";
+import { User, UserRequest } from "@/types/settings/user";
 import { useRouter } from "next/navigation";
 import { useEffect, useCallback, useState } from "react";
 import { toast } from "sonner";
@@ -13,9 +13,10 @@ import { FormProps } from "@/types/common";
 import { AsyncSelectInput, SelectOption } from "@/components/ui/async-select";
 import { Role } from "@/types/settings/role";
 import { getRoleLabel } from "@/config/enums/role.enum";
-import ImageInput from "@/components/forms/image-input";
 import { PhoneInput } from "@/components/forms/phone-input";
 import { DynamicInput } from "@/components/forms/dynamic-input";
+import UploadImage from "@/components/ui/upload-image";
+import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 
 const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 	const router = useRouter();
@@ -33,14 +34,47 @@ const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 		null
 	);
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
+	const [userData, setUserData] = useState<User | null>(null);
+	const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+
+	const handleDeleteImage = () => {
+		if (isEdit && userData?.photo_url) {
+			setShowDeleteConfirmation(true);
+		} else {
+			setFormData({ ...formData, photo: undefined });
+			setImagePreview(null);
+		}
+	};
+
+	const confirmDeleteImage = async () => {
+		setIsLoading(true);
+		try {
+			const response = await userService.deleteUserImage(uuid);
+			if (response.code === 200) {
+				toast.success(response.message);
+				setFormData({ ...formData, photo: undefined });
+				setImagePreview(null);
+				if (onSuccess) {
+					await onSuccess();
+				}
+			}
+		} catch (error) {
+			const apiError = error as ApiError;
+			toast.error(apiError.message || "Failed to delete image");
+		} finally {
+			setIsLoading(false);
+			setShowDeleteConfirmation(false);
+		}
+	};
 
 	const loadUserData = useCallback(async () => {
 		if (!uuid) return;
 		try {
 			setIsLoading(true);
 			const response = await userService.showUser(uuid);
+			setUserData(response.data);
 
-			// Set form data with null check for roles
+			// Set form data with loaded user data
 			setFormData({
 				name: response.data.name || "",
 				email: response.data.email || "",
@@ -51,7 +85,7 @@ const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 			// Set image preview
 			setImagePreview(response.data.photo_url);
 
-			// Set selected role with null check
+			// Set selected role
 			if (response.data.roles?.[0]) {
 				setSelectedRole({
 					value: response.data.roles[0].id,
@@ -117,19 +151,13 @@ const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 							{t("input.user.photo.label")}
 						</Label>
 
-						<ImageInput
-							value={imagePreview}
-							onChange={(file) => {
+						<UploadImage
+							initialImage={imagePreview}
+							onImageUpload={(file) => {
 								setFormData({ ...formData, photo: file });
-								setImagePreview(file ? URL.createObjectURL(file) : null);
+								setImagePreview(URL.createObjectURL(file));
 							}}
-							onRemove={() => {
-								setFormData({ ...formData, photo: undefined });
-								setImagePreview(null);
-							}}
-							name={formData.name}
-							disabled={isLoading}
-							fallback={formData.name.charAt(0)}
+							onDeleteImage={handleDeleteImage}
 						/>
 
 						{errors.photo && (
@@ -194,6 +222,16 @@ const UserFormInput = ({ uuid, isEdit, onSuccess }: FormProps) => {
 					</SubmitButton>
 				</div>
 			</form>
+
+			<ConfirmationDialog
+				isOpen={showDeleteConfirmation}
+				onClose={() => setShowDeleteConfirmation(false)}
+				onConfirm={confirmDeleteImage}
+				title={t("dialog.deleteImage.title")}
+				description={t("dialog.deleteImage.description")}
+				confirmText={t("button.common.delete")}
+				cancelText={t("button.common.cancel")}
+			/>
 		</div>
 	);
 };

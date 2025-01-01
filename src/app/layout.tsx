@@ -6,7 +6,7 @@ import "@/app/globals.css";
 import { ThemeProvider } from "@/components/shared/themes/theme-provider";
 import { ProgressBar } from "@/components/ui/progress-bar";
 import { Toaster } from "sonner";
-import { AuthProvider } from "@/lib/auth/auth-provider";
+import { AuthProvider } from "@/lib/services/auth/auth-provider";
 
 const poppins = Poppins({
 	subsets: ["latin"],

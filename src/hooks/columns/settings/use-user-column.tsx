@@ -12,7 +12,7 @@ import {
 	getStatusLabel,
 } from "@/config/enums/status.enum";
 import { usePermissions } from "@/hooks/permissions/use-permission";
-import { useAuth } from "@/lib/auth/auth-provider";
+import { useAuth } from "@/lib/services/auth/auth-provider";
 import { userService } from "@/lib/services/settings/user.service";
 import { User } from "@/types/settings/user";
 import { ColumnDef } from "@tanstack/react-table";

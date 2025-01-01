@@ -145,6 +145,16 @@
 					"edit": "Edit Village",
 					"delete": "Delete Village"
 				}
+			},
+			"accounts": {
+				"profile": {
+					"label": "Personal Information",
+					"description": "User's personal data and identity"
+				},
+				"passwords": {
+					"label": "Change Password",
+					"description": "User account password settings"
+				}
 			}
 		},
 		"description": {
@@ -322,6 +332,10 @@
 			"year": {
 				"label": "Year",
 				"placeholder": "Enter Year"
+			},
+			"image": {
+				"label": "Image",
+				"placeholder": "Upload New Image"
 			}
 		},
 		"user": {
@@ -343,7 +357,7 @@
 			},
 			"photo": {
 				"label": "Photo",
-				"placeholder": "Enter new Photo"
+				"placeholder": "Upload new Photo"
 			},
 			"roles": {
 				"label": "Role",
@@ -406,6 +420,10 @@
 			"full_code": {
 				"label": "Full Code",
 				"placeholder": "Enter Full Code"
+			},
+			"last_activity": {
+				"label": "Last Activity",
+				"placeholder": "Enter Last Activity"
 			}
 		},
 		"select": "Select One",
@@ -426,7 +444,7 @@
 			"delete": "Delete",
 			"cancel": "Cancel",
 			"close": "Close",
-			"back": "Back to {page}",
+			"back": "Back",
 			"back-to-list": "Back to List Page",
 			"option": "Options",
 			"loading": "Loading...",
@@ -465,6 +483,10 @@
 		"submit": {
 			"title": "Confirm Data Submission",
 			"description": "Are you sure all the data entered is correct? This action cannot be undone."
+		},
+		"deleteImage": {
+			"title": "Delete Profile Image",
+			"description": "Are you sure you want to delete your profile image? This action cannot be undone."
 		}
 	},
 	"widget": {

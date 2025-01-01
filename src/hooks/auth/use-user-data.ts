@@ -1,4 +1,4 @@
-import { authService } from "@/lib/auth/auth.service";
+import { authService } from "@/lib/services/auth/auth.service";
 import { User } from "@/types/settings/user";
 import { useState, useEffect } from "react";
 

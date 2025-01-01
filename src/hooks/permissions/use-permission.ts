@@ -1,4 +1,4 @@
-import { useAuth } from "@/lib/auth/auth-provider";
+import { useAuth } from "@/lib/services/auth/auth-provider";
 
 export function usePermissions() {
 	const { user } = useAuth();

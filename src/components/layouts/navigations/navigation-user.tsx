@@ -1,7 +1,6 @@
 "use client";
 
-import { BadgeCheck, ChevronsUpDown, KeyRound, LogOut } from "lucide-react";
-
+import { ChevronsUpDown, KeyRound, LogOut, UserCircle } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
 	DropdownMenu,
@@ -18,15 +17,21 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@/components/ui/sidebar";
-import { useAuth } from "@/lib/auth/auth-provider";
+import { useAuth } from "@/lib/services/auth/auth-provider";
 import { useState } from "react";
 import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 import { useTranslations } from "next-intl";
+import { usePermissions } from "@/hooks/permissions/use-permission";
+import { Permission } from "@/config/enums/permission.enum";
+import { usePathname, useRouter } from "next/navigation";
 
 export function NavigationUser() {
 	const { isMobile } = useSidebar();
 	const t = useTranslations();
 	const { user, logout } = useAuth();
+	const { hasPermission } = usePermissions();
+	const router = useRouter();
+	const pathname = usePathname();
 
 	const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
 
@@ -92,14 +97,29 @@ export function NavigationUser() {
 							</DropdownMenuLabel>
 							<DropdownMenuSeparator />
 							<DropdownMenuGroup>
-								<DropdownMenuItem>
-									<BadgeCheck />
-									{t("pages.accounts.profile")}
-								</DropdownMenuItem>
-								<DropdownMenuItem>
-									<KeyRound />
-									{t("pages.accounts.change-password")}
-								</DropdownMenuItem>
+								{hasPermission(Permission.UserProfile) && (
+									<DropdownMenuItem
+										onClick={() => router.push("/accounts/profile")}
+										className={
+											pathname === "/accounts/profile" ? "bg-accent" : ""
+										}
+									>
+										<UserCircle />
+										{t("pages.accounts.profile")}
+									</DropdownMenuItem>
+								)}
+
+								{hasPermission(Permission.UserPassword) && (
+									<DropdownMenuItem
+										onClick={() => router.push("/accounts/passwords")}
+										className={
+											pathname === "/accounts/passwords" ? "bg-accent" : ""
+										}
+									>
+										<KeyRound />
+										{t("pages.accounts.change-password")}
+									</DropdownMenuItem>
+								)}
 							</DropdownMenuGroup>
 							<DropdownMenuSeparator />
 							<DropdownMenuItem onClick={handleLogoutClick}>

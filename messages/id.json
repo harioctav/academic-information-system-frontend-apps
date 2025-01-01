@@ -143,6 +143,16 @@
 					"edit": "Ubah Desa atau Kelurahan",
 					"delete": "Hapus Desa atau Kelurahan"
 				}
+			},
+			"accounts": {
+				"profile": {
+					"label": "Informasi Data Diri",
+					"description": "Data pribadi dan identitas Pengguna"
+				},
+				"passwords": {
+					"label": "Ubah Kata Sandi",
+					"description": "Pengaturan kata sandi akun Pengguna"
+				}
 			}
 		},
 		"description": {
@@ -320,6 +330,10 @@
 			"year": {
 				"label": "Tahun",
 				"placeholder": "Masukkan Tahun"
+			},
+			"image": {
+				"label": "Gambar",
+				"placeholder": "Unggah Gambar Baru"
 			}
 		},
 		"user": {
@@ -404,6 +418,10 @@
 			"full_code": {
 				"label": "Kode Lengkap",
 				"placeholder": "Masukkan Kode Lengkap"
+			},
+			"last_activity": {
+				"label": "Terakhir Login",
+				"placeholder": "Masukkan Terakhir Login"
 			}
 		},
 		"select": "Pilih Salah Satu",
@@ -424,7 +442,7 @@
 			"delete": "Hapus",
 			"cancel": "Batal",
 			"close": "Tutup",
-			"back": "Kembali ke {page}",
+			"back": "Kembali",
 			"back-to-list": "Kembali ke Halaman Daftar",
 			"option": "Pilihan",
 			"loading": "Memuat...",
@@ -463,6 +481,10 @@
 		"submit": {
 			"title": "Konfirmasi Pengiriman Data",
 			"description": "Apakah Anda yakin semua data yang dimasukkan sudah benar? Tindakan ini tidak dapat dibatalkan."
+		},
+		"deleteImage": {
+			"title": "Hapus Foto Profil",
+			"description": "Apakah Anda yakin ingin menghapus foto profil Anda? Tindakan ini tidak dapat dibatalkan."
 		}
 	},
 	"widget": {

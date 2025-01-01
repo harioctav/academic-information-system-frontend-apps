@@ -14,6 +14,15 @@ const config: NextConfig = {
 		config.optimization.minimizer = [];
 		return config;
 	},
+	images: {
+		domains: ["localhost"],
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "**",
+			},
+		],
+	},
 };
 
 export default withNextIntl(config);

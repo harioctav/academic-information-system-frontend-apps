@@ -3,7 +3,7 @@
 import { User } from "@/types/settings/user";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
-import { authService } from "@/lib/auth/auth.service";
+import { authService } from "@/lib/services/auth/auth.service";
 import { AuthResponse } from "@/types/auth/auth";
 
 interface AuthContextType {
@@ -11,6 +11,7 @@ interface AuthContextType {
 	login: (response: AuthResponse) => void;
 	logout: () => Promise<void>;
 	isLoading: boolean;
+	refreshUser: () => Promise<void>; // Add this new function
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -21,6 +22,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 	const [user, setUser] = useState<User | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const router = useRouter();
+
+	const refreshUser = async () => {
+		try {
+			const { user: sessionUser } = await authService.checkSession();
+			setUser(sessionUser);
+		} catch {
+			setUser(null);
+		}
+	};
 
 	useEffect(() => {
 		let mounted = true;
@@ -76,7 +86,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 	};
 
 	return (
-		<AuthContext.Provider value={{ user, login, logout, isLoading }}>
+		<AuthContext.Provider
+			value={{ user, login, logout, isLoading, refreshUser }}
+		>
 			{children}
 		</AuthContext.Provider>
 	);

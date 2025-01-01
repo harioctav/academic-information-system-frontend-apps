@@ -15,7 +15,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { PasswordInput } from "@/components/ui/password-input";
 import { ApiError } from "@/types/api";
-import { forgotPasswordService } from "@/lib/auth/forgot.password.service";
+import { forgotPasswordService } from "@/lib/services/auth/forgot.password.service";
 
 const ResetPasswordForm = () => {
 	const t = useTranslations();
