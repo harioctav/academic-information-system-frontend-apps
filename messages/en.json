@@ -217,6 +217,10 @@
 				"label": "Subject Name",
 				"placeholder": "Enter Subject Name"
 			},
+			"major_name": {
+				"label": "Major",
+				"placeholder": "Enter or Select Major"
+			},
 			"subject_code": {
 				"label": "Subject Code",
 				"placeholder": "Enter Subject Code"
@@ -337,6 +341,14 @@
 				"label": "Image",
 				"placeholder": "Upload New Image",
 				"helper": "Upload a new image to replace image data, deleting image data can only be done on the detail page"
+			},
+			"exam_period": {
+				"label": "Exam Period",
+				"placeholder": "Enter Exam Period"
+			},
+			"recommendation_note": {
+				"label": "Recommendation Note",
+				"placeholder": "Enter Recommendation Note"
 			}
 		},
 		"user": {
@@ -530,6 +542,9 @@
 		"address_type": {
 			"domicile": "Domicile Address",
 			"id_card": "Id Card Address"
+		},
+		"info": {
+			"student_detail": "Open Student page to see more detailed Student information"
 		}
 	},
 	"permission": {

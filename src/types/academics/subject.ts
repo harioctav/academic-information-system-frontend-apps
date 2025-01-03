@@ -1,4 +1,6 @@
 import { ApiResponse, TimeFormat } from "@/types/api";
+import { Grade } from "@/types/evaluations/grade";
+import { Recommendation } from "@/types/evaluations/recommendation";
 
 export interface Subject {
 	id: number;
@@ -9,6 +11,9 @@ export interface Subject {
 	subject_status: string;
 	exam_time: string;
 	subject_note: string;
+	semester?: number;
+	grades?: Grade[];
+	recommendations?: Recommendation[];
 	created_at: TimeFormat;
 	updated_at: TimeFormat;
 }

@@ -211,13 +211,17 @@
 				"label": "Cari",
 				"placeholder": "Masukkan Kata Kunci"
 			},
+			"major_name": {
+				"label": "Program Studi",
+				"placeholder": "Masukkan atau Pilih Program Studi"
+			},
 			"subject_name": {
 				"label": "Nama Matakuliah",
-				"placeholder": "Enter Nama Matakuliah"
+				"placeholder": "Masukkan Nama Matakuliah"
 			},
 			"subject_code": {
 				"label": "Kode Matakuliah",
-				"placeholder": "Enter Kode Matakuliah"
+				"placeholder": "Masukkan Kode Matakuliah"
 			},
 			"name": {
 				"label": "Nama",
@@ -335,6 +339,14 @@
 				"label": "Gambar",
 				"placeholder": "Unggah Gambar Baru",
 				"helper": "Unggah gambar baru untuk mengganti data gambar, menghapus data gambar hanya bisa dilakukan di halaman detail"
+			},
+			"exam_period": {
+				"label": "Periode Ujian",
+				"placeholder": "Masukkan Periode Ujian"
+			},
+			"recommendation_note": {
+				"label": "Catatan Rekomendasi",
+				"placeholder": "Masukkan Catatan Rekomendasi"
 			}
 		},
 		"user": {
@@ -528,6 +540,9 @@
 		"address_type": {
 			"domicile": "Alamat Domisili",
 			"id_card": "Alamat KTP"
+		},
+		"info": {
+			"student_detail": "Buka halaman Mahasiswa untuk mengetahui informasi data detail Mahasiswa lebih lanjut"
 		}
 	},
 	"permission": {

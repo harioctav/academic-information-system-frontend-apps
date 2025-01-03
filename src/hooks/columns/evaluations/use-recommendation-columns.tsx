@@ -2,70 +2,60 @@
 
 import { ConfirmationDialog } from "@/components/shared/confirmation-dialog";
 import { ActionColumn } from "@/components/tables/partials/action-column";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Permission } from "@/config/enums/permission.enum";
-import { studentService } from "@/lib/services/academics/student.service";
-import { Student } from "@/types/academics/student";
+import {
+	getRecommendationNoteBadgeVariant,
+	getRecommendationNoteLabel,
+} from "@/config/enums/recommendation.note.enum";
+import { getSemesterLabel } from "@/config/enums/semester.enum";
+import { recommendationService } from "@/lib/services/evaluations/recommendation.service";
+import { Recommendation } from "@/types/evaluations/recommendation";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Settings2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { toast } from "sonner";
 
-export const useStudentColumns = () => {
-	/** Translate */
+export const useRecommendationColumns = () => {
 	const t = useTranslations();
-
-	/** Dialog setup */
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-	const [selectedUuid, setSelectedUuid] = useState<string | null>(null);
+	const [selectedRecommendationUuid, setSelectedRecommendationUuid] = useState<
+		string | null
+	>(null);
 
-	/**
-	 * Handles the deletion of a student by making a request to the student service and updating the UI accordingly.
-	 *
-	 * @param uuid - The unique identifier of the student to be deleted.
-	 * @param onSuccess - A callback function to be executed upon successful deletion.
-	 */
+	// Handle Delete Data
 	const handleDelete = async (uuid: string, onSuccess: () => void) => {
 		try {
-			const response = await studentService.deleteStudent(uuid);
+			const response = await recommendationService.deleteRecommendation(uuid);
 			toast.success(response.message);
 			onSuccess();
 		} catch (error) {
 			toast.error(error instanceof Error ? error.message : "An error occurred");
 		} finally {
 			setIsDeleteDialogOpen(false);
-			setSelectedUuid(null);
+			setSelectedRecommendationUuid(null);
 		}
 	};
 
 	const createColumns = (
 		refreshData: () => void,
-		onShow?: (uuid: string) => void
+		onEdit?: (uuid: string) => void
 	) => {
-		/** Setup Student Columns */
-		const columns: ColumnDef<Student>[] = [
+		const columns: ColumnDef<Recommendation>[] = [
 			{
-				accessorKey: "student_photo_url",
-				header: t("input.user.photo.label"),
-				cell: ({ row }) => {
-					const student = row.original;
-					return (
-						<Avatar className="h-8 w-8 circle">
-							<AvatarImage
-								src={student.student_photo_url || undefined}
-								alt={student.name}
-							/>
-							<AvatarFallback className="circle">
-								{student.name.substring(0, 2).toUpperCase()}
-							</AvatarFallback>
-						</Avatar>
-					);
-				},
+				accessorKey: "subject.code",
+				header: t("input.common.code.label"),
+				cell: ({ row }) => row.original.subject.code,
 			},
 			{
-				accessorKey: "nim",
+				accessorKey: "subject.name",
+				header: "Subject",
+				cell: ({ row }) => row.original.subject.name,
+			},
+			{
+				accessorKey: "semester",
 				header: ({ column }) => {
 					return (
 						<Button
@@ -75,55 +65,29 @@ export const useStudentColumns = () => {
 							}
 							className="w-full"
 						>
-							{t("input.common.nim.label")}
+							{t("input.common.semester.label")}
 							<ArrowUpDown className="ml-2 h-4 w-4" />
 						</Button>
 					);
 				},
+				cell: ({ row }) => getSemesterLabel(row.original.semester),
 			},
 			{
-				accessorKey: "nik",
-				header: t("input.common.nik.label"),
-				cell: ({ row }) => row.original.nik || "-",
+				accessorKey: "exam_period",
+				header: t("input.common.exam_period.label"),
 			},
 			{
-				accessorKey: "name",
-				header: ({ column }) => {
-					return (
-						<Button
-							variant="ghost"
-							onClick={() =>
-								column.toggleSorting(column.getIsSorted() === "asc")
-							}
-							className="w-full"
-						>
-							{t("input.common.name.label")}
-							<ArrowUpDown className="ml-2 h-4 w-4" />
-						</Button>
-					);
-				},
-			},
-			{
-				accessorKey: "email",
-				header: ({ column }) => {
-					return (
-						<Button
-							variant="ghost"
-							onClick={() =>
-								column.toggleSorting(column.getIsSorted() === "asc")
-							}
-							className="w-full"
-						>
-							{t("input.user.email.label")}
-							<ArrowUpDown className="ml-2 h-4 w-4" />
-						</Button>
-					);
-				},
-			},
-			{
-				accessorKey: "major.name",
-				header: t("module.academic.majors"),
-				cell: ({ row }) => row.original.major.name,
+				accessorKey: "recommendation_note",
+				header: t("input.common.recommendation_note.label"),
+				cell: ({ row }) => (
+					<Badge
+						variant={getRecommendationNoteBadgeVariant(
+							row.original.recommendation_note
+						)}
+					>
+						{getRecommendationNoteLabel(row.original.recommendation_note)}
+					</Badge>
+				),
 			},
 			{
 				accessorKey: "created_at",
@@ -174,29 +138,28 @@ export const useStudentColumns = () => {
 					return (
 						<>
 							<ActionColumn
-								editUrl={`/academics/students/${row.original.uuid}/edit`}
-								onShow={() => onShow?.(row.original.uuid)}
-								showPermission={Permission.StudentShow}
-								editPermission={Permission.StudentEdit}
-								deletePermission={Permission.StudentDelete}
+								onEdit={() => onEdit?.(row.original.uuid)}
+								editPermission={Permission.RecommendationEdit}
+								deletePermission={Permission.RecommendationDelete}
 								onDelete={() => {
-									setSelectedUuid(row.original.uuid);
+									setSelectedRecommendationUuid(row.original.uuid);
 									setIsDeleteDialogOpen(true);
 								}}
 							/>
 
 							<ConfirmationDialog
 								isOpen={
-									isDeleteDialogOpen && selectedUuid === row.original.uuid
+									isDeleteDialogOpen &&
+									selectedRecommendationUuid === row.original.uuid
 								}
 								onClose={() => {
 									setIsDeleteDialogOpen(false);
-									setSelectedUuid(null);
+									setSelectedRecommendationUuid(null);
 								}}
 								onConfirm={() => handleDelete(row.original.uuid, refreshData)}
-								title={t("navigation.menu.academics.students.delete")}
+								title={t("navigation.menu.evaluations.recommendations.delete")}
 								description={t("dialog.delete.description", {
-									page: t("navigation.menu.academics.students.label"),
+									page: t("navigation.menu.evaluations.recommendations.label"),
 								})}
 								confirmText={t("button.common.delete")}
 								cancelText={t("button.common.cancel")}

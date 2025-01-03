@@ -117,9 +117,9 @@ const StudentShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 			icon={<Info />}
 			isOpen={isOpen}
 			onClose={onClose}
-			title={t("navigation.menu.settings.users.show")}
+			title={t("navigation.menu.academics.students.show")}
 			description={t("navigation.description.show", {
-				page: t("navigation.menu.settings.users.label"),
+				page: t("navigation.menu.academics.students.label"),
 			})}
 		>
 			{isLoading ? (
@@ -230,18 +230,24 @@ const StudentShowDialog = ({ isOpen, onClose, uuid }: ShowDialogProps) => {
 								<GridItem
 									label={t("input.common.status_registration.label")}
 									value={getStatusRegistrationLabel(
-										student.status_registration
+										student.status_registration ?? ""
 									)}
 								/>
 								<GridItem
 									label={t("input.common.status_activity.label")}
 									value={
-										<Badge
-											variant={getStatusBadgeVariant(student.status_activity)}
-										>
-											{getStatusLabel(student.status_activity, t)}
-										</Badge>
+										student ? (
+											<Badge
+												variant={getStatusBadgeVariant(student.status_activity)}
+											>
+												{getStatusLabel(student.status_activity, t)}
+											</Badge>
+										) : (
+											"-"
+										)
 									}
+									className="text-center"
+									fullWidth
 								/>
 							</GridContainer>
 						</CardContent>
