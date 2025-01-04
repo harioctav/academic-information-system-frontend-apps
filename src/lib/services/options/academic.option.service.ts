@@ -27,6 +27,10 @@ class AcademicOptionService extends BaseService {
 	showSubject = (uuid: string) => {
 		return this.get<Subject>(`/subjects/${uuid}`);
 	};
+
+	getRecommendationSubjects = (studentUuid?: string, params?: Params) => {
+		return this.get<Subject[]>(`/subjects/${studentUuid}`, params);
+	};
 	// Subjects
 
 	// Students

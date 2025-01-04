@@ -25,6 +25,7 @@ interface TableToolbarProps<TData> {
 	handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	onSearchChange: (query: string) => void;
 	setInputValue: (value: string) => void;
+	customSelectionMode?: boolean;
 }
 
 export function TableToolbar<TData>({
@@ -38,6 +39,7 @@ export function TableToolbar<TData>({
 	handleSearch,
 	onSearchChange,
 	setInputValue,
+	customSelectionMode,
 }: TableToolbarProps<TData>) {
 	const t = useTranslations();
 
@@ -64,7 +66,8 @@ export function TableToolbar<TData>({
 					</SelectContent>
 				</Select>
 
-				{showSelection && selectedRows.length > 0 && (
+				{/* Only show delete button if not in custom selection mode */}
+				{showSelection && selectedRows.length > 0 && !customSelectionMode && (
 					<Button
 						variant="destructive"
 						size="sm"

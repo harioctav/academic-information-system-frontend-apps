@@ -33,8 +33,8 @@ const RecommendationShowPage = ({
 	const resolvedParams = use(params);
 	const [student, setStudent] = useState<Student | null>(null);
 
-	const [isDialogOpen, setIsDialogOpen] = useState(false);
-	const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
+	// const [isDialogOpen, setIsDialogOpen] = useState(false);
+	// const [selectedUuid, setSelectedUuid] = useState<string | undefined>();
 
 	/** Filter */
 	const [recommendationNoteFilter, setRecommendationNoteFilter] = useState<
@@ -84,10 +84,10 @@ const RecommendationShowPage = ({
 		{ studentUuid: student?.uuid }
 	);
 
-	const handleEdit = (uuid: string) => {
-		setSelectedUuid(uuid);
-		setIsDialogOpen(true);
-	};
+	// const handleEdit = (uuid: string) => {
+	// 	setSelectedUuid(uuid);
+	// 	setIsDialogOpen(true);
+	// };
 
 	const handleBulkDelete = async (selectedIds: string[]) => {
 		try {
@@ -103,10 +103,7 @@ const RecommendationShowPage = ({
 
 	const createColumns = useRecommendationColumns();
 
-	const columns = createColumns(
-		fetchData,
-		handleEdit
-	) as ColumnDef<Recommendation>[];
+	const columns = createColumns(fetchData) as ColumnDef<Recommendation>[];
 
 	return (
 		<MainLayout>

@@ -38,6 +38,9 @@ interface DataTableProps<TData> {
 		edit?: string;
 		delete?: string;
 	};
+	onSelectionChange?: (selectedIds: string[]) => void;
+	customSelectionMode?: boolean;
+	calculateTotal?: (selectedData: TData[]) => number;
 }
 
 export function DataTable<TData>({
@@ -55,6 +58,8 @@ export function DataTable<TData>({
 	isSpecialRow,
 	isLoading = false,
 	actionPermissions,
+	onSelectionChange,
+	customSelectionMode,
 }: DataTableProps<TData>) {
 	const t = useTranslations();
 	const { hasPermission } = usePermissions();
@@ -156,6 +161,12 @@ export function DataTable<TData>({
 		[table, rowSelection]
 	);
 
+	React.useEffect(() => {
+		if (onSelectionChange) {
+			onSelectionChange(selectedRows);
+		}
+	}, [selectedRows, onSelectionChange]);
+
 	const handleBulkDelete = React.useCallback(() => {
 		if (onBulkDelete && selectedRows.length > 0) {
 			onBulkDelete(selectedRows);
@@ -177,6 +188,7 @@ export function DataTable<TData>({
 				handleSearch={handleSearch}
 				onSearchChange={onSearchChange}
 				setInputValue={setInputValue}
+				customSelectionMode={customSelectionMode}
 			/>
 
 			<TableContent
@@ -195,7 +207,7 @@ export function DataTable<TData>({
 				pageCount={pageCount}
 			/>
 
-			{showSelection && (
+			{showSelection && !customSelectionMode && (
 				<ConfirmationDialog
 					isOpen={isDeleteDialogOpen}
 					onClose={() => setIsDeleteDialogOpen(false)}

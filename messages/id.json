@@ -347,6 +347,18 @@
 			"recommendation_note": {
 				"label": "Catatan Rekomendasi",
 				"placeholder": "Masukkan Catatan Rekomendasi"
+			},
+			"grade": {
+				"label": "Nilai",
+				"placeholder": "Masukkan Nilai"
+			},
+			"grades": {
+				"label": "Nilai",
+				"placeholder": "Masukkan Nilai"
+			},
+			"recommendations": {
+				"label": "Rekomendasi",
+				"placeholder": "Masukkan Rekomendasi"
 			}
 		},
 		"user": {

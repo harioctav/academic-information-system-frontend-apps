@@ -349,6 +349,18 @@
 			"recommendation_note": {
 				"label": "Recommendation Note",
 				"placeholder": "Enter Recommendation Note"
+			},
+			"grade": {
+				"label": "Grade",
+				"placeholder": "Enter Grade"
+			},
+			"grades": {
+				"label": "Grade",
+				"placeholder": "Enter Grade"
+			},
+			"recommendations": {
+				"label": "Recommendation",
+				"placeholder": "Enter Recommendation"
 			}
 		},
 		"user": {
